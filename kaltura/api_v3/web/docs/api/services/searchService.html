@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class searchService</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<script src="../../jquery-1.3.1.min.js"></script>
+						<script src="../../kaltura_custom_inner.js"></script>
+						<link rel="stylesheet" href="../../kaltura.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> searchService</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Search service allows you to search for media in various media providers  This service is being used mostly by the CW component</p>
+		<p class="notes">
+			Located in <a class="field" href="_services---SearchService.php.html">/services/SearchService.php</a> (line <span class="field">10</span>)
+		</p>
+		
+				
+		<pre><a href="../../api/services/KalturaBaseService.html">KalturaBaseService</a>
+   |
+   --searchService</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																								<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../api/objects/KalturaSearchResult.html">KalturaSearchResult</a></span>
+										<a href="#getmediainfoAction" title="details" class="method-name">getmediainfoAction</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$partnerId</span>, <span class="var-type"><a href="../../api/objects/KalturaSearchResult.html">KalturaSearchResult</a></span>&nbsp;<span class="var-name">$searchResult</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../api/objects/KalturaSearchResultArray.html">KalturaSearchResultArray</a></span>
+										<a href="#searchAction" title="details" class="method-name">searchAction</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$partnerId</span>, <span class="var-type"><a href="../../api/objects/KalturaSearch.html">KalturaSearch</a></span>&nbsp;<span class="var-name">$search</span>, [<span class="var-type"><a href="../../api/filters/KalturaFilterPager.html">KalturaFilterPager</a></span>&nbsp;<span class="var-name">$pager</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../api/objects/KalturaSearchResult.html">KalturaSearchResult</a></span>
+										<a href="#searchurlAction" title="details" class="method-name">searchurlAction</a>
+											(<span class="var-type">int</span>&nbsp;<span class="var-name">$partnerId</span>, <span class="var-type"><a href="../../api/enum/KalturaMediaType.html">KalturaMediaType</a></span>&nbsp;<span class="var-name">$mediaType</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+													<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodgetmediainfoAction" id="getmediainfoAction"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">getmediainfoAction</span> (line <span class="line-number">69</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Retrieve extra information about media found in search action  Some providers return only part of the fields needed to create entry from, use this action to get the rest of the fields.</p>
+	<ul class="tags">
+						<li><span class="field">throws:</span> APIErrors::SEARCH_UNSUPPORTED_MEDIA_TYPE</li>
+								<li><span class="field">throws:</span> APIErrors::SEARCH_UNSUPPORTED_MEDIA_SOURCE</li>
+								<li><span class="field">access:</span> public</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../api/objects/KalturaSearchResult.html">KalturaSearchResult</a></span>
+		<span class="method-name">
+			getmediainfoAction
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$partnerId</span>, <span class="var-type"><a href="../../api/objects/KalturaSearchResult.html">KalturaSearchResult</a></span>&nbsp;<span class="var-name">$searchResult</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$partnerId</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../api/objects/KalturaSearchResult.html">KalturaSearchResult</a></span>
+				<span class="var-name">$searchResult</span><span class="var-description">: KalturaSearchResult object extends KalturaSearch and has all fields required for media:add</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsearchAction" id="searchAction"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">searchAction</span> (line <span class="line-number">24</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Search for media in one of the supported media providers</p>
+	<ul class="tags">
+						<li><span class="field">throws:</span> APIErrors::SEARCH_UNSUPPORTED_MEDIA_TYPE</li>
+								<li><span class="field">throws:</span> APIErrors::SEARCH_UNSUPPORTED_MEDIA_SOURCE</li>
+								<li><span class="field">access:</span> public</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../api/objects/KalturaSearchResultArray.html">KalturaSearchResultArray</a></span>
+		<span class="method-name">
+			searchAction
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$partnerId</span>, <span class="var-type"><a href="../../api/objects/KalturaSearch.html">KalturaSearch</a></span>&nbsp;<span class="var-name">$search</span>, [<span class="var-type"><a href="../../api/filters/KalturaFilterPager.html">KalturaFilterPager</a></span>&nbsp;<span class="var-name">$pager</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$partnerId</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../api/objects/KalturaSearch.html">KalturaSearch</a></span>
+				<span class="var-name">$search</span><span class="var-description">: A KalturaSearch object contains the search keywords, media provider and media type</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../api/filters/KalturaFilterPager.html">KalturaFilterPager</a></span>
+				<span class="var-name">$pager</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsearchurlAction" id="searchurlAction"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">searchurlAction</span> (line <span class="line-number">104</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Search for media given a specific URL  Kaltura supports a searchURL action on some of the media providers.</p>
+<p class="description"><p>This action will return a KalturaSearchResult object based on a given URL (assuming the media provider is supported)</p></p>
+	<ul class="tags">
+						<li><span class="field">throws:</span> APIErrors::SEARCH_UNSUPPORTED_MEDIA_SOURCE_FOR_URL</li>
+								<li><span class="field">access:</span> public</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../api/objects/KalturaSearchResult.html">KalturaSearchResult</a></span>
+		<span class="method-name">
+			searchurlAction
+		</span>
+					(<span class="var-type">int</span>&nbsp;<span class="var-name">$partnerId</span>, <span class="var-type"><a href="../../api/enum/KalturaMediaType.html">KalturaMediaType</a></span>&nbsp;<span class="var-name">$mediaType</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$partnerId</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../api/enum/KalturaMediaType.html">KalturaMediaType</a></span>
+				<span class="var-name">$mediaType</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$url</span>			</li>
+				</ul>
+		
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../api/services/KalturaBaseService.html">KalturaBaseService</a></span></p>
+					<blockquote>
+													<img src="../../media/images/Constructor.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#method__construct">KalturaBaseService::__construct()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodapplyPartnerFilterForClass">KalturaBaseService::applyPartnerFilterForClass()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodgetKs">KalturaBaseService::getKs()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodgetKsUniqueString">KalturaBaseService::getKsUniqueString()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodgetPartner">KalturaBaseService::getPartner()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodgetPartnerId">KalturaBaseService::getPartnerId()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodgetPuserKuser">KalturaBaseService::getPuserKuser()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodinitService">KalturaBaseService::initService()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodkalturaNetwork">KalturaBaseService::kalturaNetwork()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodmatchIp">KalturaBaseService::matchIp()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodpartnerGroup">KalturaBaseService::partnerGroup()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodrequirePartner">KalturaBaseService::requirePartner()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodticketType">KalturaBaseService::ticketType()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodvalidateTicketSetPartner">KalturaBaseService::validateTicketSetPartner()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#method__destruct">KalturaBaseService::__destruct()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 06 Apr 2009 18:09:55 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
+	</p>
+	</div></body>
+</html>

@@ -1,0 +1,131 @@
+
+[constants]
+ GENERAL_ALERT_TYPE_STF = 100;
+
+ GENERAL_ALERT_TYPE_NEWSLETTER = 10;
+ GENERAL_ALERT_TYPE_FAVORITED_ME = 11;
+ GENERAL_ALERT_TYPE_FAVORITED_MY_CLIP = 12;
+ GENERAL_ALERT_TYPE_COMMENT_ADDED = 13;
+
+ KALTURAS_PRODUCED_ALERT_TYPE_CONTRIB_ADDED = 20;
+ KALTURAS_PRODUCED_ALERT_TYPE_SUBSCRIBER_ADDED = 21;
+ KALTURAS_PRODUCED_ALERT_TYPE_ROUGHCUT_CREATED = 22;
+ KALTURAS_PRODUCED_ALERT_TYPE_FAVORITED = 23;
+ KALTURAS_PRODUCED_ALERT_TYPE_COMMENT_ADDED = 24;
+
+ KALTURAS_PARTOF_ALERT_TYPE_CONTRIB_ADDED = 30;
+ KALTURAS_PARTOF_ALERT_TYPE_ROUGHCUT_CREATED = 31;
+ KALTURAS_PARTOF_ALERT_TYPE_FAVORITED = 32;
+ KALTURAS_PARTOF_ALERT_TYPE_COMMENT_ADDED = 33;
+
+ KALTURAS_SUBSCRIBEDTO_ALERT_TYPE_CONTRIB_ADDED = 40;
+ KALTURAS_SUBSCRIBEDTO_ALERT_TYPE_ROUGHCUT_CREATED = 41;
+ KALTURAS_SUBSCRIBEDTO_ALERT_TYPE_FAVORITED = 42;
+ KALTURAS_SUBSCRIBEDTO_ALERT_TYPE_COMMENT_ADDED = 43;
+
+ KALTURAS_CMS_REGISTRATION_CONFIRMATION = 50;
+ KALTURAS_CMS_PASSWORD_RESET = 51;
+ KALTURAS_PARTNER_EMAIL_CHANGE = 52;
+ 
+ KALTURAS_FLATTEN_READY = 60;
+ KALTURAS_DOWNLOAD_READY = 62;
+ 
+ KALTURA_PACKAGE_UPGRADE = 80;
+ KALTURA_PACKAGE_EIGHTY_PERCENT_WARNING = 81;
+ KALTURA_PACKAGE_LIMIT_WARNING_1 = 82;
+ KALTURA_PACKAGE_LIMIT_WARNING_2 = 83;
+ KALTURA_DELETE_ACCOUNT = 84;
+
+[subjects]
+100 = %s
+
+10 = Kaltura '%s' Newsletter
+11 = %s added you to his/her favorites
+12 = %s added your clip '%s' to his/her favorites
+13 = A new comment was added to your Kaltura profile
+
+20 = A clip was added to your Kaltura '%s'
+21 = A Kalura Video was added to your Kaltura '%s'
+22 = Roughcut created for your Kaltura '%s'
+23 = %s added your Kaltura '%s' to his/her favorites
+24 = New comment added to your Kaltura '%s'
+
+30 = A clip was added to Kaltura '%s'
+31 = A Kaltura Video was created for your Kaltura '%s'
+32 = %s added your Kaltura '%s' to his/her favorites
+33 = New comment added to the Kaltura '%s' to which you contributed
+
+40 = A Clip was added to Kaltura '%s'
+41 = A Kaltura Video was created for your Kaltura '%s'
+42 = %s added your Kaltura '%s' to his/her favorites
+43 = New comment added to the Kaltura '%s' to which you are subscribed
+
+50 = Registration confirmation for the Kaltura Partner Program
+51 = Admin user password reset
+52 = Partner email change
+
+60 = Your Kaltura video is ready
+62 = Your Kaltura video is ready
+
+70 = Error sending notification %s
+
+80 = Kaltura Account Upgrade Confirmation
+81 = Important Notice about your Kaltura Video Service
+82 = Important Notice about your Kaltura Video Service
+83 = Important Notice about your Kaltura Video Service
+84 = Important Notice about your Kaltura Video Service
+85 = Important Notice about your Kaltura Video Service
+86 = Kaltura Account Reactivation Confirmation
+
+[bodies]
+
+100= %s<BR><BR>'%s' is available at %s<BR>%s
+
+10 = Kaltura '%s' Newsletter
+
+11 = %s,<BR><BR>%s added you to his/her favorites<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+12 = %s,<BR><BR>%s added your clip '%s' to his/her favorites<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+13 = %s,<BR><BR>%s added a comment to your profile.<BR>See the comment: http://KALTURA_HOST/mykaltura<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+
+20 = %s,<BR><BR>%s added a clip to your Kaltura '%s'.<BR><BR>View the new clip:<BR>http://KALTURA_HOST/browse?kshow_id<EQ>%s#entry_id<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+21 = %s,<BR><BR>%s subscribed to your Kaltura '%s'.<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+22 = %s,<BR><BR>%s created a Kaltura Video for your Kaltura '%s'.<BR><BR>View the new video:<BR>http://KALTURA_HOST/browse?kshow_id<EQ>%s<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+23 = %s,<BR><BR>%s added your Kaltura '%s' to his/her favorites.<BR><BR>View the new rough-cut:<BR>http://KALTURA_HOST/browse?kshow_id<EQ>%s<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+24 = %s,<BR><BR>%s added a comment to your Kaltura '%s'.<BR><BR>View the new comment:<BR>http://KALTURA_HOST/browse?kshow_id<EQ>%s<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+
+30 = %s,<BR><BR>%s added a clip to the Kaltura '%s'.<BR><BR>View the new clip:<BR>http://KALTURA_HOST/browse?kshow_id<EQ>%s#entry_id<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+31 = %s,<BR><BR>%s created a Kaltura Video to the Kaltura '%s'.<BR><BR>View the new Kaltura Video:<BR>http://KALTURA_HOST/browse?kshow_id<EQ>%s<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+32 = %s,<BR><BR>%s added the Kaltura '%s', to his/her favorites.<BR><BR>View the Kaltura:<BR>http://KALTURA_HOST/browse?kshow_id<EQ>%s<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+33 = %s,<BR><BR>%s added a comment to the Kaltura '%s'.<BR><BR>View the new comment:<BR>http://KALTURA_HOST/browse?kshow_id<EQ>%s<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+
+40 = %s,<BR><BR>%s contributed a media clip to the Kaltura '%s' to which you are subscribed.<BR><BR>View the new media clip:<BR>http://KALTURA_HOST/browse?kshow_id<EQ>%s#entry_id<EQ>%s<BR><BR>You can change your subscriptions: http://KALTURA_HOST/index.php/mykaltura/editprofile?tab<EQ>subscriptions<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+31 = %s,<BR><BR>%s created a rough-cut to the Kaltura '%s' to which you are subscribed.<BR><BR>View the new rough-cut:<BR>http://KALTURA_HOST/browse?kshow_id<EQ>%s<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+42 = %s,<BR><BR>%s added the Kaltura '%s', to which you are subscribed, to his/her favorites.<BR><BR>View the Kaltura:<BR>http://KALTURA_HOST/browse?kshow_id<EQ>%s<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+43 = %s,<BR><BR>%s added a comment to the Kaltura '%s', to which you are subscribed.<BR><BR>View the new comment:<BR>http://KALTURA_HOST/browse?kshow_id<EQ>%s<BR><BR>View %s's profile:<BR>http://KALTURA_HOST/index.php/mykaltura/viewprofile?screenname<EQ>%s<BR><BR>See what's new on Kaltura: http://KALTURA_HOST/index.php
+
+50 = "Hello %s,<BR><BR>Congratulations on joining the Kaltura partner program and adding Kaltura's video capabilities to your site. <BR><BR>Please keep the following information regarding the Kaltura video technology for future use:<BR>Partner ID: %s <BR>Sub-Partner ID: %s <BR>Administrator Email: %s <BR>Administrator Password: %s <BR>Web Service Admin-Secret: %s <BR>Web Service Secret: %s <BR><BR>You can administrate your account by logging into the Kaltura CMS - Content Management System - at http://KALTURA_HOST/index.php/kmc.<BR>Your login information is as follows:<BR>KMC Login Email: %s <BR>KMC Login Password: %s <BR><BR>You can download additional open source video solutions by Kaltura at: http://corp.kaltura.com/download<BR>You can also learn more about Kaltura's developer program and API at: http://www.kaltura.com/wiki/<BR><BR>For any questions,please visit our forum at http://community.kaltura.org/ or contact us at http://corp.kaltura.com/support.<BR><BR>Thank you for choosing Kaltura,<BR><BR>Kaltura Customer Service"
+51 = Hello %s,<BR><BR>Following is your new CMS Login: %s<BR><BR>Kaltura Customer Service
+52 = "Hello %s,<BR><BR>Your partner’s email address has been changed.<BR><BR>Old email: %s<BR>New email: %s<BR><BR>This message was sent to both email addresses"
+
+60 = Hello %s,<BR><BR>Following is the download link to your video : %s<BR><BR>Kaltura Customer Service
+62 = Hello %s,<BR><BR>Following is the download link to your video : %s<BR><BR>Kaltura Customer Service
+
+70 = Hello %s '%s',<BR><BR>There was an error while sending notification '%s' to url '%s' .<BR><BR>The result was '%s'<BR><BR>Notification data:<BR>%s<BR>
+
+80 = Dear %s,<BR><BR>Thank you for upgrading your Kaltura account. You have selected the %s package which provides you with %s GB per month for %s.<BR><BR>For any questions, please contact us at [LINK TO CONTACT US].<BR><BR>Regards,<BR>The Kaltura Team
+81 = Dear %s,<BR><BR>We wanted to let you know that you are approaching your limit of %s GB free hosting and streaming for your Kaltura Video Service.<BR><BR>In order to ensure that your service is continued, please login to the Kaltura Management Console [KMC] http://KALTURA_HOST/index.php/kmc/kmc to upgrade your account and learn more about the available packages of additional bandwidth, starting at just %s per month.<BR><BR>Note that if you do not select to upgrade your service, then your account will be disabled 3 days after the 10GB limit is reached.  Your account information and content will be saved for 30 days. If you do not upgrade your account within the 30-day period your account and media content will be permanently deleted from the system.<BR><BR>Please login now to learn more and contact us with any questions. [LINK TO CONTACT US]<BR><BR>Regards,<BR>The Kaltura Team
+82 = Dear %s,<BR><BR>We wanted to let you know that you have reached your limit of 10 GB free hosting and streaming for your Kaltura Video Service.<BR><BR>If you do not upgrade your account within 3 days, your account will be locked.<BR><BR>In order to ensure that your service is continued, please login to the Kaltura Management Console [KMC] http://KALTURA_HOST/index.php/kmc/kmc to upgrade your account and learn more about the available packages of additional bandwidth, starting at just %s per month.<BR><BR>Note that if you do not upgrade your account within 30 days, your account and media content will be permanently deleted from the system.<BR><BR>We hope that you select to continue using Kaltura’s services, if it’s something we did then let us know [LINK TO CONTACT US].<BR><BR>For any questions, please contact us CONTACT FORM.<BR><BR>Regards,<BR>The Kaltura Team
+83 = Dear %s,<BR><BR>We wanted to let you know that you have reached your limit of 10 GB free hosting and streaming for your Kaltura Video Service. Your account has been locked.<BR><BR>In order to unlock your account and ensure that your service is reactivated, please login to the Kaltura Management Console [KMC] http://KALTURA_HOST/index.php/kmc/kmc to upgrade your account and learn more about the available packages of additional bandwidth, starting at just %s per month.<BR><BR>Note that if you do not upgrade your account within 30 days, your account and media content will be permanently deleted from the system.<BR><BR>We hope that you select to continue using Kaltura’s services, if it’s something we did then let us know [LINK TO CONTACT US].<BR><BR>For any questions, please contact us CONTACT FORM.<BR><BR>Regards,<BR>The Kaltura Team
+84 = Dear %s,<BR><BR>Your Kaltura account has been deleted.<BR><BR>Should you select to use Kaltura in the future, you will need to create a new account.<BR><BR>For any questions, please contact us CONTACT FORM.<BR><BR>Regards,<BR>The Kaltura Team
+85 = Dear %s,<BR><BR>We wanted to let you know that you have used %s GB hosting and streaming this month.<BR>You want to consider upgrading your package in order to save on overage costs. Please login to the Kaltura Management Console [KMC] http://KALTURA_HOST/index.php/kmc/kmc to upgrade your account and learn more about the available packages of additional bandwidth.<BR><BR>Regards,<BR>The Kaltura Team
+86 = Dear %s,<BR><BR>Thank you for reactivating and upgrading your Kaltura account.  You have selected the %s package which provides you with %s GB per month for %s.<BR><BR>For any questions, please contact us CONTACT FORM.<BR><BR>Regards,<BR>The Kaltura Team
+
+
+
+ 
+
+[common_text]
+header = Message from Kaltura<BR><BR>
+footer = <BR><BR>Please do not reply to this email, however feel free to send any feedback to http://corp.kaltura.com/support .<BR>If you would like to unsubscribe, please click this link: http://KALTURA_HOST/index.php/extwidget/blockMail?e<EQ>%s
+oldfooter = <BR><BR>--------------------<BR>PLEASE DO NOT REPLY TO THIS EMAIL<BR><BR>You can sign-in to Kaltura and change notification options at:<BR>http://KALTURA_HOST/index.php/mykaltura/editprofile?tab<EQ>notifications<BR><BR>If you no longer want to receive any Kaltura emails to %s, click this link: http://KALTURA_HOST/index.php/extwidget/blockMail?e<EQ>%s
+

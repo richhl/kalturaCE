@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>Kaltura Server Installation</title>
+    <link rel="stylesheet" rev="stylesheet" media="screen" href="../install/css/kce.css">
+</head>
+<body id="integrate">
+<div id="pageWrap">
+<h1><img height="24" width="135" alt="Kaltura - creating together" src="../install/images/k_logo.png"/> &nbsp;Community Edition Server</h1>
+ <div id="stepWrap">
+  <h2><a href="../">KalturaCE Home</a> &raquo; <a href="../install/installed.php#cms">Integrate</a> &raquo; WordPress Integration Manual</h2>
+    <div id="stepsMenu">
+            <a name="top"></a>
+            <ul>
+                <li><a href="#WordPress_Integration_Manual">WordPress Integration Manual</a></li>
+            </ul>
+    </div>
+    <div id="stepDetails">
+        <a name="WordPress_Integration_Manual"></a>
+        <p>Kaltura provides the "All in One Video Pack" plugin for WordPress (download at http://wordpress.org/extend/plugins/all-in-one-video-pack/).</p>
+        <p>Using the WordPress plugin you can start experiencing some basic capabilities of KalturaCE without the need to implement or develop anything.</p>
+        <p>To work with WordPress follow these steps:</p>
+        <ul>
+            <li>Install WordPress from wordpress.org - <p>In case KalturaCE was installed on a computer which is not publicly available, install WordPress on the same computer as KalturaCE or on any computer which can access the KalturaCE installation (i.e on the same LAN)<br />    In case KalturaCE was installed on a computer which is publicly available you can install WordPress wherever you want.</p></li>
+            <li>Download the Kaltura "All in One Video Pack" plugin for WordPress from <a href="http://wordpress.org/extend/plugins/all-in-one-video-pack">http://wordpress.org/extend/plugins/all-in-one-video-pack</a></li>
+            <li>Install the plugin using the instructions provided with the plugin.</li>
+            <li>Open the plugin settings file from <pre>/wp-content/plugins/all-in-one-video-pack/settings.php</pre>Find the line: <code>define("KALTURA_SERVER_URL", "http://www.kaltura.com");</code><p>Replace the URL (http://www.kaltura.com) with the full URL of your KalturaCE installation.<br />For example, if you installed KalturaCE to: <pre>http://localhost/kalturaCE</pre> The line would be: <code>define("KALTURA_SERVER_URL", "http://localhost/kalturaCE");</code></p></li>
+            <li>Do the same for the line: <code>define("KALTURA_CDN_URL", "http://cdn.kaltura.com");</code>That will make it look like this (according to the example above):<code>define("KALTURA_CDN_URL", "http://localhost/kalturaCE");</code></li>
+        </ul>
+        
+        <p><strong>Note</strong> that if you install KalturaCE on a localhost (and that is the SERVER URL you provide during installation), only applications that run on the same server will behave as expected.</p>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>Kaltura Server Installation</title>
+    <link rel="stylesheet" rev="stylesheet" media="screen" href="../install/css/kce.css">
+</head>
+<body id="integrate">
+<div id="pageWrap">
+<h1><img height="24" width="135" alt="Kaltura - creating together" src="../install/images/k_logo.png"/> &nbsp;Community Edition Server</h1>
+ <div id="stepWrap">
+  <h2><a href="../">KalturaCE Home</a> &raquo; <a href="../install/installed.php#cms">Integrate</a> &raquo; Drupal Integration Manual</h2>
+    <div id="stepsMenu">
+		  <a name="top"></a>
+        <div>
+          <ul>
+            <li><a href="#what">What is it about?</a></li>
+            <li><a href="#action">Can I see it in action?</a></li>
+            <li><a href="#install">How do I install ?</a></li>
+            <li><a href="#do">What can I do with the Kaltura Drupal extension?</a></li>
+          </ul>
+      </div>
+   </div>
+    <div id="stepDetails">
+      <a name="what"></a>
+      <h2>What is it about?<span>[<a href="#top">top</a>]</span></h2>
+        <p>Your CE server can easily work with Drupal using Kaltura video extension for Drupal:
+        <ul>
+            <li>Empowers Drupal websites with a full video experience</li>
+            <li>Easy upload and import of videos, images and audio files from your computer, YouTube, MySpace, Flickr, record from webcam and more</li>
+            <li>Total independence, content hosted and streamed on your KalturaCE server </li>
+            <li>All metadata stored locally on your Drupal site - each media file is created as a Drupal Video Node</li>
+            <li>CCK Field representation of rich media - to easily add rich media to existing content types</li>
+            <li>Full integration with Drupal Views - including predefined views to ease integration</li>
+            <li>Statistics collection – number of plays for each video collected and updated on the video node</li>
+            <li>Drupal permissions integration – allows the administrator to decide who can view and who can edit content</li>
+            <li>Drupal tags integration – metadata and tags from the Kaltura system are automatically included in the Drupal tags, and vice versa</li>
+            <li>Drupal 6 and Drupal 5 compatible versions available</li>
+            <li>Built-in online video editor - supports trimming videos, transitions, effects, soundtracks, remixing, reordering clips, overlays and collaborative editing</li>
+        </ul>
+        <br>
+        </p>
+        
+        <a name="action"></a>
+        <h2>Can I see it in action?<span>[<a href="#top">top</a>]</span></h2>
+      <p>Take a look at the Kaltura Drupal <a href="http://drupal.kaltura.org/demo/">demo site</a>, where you can add content, and play around with the module. </p>
+        <p>&nbsp;</p>
+        
+        <a name="install"></a>
+        <h2>How do I install the Drupal module?<span>[<a href="#top">top</a>]</span></h2>
+        <ul>
+        <li>Install Drupal – <br />this could be either on the same server where KalturaCE is running or on a server that has access to KalturaCE (inside the same LAN)</li>
+            <li>Install the Kaltura module for Drupal - <br /><p>Download the Kaltura module for Drupal from http://drupal.org/project/kaltura   and place it in the modules directory of Drupal. The Kaltura module depends on the following modules for full functionality, you can download and add them as well: </p>
+                <ul>
+                    <li>CCK - http://drupal.org/project/cck </li>
+                    <li>Views - http://drupal.org/project/views</li>
+                    <li>JQuery Update - http://drupal.org/project/jquery_update</li>
+                </ul>
+            </li>
+            <li>Conduct the following configuration steps –
+                <ul>
+                    <li>Open the file kaltura_settings.php  located in the Kaltura module under kaltura_client directory</li>
+                    <li>Find the line: <br /><code>define('KalturaSettings_SERVER_URL', "http://www.kaltura.com");</code></li>
+                    <li>Replace the URL (http://www.kaltura.com) to the full URL of your KalturaCE installation (with the “KalturaCE” suffix).<br />For example, if your Kaltura CE server host is xxx.xxx.xxx.xxx The line would be:<br /><code>define('KalturaSettings_SERVER_URL', "http://xxx.xxx.xxx.xxx/kalturaCE ");</code></li>
+                    <li>Add a file named crossdomain.xml to your server root directory. If your domain is domain.com. This file should be accessible in http://domain.com/crossdomain.xml inside this file should be the following content, where xxx.xxx.xxx.xxx is replaced by your KalturaCE server IP:<br />
+                    <pre>
+&lt;?xml version="1.0"?&gt;
+&lt;!DOCTYPE cross-domain-policy SYSTEM
+"http://www.macromedia.com/xml/dtds/cross-domain-policy.dtd"&gt;
+&lt;cross-domain-policy&gt;
+  &lt;site-control permitted-cross-domain-policies="master-only"/&gt;
+  &lt;allow-access-from domain="localhost"/&gt;
+  &lt;allow-access-from domain="127.0.0.1"/&gt;
+  &lt;allow-access-from domain="*.kaltura.com"/&gt;
+   &lt;allow-access-from domain=" xxx.xxx.xxx.xxx "/&gt;
+  &lt;allow-http-request-headers-from domain="127.0.0.1" headers="*"/&gt;
+  &lt;allow-http-request-headers-from domain="localhost" headers="*"/&gt;
+  &lt;allow-http-request-headers-from domain="*.kaltura.com" headers="*"/&gt;
+    &lt;allow-http-request-headers-from domain=" xxx.xxx.xxx.xxx " headers="*"/&gt;
+&lt;/cross-domain-policy&gt;</pre>
+                    </li>
+                </ul>
+            </li>
+            <li>Activate your module
+                <ul>
+                    <li>Browse to your Drupal Kaltura module activation form:<br /><img src="images/drupal_kaltura_activation.jpg" /><br />Click on the "Click here if you already have a partner ID" link<br />You will reach the following page:<br /><img src="images/drupal_kaltura_import.jpg" /></li>
+                    <li>Fill in the following details then click "Complete installation":
+                        <ul>
+                            <li>Partner ID - 1 (this is a generic Partner ID since this is on your own server)</li>
+                            <li>Email -  the email you provided during your KalturaCE registration</li>
+                            <li>Password- the password you provided during your KalturaCE registration</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <br>
+        <a name="do"></a>
+        <h2>Once installed, what can I do with the Kaltura Drupal module?<span>[<a href="#top">top</a>]</span></h2>
+        <p>The Kaltura Drupal video module provides you with the full capabilities of Kaltura’s open source video platform – designed specifically for Drupal. 
+        You can watch our Drupal module <a href="http://drupal.kaltura.org/node/147">tutorial</a> to learn how to create content, upload videos, remix content and more.</p>
+    </div>
+<p>&nbsp;</p>
+</div>
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+</body>
+</html>

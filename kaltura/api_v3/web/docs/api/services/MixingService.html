@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class MixingService</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<script src="../../jquery-1.3.1.min.js"></script>
+						<script src="../../kaltura_custom_inner.js"></script>
+						<link rel="stylesheet" href="../../kaltura.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> MixingService</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Mixing Service</p>
+		<p class="notes">
+			Located in <a class="field" href="_services---MixingService.php.html">/services/MixingService.php</a> (line <span class="field">10</span>)
+		</p>
+		
+				
+		<pre>KalturaEntryService
+   |
+   --MixingService</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>
+										<a href="#addAction" title="details" class="method-name">addAction</a>
+											(<span class="var-type"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>&nbsp;<span class="var-name">$mixEntry</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>
+										<a href="#appendMediaEntryAction" title="details" class="method-name">appendMediaEntryAction</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$mixEntryId</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$mediaEntryId</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>
+										<a href="#cloneAction" title="details" class="method-name">cloneAction</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$entryId</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#deleteAction" title="details" class="method-name">deleteAction</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$entryId</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>
+										<a href="#getAction" title="details" class="method-name">getAction</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$entryId</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../api/objects/KalturaMixListResponse.html">KalturaMixListResponse</a></span>
+										<a href="#listAction" title="details" class="method-name">listAction</a>
+											([<span class="var-type"><a href="../../api/filters/KalturaMixEntryFilter.html">KalturaMixEntryFilter</a></span>&nbsp;<span class="var-name">$filter</span> = <span class="var-default">null</span>], [<span class="var-type"><a href="../../api/filters/KalturaFilterPager.html">KalturaFilterPager</a></span>&nbsp;<span class="var-name">$pager</span> = <span class="var-default">null</span>])
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">int</span>
+										<a href="#requestFlatteningAction" title="details" class="method-name">requestFlatteningAction</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$entryId</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$fileFormat</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">-1</span>])
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>
+										<a href="#updateAction" title="details" class="method-name">updateAction</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$entryId</span>, <span class="var-type"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>&nbsp;<span class="var-name">$mixEntry</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+													<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodaddAction" id="addAction"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">addAction</span> (line <span class="line-number">20</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Adds a new mix.</p>
+<p class="description"><p>If the dataContent is null, a default timeline will be created.</p></p>
+	<ul class="tags">
+						<li><span class="field">return:</span> The new mix entry</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>
+		<span class="method-name">
+			addAction
+		</span>
+					(<span class="var-type"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>&nbsp;<span class="var-name">$mixEntry</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>
+				<span class="var-name">$mixEntry</span><span class="var-description">: Mix entry metadata</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodappendMediaEntryAction" id="appendMediaEntryAction"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">appendMediaEntryAction</span> (line <span class="line-number">229</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Appends a media entry to a the end of the mix timeline, this will save the mix timeline as a new version.</p>
+	<ul class="tags">
+						<li><span class="field">return:</span> The mix entry</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>
+		<span class="method-name">
+			appendMediaEntryAction
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$mixEntryId</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$mediaEntryId</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$mixEntryId</span><span class="var-description">: Mix entry to append to its timeline</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$mediaEntryId</span><span class="var-description">: Media entry to append to the timeline</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodcloneAction" id="cloneAction"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">cloneAction</span> (line <span class="line-number">188</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Clones an existing mix.</p>
+	<ul class="tags">
+						<li><span class="field">return:</span> The new mix entry</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>
+		<span class="method-name">
+			cloneAction
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$entryId</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$entryId</span><span class="var-description">: Mix entry id to clone</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methoddeleteAction" id="deleteAction"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">deleteAction</span> (line <span class="line-number">123</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Delete a mix entry.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			deleteAction
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$entryId</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$entryId</span><span class="var-description">: Mix entry id to delete</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetAction" id="getAction"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">getAction</span> (line <span class="line-number">69</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Get mix entry by id.</p>
+	<ul class="tags">
+						<li><span class="field">return:</span> The requested mix entry</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>
+		<span class="method-name">
+			getAction
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$entryId</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$entryId</span><span class="var-description">: Mix entry id</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodlistAction" id="listAction"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">listAction</span> (line <span class="line-number">153</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">List entries by filter with paging support.</p>
+<p class="description"><p>Return parameter is an array of mix entries.</p></p>
+	<ul class="tags">
+						<li><span class="field">return:</span> Wrapper for array of media entries and total count</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../api/objects/KalturaMixListResponse.html">KalturaMixListResponse</a></span>
+		<span class="method-name">
+			listAction
+		</span>
+					([<span class="var-type"><a href="../../api/filters/KalturaMixEntryFilter.html">KalturaMixEntryFilter</a></span>&nbsp;<span class="var-name">$filter</span> = <span class="var-default">null</span>], [<span class="var-type"><a href="../../api/filters/KalturaFilterPager.html">KalturaFilterPager</a></span>&nbsp;<span class="var-name">$pager</span> = <span class="var-default">null</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../../api/filters/KalturaMixEntryFilter.html">KalturaMixEntryFilter</a></span>
+				<span class="var-name">$filter</span><span class="var-description">: Mix entry filter</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../api/filters/KalturaFilterPager.html">KalturaFilterPager</a></span>
+				<span class="var-name">$pager</span><span class="var-description">: Pager</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodrequestFlatteningAction" id="requestFlatteningAction"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">requestFlatteningAction</span> (line <span class="line-number">292</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Request a new flattening job, flattening is used to convert a video mix to a video file.</p>
+	<ul class="tags">
+						<li><span class="field">return:</span> The queued job id</li>
+								<li><span class="field">access:</span> public</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			requestFlatteningAction
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$entryId</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$fileFormat</span>, [<span class="var-type">int</span>&nbsp;<span class="var-name">$version</span> = <span class="var-default">-1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$entryId</span><span class="var-description">: Mix entry id</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$fileFormat</span><span class="var-description">: Format to convert</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$version</span><span class="var-description">: Version to flatten (If not set, latest will be used)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodupdateAction" id="updateAction"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">updateAction</span> (line <span class="line-number">90</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update mix entry. Only the properties that were set will be updated.</p>
+	<ul class="tags">
+						<li><span class="field">return:</span> The updated mix entry</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>
+		<span class="method-name">
+			updateAction
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$entryId</span>, <span class="var-type"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>&nbsp;<span class="var-name">$mixEntry</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$entryId</span><span class="var-description">: Mix entry id to update</span>			</li>
+					<li>
+				<span class="var-type"><a href="../../api/objects/KalturaMixEntry.html">KalturaMixEntry</a></span>
+				<span class="var-name">$mixEntry</span><span class="var-description">: Mix entry metadata to update</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 06 Apr 2009 18:09:54 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
+	</p>
+	</div></body>
+</html>

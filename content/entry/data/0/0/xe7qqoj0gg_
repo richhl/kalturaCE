@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<xml>
+  <MetaData>
+    <Publish>
+      <Application>'QuickEdit'</Application>
+    </Publish>
+    <SeqDuration>27.873</SeqDuration>
+    <ShowVersion>-1</ShowVersion>
+  <KuserId/><PuserId/><ScreenName/><UpdatedAt>1240906908</UpdatedAt><Host>http://10.0.0.55</Host><ThumbUrl>http://localhost/p/1/sp/100/thumbnail/entry_id/xe7qqoj0gg/version/0</ThumbUrl></MetaData>
+  <VideoAssets><vidAsset k_id="vcnp8h76m8" type="VIDEO" name="Demo Movie 1" url="http://10.0.0.55/index.php/keditorservices/flvclipper?entry_id=vcnp8h76m8">
+			<StreamInfo file_name="/content/entry/data/0/0/vcnp8h76m8_100000.flv" start_time="0" len_time="4.78" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="687124" real_seek_time="0.000" volume="1" pan="0" isSingleFrame="0" real_start_byte="0" real_end_byte="687124" Clipped_Start="0" Clipped_Len="4.78" start_byte_play="496" end_byte_play="687619"/>
+			<EndTransition cross="0" type="dissolve" StartTime="3.78" length="1">
+				<arguments>
+					<name>dissolve</name>
+					<version>1.00</version>
+					<arguments/>
+				</arguments>
+			</EndTransition>
+		</vidAsset><vidAsset k_id="1i5ojrn9ts" type="VIDEO" name="Demo Movie 2" url="http://10.0.0.55/index.php/keditorservices/flvclipper?entry_id=1i5ojrn9ts">
+			<StreamInfo file_name="/content/entry/data/0/0/1i5ojrn9ts_100000.flv" start_time="0" len_time="4.598" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="594184" real_seek_time="4.780" volume="1" pan="0" isSingleFrame="0" real_start_byte="687124" real_end_byte="1281308" Clipped_Start="0" Clipped_Len="4.598" start_byte_play="496" end_byte_play="594679"/>
+			<EndTransition cross="0" type="dissolve" StartTime="3.598" length="1">
+				<arguments>
+					<name>dissolve</name>
+					<version>1.00</version>
+					<arguments/>
+				</arguments>
+			</EndTransition>
+		</vidAsset><vidAsset k_id="s8wuba1g1k" type="VIDEO" name="Demo Movie 3" url="http://10.0.0.55/index.php/keditorservices/flvclipper?entry_id=s8wuba1g1k">
+			<StreamInfo file_name="/content/entry/data/0/0/s8wuba1g1k_100000.flv" start_time="0" len_time="6.322" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="822868" real_seek_time="9.378" volume="1" pan="0" isSingleFrame="0" real_start_byte="1281308" real_end_byte="2104176" Clipped_Start="0" Clipped_Len="6.322" start_byte_play="496" end_byte_play="823363"/>
+			<EndTransition cross="0" type="dissolve" StartTime="5.322" length="1">
+				<arguments>
+					<name>dissolve</name>
+					<version>1.00</version>
+					<arguments/>
+				</arguments>
+			</EndTransition>
+		</vidAsset><vidAsset k_id="0hase81rrs" type="VIDEO" name="Demo Movie 4" url="http://10.0.0.55/index.php/keditorservices/flvclipper?entry_id=0hase81rrs">
+			<StreamInfo file_name="/content/entry/data/0/0/0hase81rrs_100000.flv" start_time="0" len_time="5.721" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="677607" real_seek_time="15.700" volume="1" pan="0" isSingleFrame="0" real_start_byte="2104176" real_end_byte="2781783" Clipped_Start="0" Clipped_Len="5.721" start_byte_play="496" end_byte_play="678102"/>
+			<EndTransition cross="0" type="dissolve" StartTime="4.721" length="1">
+				<arguments>
+					<name>dissolve</name>
+					<version>1.00</version>
+					<arguments/>
+				</arguments>
+			</EndTransition>
+		</vidAsset><vidAsset k_id="8pn4jk92bc" type="VIDEO" name="Demo Movie 5" url="http://10.0.0.55/index.php/keditorservices/flvclipper?entry_id=8pn4jk92bc">
+			<StreamInfo file_name="/content/entry/data/0/0/8pn4jk92bc_100000.flv" start_time="0" len_time="6.452" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="917362" real_seek_time="21.421" volume="1" pan="0" isSingleFrame="0" real_start_byte="2781783" real_end_byte="3699145" Clipped_Start="0" Clipped_Len="6.452" start_byte_play="496" end_byte_play="917857"/>
+			<EndTransition cross="0" type="dissolve" StartTime="5.452" length="1">
+				<arguments>
+					<name>dissolve</name>
+					<version>1.00</version>
+					<arguments/>
+				</arguments>
+			</EndTransition>
+		</vidAsset></VideoAssets>
+  <AudioAssets/>
+  <VoiceAssets/>
+  <Plugins/>
+</xml>

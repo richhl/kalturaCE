@@ -1,0 +1,46 @@
+body { width:1000px; font-family:Arial; font-size:14px; }
+body div { text-align:left; }
+h2 { padding:0px; margin:0px; }
+
+.sys_req { margin-top:20px; }
+.sys_req ul li { margin-bottom:5px; }
+
+a.logolink { position:absolute; width:105px; height:65px; display:block; float:left; }
+.header { padding-left:115px; height: 70px; background: url('../images/Logo.jpg') no-repeat top left; }
+.header .title { padding-left:95px; float:left; font-size:28px; font-weight:bold; color:#3f5f84; padding-top:18px; }
+.header .support { float:right; }
+div.status { float:left; margin-left:10px;  border-left:1px solid #000000; padding-left:10px;}
+div.steps_menu { float:left; width:190px; }
+div.steps_menu li.active { font-weight:bold; list-style-image:url('../images/arrow.gif'); }
+div.steps_menu li.done { list-style-image:url('../images/passed_step.png'); }
+
+div.start, div.welcome { text-align:left; margin-top:20px; }
+div.welcome {padding-left:20px; }
+div.db_form { float:left; margin-left:10px; position:relative; border-left:1px solid #000000; padding-left:10px; }
+div.db_form td { vertical-align:top; padding:5px; }
+div.db_form div.subtitle { font-weight:bold; text-decoration:underline; }
+div.db_form label { display:block; width:200px; margin:0px 10px 0px 10px;}
+div.db_form input { height:12px; font-size:11px; }
+div.db_form input.submit { height:22px; font-size:12px; } 
+div.db_form .desc { color:#666666; font-size:11px; margin:0px 0px 10px 10px; }
+div.db_form .advanced { margin-top:10px; }
+
+div.verify { margin:4px; padding:4px; padding-left:26px; }
+div.verify.passed { background:#ffffff url('../images/passed.png') no-repeat 2px 50%; border:2px solid #00ff00; }
+div.verify.failed { background:#ffffff url('../images/failed.png') no-repeat 2px 50%; border:2px solid #ff0000; }
+div.verify.optional { background:#ffffff url('../images/passed.png') no-repeat 2px 50%; border:2px solid #fdff00; }
+
+.clear-fix { clear:both; }
+
+input.submit, a.btn { position:absolute; left:50%; text-decoration:none; color:#444; background: url('../images/buttons_whiteBG.png') no-repeat bottom left; display:block; width:221px; height:34px; text-align:center; margin-top:10px; }
+input.submit:hover, a.btn:hover { background-position:top left; color:#333; }
+a.btn span { display:block; font-size:16px; font-weight:bold; padding-top:7px; }
+div.db_form input.submit { border: medium none ; height: 34px;font-size:16px;font-weight:bold;font-family:Arial; }
+
+div.start, div.nextaction { position:relative; width:1000px; }
+
+
+div.status div.help { border:1px solid #000; padding:10px; font-size:15px; margin: 4px; }
+
+span.error_hidden { display:none; }
+span.error_visible,h2.error_visible { display:block; color:#00ffff; }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8D578521-A319-4E27-9A39-CBE92DF3B874}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kaltura</RootNamespace>
+    <AssemblyName>KalturaClient</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System"/>
+    <Reference Include="System.Data"/>
+    <Reference Include="System.Web"/>
+    <Reference Include="System.Xml"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="KalturaAPIException.cs"/>
+    <Compile Include="KalturaClient.cs"/>
+    <Compile Include="KalturaFiles.cs"/>
+    <Compile Include="KalturaMultiResponse.cs"/>
+    <Compile Include="KalturaObjectBase.cs"/>
+    <Compile Include="KalturaServiceActionCall.cs"/>
+    <Compile Include="KalturaServiceBase.cs"/>
+    <Compile Include="IKalturaLogger.cs"/>
+    <Compile Include="KalturaEnums.cs"/>
+    <Compile Include="KalturaClientBase.cs"/>
+    <Compile Include="KalturaConfiguration.cs"/>
+    <Compile Include="KalturaParams.cs"/>
+    <Compile Include="Properties\AssemblyInfo.cs"/>
+  <Compile Include="Enums\KalturaAspectRatioType.cs"/><Compile Include="Enums\KalturaBatchJobStatus.cs"/><Compile Include="Enums\KalturaBatchJobType.cs"/><Compile Include="Enums\KalturaEditorType.cs"/><Compile Include="Enums\KalturaEntryStatus.cs"/><Compile Include="Enums\KalturaEntryType.cs"/><Compile Include="Enums\KalturaGender.cs"/><Compile Include="Enums\KalturaLicenseType.cs"/><Compile Include="Enums\KalturaMailJobStatus.cs"/><Compile Include="Enums\KalturaMediaType.cs"/><Compile Include="Enums\KalturaModerationFlagStatus.cs"/><Compile Include="Enums\KalturaModerationFlagType.cs"/><Compile Include="Enums\KalturaModerationObjectType.cs"/><Compile Include="Enums\KalturaNotificationObjectType.cs"/><Compile Include="Enums\KalturaNotificationStatus.cs"/><Compile Include="Enums\KalturaNotificationType.cs"/><Compile Include="Enums\KalturaPartnerType.cs"/><Compile Include="Enums\KalturaPlaylistType.cs"/><Compile Include="Enums\KalturaReportType.cs"/><Compile Include="Enums\KalturaSearchProviderType.cs"/><Compile Include="Enums\KalturaSessionType.cs"/><Compile Include="Enums\KalturaSourceType.cs"/><Compile Include="Enums\KalturaStatsEventType.cs"/><Compile Include="Enums\KalturaUiConfCreationMode.cs"/><Compile Include="Enums\KalturaUiConfObjType.cs"/><Compile Include="Enums\KalturaUserStatus.cs"/><Compile Include="Enums\KalturaWidgetSecurityType.cs"/><Compile Include="Types\KalturaAdminUser.cs"/><Compile Include="Types\KalturaBaseEntry.cs"/><Compile Include="Types\KalturaBaseEntryFilter.cs"/><Compile Include="Types\KalturaBaseEntryListResponse.cs"/><Compile Include="Types\KalturaBaseEntryOrderBy.cs"/><Compile Include="Types\KalturaBaseJob.cs"/><Compile Include="Types\KalturaBatchGetExclusiveNotificationJobsResponse.cs"/><Compile Include="Types\KalturaBatchJob.cs"/><Compile Include="Types\KalturaBulkUpload.cs"/><Compile Include="Types\KalturaBulkUploadListResponse.cs"/><Compile Include="Types\KalturaCEError.cs"/><Compile Include="Types\KalturaClientNotification.cs"/><Compile Include="Types\KalturaCommercialUseType.cs"/><Compile Include="Types\KalturaConversionProfile.cs"/><Compile Include="Types\KalturaFilter.cs"/><Compile Include="Types\KalturaFilterPager.cs"/><Compile Include="Types\KalturaMailJob.cs"/><Compile Include="Types\KalturaMediaEntry.cs"/><Compile Include="Types\KalturaMediaEntryFilter.cs"/><Compile Include="Types\KalturaMediaEntryOrderBy.cs"/><Compile Include="Types\KalturaMediaListResponse.cs"/><Compile Include="Types\KalturaMixEntry.cs"/><Compile Include="Types\KalturaMixEntryFilter.cs"/><Compile Include="Types\KalturaMixEntryOrderBy.cs"/><Compile Include="Types\KalturaMixListResponse.cs"/><Compile Include="Types\KalturaModerationFlag.cs"/><Compile Include="Types\KalturaModerationFlagListResponse.cs"/><Compile Include="Types\KalturaNotification.cs"/><Compile Include="Types\KalturaPartner.cs"/><Compile Include="Types\KalturaPartnerUsage.cs"/><Compile Include="Types\KalturaPlayableEntry.cs"/><Compile Include="Types\KalturaPlayableEntryFilter.cs"/><Compile Include="Types\KalturaPlayableEntryOrderBy.cs"/><Compile Include="Types\KalturaPlaylist.cs"/><Compile Include="Types\KalturaPlaylistFilter.cs"/><Compile Include="Types\KalturaPlaylistListResponse.cs"/><Compile Include="Types\KalturaPlaylistOrderBy.cs"/><Compile Include="Types\KalturaReportGraph.cs"/><Compile Include="Types\KalturaReportInputFilter.cs"/><Compile Include="Types\KalturaReportTable.cs"/><Compile Include="Types\KalturaReportTotal.cs"/><Compile Include="Types\KalturaSearch.cs"/><Compile Include="Types\KalturaSearchResult.cs"/><Compile Include="Types\KalturaSearchResultResponse.cs"/><Compile Include="Types\KalturaStartWidgetSessionResponse.cs"/><Compile Include="Types\KalturaStatsEvent.cs"/><Compile Include="Types\KalturaUiConf.cs"/><Compile Include="Types\KalturaUiConfFilter.cs"/><Compile Include="Types\KalturaUiConfListResponse.cs"/><Compile Include="Types\KalturaUiConfOrderBy.cs"/><Compile Include="Types\KalturaUser.cs"/><Compile Include="Types\KalturaUserFilter.cs"/><Compile Include="Types\KalturaUserListResponse.cs"/><Compile Include="Types\KalturaUserOrderBy.cs"/><Compile Include="Types\KalturaWidget.cs"/><Compile Include="Types\KalturaWidgetFilter.cs"/><Compile Include="Types\KalturaWidgetListResponse.cs"/><Compile Include="Types\KalturaWidgetOrderBy.cs"/><Compile Include="KalturaObjectFactory.cs"/><Compile Include="Services\MediaService.cs"/><Compile Include="Services\MixingService.cs"/><Compile Include="Services\BaseEntryService.cs"/><Compile Include="Services\SessionService.cs"/><Compile Include="Services\UiConfService.cs"/><Compile Include="Services\PlaylistService.cs"/><Compile Include="Services\UserService.cs"/><Compile Include="Services\WidgetService.cs"/><Compile Include="Services\SearchService.cs"/><Compile Include="Services\PartnerService.cs"/><Compile Include="Services\AdminUserService.cs"/><Compile Include="Services\SystemService.cs"/><Compile Include="Services\BulkUploadService.cs"/><Compile Include="Services\NotificationService.cs"/><Compile Include="Services\BatchService.cs"/><Compile Include="Services\ReportService.cs"/><Compile Include="Services\ConversionProfileService.cs"/><Compile Include="Services\StatsService.cs"/></ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>phpDocumentor Parser Errors and Warnings</title>
+			<link rel="stylesheet" href="media/stylesheet.css" />
+			<script src="jquery-1.3.1.min.js"></script>
+						<script src="kaltura_custom_inner.js"></script>
+						<link rel="stylesheet" href="kaltura.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<a href="#Post-parsing">Post-parsing</a><br>
+<a href="#DbManager.class.php">DbManager.class.php</a><br>
+<a href="#EntryManager.php">EntryManager.php</a><br>
+<a href="#KalturaAdminLoginResponse.php">KalturaAdminLoginResponse.php</a><br>
+<a href="#KalturaAdminUser.php">KalturaAdminUser.php</a><br>
+<a href="#KalturaAPIException.php">KalturaAPIException.php</a><br>
+<a href="#KalturaAutoload.php">KalturaAutoload.php</a><br>
+<a href="#KalturaAutoloadNonStandard.php">KalturaAutoloadNonStandard.php</a><br>
+<a href="#KalturaBaseEntry.php">KalturaBaseEntry.php</a><br>
+<a href="#KalturaBaseEntryFilter.php">KalturaBaseEntryFilter.php</a><br>
+<a href="#KalturaBaseService.php">KalturaBaseService.php</a><br>
+<a href="#KalturaConfig.php">KalturaConfig.php</a><br>
+<a href="#KalturaDispatcher.php">KalturaDispatcher.php</a><br>
+<a href="#KalturaDispatcherException.php">KalturaDispatcherException.php</a><br>
+<a href="#KalturaDocCommentParser.php">KalturaDocCommentParser.php</a><br>
+<a href="#KalturaEditorType.php">KalturaEditorType.php</a><br>
+<a href="#KalturaEntryService.php">KalturaEntryService.php</a><br>
+<a href="#KalturaEntryStatus.php">KalturaEntryStatus.php</a><br>
+<a href="#KalturaEntryType.php">KalturaEntryType.php</a><br>
+<a href="#KalturaEnum.php">KalturaEnum.php</a><br>
+<a href="#KalturaErrorHandler.php">KalturaErrorHandler.php</a><br>
+<a href="#KalturaErrors.php">KalturaErrors.php</a><br>
+<a href="#KalturaFilter.php">KalturaFilter.php</a><br>
+<a href="#KalturaFilterPager.php">KalturaFilterPager.php</a><br>
+<a href="#KalturaIntegrationClass.php">KalturaIntegrationClass.php</a><br>
+<a href="#KalturaLicenseType.php">KalturaLicenseType.php</a><br>
+<a href="#KalturaLog.php">KalturaLog.php</a><br>
+<a href="#KalturaMediaEntries.php">KalturaMediaEntries.php</a><br>
+<a href="#KalturaMediaEntry.php">KalturaMediaEntry.php</a><br>
+<a href="#KalturaMediaEntryFilter.php">KalturaMediaEntryFilter.php</a><br>
+<a href="#KalturaMediaListResponse.php">KalturaMediaListResponse.php</a><br>
+<a href="#KalturaMediaType.php">KalturaMediaType.php</a><br>
+<a href="#KalturaMixEntries.php">KalturaMixEntries.php</a><br>
+<a href="#KalturaMixEntry.php">KalturaMixEntry.php</a><br>
+<a href="#KalturaMixEntryFilter.php">KalturaMixEntryFilter.php</a><br>
+<a href="#KalturaMixListResponse.php">KalturaMixListResponse.php</a><br>
+<a href="#KalturaNullableBoolean.php">KalturaNullableBoolean.php</a><br>
+<a href="#KalturaObject.php">KalturaObject.php</a><br>
+<a href="#KalturaPartner.php">KalturaPartner.php</a><br>
+<a href="#KalturaPartnerUsage.php">KalturaPartnerUsage.php</a><br>
+<a href="#KalturaPhpSerializer.php">KalturaPhpSerializer.php</a><br>
+<a href="#KalturaPlayableEntry.php">KalturaPlayableEntry.php</a><br>
+<a href="#KalturaPlaylist.php">KalturaPlaylist.php</a><br>
+<a href="#KalturaPlaylistArray.php">KalturaPlaylistArray.php</a><br>
+<a href="#KalturaPlaylistFilter.php">KalturaPlaylistFilter.php</a><br>
+<a href="#KalturaPlaylistType.php">KalturaPlaylistType.php</a><br>
+<a href="#KalturaReflectionException.php">KalturaReflectionException.php</a><br>
+<a href="#KalturaRequestDeserializer.php">KalturaRequestDeserializer.php</a><br>
+<a href="#KalturaResponseType.php">KalturaResponseType.php</a><br>
+<a href="#KalturaSearch.php">KalturaSearch.php</a><br>
+<a href="#KalturaSearchProviderType.php">KalturaSearchProviderType.php</a><br>
+<a href="#KalturaSearchResult.php">KalturaSearchResult.php</a><br>
+<a href="#KalturaSearchResultArray.php">KalturaSearchResultArray.php</a><br>
+<a href="#KalturaServiceConfig.php">KalturaServiceConfig.php</a><br>
+<a href="#KalturaServiceReflector.php">KalturaServiceReflector.php</a><br>
+<a href="#KalturaSession.php">KalturaSession.php</a><br>
+<a href="#KalturaSessionType.php">KalturaSessionType.php</a><br>
+<a href="#KalturaSourceType.php">KalturaSourceType.php</a><br>
+<a href="#KalturaTypedArray.php">KalturaTypedArray.php</a><br>
+<a href="#KalturaTypeReflector.php">KalturaTypeReflector.php</a><br>
+<a href="#KalturaUiConf.php">KalturaUiConf.php</a><br>
+<a href="#KalturaUiConfArray.php">KalturaUiConfArray.php</a><br>
+<a href="#KalturaUiConfCreationMode.php">KalturaUiConfCreationMode.php</a><br>
+<a href="#KalturaUiConfFilter.php">KalturaUiConfFilter.php</a><br>
+<a href="#KalturaUiConfObjType.php">KalturaUiConfObjType.php</a><br>
+<a href="#KalturaUser.php">KalturaUser.php</a><br>
+<a href="#KalturaUserArray.php">KalturaUserArray.php</a><br>
+<a href="#KalturaUserFilter.php">KalturaUserFilter.php</a><br>
+<a href="#KalturaWidget.php">KalturaWidget.php</a><br>
+<a href="#KalturaWidgetArray.php">KalturaWidgetArray.php</a><br>
+<a href="#KalturaWidgetFilter.php">KalturaWidgetFilter.php</a><br>
+<a href="#KalturaWidgetSecurityType.php">KalturaWidgetSecurityType.php</a><br>
+<a href="#KalturaXmlSerializer.php">KalturaXmlSerializer.php</a><br>
+<a href="#ManagerBase.php">ManagerBase.php</a><br>
+<a href="#MediaService.php">MediaService.php</a><br>
+<a href="#MixingService.php">MixingService.php</a><br>
+<a href="#PartnerService.php">PartnerService.php</a><br>
+<a href="#PlaylistService.php">PlaylistService.php</a><br>
+<a href="#SearchService.php">SearchService.php</a><br>
+<a href="#SessionService.php">SessionService.php</a><br>
+<a href="#TemplateService.php">TemplateService.php</a><br>
+<a href="#UiConfService.php">UiConfService.php</a><br>
+<a href="#UserService.php">UserService.php</a><br>
+<a href="#WidgetService.php">WidgetService.php</a><br>
+<a name="AdminUserService.php"></a>
+<h1>AdminUserService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - Unknown tag "@service" used<br>
+<b>Warning on line 9</b> - DocBlock would be page-level, but precedes class "adminuserService", use another DocBlock to document the file<br>
+<b>Warning on line 32</b> - Unknown tag "@action" used<br>
+<b>Warning on line 62</b> - Unknown tag "@action" used<br>
+<b>Warning on line 84</b> - Unknown tag "@action" used<br>
+<a name="DbManager.class.php"></a>
+<h1>DbManager.class.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class DbManager<br>
+<b>Warning on line 50</b> - File "C:\web\kaltura\api_v3\lib\db\DbManager.class.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="EntryManager.php"></a>
+<h1>EntryManager.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class EntryManager<br>
+<b>Warning on line 31</b> - File "C:\web\kaltura\api_v3\lib\managers\EntryManager.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaAdminLoginResponse.php"></a>
+<h1>KalturaAdminLoginResponse.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaAdminLoginResponse", use another DocBlock to document the file<br>
+<a name="KalturaAdminUser.php"></a>
+<h1>KalturaAdminUser.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaAdminUser", use another DocBlock to document the file<br>
+<a name="KalturaAPIException.php"></a>
+<h1>KalturaAPIException.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaAPIException<br>
+<b>Warning on line 21</b> - File "C:\web\kaltura\api_v3\lib\exceptions\KalturaAPIException.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaAutoload.php"></a>
+<h1>KalturaAutoload.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaAutoload<br>
+<b>Warning on line 131</b> - File "C:\web\kaltura\api_v3\lib\KalturaAutoload.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaAutoloadNonStandard.php"></a>
+<h1>KalturaAutoloadNonStandard.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 4</b> - no @package tag was used in a DocBlock for class KalturaAutoloadNonStandard<br>
+<b>Warning on line 21</b> - File "C:\web\kaltura\api_v3\lib\KalturaAutoloadNonStandard.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaBaseEntry.php"></a>
+<h1>KalturaBaseEntry.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaBaseEntry", use another DocBlock to document the file<br>
+<a name="KalturaBaseEntryFilter.php"></a>
+<h1>KalturaBaseEntryFilter.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaBaseEntryFilter", use another DocBlock to document the file<br>
+<a name="KalturaBaseService.php"></a>
+<h1>KalturaBaseService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 7</b> - DocBlock would be page-level, but precedes class "KalturaBaseService", use another DocBlock to document the file<br>
+<a name="KalturaConfig.php"></a>
+<h1>KalturaConfig.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaConfig<br>
+<b>Warning on line 12</b> - File "C:\web\kaltura\api_v3\lib\KalturaConfig.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaDispatcher.php"></a>
+<h1>KalturaDispatcher.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 3</b> - no @package tag was used in a DocBlock for class KalturaDispatcher<br>
+<b>Warning on line 72</b> - File "C:\web\kaltura\api_v3\lib\KalturaDispatcher.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaDispatcherException.php"></a>
+<h1>KalturaDispatcherException.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaDispatcherException<br>
+<b>Warning on line 5</b> - File "C:\web\kaltura\api_v3\lib\exceptions\KalturaDispatcherException.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaDocCommentParser.php"></a>
+<h1>KalturaDocCommentParser.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - no @package tag was used in a DocBlock for class KalturaDocCommentParser<br>
+<b>Warning on line 164</b> - File "C:\web\kaltura\api_v3\lib\KalturaDocCommentParser.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaEditorType.php"></a>
+<h1>KalturaEditorType.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaEditorType", use another DocBlock to document the file<br>
+<a name="KalturaEntryService.php"></a>
+<h1>KalturaEntryService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 3</b> - no @package tag was used in a DocBlock for class KalturaEntryService<br>
+<b>Warning on line 40</b> - File "C:\web\kaltura\api_v3\lib\KalturaEntryService.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaEntryStatus.php"></a>
+<h1>KalturaEntryStatus.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaEntryStatus", use another DocBlock to document the file<br>
+<a name="KalturaEntryType.php"></a>
+<h1>KalturaEntryType.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaEntryType", use another DocBlock to document the file<br>
+<a name="KalturaEnum.php"></a>
+<h1>KalturaEnum.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaEnum", use another DocBlock to document the file<br>
+<a name="KalturaErrorHandler.php"></a>
+<h1>KalturaErrorHandler.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaErrorHandler<br>
+<b>Warning on line 44</b> - File "C:\web\kaltura\api_v3\lib\KalturaErrorHandler.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaErrors.php"></a>
+<h1>KalturaErrors.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaErrors<br>
+<b>Warning on line 67</b> - File "C:\web\kaltura\api_v3\lib\KalturaErrors.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaFilter.php"></a>
+<h1>KalturaFilter.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaFilter", use another DocBlock to document the file<br>
+<a name="KalturaFilterPager.php"></a>
+<h1>KalturaFilterPager.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaFilterPager", use another DocBlock to document the file<br>
+<a name="KalturaIntegrationClass.php"></a>
+<h1>KalturaIntegrationClass.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaIntegrationClass<br>
+<b>Warning on line 38</b> - File "C:\web\kaltura\api_v3\lib\types\integration\KalturaIntegrationClass.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaLicenseType.php"></a>
+<h1>KalturaLicenseType.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaLicenseType", use another DocBlock to document the file<br>
+<a name="KalturaLog.php"></a>
+<h1>KalturaLog.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaLog<br>
+<b>Warning on line 97</b> - no @package tag was used in a DocBlock for class LogTime<br>
+<b>Warning on line 103</b> - File "C:\web\kaltura\api_v3\lib\KalturaLog.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaMediaEntries.php"></a>
+<h1>KalturaMediaEntries.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaMediaEntries", use another DocBlock to document the file<br>
+<a name="KalturaMediaEntry.php"></a>
+<h1>KalturaMediaEntry.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaMediaEntry", use another DocBlock to document the file<br>
+<b>Warning on line 13</b> - Unknown tag "@insertonly" used<br>
+<b>Warning on line 21</b> - Unknown tag "@insertonly" used<br>
+<a name="KalturaMediaEntryFilter.php"></a>
+<h1>KalturaMediaEntryFilter.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaMediaEntryFilter", use another DocBlock to document the file<br>
+<a name="KalturaMediaListResponse.php"></a>
+<h1>KalturaMediaListResponse.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaMediaListResponse", use another DocBlock to document the file<br>
+<a name="KalturaMediaType.php"></a>
+<h1>KalturaMediaType.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaMediaType", use another DocBlock to document the file<br>
+<a name="KalturaMixEntries.php"></a>
+<h1>KalturaMixEntries.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 3</b> - no @package tag was used in a DocBlock for class KalturaMixEntries<br>
+<b>Warning on line 23</b> - File "C:\web\kaltura\api_v3\lib\types\entry\KalturaMixEntries.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaMixEntry.php"></a>
+<h1>KalturaMixEntry.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaMixEntry", use another DocBlock to document the file<br>
+<a name="KalturaMixEntryFilter.php"></a>
+<h1>KalturaMixEntryFilter.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaMixEntryFilter", use another DocBlock to document the file<br>
+<a name="KalturaMixListResponse.php"></a>
+<h1>KalturaMixListResponse.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaMixListResponse", use another DocBlock to document the file<br>
+<a name="KalturaNullableBoolean.php"></a>
+<h1>KalturaNullableBoolean.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaNullableBoolean", use another DocBlock to document the file<br>
+<a name="KalturaObject.php"></a>
+<h1>KalturaObject.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaObject", use another DocBlock to document the file<br>
+<a name="KalturaPartner.php"></a>
+<h1>KalturaPartner.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaPartner", use another DocBlock to document the file<br>
+<a name="KalturaPartnerUsage.php"></a>
+<h1>KalturaPartnerUsage.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaPartnerUsage", use another DocBlock to document the file<br>
+<a name="KalturaPhpSerializer.php"></a>
+<h1>KalturaPhpSerializer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaPhpSerializer<br>
+<b>Warning on line 70</b> - File "C:\web\kaltura\api_v3\lib\KalturaPhpSerializer.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaPlayableEntry.php"></a>
+<h1>KalturaPlayableEntry.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaPlayableEntry", use another DocBlock to document the file<br>
+<a name="KalturaPlaylist.php"></a>
+<h1>KalturaPlaylist.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 3</b> - no @package tag was used in a DocBlock for class KalturaPlaylist<br>
+<b>Warning on line 86</b> - File "C:\web\kaltura\api_v3\lib\types\entry\KalturaPlaylist.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaPlaylistArray.php"></a>
+<h1>KalturaPlaylistArray.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 3</b> - no @package tag was used in a DocBlock for class KalturaPlaylistArray<br>
+<b>Warning on line 22</b> - File "C:\web\kaltura\api_v3\lib\types\entry\KalturaPlaylistArray.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaPlaylistFilter.php"></a>
+<h1>KalturaPlaylistFilter.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaPlaylistFilter", use another DocBlock to document the file<br>
+<a name="KalturaPlaylistType.php"></a>
+<h1>KalturaPlaylistType.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaPlaylistType", use another DocBlock to document the file<br>
+<a name="KalturaReflectionException.php"></a>
+<h1>KalturaReflectionException.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaReflectionException<br>
+<b>Warning on line 5</b> - File "C:\web\kaltura\api_v3\lib\exceptions\KalturaReflectionException.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaRequestDeserializer.php"></a>
+<h1>KalturaRequestDeserializer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaRequestDeserializer<br>
+<b>Warning on line 223</b> - File "C:\web\kaltura\api_v3\lib\KalturaRequestDeserializer.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaResponseType.php"></a>
+<h1>KalturaResponseType.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 3</b> - no @package tag was used in a DocBlock for class KalturaResponseType<br>
+<b>Warning on line 10</b> - File "C:\web\kaltura\api_v3\lib\types\enums\KalturaResponseType.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaSearch.php"></a>
+<h1>KalturaSearch.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaSearch", use another DocBlock to document the file<br>
+<a name="KalturaSearchProviderType.php"></a>
+<h1>KalturaSearchProviderType.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaSearchProviderType", use another DocBlock to document the file<br>
+<a name="KalturaSearchResult.php"></a>
+<h1>KalturaSearchResult.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaSearchResult", use another DocBlock to document the file<br>
+<a name="KalturaSearchResultArray.php"></a>
+<h1>KalturaSearchResultArray.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaSearchResultArray", use another DocBlock to document the file<br>
+<a name="KalturaServiceConfig.php"></a>
+<h1>KalturaServiceConfig.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaServiceConfig<br>
+<b>Warning on line 33</b> - File "C:\web\kaltura\api_v3\lib\KalturaServiceConfig.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaServiceReflector.php"></a>
+<h1>KalturaServiceReflector.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - no @package tag was used in a DocBlock for class KalturaServiceReflector<br>
+<b>Warning on line 179</b> - File "C:\web\kaltura\api_v3\lib\KalturaServiceReflector.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaSession.php"></a>
+<h1>KalturaSession.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaSession<br>
+<b>Warning on line 33</b> - File "C:\web\kaltura\api_v3\lib\KalturaSession.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaSessionType.php"></a>
+<h1>KalturaSessionType.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaSessionType", use another DocBlock to document the file<br>
+<a name="KalturaSourceType.php"></a>
+<h1>KalturaSourceType.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaSourceType", use another DocBlock to document the file<br>
+<a name="KalturaTypedArray.php"></a>
+<h1>KalturaTypedArray.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaTypedArray", use another DocBlock to document the file<br>
+<a name="KalturaTypeReflector.php"></a>
+<h1>KalturaTypeReflector.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - no @package tag was used in a DocBlock for class KalturaTypeReflector<br>
+<b>Warning on line 213</b> - File "C:\web\kaltura\api_v3\lib\KalturaTypeReflector.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="KalturaUiConf.php"></a>
+<h1>KalturaUiConf.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaUiConf", use another DocBlock to document the file<br>
+<a name="KalturaUiConfArray.php"></a>
+<h1>KalturaUiConfArray.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaUiConfArray", use another DocBlock to document the file<br>
+<a name="KalturaUiConfCreationMode.php"></a>
+<h1>KalturaUiConfCreationMode.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaUiConfCreationMode", use another DocBlock to document the file<br>
+<a name="KalturaUiConfFilter.php"></a>
+<h1>KalturaUiConfFilter.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaUiConfFilter", use another DocBlock to document the file<br>
+<a name="KalturaUiConfObjType.php"></a>
+<h1>KalturaUiConfObjType.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaUiConfObjType", use another DocBlock to document the file<br>
+<a name="KalturaUser.php"></a>
+<h1>KalturaUser.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaUser", use another DocBlock to document the file<br>
+<a name="KalturaUserArray.php"></a>
+<h1>KalturaUserArray.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaUserArray", use another DocBlock to document the file<br>
+<a name="KalturaUserFilter.php"></a>
+<h1>KalturaUserFilter.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaUserFilter", use another DocBlock to document the file<br>
+<a name="KalturaWidget.php"></a>
+<h1>KalturaWidget.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaWidget", use another DocBlock to document the file<br>
+<a name="KalturaWidgetArray.php"></a>
+<h1>KalturaWidgetArray.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaWidgetArray", use another DocBlock to document the file<br>
+<a name="KalturaWidgetFilter.php"></a>
+<h1>KalturaWidgetFilter.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaWidgetFilter", use another DocBlock to document the file<br>
+<a name="KalturaWidgetSecurityType.php"></a>
+<h1>KalturaWidgetSecurityType.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "KalturaWidgetSecurityType", use another DocBlock to document the file<br>
+<a name="KalturaXmlSerializer.php"></a>
+<h1>KalturaXmlSerializer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class KalturaXmlSerializer<br>
+<b>Warning on line 121</b> - File "C:\web\kaltura\api_v3\lib\KalturaXmlSerializer.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ManagerBase.php"></a>
+<h1>ManagerBase.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 2</b> - no @package tag was used in a DocBlock for class ManagerBase<br>
+<b>Warning on line 12</b> - File "C:\web\kaltura\api_v3\lib\managers\ManagerBase.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="MediaService.php"></a>
+<h1>MediaService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - Unknown tag "@service" used<br>
+<b>Warning on line 10</b> - DocBlock would be page-level, but precedes class "MediaService", use another DocBlock to document the file<br>
+<b>Warning on line 20</b> - Unknown tag "@action" used<br>
+<b>Warning on line 60</b> - Unknown tag "@action" used<br>
+<b>Warning on line 149</b> - Unknown tag "@action" used<br>
+<b>Warning on line 191</b> - Unknown tag "@action" used<br>
+<b>Warning on line 212</b> - Unknown tag "@action" used<br>
+<b>Warning on line 242</b> - Unknown tag "@action" used<br>
+<b>Warning on line 271</b> - Unknown tag "@action" used<br>
+<b>Warning on line 307</b> - Unknown tag "@clientgenerator" used<br>
+<b>Warning on line 307</b> - Unknown tag "@action" used<br>
+<b>Warning on line 329</b> - Unknown tag "@action" used<br>
+<b>Warning on line 373</b> - Unknown tag "@clientgenerator" used<br>
+<b>Warning on line 373</b> - Unknown tag "@action" used<br>
+<b>Warning on line 419</b> - Unknown tag "@action" used<br>
+<a name="MixingService.php"></a>
+<h1>MixingService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - Unknown tag "@service" used<br>
+<b>Warning on line 10</b> - DocBlock would be page-level, but precedes class "MixingService", use another DocBlock to document the file<br>
+<b>Warning on line 19</b> - Unknown tag "@action" used<br>
+<b>Warning on line 68</b> - Unknown tag "@action" used<br>
+<b>Warning on line 89</b> - Unknown tag "@action" used<br>
+<b>Warning on line 122</b> - Unknown tag "@action" used<br>
+<b>Warning on line 152</b> - Unknown tag "@action" used<br>
+<b>Warning on line 187</b> - Unknown tag "@action" used<br>
+<b>Warning on line 228</b> - Unknown tag "@action" used<br>
+<b>Warning on line 291</b> - Unknown tag "@action" used<br>
+<a name="PartnerService.php"></a>
+<h1>PartnerService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - Unknown tag "@service" used<br>
+<b>Warning on line 9</b> - DocBlock would be page-level, but precedes class "partnerservice", use another DocBlock to document the file<br>
+<b>Warning on line 30</b> - Unknown tag "@action" used<br>
+<b>Warning on line 77</b> - Unknown tag "@action" used<br>
+<b>Warning on line 113</b> - Unknown tag "@action" used<br>
+<b>Warning on line 147</b> - Unknown tag "@action" used<br>
+<b>Warning on line 176</b> - Unknown tag "@action" used<br>
+<a name="PlaylistService.php"></a>
+<h1>PlaylistService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 10</b> - Unknown tag "@service" used<br>
+<b>Warning on line 11</b> - DocBlock would be page-level, but precedes class "PlaylistService", use another DocBlock to document the file<br>
+<b>Warning on line 21</b> - Unknown tag "@action" used<br>
+<b>Warning on line 56</b> - Unknown tag "@action" used<br>
+<b>Warning on line 83</b> - Unknown tag "@action" used<br>
+<b>Warning on line 131</b> - Unknown tag "@action" used<br>
+<b>Warning on line 163</b> - Unknown tag "@action" used<br>
+<b>Warning on line 197</b> - Unknown tag "@param__" used<br>
+<b>Warning on line 197</b> - Unknown tag "@action" used<br>
+<b>Warning on line 217</b> - Unknown tag "@action" used<br>
+<b>Warning on line 217</b> - Unknown tag "@param__" used<br>
+<b>Warning on line 245</b> - Unknown tag "@param__" used<br>
+<b>Warning on line 245</b> - Unknown tag "@action" used<br>
+<a name="SearchService.php"></a>
+<h1>SearchService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - Unknown tag "@service" used<br>
+<b>Warning on line 10</b> - DocBlock would be page-level, but precedes class "searchService", use another DocBlock to document the file<br>
+<b>Warning on line 23</b> - Unknown tag "@action" used<br>
+<b>Warning on line 68</b> - Unknown tag "@action" used<br>
+<b>Warning on line 103</b> - Unknown tag "@action" used<br>
+<a name="SessionService.php"></a>
+<h1>SessionService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - Unknown tag "@service" used<br>
+<b>Warning on line 10</b> - DocBlock would be page-level, but precedes class "SessionService", use another DocBlock to document the file<br>
+<b>Warning on line 26</b> - Unknown tag "@action" used<br>
+<b>Warning on line 55</b> - Unknown tag "@action" used<br>
+<a name="TemplateService.php"></a>
+<h1>TemplateService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 8</b> - Unknown tag "@service" used<br>
+<b>Warning on line 9</b> - no @package tag was used in a DocBlock for class SERVICE_NAMEService<br>
+<b>Warning on line 22</b> - Unknown tag "@action" used<br>
+<b>Warning on line 40</b> - Unknown tag "@action" used<br>
+<b>Warning on line 63</b> - Unknown tag "@action" used<br>
+<b>Warning on line 80</b> - Unknown tag "@action" used<br>
+<b>Warning on line 98</b> - File "C:\web\kaltura\api_v3\services\TemplateService.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="UiConfService.php"></a>
+<h1>UiConfService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - Unknown tag "@service" used<br>
+<b>Warning on line 10</b> - DocBlock would be page-level, but precedes class "UiConfService", use another DocBlock to document the file<br>
+<b>Warning on line 28</b> - Unknown tag "@action" used<br>
+<b>Warning on line 50</b> - Unknown tag "@action" used<br>
+<b>Warning on line 77</b> - Unknown tag "@action" used<br>
+<b>Warning on line 97</b> - Unknown tag "@action" used<br>
+<b>Warning on line 118</b> - Unknown tag "@action" used<br>
+<b>Warning on line 145</b> - Unknown tag "@action" used<br>
+<a name="UserService.php"></a>
+<h1>UserService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - Unknown tag "@service" used<br>
+<b>Warning on line 10</b> - DocBlock would be page-level, but precedes class "userService", use another DocBlock to document the file<br>
+<b>Warning on line 33</b> - Unknown tag "@action" used<br>
+<b>Warning on line 88</b> - Unknown tag "@action" used<br>
+<b>Warning on line 119</b> - Unknown tag "@action" used<br>
+<b>Warning on line 152</b> - Unknown tag "@action" used<br>
+<b>Warning on line 174</b> - Unknown tag "@action" used<br>
+<b>Warning on line 200</b> - Unknown tag "@action" used<br>
+<a name="WidgetService.php"></a>
+<h1>WidgetService.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 9</b> - Unknown tag "@service" used<br>
+<b>Warning on line 10</b> - DocBlock would be page-level, but precedes class "widgetService", use another DocBlock to document the file<br>
+<b>Warning on line 29</b> - Unknown tag "@action" used<br>
+<b>Warning on line 65</b> - Unknown tag "@action" used<br>
+<b>Warning on line 92</b> - Unknown tag "@action" used<br>
+<b>Warning on line 112</b> - Unknown tag "@paran" used<br>
+<b>Warning on line 112</b> - Unknown tag "@action" used<br>
+<b>Warning on line 137</b> - Unknown tag "@action" used<br>
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 06 Apr 2009 18:09:57 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
+	</p>
+	</body>
+</html>

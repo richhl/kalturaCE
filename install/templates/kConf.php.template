@@ -1,0 +1,119 @@
+<?php
+class kConf
+{
+	private static $map = null;
+	
+	private static function init()
+	{
+		if ( self::$map ) return;
+		/** KALTURA-INSTALL **/
+		// will be used for the instalation script to modify 
+		$bin_path = realpath(dirname(__FILE__).'/../../bin')."/";
+		
+		self::$map = 
+			array (
+				// take over the symfony config (sfConfig)
+				"sf_debug" => false,
+				"sf_logging_enabled" => true, 
+				"sf_root_dir" => SF_ROOT_DIR,
+				"www_host" => "KALTURA_HOST",
+				"cdn_host" => "KALTURA_CDN",
+				
+				"kaltura_installation_type" => "CE",
+				
+				"corp_action_redirect" => "KALTURA_HOST",
+				
+				"terms_of_use_uri" => "http://KALTURA_HOST/customize/terms_of_use.html",
+				
+				"memcache_host" => "localhost" ,
+				"memcache_port" => "11211" ,
+			
+				"server_api_v2_path" => "/api/" ,
+			
+				"apphome_url" => "http://www.kaltura.com",
+				"apphome_url_no_protocol" => "www.kaltura.com",
+				"partner_registration_confirmation_email" => "registration_confirmation@kaltura.com",
+				"partner_registration_confirmation_name" => "Kaltura",
+				"partner_notification_email" => "customer_service@kaltura.com",
+				"partner_notification_name" => "DO_NOT_REPLY Customer Service",
+				"partner_change_email_email" => "customer_service@kaltura.com",
+				"partner_change_email_name" => "DO_NOT_REPLY Customer Service",
+				"purchase_package_email" => "customer_service@kaltura.com",
+				"purchase_package_name" => "DO_NOT_REPLY Customer Service",
+				"batch_download_video_sender_email" => "download_video@kaltura.com",
+				"batch_download_video_sender_name" => "Kaltura",
+				"batch_flatten_video_sender_email" => "download_video@kaltura.com",
+				"batch_flatten_video_sender_name" => "Kaltura",
+				"batch_notification_sender_email" => "notifications@kaltura.com" , 
+				"batch_notification_sender_name" => "Kaltura" ,
+		
+				"kmc_admin_login_generic_regexp" => "/DOMAIN/" ,
+				"kmc_admin_login_sha1_password" => "" ,
+
+				"system_pages_login_username" => "KALTURA_SYSTEM_USERNAME",
+				"system_pages_login_password" => "KALTURA_SYSTEM_PASSWORD",
+				"system_allow_edit_kConf" => true,
+				"testmeconsole_state" => true,
+				
+				"flash_root_url" => "",
+				"uiconf_root_url" => "",
+				"content_root_url" => "",
+			
+				"bin_path_ffmpeg" => $bin_path . "ffmpeg/ffmpeg" ,
+				"bin_path_mencoder" => $bin_path . "mencoder/mencoder",
+				"bin_path_flix" => $bin_path . "cli_encode/cli_encode",
+				"bin_path_imagemagick" => $bin_path . "convert/convert",
+				"bin_path_curl" => $bin_path . "curl/curl",
+			
+				"image_proxy_url" => "" ,
+				"image_proxy_port" => "" ,	
+				"image_proxy_secret" => "" ,
+			
+				"kmc_display_customize_tab" => true,
+				"kmc_display_account_tab" => true, 
+				"kmc_content_enable_commercial_transcoding" => false,
+				"kmc_login_show_signup_link" => false,
+				"kmc_display_developer_tab" => true,
+				"kmc_display_server_tab" => true,
+				"kmc_account_show_usage" => false,
+			
+				"paypal_data" => array (
+					"api_username" => '' ,
+					"api_password" => '' ,
+					"api_signature" => '' , 
+					"environment" => '' ),
+				
+				"ga_account" => 'UA-7714780-3',
+				
+				"limelight_madiavault_password" => "",
+				"level3_authentication_key" => "",
+				
+				"kdpwrapper_track_url" => 'http://www.kaltura.com/tracker',
+				"kaltura_partner_id" => "KALTURACOM_PARTNER_ID",
+				"kaltura_partner_secret" => "KALTURACOM_PARTNER_SECRET",
+				"kaltura_partner_admin_secret" => "KALTURACOM_PARTNER_ADMIN_SECRET",
+				"track_kdpwrapper" => true,
+				
+				"event_log_file_path" => "",
+				"reports_db_config" => array (
+					"host" => "" , "", 
+					"user" => "" ,
+					"password" => "" ,
+					"db_name" => "" , 
+				) ,
+		);
+
+	}
+	
+	public static function get ( $param_name )
+	{
+		self::init();
+		$res = self::$map [ $param_name ];
+		// for now - throw an exception if now param in config - it will help prevent typos 
+		// TODO - remove exception
+		if ( $res === null ) throw new Exception ( "Cannot find [$param_name] in config" ) ;
+		//kLog::log( "kConf [$param_name]=[$res]" );
+		return $res; 
+	}
+}
+?>
