@@ -58,10 +58,13 @@ class MediaService extends KalturaEntryService
 	 * @param KalturaSearchResult $searchResult Result object from search service
 	 * @return KalturaMediaEntry The new media entry
 	 */
-	function addFromSearchResultAction(KalturaMediaEntry $mediaEntry = null, KalturaSearchResult $searchResult)
+	function addFromSearchResultAction(KalturaMediaEntry $mediaEntry = null, KalturaSearchResult $searchResult = null)
 	{
 		if ($mediaEntry === null)
 			$mediaEntry = new KalturaMediaEntry();
+			
+		if ($searchResult === null)
+			$searchResult = new KalturaSearchResult();
 			
 		// copy the fields from search result if they are missing in media entry 
 		// this should be checked before prepareEntry method call
@@ -149,21 +152,67 @@ class MediaService extends KalturaEntryService
 	 */
 	function addFromUploadedFileAction(KalturaMediaEntry $mediaEntry, $uploadTokenId)
 	{
+	    // check that the uploaded file exists
+	    $fileExtension = strtolower(pathinfo($uploadTokenId, PATHINFO_EXTENSION));
+		$entryFullPath = myUploadUtils::getUploadPath($uploadTokenId, "", null , $fileExtension);
+		if (!file_exists($entryFullPath))
+			throw new KalturaAPIException(KalturaErrors::UPLOADED_FILE_NOT_FOUND_BY_TOKEN);
+			
 		$dbEntry = $this->prepareMediaEntryForInsert($mediaEntry);
 		
 		$kshow = $this->createDummyKShow();
         $kshowId = $kshow->getId();
-		
-		$fileExtension = strtolower(pathinfo($uploadTokenId, PATHINFO_EXTENSION));
-		$entryFullPath = myUploadUtils::getUploadPath($uploadTokenId, "", null , $fileExtension);
-		if (!file_exists($entryFullPath))
-			throw new KalturaAPIException(KalturaErrors::UPLOADED_FILE_NOT_FOUND_BY_TOKEN);
 			
 		// setup the needed params for my insert entry helper
 		$paramsArray = array (
 			"entry_media_source" => KalturaSourceType::FILE,
             "entry_media_type" => $dbEntry->getMediaType(),
 			"entry_full_path" => $entryFullPath,
+			"entry_license" => $dbEntry->getLicenseType(),
+			"entry_credit" => $dbEntry->getCredit(),
+			"entry_source_link" => $dbEntry->getSourceLink(),
+			"entry_tags" => $dbEntry->getTags(),
+		);
+		
+		$token = $this->getKsUniqueString();
+		$insert_entry_helper = new myInsertEntryHelper(null , $dbEntry->getKuserId(), $kshowId, $paramsArray);
+		$insert_entry_helper->setPartnerId($this->getPartnerId(), $this->getPartnerId() * 100);
+		$insert_entry_helper->insertEntry($token, $dbEntry->getType(), $dbEntry->getId(), $dbEntry->getName(), $dbEntry->getTags(), $dbEntry);
+		$dbEntry = $insert_entry_helper->getEntry();
+
+		myNotificationMgr::createNotification( notification::NOTIFICATION_TYPE_ENTRY_ADD, $dbEntry);
+
+		$mediaEntry->fromObject($dbEntry);
+		return $mediaEntry;
+	}
+	
+	/**
+	 * Add new entry after the file was recored on the server and the token id exists
+	 *
+	 * @action addFromRecordedWebcam
+	 * @param KalturaMediaEntry $mediaEntry Media entry metadata
+	 * @param string $webcamTokenId Token id for the recored webcam file 
+	 * @return KalturaMediaEntry The new media entry
+	 */
+	function addFromRecordedWebcamAction(KalturaMediaEntry $mediaEntry, $webcamTokenId)
+	{
+	    // check that the webcam file exists
+	    $content = myContentStorage::getFSContentRootPath();
+	    $webcamBasePath = $content."/content/webcam/".$webcamTokenId;
+		$entryFullPath = $webcamBasePath.'.flv';
+		if (!file_exists($entryFullPath))
+			throw new KalturaAPIException(KalturaErrors::RECORDED_WEBCAM_FILE_NOT_FOUND);
+			
+		$dbEntry = $this->prepareMediaEntryForInsert($mediaEntry);
+		
+		$kshow = $this->createDummyKShow();
+        $kshowId = $kshow->getId();
+			
+		// setup the needed params for my insert entry helper
+		$paramsArray = array (
+			"entry_media_source" => KalturaSourceType::WEBCAM,
+            "entry_media_type" => $dbEntry->getMediaType(),
+			"webcam_suffix" => $webcamTokenId,
 			"entry_license" => $dbEntry->getLicenseType(),
 			"entry_credit" => $dbEntry->getCredit(),
 			"entry_source_link" => $dbEntry->getSourceLink(),
@@ -271,29 +320,16 @@ class MediaService extends KalturaEntryService
 	 */
 	function listAction(KalturaMediaEntryFilter $filter = null, KalturaFilterPager $pager = null)
 	{
-		if (!$filter)
+	    if (!$filter)
 			$filter = new KalturaMediaEntryFilter();
-
-		if (!$pager)
-			$pager = new KalturaFilterPager();
 			
-		$entryFilter = new entryFilter();
-		$filter->toObject($entryFilter);
-
-		$c = new Criteria();
-		$entryFilter->attachToCriteria($c);
-		$c->add(entryPeer::TYPE, entry::ENTRY_TYPE_MEDIACLIP); // only media entries
-		
-		$totalCount = entryPeer::doCount($c);
-		
-		$pager->attachToCriteria($c);
-		$list = entryPeer::doSelect($c);
-		
-		$newList = KalturaMediaEntries::fromEntryArray($list);
+	    $filter->typeEqual = KalturaEntryType::MEDIA_CLIP;
+	    list($list, $totalCount) = parent::listEntriesByFilter($filter, $pager);
+	    
+	    $newList = KalturaMediaEntries::fromEntryArray($list);
 		$response = new KalturaMediaListResponse();
 		$response->objects = $newList;
 		$response->totalCount = $totalCount;
-		
 		return $response;
 	}
 
@@ -438,7 +474,7 @@ class MediaService extends KalturaEntryService
 	private function prepareMediaEntryForInsert(KalturaMediaEntry $mediaEntry)
 	{
 		// first validate the input object
-		$mediaEntry->validatePropertyMinLength("name", 2);
+		$mediaEntry->validatePropertyMinLength("name", 1);
 		$mediaEntry->validatePropertyNotNull("mediaType");
 		
 		// first copy all the properties to the db entry, then we'll check for security stuff

@@ -244,7 +244,8 @@ class signupAction extends kalturaCmsAction
 	public function execute ()
 	{
 		// make sure user is logged out
-		
+		$this->redirect($this->getController()->genUrl('kmc/signup', true));
+
 		$step = @$_REQUEST["step"];
 		$this->step = $step;
 		

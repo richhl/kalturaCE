@@ -3,10 +3,9 @@ require_once("../../../bootstrap.php");
 require_once("../config.php");
 require_once("../lib/KalturaClient.php");
 
-$config = new KalturaConfiguration();
+$config = new KalturaConfiguration(PARTNER_ID);
 $config->serviceUrl = SERVER_URL;
-$client = new KalturaClient();
-$client->setConfig($config);
+$client = new KalturaClient($config);
 
 // for better performance, you might want to load other tabs using ajax when the user clicks on the tab
 $playlistEntries1 = $client->playlist->execute("644igevrzs");

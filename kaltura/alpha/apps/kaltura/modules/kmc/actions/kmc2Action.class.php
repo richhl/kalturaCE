@@ -35,7 +35,7 @@ class kmc2Action extends kalturaAction
 		}
 		
 		$this->visibleCT = 'false';
-		if(kConf::get('kmc_content_enable_commercial_transcoding') && $this->partner_id)
+		if(kConf::get('kmc_content_enable_commercial_transcoding') && $this->partner_id !== NULL)
 		{
 			$partner = PartnerPeer::retrieveByPK($this->partner_id);
 			if ($partner)

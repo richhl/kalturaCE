@@ -26,10 +26,17 @@ class KalturaObject
 	{
 		foreach ( $this->getMapBetweenObjects() as $this_prop => $object_prop )
 		{
-//	echo "Mapping $this_prop => $entry_prop<br>";
-			if ( is_numeric( $this_prop) ) $this_prop = $object_prop;
-//	echo "setting  $this_prop => $entry_prop<br>";
-			$this->$this_prop = call_user_func(array ( $source_object ,"get{$object_prop}"  ) );
+			if ( is_numeric( $this_prop) ) 
+			    $this_prop = $object_prop;
+			    
+            $getter_callback = array ( $source_object ,"get{$object_prop}"  );
+            if (is_callable($getter_callback))
+                $this->$this_prop = call_user_func($getter_callback);
+                
+            if (in_array($this_prop, array("createdAt", "updatedAt")))
+            {
+                $this->$this_prop = call_user_func_array($getter_callback, array(null)); // when passing null to getCreatedAt, timestamp will be returned
+            }
 		}
 	}
 	
@@ -48,8 +55,11 @@ class KalturaObject
 		{
 		 	if ( is_numeric( $this_prop) ) $this_prop = $object_prop;
 			if (in_array($this_prop, $props_to_skip)) continue;
-		 	call_user_func_array( array ( $object_to_fill ,"set{$object_prop}"  ) , array ($this->$this_prop ) );
-		 }		
+			
+			$setter_callback = array ( $object_to_fill ,"set{$object_prop}");
+			if (is_callable($setter_callback))
+		 	    call_user_func_array( $setter_callback , array ($this->$this_prop ) );
+		}
 		return $object_to_fill;		
 	}
 	

@@ -10,7 +10,10 @@ class KalturaBaseEntryFilter extends KalturaFilter
 		"idEqual" => "_eq_id",
 		"idIn" => "_in_id",
 	
-		"userEqual" => "_eq_user_id",
+		"userIdEqual" => "_eq_user_id",
+	
+	    "typeEqual" => "_eq_type",
+		"typeIn" => "_in_type",
 	
 		"statusEqual" => "_eq_status",
 		"statusIn" => "_in_status",
@@ -55,11 +58,37 @@ class KalturaBaseEntryFilter extends KalturaFilter
 		
 		"searchTextMatchAnd" => "_matchand_search_text",
 		"searchTextMatchOr" => "_matchor_search_text",
+	
+		"orderBy" => "_order_by"
+	);
+	
+	private $order_by_map = array(
+	    "+createdAt" => "+created_at",
+		"-createdAt" => "-created_at",
+		"+views" => "+views",
+		"-views" => "-views",  
+		"+name" => "+name",
+		"-name" => "-name", 
+		"+mediaDate" => "+media_date",
+		"-mediaDate" => "-media_date", 
+		"+plays" => "+plays",
+		"-plays" => "-plays",  
+		"+views" => "+views",
+		"-views" => "-views", 
+		"+rank" => "+rank",
+		"-rank" => "-rank", 
+		"+modifiedAt" => "+modified_at",
+		"-modifiedAt" => "-modified_at"
 	);
 	
 	public function getMapBetweenObjects()
 	{
 		return array_merge(parent::getMapBetweenObjects(), self::$map_between_objects);
+	}
+	
+    public function getOrderByMap()
+	{
+		return $this->order_by_map;
 	}
 	
 	/**
@@ -73,9 +102,14 @@ class KalturaBaseEntryFilter extends KalturaFilter
 	public $idIn;
 	
 	/**
-	 * @var string $userEqual
+	 * @var string $userIdEqual
 	 */
-	public $userEqual;
+	public $userIdEqual;
+	
+	/**
+	 * @var string $typeIn
+	 */
+	public $typeIn;
 	
 	/**
 	 * @var KalturaEntryStatus $statusEqual
@@ -231,6 +265,5 @@ class KalturaBaseEntryFilter extends KalturaFilter
 	 * @var string $searchTextMatchOr
 	 */
 	public $searchTextMatchOr;
-	
 }
 ?>

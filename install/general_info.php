@@ -23,7 +23,8 @@ else
 {
   $php_path = 'php';
 }
-$default_server = rtrim($_SERVER['SERVER_ADDR'].str_replace('/install/general_info.php', '', $_SERVER['REQUEST_URI']),'/');
+$server_base = ($_SERVER['SERVER_NAME'])? $_SERVER['SERVER_NAME']: $_SERVER['SERVER_ADDR'];
+$default_server = rtrim($server_base.str_replace('/install/general_info.php', '', $_SERVER['REQUEST_URI']),'/');
 $default_server = str_replace('::1', 'localhost', $default_server);
 // ignore localhost / 127.0.0.1
 if (substr_count($default_server, 'localhost') || substr_count($default_server, '127.0.0.1'))
@@ -66,7 +67,8 @@ if (substr_count($default_server, 'localhost') || substr_count($default_server, 
           </tr>
           <tr>
             <td>&nbsp;</td>
-            <td class="fieldDescribe">Enter the public address of this server (this host should be accessible from the internet/ intranet: it will be used by KalturaCE's components).</td>
+            <td class="fieldDescribe">Enter the public address of this server (this host should be accessible from the internet/ intranet: it will be used by KalturaCE's components).<br />
+            <br />For example: <br />10.0.0.27/kalturaCE<br/>OR<br />www.mykalturadomain.com (kalturaCE in installed on a virtualHost)</td>
           </tr>
           <tr>
             <td><label for="iscdnhost">&nbsp;Streaming Settings:</label><br /><br /><br /></td>

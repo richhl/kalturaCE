@@ -63,6 +63,7 @@ class listconversionprofilesAction extends defPartnerservices2Action
 		myCriteria::addComment( $c, "Only Kaltura Network" );
 		$c->addAscendingOrderByColumn ( $order_by );//, Criteria::CUSTOM );
 		$c->addDescendingOrderByColumn ( ConversionProfilePeer::UPDATED_AT );//, Criteria::CUSTOM );
+		$c->addDescendingOrderByColumn ( ConversionProfilePeer::ID );//, Criteria::CUSTOM );
 		
 		//if ($order_by != -1) kshowPeer::setOrder( $c , $order_by );
 		$count = ConversionProfilePeer::doCount( $c );

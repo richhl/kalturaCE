@@ -539,6 +539,7 @@ CREATE TABLE `kuser` (
   `display_in_search` tinyint(4) default '1',
   `search_text` varchar(4096) default NULL,
   `partner_data` varchar(4096) default NULL,
+  `storage_size` int(11) default '0',
   PRIMARY KEY  (`id`),
   KEY `screen_name_index` (`screen_name`),
   KEY `full_name_index` (`full_name`),
@@ -1134,7 +1135,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-05-05 10:23:27
+-- Dump completed on 2009-05-18 18:56:19
 -- MySQL dump 10.11
 --
 -- Host: localhost    Database: kaltura
@@ -1212,7 +1213,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-05-05 10:23:27
+-- Dump completed on 2009-05-18 18:56:20
 -- MySQL dump 10.11
 --
 -- Host: localhost    Database: kaltura
@@ -1265,21 +1266,21 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `conversion_params` WRITE;
 /*!40000 ALTER TABLE `conversion_params` DISABLE KEYS */;
-INSERT INTO `conversion_params` VALUES (1,0,1,'low_play','low',1,0,0,'2',100,400,0,'','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2008-11-24 11:54:15','2009-02-05 15:06:16');
-INSERT INTO `conversion_params` VALUES (2,0,1,'low_play','lowedit',1,0,0,'2',100,400,0,'','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:30:04','2009-02-05 15:30:04');
-INSERT INTO `conversion_params` VALUES (3,0,1,'low_edit','lowedit',2,0,0,'2',5,400,0,'_edit','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:17:40','2009-02-05 15:30:28');
-INSERT INTO `conversion_params` VALUES (4,0,1,'med_play','med',1,0,0,'2',100,800,0,'','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:32:47','2009-02-05 15:34:31');
-INSERT INTO `conversion_params` VALUES (5,0,1,'med_play','mededit',1,0,0,'2',100,800,0,'','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:34:41','2009-02-05 15:34:41');
-INSERT INTO `conversion_params` VALUES (6,0,1,'med_edit','mededit',2,0,0,'2',5,800,0,'_edit','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:34:57','2009-02-05 15:34:57');
-INSERT INTO `conversion_params` VALUES (7,0,1,'high_play','high',1,0,0,'2',100,1200,0,'','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:41:33','2009-02-05 15:41:33');
-INSERT INTO `conversion_params` VALUES (8,0,1,'high_play','highedit',1,0,0,'2',100,1200,0,'','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:41:48','2009-02-05 15:41:48');
-INSERT INTO `conversion_params` VALUES (9,0,1,'high_edit','highedit',2,0,0,'2',5,1200,0,'_edit','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:41:59','2009-02-05 15:41:59');
-INSERT INTO `conversion_params` VALUES (10,0,1,'hd','hd',1,0,0,'2',300,40000,0,'','a:4:{s:20:\"commercialTranscoder\";s:1:\"1\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:43:35','2009-02-05 15:43:35');
-INSERT INTO `conversion_params` VALUES (11,0,1,'download','download',1,0,0,'2',300,0,0,'','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:44:51','2009-02-05 15:44:51');
-INSERT INTO `conversion_params` VALUES (100027,0,1,'wp_default','wp_default',1,0,0,'2',100,800,0,'','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:32:47','2009-02-05 15:34:31');
-INSERT INTO `conversion_params` VALUES (100028,0,1,'wp_default','wp_defaultedit',1,0,0,'2',100,800,0,'','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:34:41','2009-02-05 15:34:41');
-INSERT INTO `conversion_params` VALUES (100029,0,1,'wp_default','wp_defaultedit',2,0,0,'2',5,800,0,'_edit','a:4:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";}','2009-02-05 15:34:57','2009-02-05 15:34:57');
-INSERT INTO `conversion_params` VALUES (99999,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `conversion_params` VALUES (1,0,1,'low_play','low',1,0,0,'2',100,400,0,'','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2008-11-24 11:54:15','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (2,0,1,'low_play','lowedit',1,0,0,'2',100,400,0,'','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:30:04','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (3,0,1,'low_edit','lowedit',2,0,0,'2',5,400,0,'_edit','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:17:40','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (4,0,1,'med_play','med',1,0,0,'2',100,800,0,'','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:32:47','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (5,0,1,'med_play','mededit',1,0,0,'2',100,800,0,'','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:34:41','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (6,0,1,'med_edit','mededit',2,0,0,'2',5,800,0,'_edit','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:34:57','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (7,0,1,'high_play','high',1,0,0,'2',100,1200,0,'','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:41:33','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (8,0,1,'high_play','highedit',1,0,0,'2',100,1200,0,'','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:41:48','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (9,0,1,'high_edit','highedit',2,0,0,'2',5,1200,0,'_edit','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:41:59','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (10,0,1,'hd','hd',1,0,0,'2',300,40000,0,'','a:7:{s:20:\"commercialTranscoder\";s:1:\"1\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:43:35','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (11,0,1,'download','download',1,0,0,'2',300,0,0,'','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:44:51','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (100027,0,1,'wp_default','wp_default',1,0,0,'2',100,800,0,'','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:32:47','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (100028,0,1,'wp_default','wp_defaultedit',1,0,0,'2',100,800,0,'','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:34:41','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (100029,0,1,'wp_default','wp_defaultedit',2,0,0,'2',5,800,0,'_edit','a:7:{s:20:\"commercialTranscoder\";s:1:\"0\";s:12:\"ffmpegParams\";s:0:\"\";s:14:\"mencoderParams\";s:0:\"\";s:10:\"flixParams\";s:0:\"\";s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}','2009-02-05 15:34:57','2009-06-01 15:12:40');
+INSERT INTO `conversion_params` VALUES (99999,NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'a:3:{s:9:\"framerate\";s:2:\"25\";s:13:\"audioChannels\";i:2;s:17:\"audioSamplingRate\";i:22050;}',NULL,'2009-06-01 15:12:40');
 /*!40000 ALTER TABLE `conversion_params` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1292,7 +1293,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-05-05 10:23:27
+-- Dump completed on 2009-05-18 18:56:20
 -- MySQL dump 10.11
 --
 -- Host: localhost    Database: kaltura
@@ -1362,7 +1363,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-05-05 10:23:27
+-- Dump completed on 2009-05-18 18:56:20
 -- MySQL dump 10.11
 --
 -- Host: localhost    Database: kaltura
@@ -1488,7 +1489,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-05-05 10:23:27
+-- Dump completed on 2009-05-18 18:56:20
 -- MySQL dump 10.11
 --
 -- Host: localhost    Database: kaltura
@@ -1607,7 +1608,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-05-05 10:23:27
+-- Dump completed on 2009-05-18 18:56:20
 -- MySQL dump 10.11
 --
 -- Host: localhost    Database: kaltura
@@ -1670,6 +1671,7 @@ CREATE TABLE `kuser` (
   `display_in_search` tinyint(4) default '1',
   `search_text` varchar(4096) default NULL,
   `partner_data` varchar(4096) default NULL,
+  `storage_size` int(11) default '0',
   PRIMARY KEY  (`id`),
   KEY `screen_name_index` (`screen_name`),
   KEY `full_name_index` (`full_name`),
@@ -1690,10 +1692,10 @@ SET character_set_client = @saved_cs_client;
 
 LOCK TABLES `kuser` WRITE;
 /*!40000 ALTER TABLE `kuser` DISABLE KEYS */;
-INSERT INTO `kuser` VALUES (1,'_1_USERID','_1_USERID',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,5,1,0,'2009-04-26 17:35:51','2009-04-26 17:38:25',1,0,NULL,NULL);
-INSERT INTO `kuser` VALUES (2,'_1_','_1_',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,2,1,0,'2009-04-26 17:37:07','2009-04-26 17:37:09',1,0,NULL,NULL);
-INSERT INTO `kuser` VALUES (3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,20,3,0,'2009-04-27 10:03:07','2009-04-27 11:06:04',1,0,NULL,NULL);
-INSERT INTO `kuser` VALUES (4,'','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,0,1,0,'2009-04-28 04:20:59','2009-04-28 04:21:00',1,0,NULL,NULL);
+INSERT INTO `kuser` VALUES (1,'_1_USERID','_1_USERID',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,5,1,0,'2009-04-26 17:35:51','2009-04-26 17:38:25',1,0,NULL,NULL,0);
+INSERT INTO `kuser` VALUES (2,'_1_','_1_',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,2,1,0,'2009-04-26 17:37:07','2009-04-26 17:37:09',1,0,NULL,NULL,0);
+INSERT INTO `kuser` VALUES (3,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,20,3,0,'2009-04-27 10:03:07','2009-04-27 11:06:04',1,0,NULL,NULL,0);
+INSERT INTO `kuser` VALUES (4,'','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,0,1,0,'2009-04-28 04:20:59','2009-04-28 04:21:00',1,0,NULL,NULL,0);
 /*!40000 ALTER TABLE `kuser` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1706,7 +1708,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-05-05 10:23:27
+-- Dump completed on 2009-05-18 18:56:20
 -- MySQL dump 10.11
 --
 -- Host: localhost    Database: kaltura
@@ -1771,4 +1773,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2009-05-05 10:23:27
+-- Dump completed on 2009-05-18 18:56:20

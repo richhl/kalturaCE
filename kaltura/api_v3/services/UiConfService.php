@@ -3,7 +3,7 @@
  * UiConf service lets you create and manage your UIConfs for the various flash components
  * This service is used by the KMC-ApplicationStudio
  *
- * @service UiConf
+ * @service uiConf
  * @package api
  * @subpackage services
  */

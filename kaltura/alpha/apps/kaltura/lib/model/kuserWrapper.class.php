@@ -4,7 +4,7 @@ class kuserWrapper extends objectWrapperBase
 	protected $basic_fields = array ( "id" , "screenName" , "partnerId"  );
 	
 	protected $regular_fields_ext = array ( "puserId" , "fullName" , "email" , "dateOfBirth" , "picturePath" , "pictureUrl" , 
-		"icon" , "aboutMe" , "tags" , "gender" , "createdAt" , "createdAtAsInt" , "partnerData" );
+		"icon" , "aboutMe" , "tags" , "gender" , "createdAt" , "createdAtAsInt" , "partnerData" , "storageSize" );
 	
 	protected $detailed_fields_ext = array ( "country" , "state" , "city"  , "zip" , "urlList" , "networkHighschool" , "networkCollege" , "views" , "fans" , "entries" , "producedKshows" ) ;
 	

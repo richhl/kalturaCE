@@ -430,7 +430,7 @@ class myPlaylistUtils
 		}		
 	}
 	
-	public static function getEmbedCode ( entry $playlist , $wid , $ui_conf_id , $uid = null , $autoplay = false )
+	public static function getEmbedCode ( entry $playlist , $wid , $ui_conf_id , $uid = null , $autoplay = null )
 	{
 		if ( $playlist == null ) return "";
 		
@@ -455,12 +455,13 @@ class myPlaylistUtils
 			throw new APIException( APIErrors::INVALID_UI_CONF_ID_FOR_WIDGET , $ui_conf_id , $wid )	;
 		}
 		
-		$autoplay_str = $autoplay ? "autoPlay=true" : "autoPlay=false" ; 
+//		$autoplay_str = $autoplay ? "autoPlay=true" : "autoPlay=false" ; 
+		$autoplay_str = "";
 $embed = <<< HTML
 <object height="{$ui_conf->getHeight()}" width="{$ui_conf->getWidth()}" type="application/x-shockwave-flash" data="{$host}/kwidget/wid/{$wid}/ui_conf_id/{$ui_conf_id}" id="kaltura_playlist" style="visibility: visible;">		
 <param name="allowscriptaccess" value="always"/><param name="allownetworking" value="all"/><param name="bgcolor" value="#000000"/><param name="wmode" value="opaque"/><param name="allowfullscreen" value="true"/>
 <param name="movie" value="{$host}/kwidget/wid/{$wid}/ui_conf_id/{$ui_conf_id}"/>
-<param name="flashvars" value="{$autoplay_str}&layoutId=playlistLight&uid={$uid}&partner_id={$partner_id}&subp_id={$subp_id}&$playlist_flashvars"/></object>
+<param name="flashvars" value="layoutId=playlistLight&uid={$uid}&partner_id={$partner_id}&subp_id={$subp_id}&$playlist_flashvars"/></object>
 HTML;
 		return array ( $embed , $ui_conf->getWidth() ,  $ui_conf->getHeight() ); 		
 	}

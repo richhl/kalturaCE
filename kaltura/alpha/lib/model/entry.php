@@ -36,6 +36,7 @@ class entry extends Baseentry
 	const ENTRY_TYPE_SHOW = 2;
 	const ENTRY_TYPE_BUBBLES = 4;
 	const ENTRY_TYPE_PLAYLIST = 5;
+	const ENTRY_TYPE_DATA = 6;
 	const ENTRY_TYPE_DOCUMENT = 10;
 	const ENTRY_TYPE_DVD = 300;	
 
@@ -52,6 +53,7 @@ class entry extends Baseentry
 	const ENTRY_MEDIA_TYPE_BUBBLES = 9;
 	const ENTRY_MEDIA_TYPE_XML = 10;
 	const ENTRY_MEDIA_TYPE_DOCUMENT = 11;
+	const ENTRY_MEDIA_TYPE_SWF = 12;
 	const ENTRY_MEDIA_TYPE_GENERIC_1= 101;	// these types can be used for derived classes - assume this is some kind of TXT file
 	const ENTRY_MEDIA_TYPE_GENERIC_2= 102;	// these types can be used for derived classes 
 	const ENTRY_MEDIA_TYPE_GENERIC_3= 103;	// these types can be used for derived classes 
@@ -517,6 +519,7 @@ class entry extends Baseentry
 	public function getDataContent ( $from_cache = false )
 	{
 		if ( $this->getType() == self::ENTRY_TYPE_SHOW || 
+			$this->getType() == self::ENTRY_TYPE_DATA ||
 			$this->getType() == self::ENTRY_TYPE_BUBBLES || 
 			$this->getType() == self::ENTRY_TYPE_PLAYLIST ||
 			$this->getMediaType() == self::ENTRY_MEDIA_TYPE_XML ||
@@ -557,12 +560,13 @@ class entry extends Baseentry
 //		if ( $v === null ) return ;
 		// DON'T do this for ENTRY_TYPE_SHOW unless $allow_type_roughcut is true
 		// - the metadata is handling is complex and is done in other places in the code 
-		if ( ($allow_type_roughcut && $this->getType() == self::ENTRY_TYPE_SHOW) || 
-			 $this->getType() == self::ENTRY_TYPE_BUBBLES || 
-			 $this->getType() == self::ENTRY_TYPE_PLAYLIST ||
-			 $this->getMediaType() == self::ENTRY_MEDIA_TYPE_XML || 
-			 $this->getMediaType() == self::ENTRY_MEDIA_TYPE_TEXT ||
-			 $this->getMediaType() == self::ENTRY_MEDIA_TYPE_GENERIC_1 )
+		if ( ($allow_type_roughcut && $this->getType() == self::ENTRY_TYPE_SHOW) ||
+			$this->getType() == self::ENTRY_TYPE_DATA || 
+			$this->getType() == self::ENTRY_TYPE_BUBBLES || 
+			$this->getType() == self::ENTRY_TYPE_PLAYLIST ||
+			$this->getMediaType() == self::ENTRY_MEDIA_TYPE_XML || 
+			$this->getMediaType() == self::ENTRY_MEDIA_TYPE_TEXT ||
+			$this->getMediaType() == self::ENTRY_MEDIA_TYPE_GENERIC_1 )
 		{
 			if ( $this->getId() == null )
 			{
@@ -683,7 +687,9 @@ class entry extends Baseentry
 
 	public function setAdminTags($tags)
 	{
-		if ( $tags == "" || $this->tags !== $tags ) {
+		if ( $tags === null ) return ;
+		
+		if ( $tags == "" || $this->getAdminTags() !== $tags ) {
 			parent::setAdminTags(trim(ktagword::fixAdminTags( $tags)));
 		}
 	}

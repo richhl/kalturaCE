@@ -37,7 +37,7 @@ class myBatchDownloadVideoServer extends kConversionClientBase
 
 	
 	// if the file format is empty or equal to DOWNLOAD_VIDEO_FORMAT_ORIGINAL - the RAW version of the file isused - simply send an email with the raw URL 
-	public static function addJob($puser_id, $entry, $version, $file_format)
+	public static function addJob($puser_id, $entry, $version, $file_format , $conversion_quality = null , $force_download = false )
 	{
 		$entryId = $entry->getId();
 		$entryIntId = $entry->getIntId();
@@ -52,18 +52,25 @@ class myBatchDownloadVideoServer extends kConversionClientBase
 			return;
 		}
 		
-		// see if there is a similar job - either a finished one or one that started in the past 3600 seconds
-		$similar_job = self::findSimilarJobs( $entryId , $entryVersion, $file_format , self::SECONDS_BETWEEN_ADD_SIMILAR_JOB );
-		if ( $similar_job )
+		if ( ! $force_download )
 		{
-			if ( $similar_job->getStatus() == BatchJob::BATCHJOB_STATUS_FINISHED )
+			$similar_job = self::findSimilarJobs( $entryId , $entryVersion, $file_format , self::SECONDS_BETWEEN_ADD_SIMILAR_JOB );
+			if ( $similar_job )
 			{
-				// a similar job has successfylly ended - send an email but don't create a new job
-				self::sendDownloadMail ( $email , $admin_name , $entry , $file_format );
+				if ( $similar_job->getStatus() == BatchJob::BATCHJOB_STATUS_FINISHED )
+				{
+					$data = json_decode($job->getData(), true);
+			
+					$downloadUrl = $data['downloadUrl'];
+					myNotificationMgr::createNotification( notification::NOTIFICATION_TYPE_BATCH_JOB_SIMILAR_EXISTS, $similar_job , null , null , null , 
+						array ( "download_url" => $downloadUrl ) );				
+					
+					// a similar job has successfylly ended - send an email but don't create a new job
+					self::sendDownloadMail ( $email , $admin_name , $entry , $file_format );
+				}
+				return $similar_job;
 			}
-			return $similar_job;
 		}
-		
 		
 		$job = new BatchJob();
 		$job->setJobType(BatchJob::BATCHJOB_TYPE_DOWNLOAD);
@@ -74,6 +81,7 @@ class myBatchDownloadVideoServer extends kConversionClientBase
 			'entryVersion' => $entryVersion,
 			'fileFormat' => $file_format,
 			'email' => $email,
+			'conversionQuality' => $conversion_quality ,
 			//'serverUrl' => "http://xp/final/$entryId_$entryVersion.avi",
 			//'deleteUrl' => "http://xp:1234/DeleteMovie/$entryId_$entryVersion.avi"
 		)));
@@ -95,7 +103,7 @@ class myBatchDownloadVideoServer extends kConversionClientBase
 		$download_client = new myBatchDownloadVideoServer( "" , "" , $server_cmd_path , $server_res_path , $commercial_server_cmd_path );
 		SET_CONTEXT ( null ); // this is to prevent writing TRACEs to the output
 		
-		list ( $status , $res , $download_path ) = $download_client->sentToCenversion ( $entry , $file_format );
+		list ( $status , $res , $download_path ) = $download_client->sentToCenversion ( $entry , $file_format , $conversion_quality , $force_download );
 		
 		if ( $status == self::STATUS_ERROR_CONVERTING )
 		{
@@ -121,6 +129,7 @@ class myBatchDownloadVideoServer extends kConversionClientBase
 				'email' => $email ,
 				'archivedFile' => $res,
 				'downoladPath' => $download_path ,
+				'conversionQuality' => $conversion_quality ,
 				//'serverUrl' => "http://xp/final/$entryId_$entryVersion.avi",
 				//'deleteUrl' => "http://xp:1234/DeleteMovie/$entryId_$entryVersion.avi"
 			)));	
@@ -176,7 +185,7 @@ class myBatchDownloadVideoServer extends kConversionClientBase
 	/*
 	 * Will send the ConvCmd to the conversion server
 	 */
-	private function sentToCenversion ( entry $entry , $file_format )
+	private function sentToCenversion ( entry $entry , $file_format , $conversion_quality = null , $force_download = false )
 	{
 		$archive_path = self::getArchiveDir();
 		$id = $entry->getId();
@@ -209,13 +218,22 @@ class myBatchDownloadVideoServer extends kConversionClientBase
 		$download_path = $entry->getDownloadPathForFormat( null , $file_format );
 //print ( "[$download_path]" );		
 		// TODO - check to see if file already exists to prevent unneded conversions
-		if ( file_exists ( $download_path ) )
+		if ( ! $force_download &&  file_exists ( $download_path ) )
 		{
 			return array ( self::STATUS_FILE_EXISTS , $source_path , $download_path ) ;
 		}
 		// TODO - use the profileType - maybe per partner
 
-		$conv_profile = ConversionProfilePeer::retrieveByProfileType( $entry->getPartnerId() ,  ConversionProfile::DEFAULT_DOWNLOAD_PROFILE_TYPE );
+		$conv_profile = null;
+		if ( $conversion_quality )
+		{
+			$conv_profile = myConversionProfileUtils::getConversionProfile( $entry->getPartnerId() , $conversion_quality );
+		}
+		if ( ! $conv_profile )
+		{
+			// use the default DOWNLOAD profile
+			$conv_profile = myConversionProfileUtils::getConversionProfile( $entry->getPartnerId() ,  ConversionProfile::DEFAULT_DOWNLOAD_PROFILE_TYPE );
+		}
 		$conv_cmd = $this->createConversionCommandFromConverionProfile ( $source_path , $download_path , $conv_profile , $entry );
 		$this->saveConversionCommand();	
 
@@ -302,6 +320,10 @@ TRACE ( print_r ( $data , true ) ) ;
 			if ( ! $conv_res->status_ok )
 			{
 				TRACE("Error while converting [$entry_id] [$job_file_format]\n" . print_r ( $conv_res , true ));
+				
+				myNotificationMgr::createNotification( notification::NOTIFICATION_TYPE_BATCH_JOB_FAILED, $job , null , null , null , 
+					array ( "conversion_error" => "Error while converting [$entry_id] [$job_file_format]" ) );
+				
 				$job->setDescription("Error while converting [$entry_id] [$job_file_format]\n" . print_r ( $conv_res , true ));
 				$job->setStatus(BatchJob::BATCHJOB_STATUS_FAILED);
 			}
@@ -317,15 +339,18 @@ TRACE ( print_r ( $data , true ) ) ;
 					self::sendDownloadMail ( $data['email'] , $admin_name , $entry , $job_file_format );
 				}
 				
-				myNotificationMgr::createNotification( notification::NOTIFICATION_TYPE_ENTRY_UPDATE, $entry );
-
-				$data["downloadUrl"] = $entry->getConvertedDownoadUrl ( $target );
+				$downloadUrl =  $entry->getConvertedDownoadUrl ( $target );;
+				$data["downloadUrl"] = $downloadUrl;
 				$job->setData(json_encode($data) );			
 				
 				$job->setMessage("Converted to [$job_file_format]");
 				$job->setDescription("target: $target");
 				$job->setProgress ( 100 );
 				$job->setStatus(BatchJob::BATCHJOB_STATUS_FINISHED);
+TRACE ( "Before sending notification [" . notification::NOTIFICATION_TYPE_BATCH_JOB_SUCCEEDED . "]" );				
+				myNotificationMgr::createNotification( notification::NOTIFICATION_TYPE_BATCH_JOB_SUCCEEDED, $job , null , null , null , 
+					array ( "download_url" => $downloadUrl ) );				
+TRACE ( "After sending notification [" . notification::NOTIFICATION_TYPE_BATCH_JOB_SUCCEEDED . "]" );				
 			}
 			$job->save();
 		}

@@ -16,7 +16,8 @@ class KalturaAutoloadNonStandard
 		"myBatchUrlImportClient" => "myBatchUrlImport",
 		"AdminSecurity" => "myAdminUtils",
 		"myBatchUrlImportServer" => "myBatchUrlImport" ,
-		"myBatchFlattenClient" => "myBatchFlattenVideo"
+		"myBatchFlattenClient" => "myBatchFlattenVideo",
+		"FLV_Util_AMFSerialize" => "AMFSerialize"
 	);
 }
 ?>

@@ -24,7 +24,7 @@ function createPageFor ( $p , $current_page , $page_size , $count )
 	$p = (int)$p;
 	$a = $p * $page_size + 1;
 	$b = (($p+1) * $page_size) ;
-	$b = min ( $b , $count ) ;// don't lett the page-end be bigger than the total count
+	$b = min ( $b , $count ) ;// don't let the page-end be bigger than the total count
 	if ( $p == $current_page ) 
 	{
 		$str = "{$a}-{$b} &nbsp; ";
@@ -145,7 +145,7 @@ function investigate ( entryId )
 </script>
 
 <h2>Entries In Process</h2>
-<ul>
+<ul id="show_options">
  <li><a href="javascript:sh('howwhen');">When / how should I use this ?</a>
   <ul id="howwhen">
 
@@ -161,6 +161,7 @@ function investigate ( entryId )
   <a href="javascript:sh('form1');">Show Filters</a>
 		<form id='form1'>
 			<input type='hidden' name='page' id='page' value='<?php $page ?>'>
+		<em>Hover over filter names to see description.</em>
 		<table class='entries_table' id="entry_filters">
 			<tr><td class="entries_filter_title">Media type<span class="tooltip">Check the boxes near the media types (audio, video, image, mix) that you would like to be shown in the Search results.</span></td>
 				<td>
@@ -199,7 +200,7 @@ function investigate ( entryId )
 			<tr><td class="entries_filter_title">Ids<span class="tooltip">Here you can enter a comma separated list of specific entry IDs to be shown in the Search results.</span></td>
 			 	<td><?php echo filterText ("_in_id" ) ?></td>
 			</tr>
-			<tr><td colspan="2"><button>Search</button></td></tr>
+			<tr><td colspan="2"><button type="submit">Search</button></td></tr>
 		</table>
 			
 		</form>  
@@ -216,7 +217,17 @@ $end_page = min ( $very_last_page , $start_page + 10 );
 //echo "[$page] [$start_page] [$end_page]";
 ?>
 <p id="pager"><strong>
-	Total results: <?= $count ?> &nbsp;&#8226;&nbsp; Showing: <?= $from_result .'-'.$to_result; ?> &nbsp;&#8226;&nbsp; Go to:</strong>&nbsp; 
+<?php if (!$page)
+{
+	$starting_point = 1;
+}
+else
+{
+	$starting_point = ($page*$page_size)+1;
+}
+?>
+
+	Total results: <?= $count ?> &nbsp;&#8226;&nbsp; Showing: <?= $starting_point .' - '. (($page*$page_size)+$page_size); ?> &nbsp;&#8226;&nbsp; Go to:</strong>&nbsp; 
 <?
 for ( $p=$start_page ; $p < $end_page ; $p++)
 {
@@ -224,9 +235,9 @@ for ( $p=$start_page ; $p < $end_page ; $p++)
 }
 
 if ( $start_page > 0 ) echo createPageFor ( 0, $page , $page_size , $count )  ; // add page 0 if not in list  
-if ( $start_page > 1 ) echo "..."; // have some dots if there is a real gap between 0 and the rest
+if ( $start_page > 1 ) echo " &nbsp; ..."; // have some dots if there is a real gap between 0 and the rest
 echo $str;
-if ( $end_page < $very_last_page -1 ) echo "..."; 
+if ( $end_page < $very_last_page -1 ) echo "... &nbsp; "; 
 if ( $end_page < $very_last_page ) echo createPageFor ( $very_last_page , $page  , $page_size, $count); //add last page if lot in list
 ?>
 </p>

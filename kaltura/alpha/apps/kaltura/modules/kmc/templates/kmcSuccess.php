@@ -19,7 +19,7 @@ function loginF( remMe , partner_id , subp_id ,  uid  ,  ks , screen_name , emai
 		partner_id = getCookie ( "pid" );
 		subp_id = getCookie ( "subpid" );
 		uid = getCookie ( "uid" );
-		ks = getCookie ( "ks" );
+		ks = getCookie ( "kmcks" );
 		screen_name = getCookie ("screen_name" );
 		// if any of the required params is null - return false and the login page will be displayed
 		if ( empty(partner_id) || empty(subp_id) || empty(uid) || empty(ks) ) return false;
@@ -34,7 +34,7 @@ function loginF( remMe , partner_id , subp_id ,  uid  ,  ks , screen_name , emai
 	_partner_id = partner_id;
 	_subp_id = subp_id;
 	_uid = uid;
-	path = '<?php echo $service_url; ?>/index.php/kmc/kmc<? echo $beta_str ?>';
+	path = '/';
 
 	if ( remMe ) exp = 86400; // one day in seconds
 	else exp = 10; // set the cookies to expire immediately
@@ -43,7 +43,7 @@ function loginF( remMe , partner_id , subp_id ,  uid  ,  ks , screen_name , emai
 		setCookie ( "pid" , partner_id , exp, path);
 		setCookie ( "subpid" , subp_id , exp, path);
 		setCookie ( "uid" , uid , exp, path);
-		setCookie ( "ks" , ks , exp, path);
+		setCookie ( "kmcks" , ks , exp, path);
 		setCookie ( "screen_name" , screen_name , exp, path);
 	}
 	url = "<? echo $service_url ?>/index.php/kmc/kmc2<? echo $beta_str ?>?partner_id=" + partner_id + "&subp_id=" + subp_id + "&uid=" + 
@@ -54,7 +54,6 @@ function loginF( remMe , partner_id , subp_id ,  uid  ,  ks , screen_name , emai
 	// TODO - send by post using form1
 	return true;			
 }
-
 
 function closeLoginF()
 {
@@ -111,10 +110,10 @@ function gotoSignup()
 			allownetworking: "all",
 			bgcolor: "#272929",
 			quality: "high",
-			wmode: "opaque" ,
-			movie: "<?php echo $flash_dir ?>/kmc/login/v1.0.6/login.swf"
+			wmode: "window" ,
+			movie: "<?php echo $flash_dir ?>/kmc/login/v1.0.8/login.swf"
 		};
-		swfobject.embedSWF("<?php echo $flash_dir ?>/kmc/login/v1.0.6/login.swf", 
+		swfobject.embedSWF("<?php echo $flash_dir ?>/kmc/login/v1.0.8/login.swf", 
 			"kaltura_flash_obj", "358", "350", "9.0.0", false, flashVars , params);
 	}
 

@@ -5,45 +5,54 @@
  */
 class KalturaServiceReflector
 {
-	private $_serviceName = null;
+	private $_serviceId = null;
 	private $_serviceClass = null;
 	private $_servicesMap = null;
 	private $_actions = null;
+	private $_docCommentParser = null;
 	
 	private $_serviceInstance = null;
 	
 	public function KalturaServiceReflector($service)
 	{
-		$this->_serviceName = $service;
+		$this->_serviceId = strtolower($service);
 		$this->_serviceClass = $service."Service";
 		$this->_servicesMap = KalturaServicesMap::getMap();
 		
 		if (!$this->isServiceExists($this->_serviceClass))
-			throw new Exception("Service [$this->_serviceName] does not exists");
+			throw new Exception("Service [$service] does not exists");
 			
-		require_once($this->_servicesMap[$this->_serviceName]);
+		require_once($this->_servicesMap[$this->_serviceId]);
+		
+		$reflectionClass = new ReflectionClass($this->_serviceClass);
+		$this->_docCommentParser = new KalturaDocCommentParser($reflectionClass->getDocComment()); 
 	}
 	
 	public function getServiceInfo()
 	{
-		$reflectionClass = new ReflectionClass($this->_serviceClass);
-		return new KalturaDocCommentParser($reflectionClass->getDocComment());
+	    return $this->_docCommentParser;
+	}
+	
+    public function getServiceId()
+	{
+		return $this->_serviceId;
 	}
 	
 	public function getServiceName()
 	{
-		return $this->_serviceName;
+		return $this->_docCommentParser->serviceName;
 	}
 	
 	public function isServiceExists()
 	{
-		return array_key_exists($this->_serviceName, $this->_servicesMap);
+		return array_key_exists($this->_serviceId, $this->_servicesMap);
 	}
 	
-	public function isActionExists($action)
+	public function isActionExists($actionName)
 	{
 		$actions = $this->getActions();
-		return array_key_exists($action, $actions);
+		$actionId = strtolower($actionName);
+		return array_key_exists($actionId, $actions);
 	}
 	
 	public function getActions()
@@ -62,8 +71,9 @@ class KalturaServiceReflector
 			$parsedDocComment = new KalturaDocCommentParser( $docComment );
 			if ($parsedDocComment->action)
 			{
-				$actionAlias = $parsedDocComment->action;
-				$actions[$actionAlias] = $reflectionMethod->getName();	// key is the action name, value is the real method name
+				$actionName = $parsedDocComment->action;
+				$actionId = strtolower($actionName);
+				$actions[$actionId] = $reflectionMethod->getName(); // key is the action id (action name lower cased), value is the method name
 			}
 		}
 		
@@ -72,12 +82,13 @@ class KalturaServiceReflector
 		return $this->_actions;
 	}
 	
-	public function getActionInfo($action)
+	public function getActionInfo($actionName)
 	{
-		if (!$this->isActionExists($action))
-			throw new Exception("Action [$action] does not exists for service [$this->_serviceName]");
+		if (!$this->isActionExists($actionName))
+			throw new Exception("Action [$actionName] does not exists for service [$this->_serviceId]");
 		
-		$methodName = $this->_actions[$action];
+		$actionId = strtolower($actionName);
+		$methodName = $this->_actions[$actionId];
 		// reflect the service 
 		$reflectionClass = new ReflectionClass($this->_serviceClass);
 		$reflectionMethod = $reflectionClass->getMethod($methodName);
@@ -87,12 +98,13 @@ class KalturaServiceReflector
 		return $parsedDocComment;
 	}
 	
-	public function getActionParams($action)
+	public function getActionParams($actionName)
 	{
-		if (!$this->isActionExists($action))
-			throw new Exception("Action [$action] does not exists for service [$this->_serviceName]");
+		if (!$this->isActionExists($actionName))
+			throw new Exception("Action [$actionName] does not exists for service [$this->_serviceId]");
 			
-		$methodName = $this->_actions[$action];
+		$actionId = strtolower($actionName);
+		$methodName = $this->_actions[$actionId];
 		
 		// reflect the service 
 		$reflectionClass = new ReflectionClass($this->_serviceClass);
@@ -119,7 +131,7 @@ class KalturaServiceReflector
 				else 
 				{
 					// FIXME: Change to another exception
-					throw new KalturaDispatcherException("Type not found in doc comment for param [".$name."] in action [".$action."] in service [".$this->_serviceName."]");
+					throw new KalturaDispatcherException("Type not found in doc comment for param [".$name."] in action [".$actionName."] in service [".$this->_serviceId."]");
 				}
 			}
 			
@@ -142,12 +154,13 @@ class KalturaServiceReflector
 		return $actionParams;
 	}
 	
-	public function getActionOutputType($action)
+	public function getActionOutputType($actionName)
 	{
-		if (!$this->isActionExists($action))
-			throw new Exception("Action [$action] does not exists for service [$this->_serviceName]");
-			
-		$methodName = $this->_actions[$action];
+		if (!$this->isActionExists($actionName))
+			throw new Exception("Action [$actionName] does not exists for service [$this->_serviceId]");
+
+		$actionId = strtolower($actionName);
+		$methodName = $this->_actions[$actionId];
 		
 		// reflect the service
 		$reflectionClass = new ReflectionClass($this->_serviceClass);
@@ -161,9 +174,10 @@ class KalturaServiceReflector
 		return null;
 	}
 	
-	public function invoke($action, $arguments)
+	public function invoke($actionName, $arguments)
 	{
-		$methodName = $this->_actions[$action];
+	    $actionId = strtolower($actionName);
+		$methodName = $this->_actions[$actionId];
 		$instance = $this->getServiceInstance();
 		return call_user_func_array(array($instance, $methodName), $arguments);
 	}

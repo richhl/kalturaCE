@@ -489,7 +489,7 @@ sfLogger::getInstance()->err ( 'id: ' . $entry->getId() . ' $quick_edit:' . $qui
             {
             	$not_id = null;
             	// send a synch notification
-                @list ( $not_id  ,  $not , $url , $params , $serialized_params )= myNotificationMgr::createNotification( notification::NOTIFICATION_TYPE_ENTRY_ADD , $entry , null , mull );
+                @list ( $not_id  ,  $not , $url , $params , $serialized_params )= myNotificationMgr::createNotification( notification::NOTIFICATION_TYPE_ENTRY_ADD , $entry , null , null );
                 if ($not_id)
                 {
 	                $notification_ids[] = $not_id;

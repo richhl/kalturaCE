@@ -83,7 +83,12 @@ class thumbnailAction extends sfAction
 		}
 		
 		$entry_status = $entry->getStatus();
-		if ($width == 640 && $height == 480 &&
+		// both 640x480 and 0x0 requests are probably coming from the kdp
+		// 640x480 - old kdp version requesting thumbnail
+		// 0x0 - new kdp version requesting the thumbnail of an unready entry
+		// we need to distinguish between calls from the kdp and calls from a browser: <img src=...> 
+		// that can't handle swf input
+		if (($width == 640 && $height == 480 || $width == 0 && $height == 0) &&
 			($entry_status == entry::ENTRY_STATUS_PRECONVERT || $entry_status == entry::ENTRY_STATUS_IMPORT ||
 			$entry_status == entry::ENTRY_STATUS_ERROR_CONVERTING || $entry_status == entry::ENTRY_STATUS_DELETED))
 		{

@@ -1,7 +1,6 @@
 <?php
 
 require_once("infra/myCache.class.php");
-require_once("infra/mySyncFile.class.php");
 require_once("myContentStorage.class.php");
 
 class ktagword {
@@ -164,12 +163,6 @@ class ktagword {
 
 			self::updateDb(  $tagword , $occurrences , $update_db );
 		}
-
-		if (strlen($s))
-		{
-			//mySyncFile::appendData(myContentStorage::getFSContentRootPath().'logs/tagwords.log', $s);
-		}
-
 
 		return $fixed_tags;
 	}

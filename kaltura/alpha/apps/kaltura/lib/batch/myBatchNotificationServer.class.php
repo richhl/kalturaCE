@@ -65,7 +65,11 @@ class myBatchNotificationServer extends myBatchBase
 	public function myBatchNotificationServer ( $script_name , $partner_ids = false  )
 	{
 		$this->script_name = $script_name;
-		$this->register( $script_name );
+		// testnotificationAction invokes 'sendNotification' but does not create real batch job
+		if ($script_name) 
+		{
+			$this->register( $script_name );
+		}
 		
 		self::$partner_ids = explode ( "," , $partner_ids );
 		SET_CONTEXT ( "NTFC [$partner_ids]");

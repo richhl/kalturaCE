@@ -90,6 +90,8 @@ class kuserMapBuilder {
 
 		$tMap->addColumn('ENTRIES', 'Entries', 'int', CreoleTypes::INTEGER, false, null);
 
+		$tMap->addColumn('STORAGE_SIZE', 'StorageSize', 'int', CreoleTypes::INTEGER, false, null);
+
 		$tMap->addColumn('PRODUCED_KSHOWS', 'ProducedKshows', 'int', CreoleTypes::INTEGER, false, null);
 
 		$tMap->addColumn('STATUS', 'Status', 'int', CreoleTypes::INTEGER, false, null);

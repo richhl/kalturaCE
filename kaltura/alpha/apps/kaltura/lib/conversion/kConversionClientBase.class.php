@@ -119,16 +119,19 @@ abstract class kConversionClientBase extends myBatchBase
 			$conv_params->width = $conv_param_from_db->getName();
 			$conv_params->width = self::choose ( $conv_profile->getWidth() , $conv_param_from_db->getWidth() );
 			$conv_params->height = self::choose ( $conv_profile->getHeight() , $conv_param_from_db->getHeight() );
-			$conv_params->aspect_ratio= self::choose ( $conv_profile->getAspectRatio() , $conv_param_from_db->getAspectRatio() );
+			$conv_params->aspect_ratio = self::choose ( $conv_profile->getAspectRatio() , $conv_param_from_db->getAspectRatio() );
 			$conv_params->gop_size = $conv_param_from_db->getGopSize();
 			$conv_params->bitrate = $conv_param_from_db->getBitrate();
-			$conv_params->qscale= $conv_param_from_db->getQscale();
+			$conv_params->qscale = $conv_param_from_db->getQscale();
 			$conv_params->file_suffix = $conv_param_from_db->getFileSuffix();
 			$conv_params->ffmpeg_params = $conv_param_from_db->getFfmpegParams();
 			$conv_params->mencoder_params = $conv_param_from_db->getMencoderParams();
 			$conv_params->flix_params = $conv_param_from_db->getFlixParams();
 			$conv_params->comercial_transcoder = $conv_param_from_db->getCommercialTranscoder(); // is not really used today per ConvParams
-			
+			$conv_params->framerate = $conv_param_from_db->getFramerate();
+			$conv_params->audio_bitrate = $conv_param_from_db->getAudioBitrate();
+			$conv_params->audio_sampling_rate = $conv_param_from_db->getAudioSamplingRate();
+			$conv_params->audio_channels = $conv_param_from_db->getAudioChannels();			
 			// TODO - move this to the server, fillConversionParams requires ffmpeg to determine the dimensions of the video 
 			// for ascpet ration 
 //			kConversionHelper::fillConversionParams ( $source_file , $conv_params );

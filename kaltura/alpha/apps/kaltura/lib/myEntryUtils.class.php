@@ -789,7 +789,8 @@ class myEntryUtils
 	{
 		if ($entry->getType() == entry::ENTRY_TYPE_DOCUMENT)
 		{
-			$entry->setMediaType(entry::ENTRY_MEDIA_TYPE_DOCUMENT);
+			if ($entry->getMediaType() != entry::ENTRY_MEDIA_TYPE_SWF)
+				$entry->setMediaType(entry::ENTRY_MEDIA_TYPE_DOCUMENT);
 			return;
 		}
 			

@@ -3,15 +3,18 @@ $service_url = requestUtils::getRequestHost();
 $host = str_replace ( "http://" , "" , $service_url );
 $cdn_host = str_replace ( "http://" , "" , requestUtils::getCdnHost() );
 $kmc_content_version = 'v1.1.7';
-$kmc_account_version = 'v1.1.4';
+$kmc_account_version = 'v1.1.6';
 $kmc_appstudio_version = 'v1.1.2';
 $flash_dir = $service_url . myContentStorage::getFSFlashRootPath ();
 
-$beta_str = $beta ? "/beta/{$beta}" : "";
-
 if ( kConf::get('kmc_display_server_tab') )
 {
+  $support_url = 'http://kaltura.org/forums';
   $_SESSION['api_v3_login'] = true;
+}
+else
+{
+  $support_url = 'http://corp.kaltura.com/support/form/project/30/partnerId/'.(($host != 1)? '': $partner_id);
 }
 if ( $host == "www.kaltura.com" ) $host = "1";
 ?>
@@ -20,7 +23,7 @@ if ( $host == "www.kaltura.com" ) $host = "1";
      <img src="<?php echo $service_url; ?>/lib/images/kmc/logo_kmc.png" alt="Kaltura CMS" />
      <ul>
       <li><a id="content" href="javascript:void(0)"><span>Content</span></a></li>
-	 <?php if ( kConf::get ( "kmc_display_customize_tab" ) && version_compare( $beta , "1.0" , ">" ) ) { ?>
+	 <?php if ( kConf::get ( "kmc_display_customize_tab" ) ) { ?>
 	  <li><a id="appstudio" href="javascript:void(0)"><span>Application Studio</span></a></li>
 	 <?php } ?> 			 
 	  <!-- <li><a href="#Ad Networks">Ad Networks</a></li> -->
@@ -38,7 +41,7 @@ if ( $host == "www.kaltura.com" ) $host = "1";
 
      <div>
       <span>Hi <?php echo $screen_name ?></span><br />
-      <a href="<?php echo $service_url ?>/lib/pdf/KMC_Quick_Start_Guide.pdf" target="_blank">Quickstart Guide</a> &nbsp; | &nbsp; <a href="javascript:logout()">Logout</a> &nbsp; | &nbsp; <a target="_blank" href="http://corp.kaltura.com/support/form/project/30/partnerId/<? echo ($host != 1)? '': $partner_id; ?>">Support</a>
+      <a href="<?php echo $service_url ?>/lib/pdf/KMC_Quick_Start_Guide.pdf" target="_blank">Quickstart Guide</a> &nbsp; | &nbsp; <a href="javascript:logout()">Logout</a> &nbsp; | &nbsp; <a target="_blank" href="<?php echo $support_url; ?>">Support</a>
 	 </div>
 
 	</div><!-- kmcHeader -->
@@ -133,7 +136,7 @@ function playlistAdded()
 
 function expiredF ( )
 {
-	window.location = "<? echo $service_url; ?>/index.php/kmc/kmc<? echo $beta_str ?>";
+	window.location = "<? echo $service_url; ?>/index.php/kmc/kmc";
 }
 
 function refreshSWF()
@@ -604,13 +607,13 @@ function closeLoginF()
 
 function logout()
 {
-	path = '<?php echo $service_url; ?>/index.php/kmc/kmc<? echo $beta_str ?>';
+	path = '/';
 	deleteCookie ( "pid" , path );
 	deleteCookie ( "subpid" , path );
 	deleteCookie ( "uid" , path );
-	deleteCookie ( "ks" , path );
+	deleteCookie ( "kmcks" , path );
 	// Codes by Quackit.com
-	location = "<? echo $service_url; ?>/index.php/kmc/kmc<? echo $beta_str ?>";
+	location = "<? echo $service_url; ?>/index.php/kmc/kmc";
 
 }
 

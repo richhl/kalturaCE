@@ -15,6 +15,8 @@ class KalturaDocCommentParser
     const DOCCOMMENT_DESCRIPTION = "/\\* [a-zA-Z].*/";
     const DOCCOMMENT_RETURN_TYPE = "/\\@return (\\w*)/";
     
+    const DOCCOMMENT_SERVICE_NAME =  "/\\@service\\s?(\\w*)/";
+    
     const DOCCOMMENT_ACTION = "/\\@action\\s?(\\w*)/";
     const DOCCOMMENT_ACTION_ERRORS = "/\\@throws (.*)/";
     
@@ -63,6 +65,11 @@ class KalturaDocCommentParser
      * @var string
      */
     public $description;
+    
+    /**
+     * @var string 
+     */
+    public $serviceName;
     
     /**
      * @var string
@@ -132,6 +139,10 @@ class KalturaDocCommentParser
         if (preg_match(self::DOCCOMMENT_RETURN_TYPE, $comment, $result))
             $this->returnType = $result[1];
         
+        $result = null;
+        if (preg_match(self::DOCCOMMENT_SERVICE_NAME, $comment, $result))
+            $this->serviceName = preg_replace("/[^a-zA-Z0-9_]/", "", $result[1]); // remove not allowed characters
+            
         $result = null;
         if (preg_match(self::DOCCOMMENT_ACTION, $comment, $result))
             $this->action = preg_replace("/[^a-zA-Z0-9_]/", "", $result[1]); // remove not allowed characters

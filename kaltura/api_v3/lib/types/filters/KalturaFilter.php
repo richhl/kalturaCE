@@ -26,6 +26,12 @@ class KalturaFilter extends KalturaObject
 	private $operator_map = array ( 
 		);
 	
+		
+	/**
+	 * @var string $orderBy
+	 */
+	public $orderBy;
+	
 	// not supposed to be populated from core objects
 /*		
 	protected function fromObject ( $source_object  )
@@ -42,6 +48,25 @@ class KalturaFilter extends KalturaObject
 	// must fill an object of type baseObjectFilter
 	public function toObject ( $object_to_fill , $props_to_skip = array() )
 	{
+	    // translate the order by properties
+	    $newOrderBy = "";
+	    $orderByMap = $this->getOrderByMap();
+	    if ($orderByMap)
+		{
+		    $orderProps = explode(",", $this->orderBy);
+		    foreach($orderProps as $prop)
+		    {
+		         if ($orderByMap[$prop])
+		         {
+		             $newOrderBy .= ($orderByMap[$prop] . ","); 
+		         }
+		    }
+		}
+		if (strpos($newOrderBy,",") === strlen($newOrderBy) - 1)
+		    $newOrderBy = substr($newOrderBy, 0, strlen($newOrderBy) - 1);
+		
+		$this->orderBy = $newOrderBy;
+		
 		foreach ( $this->getMapBetweenObjects() as $this_prop => $object_prop )
 		{
 		 	if ( is_numeric( $this_prop) ) $this_prop = $object_prop;
@@ -49,6 +74,9 @@ class KalturaFilter extends KalturaObject
 		 	$filter_prop_name = self::translatePropNames ( $object_prop );
 		 	call_user_func_array( array ( $object_to_fill ,"set"  ) , array ($filter_prop_name , $this->$this_prop ) );
 		 }		
+		 
+		
+		
 		return $object_to_fill;		
 	}	
 	

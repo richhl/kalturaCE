@@ -3,7 +3,8 @@ class ConversionProfileWrapper extends objectWrapperBase
 {
 	protected $basic_fields = array ( "id" , "partnerId" , "name" );
 
-	protected $regular_fields_ext = array (  "profileType" , "commercialTranscoder" ,"width" , "height" , "aspectRatio" , "bypassFlv" , "useWithBulk" , "createdAt"
+	protected $regular_fields_ext = array (  "profileType" , "commercialTranscoder" ,"width" , "height" , "aspectRatio" , "bypassFlv" , "useWithBulk" , 
+		"createdAt" , "updatedAt"
 		, "profileTypeSuffix" );
 
 	protected $detailed_fields_ext = array ( ) ;

@@ -359,6 +359,18 @@ function verify_mail()
   return $output;
 }
 
+function verify_phpmysql()
+{
+  global $requirements_stats,$reqs_error;
+  if (!function_exists('mysql_connect'))
+  {
+    $reqs_error = false;
+    return '<li class="verify failed">Your PHP is missing MySql support.  &nbsp;If you installed LAMP from your distibution packages, make sure you have php5-mysql package installed.<br />To pass this requirement, make sure you can call PHP mysql_connect() function.</li>';
+  }
+  $requirements_stats++;
+  return '<li class="verify passed">PHP MySql support - <strong>OK</strong></li>';
+}
+
 function verify_ffmpeg()
 {
   global $requirements_stats, $root_dir,$reqs_error;

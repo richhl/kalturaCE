@@ -32,6 +32,13 @@ class kConversionParams
 	public $mencoder_params = "";	// general params to append to the mencoder command in case the mencoderEngine is used
 	public $flix_params = "";	// general params to append to the flix command in case the flixEngine is used
 	public $desired_converter = "";
-	public $comercial_transcoder = "";	
+	public $comercial_transcoder = "";
+
+	// added on 2009-05-25 - all parameters can be set - no hard coded settings !
+	public $framerate ;
+	public $audio_bitrate;
+	public $audio_sampling_rate;
+	public $audio_channels;
+	
 }
 ?>

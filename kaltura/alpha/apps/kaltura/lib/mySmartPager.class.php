@@ -195,7 +195,7 @@ just under the require_once:
 			$this->m_count_came_from_cache = false;
 		}
 		
-		sfLogger::getInstance()->info ( "mySmartPager get [" . $this->m_criteria_class . "] [$cache_key] [" . $this->m_count_came_from_cache . "] [$cached_count]" );
+		kLog::log( "mySmartPager get [" . $this->m_criteria_class . "] [$cache_key] [" . $this->m_count_came_from_cache . "] [$cached_count]" );
 		
 		if ( $cached_count == self::NONE )
 			$cached_count = 0;  // so we don't mix up with null
@@ -213,7 +213,7 @@ just under the require_once:
 		
 		$cache_key =  $this->getCacheKey();
 		
-		sfLogger::getInstance()->info ( "mySmartPager set [" . $this->m_criteria_class . "] [$cache_key] [" . $this->m_count_came_from_cache . "] [$count_to_cache]" );
+		kLog::log( "mySmartPager set [" . $this->m_criteria_class . "] [$cache_key] [" . $this->m_count_came_from_cache . "] [$count_to_cache]" );
 		self::$s_pager_count_cache->put ( $cache_key , $count_to_cache , self::COUNT_CACHE_EXPIRY_IN_SECONDS  );
 	}
 	

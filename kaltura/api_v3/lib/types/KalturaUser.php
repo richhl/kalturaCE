@@ -29,18 +29,6 @@ class KalturaUser extends KalturaObject
 
 	/**
 	 * @var string
-	 * readonly
-	 */
-	private $sha1Password;
-	
-	/**
-	 * @var string
-	 * readonly
-	 */
-	private $salt;
-	
-	/**
-	 * @var string
 	 */
 	public $dateOfBirth;
 	
@@ -93,26 +81,6 @@ class KalturaUser extends KalturaObject
 	/**
 	 * @var string
 	 */
-	private $tagline;
-	
-	/**
-	 * @var string
-	 */
-	private $networkHighschool;
-
-	/**
-	 * @var string
-	 */
-	private $networkCollege;
-	
-	/**
-	 * @var string
-	 */
-	private $networkOther;
-	
-	/**
-	 * @var string
-	 */
 	public $mobileNum;
 	
 	/**
@@ -124,21 +92,6 @@ class KalturaUser extends KalturaObject
 	 * @var int
 	 */
 	public $gender;
-
-	/**
-	 * @var int
-	 */
-	private $registrationIp;
-	
-	/**
-	 * @var int
-	 */
-	private $registrationCookie;
-
-	/**
-	 * @var int
-	 */
-	private $imList;
 
 	/**
 	 * @var int
@@ -196,19 +149,13 @@ class KalturaUser extends KalturaObject
 
 	/**
 	 * @var int
-	 * readonly
-	 */
-	private $searchText;
-
-	/**
-	 * @var int
 	 */
 	public $partnerData;
 
 	private static $map_between_objects = array
 	(
 		"id" => "puserId" , "screenName" , "fullName" , "email" , "dateOfBirth" , "country" , "state" , "city" ,
-		"zip" , "urlList" , "picture" , "icon" , "aboutMe" , "tags" , "tagline" , "mobileNum" , "gender" , "views" ,
+		"zip" , "urlList" , "picture" , "icon" , "aboutMe" , "tags" , "mobileNum" , "gender" , "views" ,
 		"fans" , "entries" , "producedKshows" , "status" , "createdAt" , "updatedAt" , "partnerId" , "displayInSearch" ,  "partnerData" 
 	);
 

@@ -3,7 +3,7 @@
  * Playlist service lets you create,manage and play your playlists
  * Playlists could be static (containing a fixed list of entries) or dynamic (baseed on a filter)
  *
- * @service Playlist
+ * @service playlist
  *
  * @package api
  * @subpackage services

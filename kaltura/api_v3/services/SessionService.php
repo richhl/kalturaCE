@@ -14,17 +14,17 @@ class SessionService extends KalturaBaseService
 	 * The result KS is the session key that you should pass to all services that requires a ticket.
 	 * 
 	 * @action start
-	 * @param int $partnerId
 	 * @param string $secret Remember to provide the correct secret according to the sessionType you want
 	 * @param string $userId
 	 * @param KalturaSessionType $type Regular session or Admin session
+	 * @param int $partnerId
 	 * @param int $expiry KS expiry time in seconds
 	 * @param string $privileges 
 	 * @return string
 	 *
 	 * @throws APIErrors::START_SESSION_ERROR
 	 */
-	function startAction($partnerId, $secret, $userId, $type = 0, $expiry = 86400 , $privileges = null )
+	function startAction($secret, $userId, $type = 0, $partnerId = -1, $expiry = 86400 , $privileges = null )
 	{
 		// make sure the secret fits the one in the partner's table
 		$ks = "";

@@ -52,41 +52,40 @@ require_once('header.php');
         }
     </script>
 
-    <div class="server_settings">
-    <form method="POST">
+
+    <form method="POST" id="server_settings">
         <table cellspacing="0" cellpadding="0" border="0">
             <tr class="even">
-                <td><label for="host">Server URL</label></td>
-                <td><input type="text" name="host" value="<? echo $server_host ?>" />
-                    <div class="desc">the public address of this server. will be used by the flash components<br />
-                    in intranet applications this host should be accessable from the intranet.
-                    </div>                
-                </td>
+                <td><label for="host">Server URL:</label></td>
+                <td>
+				 <div>The public address of this server.&nbsp; Used by Kaltura's Flash components.&nbsp; Should
+				   be accessible from the intranet for intranet applications.<br />
+                    </div>
+				 <input type="text" name="host" value="<? echo $server_host ?>" />
+                    <span>For example: <ul><li>10.0.0.27/kalturaCE</li><li>www.mykalturadomain.com (kalturaCE in installed on a virtualHost)</li></ul></span>
+				</td>
             </tr>
             <tr>
                 <td><label for="iscdnhost">Streaming Settings:</label></td>
                 <td>
-                    <input onclick="toggle_cdnhost(0);"  type="radio" name="iscdnhost" value="0" <? echo ($cdn_host == $server_host)? 'checked="checked"': ''; ?> /> Content will be streamed from this KCE Server<br />
-                    <input onclick="toggle_cdnhost(1);" type="radio" name="iscdnhost" value="1" <? echo ($cdn_host != $server_host)? 'checked="checked"': ''; ?> /> Content will be streamed from a Content Delivary Network (CDN)<br />
-                    <label for="cdnhost">CDN Address:</label>
-                    <input type="text" <? echo ($cdn_host == $server_host)? 'disabled="disabled"': ''; ?> id="field_cdnhost" name="cdnhost" value="<? echo $cdn_host ?>" />
-                    <div class="desc"> the CDN must support "Pull" mode, so that upon request content will be pulled by the CDN from this KCE server.</div>
-                </td>
+                    <div>The CDN must support &quot;Pull&quot; mode, so that upon request content will be pulled by the CDN from this KCE server.</div>
+                    <p><input onclick="toggle_cdnhost(0);"  type="radio" name="iscdnhost" value="0" <? echo ($cdn_host == $server_host)? 'checked="checked"': ''; ?> /> Content will be streamed from this KCE Server</p>
+                    <p><input onclick="toggle_cdnhost(1);" type="radio" name="iscdnhost" value="1" <? echo ($cdn_host != $server_host)? 'checked="checked"': ''; ?> /> 
+                    Content will be streamed from a Content Delivery Network (CDN):<br /> &nbsp; &nbsp; &nbsp; <label>CDN Address: <input type="text" <? echo ($cdn_host == $server_host)? 'disabled="disabled"': ''; ?> id="field_cdnhost" name="cdnhost" value="<? echo $cdn_host ?>" /></label></p>
+			  </td>
             </tr>
             <tr class="even">
                 <td><label for="encoding">Encoding Settings:</label></td>
                 <td>
-                  <input type="radio" name="encoding" value="0" checked="checked" /> Open Source encoder - Content will be encoded on this KCE Server<br />
-                  <input type="radio" disabled="disabled" name="encoding" value="" /> Premium encoder - <span class="soon">Coming Soon...</span><br />
-                  <div class="desc">premium encoder allows better video quality, creates smaller files and smother watching.</div>
-                </td>
-            </tr>            
-            <tr>
-                <td colspan="2"><input type="submit" value="save" name="save_settings" /></td>
+                  <div>The premium encoder provides better video quality and smoother playback as well as smaller files.</div>
+                  <p><input type="radio" name="encoding" value="0" checked="checked" /> Open Source encoder - Content will be encoded on this KCE Server</p>
+				  <p><input type="radio" disabled="disabled" name="encoding" value="" /> Premium encoder - Coming Soon...</p>
+				</td>
             </tr>
         </table>
+		<input type="submit" value=" Save " name="save_settings" id="save_settings" />
     </form>
-    </div>
+
 <?php
 require_once('footer.php');
 

@@ -4,11 +4,10 @@ require_once("config.php");
 require_once("lib/KalturaClient.php");
 
 $entryId = @$_GET["entryId"];
-$config = new KalturaConfiguration();
+$config = new KalturaConfiguration(PARTNER_ID);
 $config->serviceUrl = SERVER_URL;
-$client = new KalturaClient();
-$client->setConfig($config);
-$ks = $client->session->start(PARTNER_ID, SECRET, "USERID", KalturaSessionType::USER);
+$client = new KalturaClient($config);
+$ks = $client->session->start(ADMIN_SECRET, "USERID", KalturaSessionType::ADMIN);
 $client->setKs($ks);
 $mediaEntry = $client->media->get($entryId);
 ?>

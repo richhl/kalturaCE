@@ -39,7 +39,18 @@ class ConversionParams extends BaseConversionParams
 	
 	public function getCommercialTranscoder() { return $this->getFromCustomData( "commercialTranscoder" , null , null ) ;} 
 	public function setCommercialTranscoder( $v ) { return $this->putInCustomData( "commercialTranscoder" , $v  , null ); }
+
+	public function getFramerate() { return $this->getFromCustomData( "framerate" , null , null ) ;} 
+	public function setFramerate( $v ) { return $this->putInCustomData( "framerate" , $v  , null ); }
+
+	public function getAudioBitrate() { return $this->getFromCustomData( "audioBitrate" , null , null ) ;} 
+	public function setAudioBitrate( $v ) { return $this->putInCustomData( "audioBitrate" , $v  , null ); }
 	
+	public function getAudioSamplingRate() { return $this->getFromCustomData( "audioSamplingRate" , null , null ) ;} 
+	public function setAudioSamplingRate( $v ) { return $this->putInCustomData( "audioSamplingRate" , $v  , null ); }
+	
+	public function getAudioChannels() { return $this->getFromCustomData( "audioChannels" , null , null ) ;} 
+	public function setAudioChannels( $v ) { return $this->putInCustomData( "audioChannels" , $v  , null ); }
 	
 /* ---------------------- CustomData functions ------------------------- */
 	private $m_custom_data = null;

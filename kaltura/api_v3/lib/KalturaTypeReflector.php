@@ -10,6 +10,7 @@ class KalturaTypeReflector
 	private $_type;
 	private $_instance;
 	private $_properties;
+	private $_currentProperties;
 	private $_constants;
 	private $_isEnum;
 	private $_isArray;
@@ -50,6 +51,7 @@ class KalturaTypeReflector
 		if ($this->_properties === null)
 		{
 			$this->_properties = array();
+			$this->_currentProperties = array();
 			
 			if (!$this->isEnum() && !$this->isArray())
 			{
@@ -66,12 +68,12 @@ class KalturaTypeReflector
 				
 				// reverse the hierarchy, top class properties should be first 
 				$classesHierarchy = array_reverse($classesHierarchy);
-				foreach($classesHierarchy as $reflectClass)
+				foreach($classesHierarchy as $currentReflectClass)
 				{
-					$properties = $reflectClass->getProperties(ReflectionProperty::IS_PUBLIC);
+					$properties = $currentReflectClass->getProperties(ReflectionProperty::IS_PUBLIC);
 					foreach($properties as $property)
 					{
-						if ($property->getDeclaringClass() == $reflectClass) // only properties defined in this class, ignore the inherited
+						if ($property->getDeclaringClass() == $currentReflectClass) // only properties defined in the current class, ignore the inherited
 						{
 							$name = $property->name;
 							$docComment = $property->getDocComment();
@@ -87,6 +89,11 @@ class KalturaTypeReflector
 									$prop->setInsertOnly(true);
 									
 								$this->_properties[] = $prop;
+								
+								if ($property->getDeclaringClass() == $reflectClass) // store current class properties
+								{
+								     $this->_currentProperties[] = $prop;   
+								}
 							}
 							
 							if ($parsedDocComment->description)
@@ -100,6 +107,37 @@ class KalturaTypeReflector
 		}
 		
 		return $this->_properties;
+	}
+	
+	/**
+	 * Return a type reflector for the parent class (null if none) 
+	 *
+	 * @return KalturaTypeReflector
+	 */
+	public function getParentTypeReflector()
+	{
+	    $reflectClass = new ReflectionClass($this->_type);
+	    $parentClass = $reflectClass->getParentClass();
+	    $parentClassName = $parentClass->getName();
+	    if (!in_array($parentClassName, array("KalturaObject", "KalturaEnum","KalturaTypedArray","KalturaFilter")))
+            return new KalturaTypeReflector($parentClass->getName());
+	    else
+	        return null;
+	}
+	
+	/**
+	 * Return only the properties defined in the current class
+	 *
+	 * @return array
+	 */
+	public function getCurrentProperties()
+	{
+		if ($this->_currentProperties === null)
+		{
+		    $this->getProperties();
+		}
+		
+		return $this->_currentProperties;
 	}
 	
 	/**
@@ -210,5 +248,14 @@ class KalturaTypeReflector
 			}
 		}
 		return false;
+	}
+	
+	public function isParentOf($class)
+	{
+	    if (!class_exists($class))
+	        return false;
+	        
+	    $possibleReflectionClass = new ReflectionClass($class);
+        return $possibleReflectionClass->isSubclassOf(new ReflectionClass($this->_type));
 	}
 }

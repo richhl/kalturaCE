@@ -1,6 +1,5 @@
 body, html { margin:0; padding:0; height: 100%; }
 
-body { font-family: "Lucida Grande",Tahoma,Verdana,Arial; font-size: 12px; }
 * { margin:0; padding:0;}
 body { margin: 6px 15px; background: #f7f7f7 url(../images/bg.png) repeat-x; font: normal 62.5% arial,sans-serif; }
 
@@ -28,7 +27,7 @@ button { background-color: #A0A0A0; border-color: #DEDEDE #202020 #202020 #DEDED
 .object-properties { display: none; }
 
 .helpTooltip { }
-#kmcSubMenu { display:table; margin-bottom:27px;}
+#kmcSubMenu { margin: 1px 0 27px; display:table; zoom:1;}
  #kmcSubMenu li { float:left; display:inline; list-style: none inside none; padding-left:9px; height:19px;}
   #kmcSubMenu li a, #kmcSubMenu li a:active, #kmcSubMenu li a:visited { height:19px; padding: 1px 12px 0 4px; display:block; font: bold 12px arial,sans-serif; color:#666; text-decoration:none;}
   #kmcSubMenu li a:hover { color:#000;}

@@ -125,6 +125,10 @@ abstract class Basekuser extends BaseObject  implements Persistent {
 
 
 	
+	protected $storage_size = 0;
+
+
+	
 	protected $produced_kshows = 0;
 
 
@@ -440,6 +444,13 @@ abstract class Basekuser extends BaseObject  implements Persistent {
 	{
 
 		return $this->entries;
+	}
+
+	
+	public function getStorageSize()
+	{
+
+		return $this->storage_size;
 	}
 
 	
@@ -935,6 +946,20 @@ abstract class Basekuser extends BaseObject  implements Persistent {
 
 	} 
 	
+	public function setStorageSize($v)
+	{
+
+						if ($v !== null && !is_int($v) && is_numeric($v)) {
+			$v = (int) $v;
+		}
+
+		if ($this->storage_size !== $v || $v === 0) {
+			$this->storage_size = $v;
+			$this->modifiedColumns[] = kuserPeer::STORAGE_SIZE;
+		}
+
+	} 
+	
 	public function setProducedKshows($v)
 	{
 
@@ -1115,27 +1140,29 @@ abstract class Basekuser extends BaseObject  implements Persistent {
 
 			$this->entries = $rs->getInt($startcol + 28);
 
-			$this->produced_kshows = $rs->getInt($startcol + 29);
+			$this->storage_size = $rs->getInt($startcol + 29);
 
-			$this->status = $rs->getInt($startcol + 30);
+			$this->produced_kshows = $rs->getInt($startcol + 30);
 
-			$this->created_at = $rs->getTimestamp($startcol + 31, null);
+			$this->status = $rs->getInt($startcol + 31);
 
-			$this->updated_at = $rs->getTimestamp($startcol + 32, null);
+			$this->created_at = $rs->getTimestamp($startcol + 32, null);
 
-			$this->partner_id = $rs->getInt($startcol + 33);
+			$this->updated_at = $rs->getTimestamp($startcol + 33, null);
 
-			$this->display_in_search = $rs->getInt($startcol + 34);
+			$this->partner_id = $rs->getInt($startcol + 34);
 
-			$this->search_text = $rs->getString($startcol + 35);
+			$this->display_in_search = $rs->getInt($startcol + 35);
 
-			$this->partner_data = $rs->getString($startcol + 36);
+			$this->search_text = $rs->getString($startcol + 36);
+
+			$this->partner_data = $rs->getString($startcol + 37);
 
 			$this->resetModified();
 
 			$this->setNew(false);
 
-						return $startcol + 37; 
+						return $startcol + 38; 
 		} catch (Exception $e) {
 			throw new PropelException("Error populating kuser object", $e);
 		}
@@ -1568,27 +1595,30 @@ abstract class Basekuser extends BaseObject  implements Persistent {
 				return $this->getEntries();
 				break;
 			case 29:
-				return $this->getProducedKshows();
+				return $this->getStorageSize();
 				break;
 			case 30:
-				return $this->getStatus();
+				return $this->getProducedKshows();
 				break;
 			case 31:
-				return $this->getCreatedAt();
+				return $this->getStatus();
 				break;
 			case 32:
-				return $this->getUpdatedAt();
+				return $this->getCreatedAt();
 				break;
 			case 33:
-				return $this->getPartnerId();
+				return $this->getUpdatedAt();
 				break;
 			case 34:
-				return $this->getDisplayInSearch();
+				return $this->getPartnerId();
 				break;
 			case 35:
-				return $this->getSearchText();
+				return $this->getDisplayInSearch();
 				break;
 			case 36:
+				return $this->getSearchText();
+				break;
+			case 37:
 				return $this->getPartnerData();
 				break;
 			default:
@@ -1630,14 +1660,15 @@ abstract class Basekuser extends BaseObject  implements Persistent {
 			$keys[26] => $this->getViews(),
 			$keys[27] => $this->getFans(),
 			$keys[28] => $this->getEntries(),
-			$keys[29] => $this->getProducedKshows(),
-			$keys[30] => $this->getStatus(),
-			$keys[31] => $this->getCreatedAt(),
-			$keys[32] => $this->getUpdatedAt(),
-			$keys[33] => $this->getPartnerId(),
-			$keys[34] => $this->getDisplayInSearch(),
-			$keys[35] => $this->getSearchText(),
-			$keys[36] => $this->getPartnerData(),
+			$keys[29] => $this->getStorageSize(),
+			$keys[30] => $this->getProducedKshows(),
+			$keys[31] => $this->getStatus(),
+			$keys[32] => $this->getCreatedAt(),
+			$keys[33] => $this->getUpdatedAt(),
+			$keys[34] => $this->getPartnerId(),
+			$keys[35] => $this->getDisplayInSearch(),
+			$keys[36] => $this->getSearchText(),
+			$keys[37] => $this->getPartnerData(),
 		);
 		return $result;
 	}
@@ -1741,27 +1772,30 @@ abstract class Basekuser extends BaseObject  implements Persistent {
 				$this->setEntries($value);
 				break;
 			case 29:
-				$this->setProducedKshows($value);
+				$this->setStorageSize($value);
 				break;
 			case 30:
-				$this->setStatus($value);
+				$this->setProducedKshows($value);
 				break;
 			case 31:
-				$this->setCreatedAt($value);
+				$this->setStatus($value);
 				break;
 			case 32:
-				$this->setUpdatedAt($value);
+				$this->setCreatedAt($value);
 				break;
 			case 33:
-				$this->setPartnerId($value);
+				$this->setUpdatedAt($value);
 				break;
 			case 34:
-				$this->setDisplayInSearch($value);
+				$this->setPartnerId($value);
 				break;
 			case 35:
-				$this->setSearchText($value);
+				$this->setDisplayInSearch($value);
 				break;
 			case 36:
+				$this->setSearchText($value);
+				break;
+			case 37:
 				$this->setPartnerData($value);
 				break;
 		} 	}
@@ -1800,14 +1834,15 @@ abstract class Basekuser extends BaseObject  implements Persistent {
 		if (array_key_exists($keys[26], $arr)) $this->setViews($arr[$keys[26]]);
 		if (array_key_exists($keys[27], $arr)) $this->setFans($arr[$keys[27]]);
 		if (array_key_exists($keys[28], $arr)) $this->setEntries($arr[$keys[28]]);
-		if (array_key_exists($keys[29], $arr)) $this->setProducedKshows($arr[$keys[29]]);
-		if (array_key_exists($keys[30], $arr)) $this->setStatus($arr[$keys[30]]);
-		if (array_key_exists($keys[31], $arr)) $this->setCreatedAt($arr[$keys[31]]);
-		if (array_key_exists($keys[32], $arr)) $this->setUpdatedAt($arr[$keys[32]]);
-		if (array_key_exists($keys[33], $arr)) $this->setPartnerId($arr[$keys[33]]);
-		if (array_key_exists($keys[34], $arr)) $this->setDisplayInSearch($arr[$keys[34]]);
-		if (array_key_exists($keys[35], $arr)) $this->setSearchText($arr[$keys[35]]);
-		if (array_key_exists($keys[36], $arr)) $this->setPartnerData($arr[$keys[36]]);
+		if (array_key_exists($keys[29], $arr)) $this->setStorageSize($arr[$keys[29]]);
+		if (array_key_exists($keys[30], $arr)) $this->setProducedKshows($arr[$keys[30]]);
+		if (array_key_exists($keys[31], $arr)) $this->setStatus($arr[$keys[31]]);
+		if (array_key_exists($keys[32], $arr)) $this->setCreatedAt($arr[$keys[32]]);
+		if (array_key_exists($keys[33], $arr)) $this->setUpdatedAt($arr[$keys[33]]);
+		if (array_key_exists($keys[34], $arr)) $this->setPartnerId($arr[$keys[34]]);
+		if (array_key_exists($keys[35], $arr)) $this->setDisplayInSearch($arr[$keys[35]]);
+		if (array_key_exists($keys[36], $arr)) $this->setSearchText($arr[$keys[36]]);
+		if (array_key_exists($keys[37], $arr)) $this->setPartnerData($arr[$keys[37]]);
 	}
 
 	
@@ -1844,6 +1879,7 @@ abstract class Basekuser extends BaseObject  implements Persistent {
 		if ($this->isColumnModified(kuserPeer::VIEWS)) $criteria->add(kuserPeer::VIEWS, $this->views);
 		if ($this->isColumnModified(kuserPeer::FANS)) $criteria->add(kuserPeer::FANS, $this->fans);
 		if ($this->isColumnModified(kuserPeer::ENTRIES)) $criteria->add(kuserPeer::ENTRIES, $this->entries);
+		if ($this->isColumnModified(kuserPeer::STORAGE_SIZE)) $criteria->add(kuserPeer::STORAGE_SIZE, $this->storage_size);
 		if ($this->isColumnModified(kuserPeer::PRODUCED_KSHOWS)) $criteria->add(kuserPeer::PRODUCED_KSHOWS, $this->produced_kshows);
 		if ($this->isColumnModified(kuserPeer::STATUS)) $criteria->add(kuserPeer::STATUS, $this->status);
 		if ($this->isColumnModified(kuserPeer::CREATED_AT)) $criteria->add(kuserPeer::CREATED_AT, $this->created_at);
@@ -1937,6 +1973,8 @@ abstract class Basekuser extends BaseObject  implements Persistent {
 		$copyObj->setFans($this->fans);
 
 		$copyObj->setEntries($this->entries);
+
+		$copyObj->setStorageSize($this->storage_size);
 
 		$copyObj->setProducedKshows($this->produced_kshows);
 

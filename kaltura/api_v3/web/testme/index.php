@@ -16,16 +16,12 @@
 		require_once("../../bootstrap.php"); 
 	
 		$serviceMap = KalturaServicesMap::getMap();
-		$services = array_keys($serviceMap);
-		foreach($services as $service)
+		$serviceIds = array_keys($serviceMap);
+		$services = array();
+		foreach($serviceIds as $serviceId)
 		{
-			$serviceReflector = new KalturaServiceReflector($service);
-
-			$actions = array_keys($serviceReflector->getActions());
-			foreach($actions as $action)
-			{
-				//echo $action;				
-			}
+			$serviceReflector = new KalturaServiceReflector($serviceId);
+			$services[$serviceId] = $serviceReflector->getServiceName();
 		}
 	?>
 <ul id="kmcSubMenu">
@@ -47,14 +43,14 @@
 			</div>
 			
 			<div class="param">
-				<label for="ks">KS (string):</label><input type="text" class="" name="ks" size="30"/><input type="checkbox" checked="checked"/>
+				<label for="ks">KS (string):</label><input type="text" class="" name="ks" size="30"/> <input type="checkbox" checked="checked"/>
 			</div>
 
 			<div class="param">
 				<label for="service">Select service:</label>
 				<select name="service">
-					<?php foreach($services as $service): ?>
-					<option><?php echo $service; ?></option>
+					<?php foreach($services as $id => $name): ?>
+					<option value="<?php echo $id;?>"><?php echo $name; ?></option>
 					<?php endforeach; ?>
 				</select>
 			</div>

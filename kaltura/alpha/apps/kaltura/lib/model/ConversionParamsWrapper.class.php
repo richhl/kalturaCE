@@ -5,7 +5,7 @@ class ConversionParamsWrapper extends objectWrapperBase
 
 	protected $regular_fields_ext = array (  "enabled" , "profileType" , "profileTypeIndex" , "commercialTranscoder" ,
 		"width" , "height" , "aspectRatio" , 
-		"gopSize" , "bitrate" , "qscale" , "fileSuffix" , "createdAt" );
+		"gopSize" , "bitrate" , "qscale" , "fileSuffix" , "createdAt" , "framerate" , "audioBitrate" , "audioSamplingRate" , "audioChannels");
 
 	protected $detailed_fields_ext = array ( ) ;
 
@@ -15,7 +15,7 @@ class ConversionParamsWrapper extends objectWrapperBase
 
 	protected $updateable_fields = array ( "name" , "enabled" , "profileType" , "profileTypeIndex" , "commercialTranscoder" ,
 		"width" , "height" , "aspectRatio" , 
-		"gopSize" , "bitrate" , "qscale" , "fileSuffix" , "createdAt" );
+		"gopSize" , "bitrate" , "qscale" , "fileSuffix" ,  "framerate" , "audioBitrate" , "audioSamplingRate" , "audioChannels" );
 	
 	public function describe() 
 	{

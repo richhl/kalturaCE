@@ -28,6 +28,12 @@ abstract class kConversionEngine
 	 */
 	abstract protected function getExecutionCommandAndConversionString ( kConversionCommand $conv_cmd , $params_index );		
 	
+	
+	public function simulate ( kConversionCommand $conv_cmd , $index = 0)
+	{
+		return  $this->getExecutionCommandAndConversionString ( $conv_cmd , $index );
+	}
+	
 	// $start_params_index - the index of the kConversionParams in the kConversionCommand from which to start from. might not start at 0
 	// $end_params_index - the index of the kConversionParams in the kConversionCommand to which to end at. -1 - the end
 	public function convert ( kConversionCommand $conv_cmd , kConversionResult $conv_result ,

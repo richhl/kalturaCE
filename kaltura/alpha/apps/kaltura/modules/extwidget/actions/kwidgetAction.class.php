@@ -182,7 +182,7 @@ class kwidgetAction extends sfAction
 			if ($conf_vars)
 				$conf_vars = "&".$conf_vars;
 			
-			$wrapper_swf = "flash/kdpwrapper/v8.0/kdpwrapper.swf";
+			$wrapper_swf = "flash/kdpwrapper/v9.0/kdpwrapper.swf";
 
 			$partner = PartnerPeer::retrieveByPK($partner_id);
 			
@@ -191,11 +191,15 @@ class kwidgetAction extends sfAction
 				$partner_type = $partner->getType();
 			}
 						
+			$track_wrapper = '';
+			if (kConf::get('track_kdpwrapper') && kConf::get('kdpwrapper_track_url'))
+				$track_wrapper = "&wrapper_tracker_url=".urlencode(kConf::get('kdpwrapper_track_url')."?kpartner_id=".kConf::get('kaltura_partner_id'));
 
 			if ($partner_host == "http://www.kaltura.com")
 				$partner_host = 1; // otherwise the kdp will try going to cdnwww.kaltura.com
-				
+
 			$dynamic_date = "widget_id=$widget_id" .
+			$track_wrapper.
 			"&kdpUrl=".urlencode($swf_url).
 			"&host=" . str_replace("http://", "", $partner_host).
 			"&cdnHost=" . str_replace("http://", "", $partner_cdnHost).

@@ -9,13 +9,6 @@
  * file that was distributed with this source code.
  */
 
-/*
-<<<<<<< .mine
-Testing update - liron (after eran)
-=======
-Testing update - eran
->>>>>>> .r30
-*/
 chdir(dirname(__FILE__));
 include('config/config.php');
 include($sf_symfony_data_dir.'/bin/symfony.php');

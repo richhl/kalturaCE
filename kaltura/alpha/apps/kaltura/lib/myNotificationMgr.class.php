@@ -155,8 +155,11 @@ $debug .= "property: $not_property = [$value]\n";
 			$not->setObjectId($object_data->getId() );
 			$not->setNotificationData( self::createNotificationData ( $notification_type , $object_data, $extra_notification_data  ) );
 				
-			$puser_id = PuserKuserPeer::getByKuserId( $object_data->getKuserId() , 1 );
-			$not->setPuserId( $puser_id );
+			if ( $object_data instanceof entry )
+			{
+				$puser_id = PuserKuserPeer::getByKuserId( $object_data->getKuserId() , 1 );
+				$not->setPuserId( $puser_id );
+			}
 		}
 		else
 		{
@@ -234,6 +237,14 @@ $debug .= "property: $not_property = [$value]\n";
 			case notification::NOTIFICATION_TYPE_USER_BANNED:
 				$param_names = array ( "screen_name" , "email" );
 				break;
+			case notification::NOTIFICATION_TYPE_BATCH_JOB_STARTED:
+			case notification::NOTIFICATION_TYPE_BATCH_JOB_SUCCEEDED:
+			case notification::NOTIFICATION_TYPE_BATCH_JOB_FAILED:
+			case notification::NOTIFICATION_TYPE_BATCH_JOB_SIMILAR_EXISTS:
+				$param_names = array ( "id" , "job_type" , "job_sub_type" , "data" , "status" , "abort" , "progress" , "message", "description" ,  
+					"updates_count" , "created_at" , "updated_at" , "entry_id" );
+				break;
+				
 		}
 
 		if ( $param_names == null )
@@ -249,7 +260,15 @@ $debug .= "property: $not_property = [$value]\n";
 
 		if ( $extra_notification_data )
 		{
-			$params["extra_notification_data"] = $extra_notification_data;
+			if ( is_array ( $extra_notification_data ))
+			{
+				foreach ( $extra_notification_data as $extra_params_name => $extra_params_value )
+				{
+					$params[$extra_params_name] = $extra_params_value;
+				}
+			}
+			else
+				$params["extra_notification_data"] = $extra_notification_data;
 		}
 		
 		return serialize( $params );

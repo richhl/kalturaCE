@@ -3,11 +3,10 @@ require_once("../../bootstrap.php");
 require_once("config.php");
 require_once("lib/KalturaClient.php");
 
-$config = new KalturaConfiguration();
+$config = new KalturaConfiguration(PARTNER_ID);
 $config->serviceUrl = SERVER_URL;
-$client = new KalturaClient();
-$client->setConfig($config);
-$ks = $client->session->start(PARTNER_ID, SECRET, "USERID", KalturaSessionType::USER);
+$client = new KalturaClient($config);
+$ks = $client->session->start(SECRET, "USERID", KalturaSessionType::USER);
 
 $flashVars = array();
 $flashVars["partnerId"] 	= PARTNER_ID;

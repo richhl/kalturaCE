@@ -15,11 +15,12 @@ class kConversionEngineFfmpeg  extends kConversionEngine
 	
 	protected function getExecutionCommandAndConversionString ( kConversionCommand $conv_cmd , $params_index )
 	{
+/*		
 		$frame_rate = 25 ; // frames / second
 		$audio_bitrate = "56k";  //  kbit/s
 		$audio_sampling_rate = 22050; // in Hz
 		$audio_channels = 2; // sterio
-
+*/
 		// assume there always will be this index
 		$conv_params = @$conv_cmd->conversion_params_list[$params_index];
  
@@ -32,14 +33,14 @@ class kConversionEngineFfmpeg  extends kConversionEngine
 			" -s " . $conv_params->width ."x" . $conv_params->height; 
 			
 		$conversion_string = 		
-			" -r " . $frame_rate . 
+			self::ne ( " -r " , $conv_params->framerate ) . 
 			self::ne ( " -b " , $conv_params->bitrate ) . ( $conv_params->bitrate ? "k" : "" ) .  // make sure the integer is followed by the letter 'k'
 			self::ne ( " -qscale " , $conv_params->qscale ) . 
 			self::ne ( " -g " , $conv_params->gop_size ) .
 			$size_arg .
-			//			" -ab " . $audio_bitrate .
-			" -ar " .  $audio_sampling_rate .
-			" -ac " . $audio_channels .
+			self::ne ( " -ab " , $conv_params->audio_bitrate ) . ( $conv_params->audio_bitrate ? "k" : "" ) . // make sure the integer is followed by the letter 'k'
+			self::ne ( " -ar " ,  $conv_params->audio_sampling_rate ) .
+			self::ne ( " -ac " , $conv_params->audio_channels  ).
 			$video_audio_str .
 			" " . $conv_params->ffmpeg_params . " " .  // extra params for ffmpeg if exist 
 

@@ -41,6 +41,7 @@ CREATE TABLE `kuser`
 	`views` INTEGER default 0,
 	`fans` INTEGER default 0,
 	`entries` INTEGER default 0,
+	`storage_size` INTEGER default 0,
 	`produced_kshows` INTEGER default 0,
 	`status` INTEGER,
 	`created_at` DATETIME,
@@ -1079,7 +1080,11 @@ CREATE TABLE `ui_conf`
 	`custom_data` TEXT,
 	`status` INTEGER,
 	`description` VARCHAR(4096),
-	PRIMARY KEY (`id`)
+	`display_in_search` TINYINT,
+	`creation_mode` TINYINT,
+	PRIMARY KEY (`id`),
+	KEY `partner_id_index`(`partner_id`),
+	KEY `partner_id_creation_mode_index`(`partner_id,creation_mode`)
 )Type=MyISAM;
 
 #-----------------------------------------------------------------------------
@@ -1215,6 +1220,36 @@ CREATE TABLE `partner_transactions`
 	`ack` VARCHAR(20),
 	`transaction_data` TEXT,
 	PRIMARY KEY (`id`),
+	KEY `partner_id_index`(`partner_id`)
+)Type=MyISAM;
+
+#-----------------------------------------------------------------------------
+#-- search_result
+#-----------------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `search_result`;
+
+
+CREATE TABLE `search_result`
+(
+	`id` INTEGER  NOT NULL AUTO_INCREMENT,
+	`partner_id` INTEGER,
+	`keywords` TEXT,
+	`source` TINYINT,
+	`media_type` INTEGER,
+	`title` VARCHAR(128),
+	`tags` TEXT,
+	`description` TEXT,
+	`url` TEXT,
+	`thumb_url` TEXT,
+	`source_link` TEXT,
+	`credit` VARCHAR(64),
+	`embed_code` TEXT,
+	`license_type` INTEGER,
+	`created_at` DATETIME,
+	`updated_at` DATETIME,
+	PRIMARY KEY (`id`),
+	KEY `source_index`(`source`),
 	KEY `partner_id_index`(`partner_id`)
 )Type=MyISAM;
 

@@ -17,7 +17,7 @@ function get(id)
 
 function not_valid_email(email)
 {
-    if ((email.indexOf(".") > 2) && (email.indexOf("@") > 0)) return false;
+    if ((email.indexOf('@') > 0) && (email.indexOf('@') < email.lastIndexOf('.'))) return false;
     return true;
 }
 

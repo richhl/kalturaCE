@@ -278,7 +278,8 @@ class BJImportURL
 					
 				}
 
-				$this->setFailure($job, 'failed to fetch http header');
+				$this->setFailure($job, 'failed to fetch http header. state: BJImportURL::DOWNLOAD_HEADER, command: '.$cmdLine);
+				TRACE ( 'failed to fetch header, state is BJImportURL::DOWNLOAD_HEADER. cmdLine is: '.$cmdLine );
 				return true;
 			}
 			else if ($this->state == BJImportURL::DOWNLOAD_HEADER_PROGRESS)
@@ -300,7 +301,8 @@ TRACE ( __METHOD__ . " " . $this->destFile );
 					continue;
 				}
 
-				$this->setFailure($job, 'failed to fetch http header');
+				$this->setFailure($job, 'failed to fetch http header. state: DOWNLOAD_HEADER_PROGRESS, failed to match content-length '.$header);
+				TRACE ( 'failed to fetch header, state is BJImportURL::DOWNLOAD_HEADER_PROGRESS. failed to match content-length '.$header );
 				return true;
 			}
 			else if ($this->state == BJImportURL::DOWNLOAD_FILE)
@@ -346,7 +348,7 @@ TRACE ( __METHOD__ . " " . $this->destFile );
 					
 					if ($this->fileSize != $currentSize)
 					{
-						$this->setFailure($job, 'partial download');
+						$this->setFailure($job, 'partial download. filesize: '.$this->fileSize.' , currentSize: '.$currentSize);
 						return true;
 					}
 						

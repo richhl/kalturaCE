@@ -74,6 +74,11 @@ class KalturaWidgetFilter extends KalturaFilter
 	/**
 	 * @var string $updatedAtLessThanEqual
 	 */
-	public $updatedAtLessThanEqual;			
+	public $updatedAtLessThanEqual;
+
+    public function getOrderByMap()
+	{
+		return array();
+	}
 }
 ?>

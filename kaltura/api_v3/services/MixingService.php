@@ -19,7 +19,7 @@ class MixingService extends KalturaEntryService
 	 */
 	function addAction(KalturaMixEntry $mixEntry)
 	{
-		$mixEntry->validatePropertyMinLength("name", 2);
+		$mixEntry->validatePropertyMinLength("name", 1);
 		$mixEntry->validatePropertyNotNull("editorType");
 		
 		$dbEntry = $mixEntry->toObject(new entry());
@@ -36,13 +36,13 @@ class MixingService extends KalturaEntryService
 
 		if (!$dbEntry->getThumbnail())
 			$dbEntry->setThumbnail("&auto_edit.jpg");
-
+			
+		$dbEntry->save(); // we need the id for setDataContent
 		
 		// set default data if no data given
 		if ($mixEntry->dataContent === null)
 		{
-			$dbEntry->save(); // we need the id for setDataContent
-			myEntryUtils::modifyEntryMetadataWithText($dbEntry, "", 0, true);
+			myEntryUtils::modifyEntryMetadataWithText($dbEntry, "", 0);
 		}
 		else
 		{ 
@@ -152,29 +152,16 @@ class MixingService extends KalturaEntryService
 	 */
 	function listAction(KalturaMixEntryFilter $filter = null, KalturaFilterPager $pager = null)
 	{
-		if (!$filter)
+	    if (!$filter)
 			$filter = new KalturaMixEntryFilter();
-
-		if (!$pager)
-			$pager = new KalturaFilterPager();
 			
-		$entryFilter = new entryFilter();
-		$filter->toObject($entryFilter);
-
-		$c = new Criteria();
-		$entryFilter->attachToCriteria($c);
-		$c->add(entryPeer::TYPE, entry::ENTRY_TYPE_SHOW); // only mix entries
-		
-		$totalCount = entryPeer::doCount($c);
-		
-		$pager->attachToCriteria($c);
-		$list = entryPeer::doSelect($c);
-		
-		$newList = KalturaMixEntries::fromEntryArray($list);
+		$filter->typeEqual = KalturaEntryType::MIX; 
+	    list($list, $totalCount) = parent::listEntriesByFilter($filter, $pager);
+	    
+	    $newList = KalturaMixEntries::fromEntryArray($list);
 		$response = new KalturaMixListResponse();
 		$response->objects = $newList;
 		$response->totalCount = $totalCount;
-		
 		return $response;
 	}
 	

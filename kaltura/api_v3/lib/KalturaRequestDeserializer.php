@@ -158,9 +158,20 @@ class KalturaRequestDeserializer
 		return $serviceArguments;
 	}
 
-	private function buildObject($typeReflector, array &$params)
+	private function buildObject(KalturaTypeReflector $typeReflector, array &$params)
 	{
-		$class = $typeReflector->getType();
+		// if objectType was specified, we will use it only if the anotation type is it's base type
+		if (array_key_exists("objectType", $params))
+		{
+            $possibleType = $params["objectType"];
+            if (strtolower($possibleType) !== strtolower($typeReflector->getType())) // reflect only if type is different
+            {
+                if ($typeReflector->isParentOf($possibleType)) // we know that the objectType that came from the user is right, and we can use it to initiate the object
+                    $typeReflector = new KalturaTypeReflector($possibleType);
+            }
+		}
+		
+	    $class = $typeReflector->getType();
 		$obj = new $class;
 		$properties = $typeReflector->getProperties();
 		foreach($properties as $property)

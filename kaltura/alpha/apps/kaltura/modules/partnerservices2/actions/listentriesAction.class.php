@@ -82,7 +82,8 @@ class listentriesAction extends defPartnerservices2Action
 
 		// hack for displaying pre-moderation 
 		$moderation_status = $filter->get ( "_in_moderation_status" );
-		if ( $moderation_status && strpos ( $moderation_status , "1,5" ) !== false  )
+		if ( $moderation_status && 
+			( strpos ( $moderation_status , "1,5" ) !== false  || strpos ( $moderation_status , "5,1" ) !== false ) )
 		{
 			// this is when the KMC requests the moderated entries
 			$filter->set ( "_in_status" , $filter->get ( "_in_status" ) . ",5" ) ;  // add the status '5' 

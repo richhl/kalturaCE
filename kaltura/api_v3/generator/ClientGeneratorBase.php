@@ -12,6 +12,24 @@ abstract class ClientGeneratorBase
 	public function __construct() 
 	{
 		$this->loadServicesInfo();
+		
+		// orginized types so enums will be first
+		$enumTypes = array();
+		$classTypes = array();
+	    foreach($this->_types as $typeReflector)
+		{
+			if ($typeReflector->isEnum())
+			    $enumTypes[$typeReflector->getType()] = $typeReflector;
+		    else
+		        $classTypes[$typeReflector->getType()] = $typeReflector; 
+		}
+		
+		// sort by type name
+		ksort($enumTypes);
+		ksort($classTypes);
+		
+		// merge back
+		$this->_types = array_merge($enumTypes, $classTypes);
 	}
 	
 	/**
@@ -141,6 +159,13 @@ abstract class ClientGeneratorBase
 	
 	private function loadTypesRecursive(KalturaTypeReflector $typeReflector)
 	{
+	    $parentTypeReflector = $typeReflector->getParentTypeReflector();
+	    if ($parentTypeReflector)
+	    {
+	        $parentType = $parentTypeReflector->getType();
+            $this->loadTypesRecursive($parentTypeReflector);   
+	    }
+	    
 		$properties = $typeReflector->getProperties();
 		foreach($properties as $property)
 		{

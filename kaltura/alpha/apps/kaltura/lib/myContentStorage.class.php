@@ -118,6 +118,8 @@ class myContentStorage
 		
 		$files = kFile::dirListExtended( self::getFSContentRootPath() . "/" . $dir , false , false , '/^' . $file_base . ".*\.xml$/" ) ;
 		
+		if ( $files == null ) return null;
+				
 		// from each file - strip the id and the file extension
 		// use the refernce to file_tuple - it will be modified 
 		foreach ( $files as &$file_tuple )
@@ -385,7 +387,7 @@ class myContentStorage
 	// TODO - after solving the conversion issue - FLV 
 	public static function fileExtNeedConversion($ext)
 	{
-		$fileExts = array( "flv" , "asf", "wmv", "qt" , "mov" , "mpg", "mpeg" , "avi" , "mp3", "wav" , "wma" ,  "mp4", "m4v", "3gp"  );
+		$fileExts = array( "flv" , "asf", "wmv", "qt" , "mov" , "mpg", "mpeg" , "avi" , "mp3", "wav" , "wma" ,  "mp4", "m4v", "3gp" , "vob" );
 		return in_array($ext, $fileExts);
 	}
 

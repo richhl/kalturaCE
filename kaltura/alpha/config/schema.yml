@@ -30,6 +30,7 @@ propel:
     views :  { type: integer, default: 0 }
     fans :  { type: integer, default: 0 }
     entries:  { type: integer, default: 0 }
+    storage_size:  { type: integer, default: 0 }
     produced_kshows:  { type: integer, default: 0 }
     status:integer
     created_at:
@@ -824,4 +825,28 @@ propel:
     
     _indexes:
        partner_id_index: [partner_id]
+    
+    
+  search_result:
+    _attribute: { phpName : searchResult }
+    id:   
+    partner_id: { type: integer }
+    keywords: longvarchar
+    source: tinyint
+    media_type: integer
+    title: varchar(128)
+    tags: longvarchar
+    description: longvarchar
+    url: longvarchar
+    thumb_url: longvarchar
+    source_link: longvarchar
+    credit: varchar(64)
+    embed_code: longvarchar
+    license_type : integer 
+    created_at:
+    updated_at:
+
+    _indexes:
+      source_index: [source]
+      partner_id_index: [partner_id]
     

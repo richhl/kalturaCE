@@ -17,6 +17,7 @@ class loginAction extends kalturaCmsAction
 	 */
 	public function execute ()
 	{
+		$this->redirect($this->getController()->genUrl('kmc', true));
 		//TODO:
 		/*
 		 * add the First time login window, where i reuest only email

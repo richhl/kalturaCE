@@ -46,17 +46,17 @@ TRACE ( "Setting file [$file_name] indicator [$create_indicator]" )	;
 	// use the target's path and name, but before the extension - add the sufix - then append the extension
 	public function getTargetFileWithSuffix ( $index )
 	{
-		return $this->combineFileWithSuffix ( $this->target_file , $index );
+		return $this->combineFileWithSuffix ( $this->target_file , $index , true );
 	}
 
 	public function getLogFileWithSuffix ( $index )
 	{
 		if ( ! $this->log_file ) 
 			return $this->getTargetFileWithSuffix ( $index );
-		return $this->combineFileWithSuffix ( $this->log_file , $index );
+		return $this->combineFileWithSuffix ( $this->log_file , $index , false );
 	}
 	
-	private function combineFileWithSuffix ( $file_name , $index )
+	private function combineFileWithSuffix ( $file_name , $index , $use_extension_from_suffix_if_exists = false )
 	{
 		$conversion_params = $this->conversion_params_list[$index];
 		if ( ! $conversion_params ) return   $file_name;
@@ -66,12 +66,12 @@ TRACE ( "Setting file [$file_name] indicator [$create_indicator]" )	;
 					$conversion_params->file_suffix . "." . 
 					pathinfo ( $file_name , PATHINFO_EXTENSION ) ;
 */
-		$combined = $this->getFileName( $file_name , $conversion_params->file_suffix );
+		$combined = $this->getFileName( $file_name , $conversion_params->file_suffix , $use_extension_from_suffix_if_exists );
 		return $combined;		
 		
 	}
 	
-	public function getFileName ( $file_name , $suffix )
+	public function getFileName ( $file_name , $suffix , $use_extension_from_suffix_if_exists = false )
 	{
 		$basename = basename( $file_name );
 		if (strpos($basename, '.') !== false) 
@@ -86,10 +86,20 @@ TRACE ( "Setting file [$file_name] indicator [$create_indicator]" )	;
 			$filename = $basename; 
 	    } 
 			
-		$combined = dirname( $file_name ) . "/" . 
+	    if ( $use_extension_from_suffix_if_exists && pathinfo($suffix, PATHINFO_EXTENSION))
+	    {
+	    	// in this case the suffix has an extension which should override the one of the file
+			$combined = dirname( $file_name ) . "/" . 
+					$filename . 
+					$suffix ;	    	
+	    }
+	    else
+	    {
+			$combined = dirname( $file_name ) . "/" . 
 					$filename . 
 					$suffix . "." . 
 					$extension ;
+	    }
 		return $combined;		
 	}
 }

@@ -1,11 +1,14 @@
 <?php
-class Php4ClientGenerator extends ClientGeneratorBase 
+class Php4ClientGenerator extends Php5ClientGenerator 
 {
 	public function generate() 
 	{
 		$this->writeHeader();
 
 		$this->writeBeforeTypes();
+		
+		$this->sortTypesForPhp();
+		
 		// types
 		foreach($this->_types as $typeReflector)
 		{
@@ -17,18 +20,19 @@ class Php4ClientGenerator extends ClientGeneratorBase
 		foreach($this->_services as $serviceReflector)
 		{
 			$this->writeBeforeService($serviceReflector);
-			$serviceName = $serviceReflector->getServiceName();
+			$serviceId = $serviceReflector->getServiceId();
 			$actions = $serviceReflector->getActions();
 			$actions = array_keys($actions);
-			foreach($actions as $action)
+			foreach($actions as $actionId)
 			{
-				$actionInfo = $serviceReflector->getActionInfo($action);
+				$actionInfo = $serviceReflector->getActionInfo($actionId);
 				if (strpos($actionInfo->clientgenerator, "ignore") !== false)
 					continue;
 					
-				$outputTypeReflector = $serviceReflector->getActionOutputType($action);
-				$actionParams = $serviceReflector->getActionParams($action);
-				$this->writeServiceAction($serviceName, $action, $actionParams, $outputTypeReflector);				
+				$actionName = $actionInfo->action;
+				$outputTypeReflector = $serviceReflector->getActionOutputType($actionId);
+				$actionParams = $serviceReflector->getActionParams($actionId);
+				$this->writeServiceAction($serviceId, $actionName, $actionParams, $outputTypeReflector);				
 			}
 			$this->writeAfterService($serviceReflector);
 		}
@@ -83,8 +87,12 @@ class Php4ClientGenerator extends ClientGeneratorBase
 		else if (!$typeReflector->isArray())
 		{
 			// class definition
-			$properties = $typeReflector->getProperties();
-			$this->echoLine("class $type extends KalturaObjectBase");
+			$properties = $typeReflector->getCurrentProperties();
+			$parentTypeReflector = $typeReflector->getParentTypeReflector();
+			if ($parentTypeReflector)
+			    $this->echoLine("class $type extends " . $parentTypeReflector->getType());
+		    else
+			    $this->echoLine("class $type extends KalturaObjectBase");
 			$this->echoLine("{");
 			// class properties
 			foreach($properties as $property)
@@ -112,26 +120,6 @@ class Php4ClientGenerator extends ClientGeneratorBase
 				$this->echoLine("");
 			}
 			$this->echoLine();
-
-			$this->echoLine("	function toParams()");
-			$this->echoLine("	{");
-			$this->echoLine("		\$kparams = array();");
-			foreach($properties as $property)
-			{
-				$propType = $property->getType();
-				$propName = $property->getName();
-				
-				if ($property->isSimpleType() || $property->isEnum())
-				{
-					$this->echoLine("		\$this->addIfNotNull(\$kparams, \"$propName\", \$this->$propName);");
-				}
-				else
-				{ 
-					continue; // ignore sub objects and arrays
-				}
-			}
-			$this->echoLine("		return \$kparams;");
-			$this->echoLine("	}");
 			
 			// close class
 			$this->echoLine("}");
@@ -155,13 +143,13 @@ class Php4ClientGenerator extends ClientGeneratorBase
 		$this->echoLine();		
 		$this->echoLine("class $serviceClassName extends KalturaServiceBase");
 		$this->echoLine("{");
-		$this->echoLine("	function $serviceClassName(\$client)");
+		$this->echoLine("	function $serviceClassName(&\$client)");
 		$this->echoLine("	{");
 		$this->echoLine("		parent::KalturaServiceBase(\$client);");
 		$this->echoLine("	}");
 	}
 	
-	protected function writeServiceAction($serviceName, $action, $actionParams, $outputTypeReflector)
+	protected function writeServiceAction($serviceId, $action, $actionParams, $outputTypeReflector)
 	{
 			$outputType = null;
 			if ($outputTypeReflector)
@@ -256,7 +244,7 @@ class Php4ClientGenerator extends ClientGeneratorBase
 				}
 			}
 			
-			$this->echoLine("		\$resultObject = \$this->client->callService(\"$serviceName\", \"$action\", \$kparams);");
+			$this->echoLine("		\$resultObject = \$this->client->callService(\"$serviceId\", \"$action\", \$kparams);");
 			$this->echoLine("		\$this->client->checkForError(\$resultObject);");
 			
 			if (!$outputTypeReflector)
@@ -310,14 +298,14 @@ class Php4ClientGenerator extends ClientGeneratorBase
 		$this->echoLine("");
 		$this->echoLine("	function KalturaClient(\$config)");
 		$this->echoLine("	{");
-		$this->echoLine("		parent::KalturaClientBase(\$config);");
+		$this->echoLine("		parent::KalturaClientBase(/*KalturaConfiguration*/ \$config);");
 	}
 	
 	private function writeMainClassServiceInitialization(KalturaServiceReflector $serviceReflector)
 	{
 		$serviceName = $serviceReflector->getServiceName();
 		$serviceClassName = "Kaltura".$this->upperCaseFirstLetter($serviceName)."Service";
-		$this->echoLine("		\$this->$serviceName = new $serviceClassName(&\$this);");
+		$this->echoLine("		\$this->$serviceName = new $serviceClassName(\$this);");
 	}
 	
 	private function writeMainClassConstructorClosure()
@@ -328,17 +316,5 @@ class Php4ClientGenerator extends ClientGeneratorBase
 	private function writeMainClassClosure()
 	{
 		$this->echoLine("}");
-	}
-	
-	private function echoLine($text = "")
-	{
-		echo $text."\n";
-	}
-	
-	private function upperCaseFirstLetter($text)
-	{
-		if (strlen($text) > 0)
-			$text[0] = strtoupper($text[0]);
-		return $text;
 	}
 }

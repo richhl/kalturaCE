@@ -5,12 +5,11 @@ require_once("lib/KalturaClient.php");
 
 $entryId = @$_GET["entryId"];
 
-$config = new KalturaConfiguration();
+$config = new KalturaConfiguration(PARTNER_ID);
 $config->serviceUrl = SERVER_URL;
-$client = new KalturaClient();
-$client->setConfig($config);
+$client = new KalturaClient($config);
 
-$ks = $client->session->start(PARTNER_ID, SECRET, "USERID", KalturaSessionType::USER, 86400, "edit:*");
+$ks = $client->session->start(SECRET, "USERID", KalturaSessionType::USER, PARTNER_ID, 86400, "edit:*");
 
 $flashVars = array();
 $flashVars["partnerId"] = PARTNER_ID;

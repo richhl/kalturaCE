@@ -25,8 +25,15 @@ class KalturaClientBase
 	 * Kaltura client constructor
 	 *
 	 */
-	public function __construct()
+	public function __construct(KalturaConfiguration $config)
 	{
+	    $this->config = $config;
+	    
+	    $logger = $this->config->getLogger();
+		if ($logger)
+		{
+			$this->shouldLog = true;	
+		}
 	}
 
 	public function callService($service, $action, $params)
@@ -38,10 +45,14 @@ class KalturaClientBase
 		
 		// append the basic params
 		$this->addParam($params, "apiVersion", self::KALTURA_API_VERSION);
-		$this->addParam($params, "partnerId", $this->config->partnerId);
+		
+		// in start session partner id is optional (default -1). if partner id was not set, use the one in the config
+		if (!isset($params["partnerId"]) || $params["partnerId"] === -1)
+	        $this->addParam($params, "partnerId", $this->config->partnerId);
+	        
 		$this->addParam($params, "format", $this->config->format);
 		$this->addParam($params, "ks", $this->ks);
-		
+
 		$url = $this->config->serviceUrl."/api_v3/index.php?service=".$service."&action=".$action;
 		$this->log("full reqeust url: [" . $url . "]");
 		
@@ -206,10 +217,10 @@ class KalturaClientBase
 	{
 		if (is_object($resultObject))
 		{
-			if (get_class($resultObject) !== $objectType)
+			if (!($resultObject instanceof $objectType))
 				throw new Exception("Invalid object type");
 		}
-		else if (gettype($resultObject) !== $objectType)
+		else if (gettype($resultObject) !== "NULL" && gettype($resultObject) !== $objectType)
 		{
 			throw new Exception("Invalid object type");
 		}
@@ -255,6 +266,17 @@ abstract class KalturaObjectBase
 			$params[$paramName] = $paramValue;
 		}
 	}
+	
+	public function toParams()
+	{
+		$params = array();
+		$params["objectType"] = get_class($this);
+	    foreach($this as $prop => $val)
+		{
+			$this->addIfNotNull($params, $prop, $val);
+		}
+		return $params;
+	}
 }
 
 class KalturaException extends Exception 
@@ -272,15 +294,20 @@ class KalturaConfiguration
 {
 	private $logger;
 
-	public $serviceUrl    = "http://www.kaltura.com";
+	public $serviceUrl    = "http://www.kaltura.com/";
+	public $partnerId     = null;
 	public $format        = 3;
 	
 	/**
 	 * Constructs new Kaltura configuration object
 	 *
 	 */
-	public function __construct()
+	public function __construct($partnerId)
 	{
+	    if (!is_numeric($partnerId))
+	        throw new Exception("Invalid partner id");
+	        
+	    $this->partnerId = $partnerId;
 	}
 	
 	/**

@@ -28,6 +28,11 @@ class notification extends Basenotification
 
 	const NOTIFICATION_TYPE_USER_ADD = 21;
 	const NOTIFICATION_TYPE_USER_BANNED = 26;
+
+	const NOTIFICATION_TYPE_BATCH_JOB_STARTED = 30;
+	const NOTIFICATION_TYPE_BATCH_JOB_SUCCEEDED = 31;
+	const NOTIFICATION_TYPE_BATCH_JOB_FAILED = 32;
+	const NOTIFICATION_TYPE_BATCH_JOB_SIMILAR_EXISTS = 33;
 	
 	const NOTIFICATION_TYPE_TEST = 99;
 	
@@ -69,6 +74,10 @@ class notification extends Basenotification
 				self::NOTIFICATION_TYPE_KSHOW_BLOCK => "kshow_block" ,
 				self::NOTIFICATION_TYPE_USER_ADD => "user_add" ,
 				self::NOTIFICATION_TYPE_USER_BANNED => "user_banned" ,
+				self::NOTIFICATION_TYPE_BATCH_JOB_STARTED => "job_started",
+				self::NOTIFICATION_TYPE_BATCH_JOB_SUCCEEDED => "job_succeeded",
+				self::NOTIFICATION_TYPE_BATCH_JOB_FAILED => "job_failed",
+				self::NOTIFICATION_TYPE_BATCH_JOB_SIMILAR_EXISTS => "job_similar_exists" ,
 				self::NOTIFICATION_TYPE_TEST => "test" ,
 			);
 		}

@@ -2,7 +2,7 @@
 
 class KalturaDispatcher 
 {
-	private static $instance;
+	private static $instance = null;
 	
 	private $databaseManager = null;
 	
@@ -15,10 +15,9 @@ class KalturaDispatcher
 	{
 		if (!self::$instance)
 		{
-			$class = __CLASS__;
-			self::$instance = new $class();
+			self::$instance = new self();
 		}
-		
+		    
 		return self::$instance;
 	}
 	

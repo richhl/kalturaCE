@@ -6,7 +6,7 @@
 class KalturaBaseEntry extends KalturaObject 
 {
 	/**
-	 * Auto generated 10 alphanumeric string
+	 * Auto generated 10 characters alphanumeric string
 	 * 
 	 * @var string
 	 * @readonly

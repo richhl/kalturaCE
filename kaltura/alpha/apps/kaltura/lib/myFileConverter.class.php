@@ -606,7 +606,10 @@ $edit_only=true will be used when ffmpeg is used to create the second flavor aft
 		$width = "";
 		$height = "";
 		//extract the video size line (used to suggest 25x25 sise for entry 25x25xqajo)
-		if (preg_match('/Video:.*? (\d{2,4})x(\d{2,4}),/', $size, $matches))
+		// used to search for , after the {width}x{height} however both of the following lines are valid:
+		// Stream #0.0: Video: h264, yuv420p, 320x240 [PAR 1:1 DAR 4:3], 202 kb/s, 29.92 tbr, 1k tbn, 2k tbc
+		// Stream #0.1(und): Video: h264, yuv420p, 480x270, 59.92 tbr, 29.94 tbn, 59.89 tbc
+		if (preg_match('/Video:.*? (\d{2,4})x(\d{2,4})/', $size, $matches))
 		{
 			$width = $matches[1];
 			$height = $matches[2];

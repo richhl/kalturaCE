@@ -66,6 +66,7 @@ class myFeatureUtils
 	
 	private  static function getCachedKshowList ( $config_param_name , $fallback = NULL) 
 	{
+		return array();
 		self::init();
 
 		// becuase the $config_param_name is unique in the config - use it in the cache too

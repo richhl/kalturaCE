@@ -1,25 +1,47 @@
 <?php
 class XmlClientGenerator extends ClientGeneratorBase 
 {
+    private $_doc = null;
+    private $_xmlElement = null;
+    
+    public function XmlClientGenerator()
+    {
+        parent::__construct();
+        $this->_doc = new DOMDocument();
+        $this->_doc->formatOutput = true; 
+    }
+    
 	public function generate() 
 	{
-		$this->writeHeader();
-
-		$this->writeBeforeTypes();
-		// types
+	    $this->_xmlElement = $this->_doc->createElement("xml");
+	    $this->_doc->appendChild($this->_xmlElement);
+	    
+        $this->_xmlElement->appendChild(new DOMComment(" Generated on date " . strftime("%d/%m/%y %H:%M:%S" , time()) . " "));
+        
+	    $enumsElement = $this->_doc->createElement("enums");
+        $classesElement = $this->_doc->createElement("classes");
+        
 		foreach($this->_types as $typeReflector)
 		{
-			$this->writeType($typeReflector);
-		}
-		$this->writeAfterTypes();
-		$this->echoLine('');
-		$this->writeBeforeServices();
+		    if ($typeReflector->isEnum())
+    		{
+                $enumElement = $this->getEnumElement($typeReflector);
+    			$enumsElement->appendChild($enumElement);
+    		}
+    		else if (!$typeReflector->isArray())
+    		{
+    			$classElement = $this->getClassElement($typeReflector);
+    			$classesElement->appendChild($classElement);
+		    }
+		}		
 		
-		// services
+		$servicesElement = $this->_doc->createElement("services");
 		foreach($this->_services as $serviceReflector)
 		{
-			$this->writeBeforeService($serviceReflector);
+		    $serviceElement = $this->_doc->createElement("service");
 			$serviceName = $serviceReflector->getServiceName();
+			$serviceElement->setAttribute("name", $serviceName);
+		
 			$actions = $serviceReflector->getActions();
 			$actions = array_keys($actions);
 			foreach($actions as $action)
@@ -28,238 +50,199 @@ class XmlClientGenerator extends ClientGeneratorBase
 				if (strpos($actionInfo->clientgenerator, "ignore") !== false)
 					continue;
 					
-				$outputTypeReflector = $serviceReflector->getActionOutputType($action);
-				$actionParams = $serviceReflector->getActionParams($action);
-				$this->writeServiceAction($serviceName, $action, $actionParams, $outputTypeReflector);				
+				$serviceActionElement = $this->getServiceActionElement($serviceReflector, $action);
+				$serviceElement->appendChild($serviceActionElement);			
 			}
-			$this->writeAfterService($serviceReflector);
-		}
-		
-		
-		$this->writeAfterServices();
-		
-		$this->writeMainClassDeclaration();
-		foreach($this->_services as $serviceReflector)
-		{
-			$this->writeMainClassServiceDeclaration($serviceReflector);
-		}
-		$this->writeMainClassConstructorDeclaration();
-		foreach($this->_services as $serviceReflector)
-		{
-			$this->writeMainClassServiceInitialization($serviceReflector);
-		}
-		$this->writeMainClassConstructorClosure();
-		$this->writeMainClassClosure();
-		
-		$this->writeFooter();
-	}
-	
-	protected function writeHeader()
-	{
-		$this->echoLine('<xml >');
-
-		$this->echoLine("	<![CDATA[ " .
-		 "\n		Generated on date " . strftime( "%d/%m %H:%M:%S." , time() ) 
-		. "\n	]]>");
-	}
-	
-	protected function writeFooter()
-	{
-		$this->echoLine('</xml>');
-	}
-	
-	protected function writeBeforeTypes()
-	{
-		$this->echoLine('	<classes>');
-	}
-	
-	protected function writeType(KalturaTypeReflector $typeReflector)
-	{
-		$type = $typeReflector->getType();
-		if ($typeReflector->isEnum())
-		{
-			$contants = $typeReflector->getConstants();
-			$this->echoLine("		<class name=\"$type\">");
-			foreach($contants as $contant)
-			{
-				$name = $contant->getName();
-				$value = $contant->getDefaultValue();
-				$this->echoLine("			<const name=\"$name\" value=\"$value\"/>");
-			}
-			$this->echoLine("		</class>");
-		}
-		else if (!$typeReflector->isArray())
-		{
-			// class definition
-			$properties = $typeReflector->getProperties();
-			$this->echoLine("		<class name=\"$type\">");
-			// class properties
-			foreach($properties as $property)
-			{
-				$propType = $property->getType();
-				$propName = $property->getName();
-				$cdata =  "	<![CDATA[" ;
-				$description = str_replace("\n", "\n	 * ", $property->getDescription()); // to format multiline descriptions
-				$cdata .= "\n	 " . $description;
-				$cdata .= "\n	  @var $propType";
-				if ($property->isReadOnly())
-					$cdata .= "\n	 * @readonly";
-				if ($property->isInsertOnly())
-					$cdata .= "\n	 * @insertonly";
-				$cdata .= "\n	 ]]>";
-				
-				if ( false ) $this->echoLine( $cdata ); 
-				
-				$propertyLine =	"<property name=\"$propName\" type=\"$propType\" ";
-
-				if ($property->isReadOnly())
-					$propertyLine .= " readonly=\"1\"";
-				if ($property->isInsertOnly())
-					$propertyLine .= " insertonly=\"1\"";				
-				if ($property->isSimpleType() || $property->isEnum())
-				{
-					$propertyLine .= " optional=\"1\"";
-				}
-				
-				$propertyLine .= "/>"; // close property
-				$this->echoLine("			$propertyLine");
-			}
-
-			// close class
-			$this->echoLine("		</class>");
-		}
-	}
-	
-	protected function writeAfterTypes()
-	{
-		$this->echoLine("	</classes>" );
-	}
-	
-	protected function writeBeforeServices()
-	{
-		$this->echoLine("	<services>");
-	}
-
-	protected function writeBeforeService(KalturaServiceReflector $serviceReflector)
-	{
-		$serviceName = $serviceReflector->getServiceName();
-		
-		$serviceClassName = "Kaltura".$this->upperCaseFirstLetter($serviceName)."Service";
-//		$this->echoLine();		
-		$this->echoLine("		<service name=\"$serviceClassName\">");
-	}
-	
-	protected function writeServiceAction($serviceName, $action, $actionParams, $outputTypeReflector)
-	{
-			$outputType = null;
-			if ($outputTypeReflector)
-				$outputType = $outputTypeReflector->getType();
 			
-			// method signiture
-			$signature = "";
-/*			if (in_array($action, array("list", "clone"))) // because list & clone are preserved in PHP
-				$signature .= "function ".$action."Action(";
+			$servicesElement->appendChild($serviceElement);
+		}
+		
+		$this->_xmlElement->appendChild($enumsElement);
+		$this->_xmlElement->appendChild($classesElement);
+		$this->_xmlElement->appendChild($servicesElement);
+		
+		echo $this->_doc->saveXML();
+	}
+	
+	private function getEnumElement(KalturaTypeReflector $typeReflector)
+	{
+	    $enumElement = $this->_doc->createElement("enum");
+	    $enumElement->setAttribute("name", $typeReflector->getType()); 
+	    
+		$contants = $typeReflector->getConstants();
+		foreach($contants as $contant)
+		{
+			$name = $contant->getName();
+			$value = $contant->getDefaultValue();
+			$const = $this->_doc->createElement("const");
+			$const->setAttribute("name", $name);
+			$const->setAttribute("value", $value);
+			$enumElement->appendChild($const);
+		}
+		return $enumElement;
+	}
+	
+	private function getClassElement(KalturaTypeReflector $typeReflector)
+	{
+	    $properties = $typeReflector->getProperties();
+    			
+		$classElement = $this->_doc->createElement("class");
+	    $classElement->setAttribute("name", $typeReflector->getType()); 
+
+	    $parentTypeReflector = $typeReflector->getParentTypeReflector();
+	    
+	    if ($parentTypeReflector)
+	    {
+            $parentType = $parentTypeReflector->getType();
+            $classElement->setAttribute("base", $parentType);    		        
+	    }
+	    
+	    $properties = $typeReflector->getCurrentProperties();
+		foreach($properties as $property)
+		{
+			$propType = $property->getType();
+			$propName = $property->getName();
+			
+			$propertyElement = $this->_doc->createElement("property");
+			$propertyElement->setAttribute("name", $propName);
+			
+			if ($property->isArray())
+			{
+			    $propertyElement->setAttribute("type", "array");
+			    $propertyElement->setAttribute("arrayType", $property->getArrayType());
+			}
+			else if ($property->isEnum())
+			{
+			    $propertyElement->setAttribute("type", "int");
+			    $propertyElement->setAttribute("enumType", $property->getType());
+			}
 			else
-				$signature .= "function ".$action."(";
-	*/
-			$this->echoLine( "			<action name=\"$action\">");		
-			foreach($actionParams as $actionParam)
 			{
-				$paramName = $actionParam->getName();
-				if ($actionParam->isSimpleType() || $actionParam->isEnum())
-					$signature .= "$".$paramName;
-				else if ($actionParam->isArray())
-					$signature .= "array $".$paramName;
-				else if ($actionParam->isComplexType())
-					$signature .= $actionParam->getType()." $".$paramName;
-				
-				
-				if ($actionParam->isOptional())
-				{
-					if ($actionParam->isSimpleType() || $actionParam->isEnum())
-					{
-						$defaultValue = $actionParam->getDefaultValue();
-						if ($defaultValue === false)
-							$signature .= " = false";
-						else if ($defaultValue === true)
-							$signature .= " = true";
-						else if ($defaultValue === null)
-							$signature .= " = null";
-						else if (is_string($defaultValue))
-							$signature .= " = \"$defaultValue\"";
-						else if (is_numeric($defaultValue))
-							$signature .= " = $defaultValue"; 
-					}
-					else
-						$signature .= " = null";
-				}
-					
-				$this->echoLine( "				<param name=\"$paramName\" " .
-					" type=\"" . $actionParam->getType() . "\"" . 
-					" enum=\"" . $actionParam->isEnum() . "\"" .
-					" simple=\"" . $actionParam->isSimpleType() . "\"" . 
-					" array=\"" . $actionParam->isArray() . "\"" . "/>");	
+			    $propertyElement->setAttribute("type", $propType);
 			}
 			
+		    $propertyElement->setAttribute("readOnly", $property->isReadOnly() ? "1" : "0");
+		    $propertyElement->setAttribute("insertOnly", $property->isInsertOnly() ? "1" : "0");
+		    
+			$description = $property->getDescription();
+		    $description = $this->fixDescription($description);
+		    $propertyElement->setAttribute("description", $description);
 			
-			if (!$outputTypeReflector)
-				$outputType = "null";
+			$classElement->appendChild($propertyElement);
+		}
+		
+		return $classElement;
+	}
+	
+	private function getServiceActionElement(KalturaServiceReflector $serviceReflector, $actionId)
+	{
+	    $outputTypeReflector = $serviceReflector->getActionOutputType($actionId);
+	    $actionInfo = $serviceReflector->getActionInfo($actionId);
+		$actionParams = $serviceReflector->getActionParams($actionId);
+		
+		$outputType = null;
+		if ($outputTypeReflector)
+			$outputType = $outputTypeReflector->getType();
+		
+		$actionElement = $this->_doc->createElement("action");
+		$actionElement->setAttribute("name", $actionInfo->action);
+		
+		foreach($actionParams as $actionParam)
+		{
+			$actionParamElement = $this->_doc->createElement("param");
+			$actionParamElement->setAttribute("name", $actionParam->getName());
+			if ($actionParam->isEnum())
+			{
+			    $actionParamElement->setAttribute("type", "int");
+			    $actionParamElement->setAttribute("enumType", $actionParam->getType());
+			}
+			else
+			{
+			    $actionParamElement->setAttribute("type", $actionParam->getType());
+			}
+			$actionParamElement->setAttribute("optional", $actionParam->isOptional() ? "1" : "0");
+			if ($actionParam->isOptional())
+			{
+			    switch($actionParam->getType())
+			    {
+			        case "bool":
+			            if ($actionParam->getDefaultValue() === true)
+		                    $actionParamElement->setAttribute("default", "true");
+	                    else if ($actionParam->getDefaultValue() === false)
+	                        $actionParamElement->setAttribute("default", "false");
+                        break;
+			        case "int":
+		            case "float":
+	                case "string":
+		                $actionParamElement->setAttribute("default", $actionParam->getDefaultValue());
+                        break;
+	                default:
+	                    if ($actionParam->isEnum())
+                            $actionParamElement->setAttribute("default", $actionParam->getDefaultValue());
+                        else
+                            $actionParamElement->setAttribute("default", "null");
+			    }
+			}
 			
-			if ($outputTypeReflector && $outputTypeReflector->isArray())
-				$outputType = "array";
+			$description = $actionParam->getDescription();
+		    $description = $this->fixDescription($description);
+		    $actionParamElement->setAttribute("description", $description);
+		    
+			$actionElement->appendChild($actionParamElement);
+		}
+		
+		$resultElement = $this->_doc->createElement("result");
+		
+		$arrayType = null;
+		if ($outputTypeReflector)
+		{
+		    if($outputTypeReflector->isArray())
+		    {
+		        $resultElement->setAttribute("type", "array");
+			    $arrayType = $outputTypeReflector->getArrayType();
+		        $resultElement->setAttribute("arrayType", $arrayType);
+		    }
+		    else 
+		    {
+		        $resultElement->setAttribute("type", $outputType);
+		    }
+		}
+		
+		
+		$description = $actionInfo->description;
+		$description = $this->fixDescription($description);
+	    $actionElement->setAttribute("description", $description);
+		
+		$actionElement->appendChild($resultElement);
+		
+		return $actionElement;
+	}
+	
+	private function fixDescription($description)
+	{
+	    $description = str_replace("\n\r", "\n", $description);
+	    $description = str_replace("\r\n", "\n", $description);
+	    $description = substr($description, 0, strlen($description) - 1);
+	    return $description;
+	}
+	
+	protected function writeHeader() { }
 
-			$this->echoLine("				<result type=\"$outputType\"/>" );
-				
-//			$this->echoLine("		\$this->client->validateObjectType(\$resultObject, \"$outputType\");");
-//			$this->echoLine("		return \$resultObject;");
-			
-//			$this->echoLine("	}");
-			$this->echoLine("			</action>");
-	}
+	protected function writeFooter() { }
 	
-	protected function writeAfterService(KalturaServiceReflector $serviceReflector)
-	{
-		$this->echoLine("		</service>");
-	}
+	protected function writeBeforeServices() { }
 	
-	protected function writeAfterServices()
-	{
-        $this->echoLine("	</services>");
-	}
+	protected function writeBeforeService(KalturaServiceReflector $serviceReflector) { }
 	
-	private function writeMainClassDeclaration()
-	{
-	}
+	protected function writeServiceAction($serviceName, $action, $actionParams, $outputTypeReflector) { }
 	
-	private function writeMainClassServiceDeclaration(KalturaServiceReflector $serviceReflector)
-	{
-	}
+	protected function writeAfterService(KalturaServiceReflector $serviceReflector) { }
 	
-	private function writeMainClassConstructorDeclaration()
-	{
-	}
+	protected function writeAfterServices() { }
 	
-	private function writeMainClassServiceInitialization(KalturaServiceReflector $serviceReflector)
-	{
-	}
+	protected function writeBeforeTypes() { }
 	
-	private function writeMainClassConstructorClosure()
-	{
-	}
+	protected function writeType(KalturaTypeReflector $type) { }
 	
-	private function writeMainClassClosure()
-	{
-	}
-	
-	private function echoLine($text = "")
-	{
-		echo $text."\n";
-	}
-	
-	private function upperCaseFirstLetter($text)
-	{
-		if (strlen($text) > 0)
-			$text[0] = strtoupper($text[0]);
-		return $text;
-	}
+	protected function writeAfterTypes() { }
 }

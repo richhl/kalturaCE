@@ -32,9 +32,15 @@ class updateentryAction extends defPartnerservices2Action
 	public function needKuserFromPuser ( )	{		return self::KUSER_DATA_KUSER_ID_ONLY;	}
 	
 	public function requiredPrivileges () { return "edit:<kshow_id>" ; }
+
+	public function verifyEntryPrivileges ( $entry ) 
+	{
+		return $this->verifyPrivileges ( "edit" , $entry->getKshowId() ); // user was granted explicit permissions when initiatd the ks
+	}
 	
 	protected function getObjectPrefix () { return "entry"; } // TODO - fix to be entries
 
+	protected function validateInputEntry ( $entry ) {}
 	protected function validateEntry ( $entry ) {} 
 	
 	public function executeImpl ( $partner_id , $subp_id , $puser_id , $partner_prefix , $puser_kuser )
@@ -59,9 +65,13 @@ class updateentryAction extends defPartnerservices2Action
 			return;
 		}			
 		
+		$this->validateInputEntry( $entry );
+		
 		// TODO - verify the user is allowed to modify the entry
 		if ( ! $this->isOwnedBy ( $entry , $puser_kuser->getKuserId() ) )
-			$this->verifyPrivileges ( "edit" , $entry->getKshowId() ); // user was granted explicit permissions when initiatd the ks
+		{
+			$this->verifyEntryPrivileges ( $entry ); // user was granted explicit permissions when initiatd the ks
+		}
 		
 		
 		// get the new properties for the kuser from the request

@@ -79,7 +79,13 @@ class kConf
 					"api_signature" => '' , 
 					"environment" => '' ),
 				
+				"ga_account" => 'UA-7714780-3',
+				
 				"limelight_madiavault_password" => "",
+				
+				"kdpwrapper_track_url" => 'http://www.kaltura.com/tracker',
+				"kaltura_partner_id" => "KALTURACOM_PARNTER_ID",
+				"track_kdpwrapper" => true,
 		);
 	}
 	

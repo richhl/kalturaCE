@@ -8,13 +8,14 @@ if (!$page)
 	$page = 1;
 $pageSize = 12;
 
-$config = new KalturaConfiguration();
+$config = new KalturaConfiguration(PARTNER_ID);
 $config->serviceUrl = SERVER_URL;
-$client = new KalturaClient();
-$client->setConfig($config);
+$client = new KalturaClient($config);
+
+$error = "";
 try 
 {
-    $ks = $client->session->start(PARTNER_ID, ADMIN_SECRET, "USERID", KalturaSessionType::ADMIN);
+    $ks = $client->session->start(ADMIN_SECRET, "USERID", KalturaSessionType::ADMIN);
 }
 catch (Exception $ex)
 {
@@ -29,6 +30,7 @@ if (!$error)
     $pager->pageSize = $pageSize;
     $pager->pageIndex = $page;
     $filter = new KalturaMediaEntryFilter();
+	$filter->orderBy = "-createdAt";
     try 
     {
         $response = $client->media->listAction($filter, $pager);

@@ -15,11 +15,12 @@ class kConversionEngineFlix  extends kConversionEngine
 	
 	protected function getExecutionCommandAndConversionString ( kConversionCommand $conv_cmd , $params_index )
 	{
+/*		
 		$frame_rate = 25 ; // frames / second
 		$audio_bitrate = "56k";  //  kbit/s
 		$audio_sampling_rate = 22050; // in Hz
 		$audio_channels = 2; // sterio
-
+*/
 		// assume there always will be this index
 		$conv_params = @$conv_cmd->conversion_params_list[$params_index];
  /*
@@ -45,9 +46,10 @@ Usage: cli_encode [OPTION...]
 			" -w " . $conv_params->width .	" -h " . $conv_params->height ;
 		
 		$conversion_string = 		
-			" -r " . $frame_rate . 
+			self::ne ( " -r " , $conv_params->framerate ) .
 			self::ne ( " -b " , $conv_params->bitrate ) .  // make sure the integer is followed by the letter 'k'
 			self::ne ( " -k " , $conv_params->gop_size ) .
+			self::ne ( " -a " , $conv_params->audio_bitrate ) .
 			$size_arg .
 			" " . $conv_params->flix_params . " "   // extra params for flix if exist 
 			;

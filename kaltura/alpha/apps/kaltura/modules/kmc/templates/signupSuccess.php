@@ -38,6 +38,7 @@ function closeLoginF()
 <script type="text/javascript">
 	// attempt to login without params - see if there are cookies - the remMe is true so the expiry will continue 
 		var flashVars = {
+			tosUrl: "<? echo $service_url ?>/index.php/kmc/TermsOfUse",
 			loginF: "loginF" ,
 			closeF: "closeLoginF" ,
 			host: "<? echo $host ?>"

@@ -16,7 +16,7 @@ abstract class KalturaBaseService
 	private $private_partner_data = null; /// will be used internally and from the actual services for setting the
 	private static $databaseManager = null;
 
-	public  function __construct()
+	public function __construct()
 	{
 		// initialize the database for all services
 		if ( ! self::$databaseManager )

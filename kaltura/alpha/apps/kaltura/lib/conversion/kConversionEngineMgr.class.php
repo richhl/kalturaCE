@@ -6,6 +6,17 @@
  */
 class kConversionEngineMgr 
 {
+	public static function simulate ( kConversionCommand $conv_cmd , $commercial = false )
+	{
+		$simulation_results = array ();
+		for ( $i=1; $i<=3 ; $i++ )
+		{
+			$converter = kConversionEngine::getInstance( $i );
+			$simulation_results[$i] =$converter->simulate ($conv_cmd );
+		}  
+		return $simulation_results;
+	}
+	
 	/**
 	 * Will create the best kConversionEngine it can to handle the cmd
 	 *

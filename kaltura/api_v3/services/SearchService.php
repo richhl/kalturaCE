@@ -13,7 +13,6 @@ class searchService extends KalturaBaseService
 	 * Search for media in one of the supported media providers
 	 * 
 	 * @action search
-	 * @param int $partnerId
 	 * @param KalturaSearch $search A KalturaSearch object contains the search keywords, media provider and media type
 	 * @param KalturaFilterPager $pager
 	 * @return KalturaSearchResultArray
@@ -21,10 +20,9 @@ class searchService extends KalturaBaseService
 	 * @throws APIErrors::SEARCH_UNSUPPORTED_MEDIA_SOURCE
 	 * @throws APIErrors::SEARCH_UNSUPPORTED_MEDIA_TYPE
 	 */
-	public function searchAction( $partnerId , KalturaSearch $search , KalturaFilterPager $pager = null )
+	public function searchAction( KalturaSearch $search , KalturaFilterPager $pager = null )
 	{
-		if ($this->getPartnerId())
-			$partnerId = $this->getPartnerId();
+		$partnerId = $this->getPartnerId();
 			
 		if (!$search->searchSource)
 			throw new KalturaAPIException ( APIErrors::SEARCH_UNSUPPORTED_MEDIA_SOURCE , $search->searchSource );
@@ -50,7 +48,10 @@ class searchService extends KalturaBaseService
 				throw new KalturaAPIException( APIErrors::SEARCH_UNSUPPORTED_MEDIA_TYPE, $search->mediaType );
 
 			$searchResults = KalturaSearchResultArray::fromSearchResultArray( $results['objects'] , $search );
-			return $searchResults;
+			$searchResultResponse = new KalturaSearchResultResponse();
+			$searchResultResponse->objects = $searchResults;
+			$searchResultResponse->needMediaInfo = $results["needMediaInfo"];
+			return $searchResultResponse;
 		}
 	}
 	
@@ -58,15 +59,14 @@ class searchService extends KalturaBaseService
 	 * Retrieve extra information about media found in search action
 	 * Some providers return only part of the fields needed to create entry from, use this action to get the rest of the fields.
 	 * 
-	 * @action getmediainfo
-	 * @param int $partnerId
+	 * @action getMediaInfo
 	 * @param KalturaSearchResult $searchResult KalturaSearchResult object extends KalturaSearch and has all fields required for media:add
 	 * @return KalturaSearchResult
 	 *
 	 * @throws APIErrors::SEARCH_UNSUPPORTED_MEDIA_SOURCE
 	 * @throws APIErrors::SEARCH_UNSUPPORTED_MEDIA_TYPE
 	 */
-	public function getmediainfoAction( $partnerId , KalturaSearchResult $searchResult )
+	public function getMediaInfoAction( KalturaSearchResult $searchResult )
 	{
 		$mediaSourceProvider = myMediaSourceFactory::getMediaSource ( $searchResult->searchSource );
 		if ( ! $mediaSourceProvider )
@@ -93,15 +93,14 @@ class searchService extends KalturaBaseService
 	 * Kaltura supports a searchURL action on some of the media providers.
 	 * This action will return a KalturaSearchResult object based on a given URL (assuming the media provider is supported)
 	 * 
-	 * @action searchurl
-	 * @param int $partnerId
+	 * @action searchUrl
 	 * @param KalturaMediaType $mediaType
 	 * @param string $url
 	 * @return KalturaSearchResult
 	 *
 	 * @throws APIErrors::SEARCH_UNSUPPORTED_MEDIA_SOURCE_FOR_URL
 	 */
-	public function searchurlAction ( $partnerId , $mediaType , $url )
+	public function searchUrlAction ( $mediaType , $url )
 	{
 		list ( $mediaSourceProvider ,$objId ) = myMediaSourceFactory::getMediaSourceAndObjectDataByUrl( $mediaType , $url );
 		if ( ! $mediaSourceProvider )

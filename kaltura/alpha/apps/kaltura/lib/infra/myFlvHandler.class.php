@@ -657,8 +657,24 @@ class myFlvHandler
 	public function dump($chunk_size, $from_byte, $to_byte, $only_audio = false)
 	{
 		$this->validateMetadata($only_audio);
-
-		echo self::createFlvHeader();
+		
+		// find out if there are any audio tags when creating the header for a video dump
+		// otherwise flash may act in a wierd way when playing the video.
+		// for an audio dump assume there are audio tags (otherwise the dump is empty)
+		if ($only_audio)
+		{
+			$has_vtags = false;
+			$has_atags = true;
+		}
+		else
+		{
+			$vinfo = $this->validateHelper(false);
+			$ainfo = $this->validateHelper(true);
+			$has_vtags = $vinfo->hasTags();
+			$has_atags = $ainfo->hasTags();
+		}
+		
+		echo self::createFlvHeader($has_vtags, $has_atags);
 		echo $this->getMetadata($only_audio);
 	
 		if ($only_audio) // dump only audio tags

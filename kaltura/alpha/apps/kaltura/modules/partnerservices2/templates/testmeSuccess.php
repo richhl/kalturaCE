@@ -32,8 +32,8 @@ function createSelect ( $id , $name , $default_value , $list_name , $pid_str = n
 	$limited = getLimited();
 
 	//global $arrays;
-	$download_file_formats = array ( "avi" => "avi" , "mp4" => "mp4", "mov" => "mov" , "flv" => "flv" , "original" => "original" );
-	$media_type_list = array ( "1" => "Video" , "2" => "Image" , "5" => "Audio", "11" => "Document", "-1" => "Automatic" );
+	$download_file_formats = array ( "avi" => "avi" , "mp4" => "mp4", "mov" => "mov" , "flv" => "flv" , "mp3" => "mp3" , "original" => "original" );
+	$media_type_list = array ( "1" => "Video" , "2" => "Image" , "5" => "Audio", "11" => "Document", "12" => "Swf" , "-1" => "Automatic" );
 	$media_source_list = array ( "20" => "Kaltura" , "21" => "MyClips" , "23" => "KalturaPartner" , "26" => "KalturaKshow" , "27" => "KalturaPartnerKshow" , 
 									"1" => "* File" , "2" => "* Webcam" , "3" => "Flickr" , "4" => "YouTube" , "5" => "* URL" , "7" => "MySpace" , "8" =>
 									"PhotoBucket" , "9" => "Jamendo" , "10" => "CCMixter" , "11" => "NYPL" , "13" => "MediaCommons" , "22" => "Archive.org" ,
@@ -378,6 +378,7 @@ $limited = getLimited();
 		<option value="search">search</option>
 		<option value="searchfromurl">search from url</option>
 		<option value="searchmediainfo">search media info</option>
+		<option value="addsearchresult">add search result</option>
 	</optgroup>
 
 	<optgroup label="file/webcam">
@@ -405,6 +406,14 @@ $limited = getLimited();
 		<option value="updateentrymoderation">update entry moderation</option>
 		<option value="getentryroughcuts">get entry roughcuts</option>
 	</optgroup>
+	
+	<optgroup label="data entry">
+		<option value="adddataentry">add data entry</option>
+		<option value="getdataentry">get data entry</option>
+		<option value="updatedataentry">update data entry</option>
+		<option value="listdataentries">list data entries</option>
+		<option value="deletedataentry">delete data entry</option>
+	</optgroup>
 
 	<optgroup label="kshow">
 		<option value="addkshow">add kshow</option>
@@ -424,7 +433,8 @@ $limited = getLimited();
 		<option value="updateuser">update user</option>
 		<option value="deleteuser">delete user</option>
 		<option value="updateuserid">update user id</option>
-		<option value="reportuser">report user</option
+		<option value="reportuser">report user</option>
+		<option value="listusers">list users</option>
 	</optgroup>
 
 	<optgroup label="moderation">
@@ -510,6 +520,7 @@ $limited = getLimited();
 
 
 <?php 
+$multi_request_2 = null;
 if ( !@$limited ) { 
 require_once ( "testme_multirequest.php" );
 ?>
@@ -521,6 +532,7 @@ require_once ( "testme_dvdentries.php" );
 require_once ( "testme_playlists.php" );
 require_once ( "testme_conversionprofiles.php" );
 require_once ( "testme_uiconf.php" );
+require_once ( "testme_dataentries.php" );
 ?>
 
 
@@ -652,6 +664,25 @@ require_once ( "testme_uiconf.php" );
 			array ( "media_id" , "" , "20" ),
 		) ,
 
+		"addsearchresult" => array (
+			array ( "searchResult_keywords" , "" , "15" , "dogs" ),
+			array ( "searchResult_source" , "select" , "2" , "20" , "media_source" ) ,
+			array ( "searchResult_mediaType" , "select" , "2" , "" , "media_type" ) ,
+			array ( "searchResult_title" , "" , "20" ),
+			array ( "searchResult_tags" , "" , "20" ),
+			array ( "searchResult_description" , "" , "20" ),
+			array ( "searchResult_url" , "" , "20" ),
+			array ( "searchResult_thumbUrl" , "" , "20" ),
+			array ( "searchResult_sourceLink" , "" , "20" ),
+			array ( "searchResult_credit" , "" , "20" ),
+			array ( "searchResult_embedCode" , "" , "20" ),
+			array ( "searchResult_licenseType" , "" , "" , null , null  ) ,
+			array ( "searchResult_thumbUrl" , "" , "20" ),
+			array ( "searchResult_sourceLink" , "" , "20" ),
+			array ( "searchResult_credit" , "" , "20" ),
+			
+		) ,
+		
 		"searchauthdata|1" => array (
 			array ( "media_source" , "select" , "2" , "20" , "media_source" ) ,
 			array ( "username" , "" , "10" ) ,
@@ -729,6 +760,8 @@ require_once ( "testme_uiconf.php" );
 			array ( "entry_id" ),
 			array ( "file_format", "select" , "" , "" , "download_file_formats" ),
 			array ( "version" ),
+			array ( "conversion_quality", null , 20 ),			
+			array ( "force_download", "select" , "" , "" , "boolean_int_type" ),
 		),
 
 		"getadmintags|2" => array (
@@ -886,6 +919,12 @@ require_once ( "testme_uiconf.php" );
 //			array ( "moderation_objectType" , "select" , "2" , "2" , "moderation_object_type" ) ,
 			array ( "moderation_comments" , "" , "20" ),
 			array ( "moderation_reportCode" , "" , "2" ),
+		),
+		
+		"listusers|2" => array (
+			array ( "detailed" , "" , "1" ),
+			array ( "page" , "" , "2" , "1"),
+			array ( "page_size" , "" , "2" , "10" ),
 		),
 			
 		
@@ -1184,6 +1223,13 @@ require_once ( "testme_uiconf.php" );
 		"listmydvdentries|1" => $listmydvdentries ,
 		"adddvdjob|1" => $adddvdjob ,
 
+/* -------------- dataentry ----------- */		
+		"adddataentry|1" => $adddataentry,
+		"getdataentry|1" => $getdataentry,
+		"updatedataentry|1" => $updatedataentry,		
+		"listdataentries|2" => $listdataentries ,
+		"deletedataentry|2" => $deletedataentry,
+		
 /* -------------- playlists ----------- */
 		"executeplaylist|1" => $executeplaylist,
 		"executeplaylistfromcontent|2" => $executeplaylistfromcontent,

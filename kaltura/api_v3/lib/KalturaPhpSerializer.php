@@ -37,6 +37,15 @@ class KalturaPhpSerializer
 				$this->_serializedString .= serialize($object);
 			}
 		}
+		else if (is_array($object))
+		{
+		    $array = array();
+			foreach($object as $item)
+			{
+				$array[] = $this->serialize($item);					
+			}
+			$this->_serializedString .= serialize($array);
+		}
 		else 
 		{
 			$this->_serializedString .= serialize($object);			
@@ -56,9 +65,12 @@ class KalturaPhpSerializer
     	}
     	else 
     	{
-    	    foreach($object as $key => $value)
+    	    if (is_object($object))
     	    {
-    	        $object->$key = $this->convertTypedArraysToPhpArrays($object->$key);
+        	    foreach($object as $key => $value)
+        	    {
+        	        $object->$key = $this->convertTypedArraysToPhpArrays($object->$key);
+        	    }
     	    }
     	    return $object;
     	}

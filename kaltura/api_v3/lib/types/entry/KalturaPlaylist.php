@@ -4,9 +4,9 @@ class KalturaPlaylist extends KalturaBaseEntry
 {
 	/**
 	 * Content of the playlist - 
-	 * 	XML if the playlistType is dynamic 
-	 *  text if the playlistType is static 
-	 *  url if the playlistType is mRss 
+	 * XML if the playlistType is dynamic 
+	 * text if the playlistType is static 
+	 * url if the playlistType is mRss 
 	 * @var string
 	 */
 	public $playlistContent;

@@ -6,7 +6,9 @@ class Php5ClientGenerator extends ClientGeneratorBase
 		$this->writeHeader();
 
 		$this->writeBeforeTypes();
-		// types
+
+		$this->sortTypesForPhp();
+		
 		foreach($this->_types as $typeReflector)
 		{
 			$this->writeType($typeReflector);
@@ -17,18 +19,19 @@ class Php5ClientGenerator extends ClientGeneratorBase
 		foreach($this->_services as $serviceReflector)
 		{
 			$this->writeBeforeService($serviceReflector);
-			$serviceName = $serviceReflector->getServiceName();
+			$serviceId = $serviceReflector->getServiceId();
 			$actions = $serviceReflector->getActions();
 			$actions = array_keys($actions);
-			foreach($actions as $action)
+			foreach($actions as $actionId)
 			{
-				$actionInfo = $serviceReflector->getActionInfo($action);
+				$actionInfo = $serviceReflector->getActionInfo($actionId);
 				if (strpos($actionInfo->clientgenerator, "ignore") !== false)
 					continue;
 					
-				$outputTypeReflector = $serviceReflector->getActionOutputType($action);
-				$actionParams = $serviceReflector->getActionParams($action);
-				$this->writeServiceAction($serviceName, $action, $actionParams, $outputTypeReflector);				
+				$actionName = $actionInfo->action;
+				$outputTypeReflector = $serviceReflector->getActionOutputType($actionId);
+				$actionParams = $serviceReflector->getActionParams($actionId);
+				$this->writeServiceAction($serviceId, $actionName, $actionParams, $outputTypeReflector);				
 			}
 			$this->writeAfterService($serviceReflector);
 		}
@@ -85,8 +88,12 @@ class Php5ClientGenerator extends ClientGeneratorBase
 		else if (!$typeReflector->isArray())
 		{
 			// class definition
-			$properties = $typeReflector->getProperties();
-			$this->echoLine("class $type extends KalturaObjectBase");
+			$properties = $typeReflector->getCurrentProperties();
+			$parentTypeReflector = $typeReflector->getParentTypeReflector();
+			if ($parentTypeReflector)
+			    $this->echoLine("class $type extends " . $parentTypeReflector->getType());
+		    else
+			    $this->echoLine("class $type extends KalturaObjectBase");
 			$this->echoLine("{");
 			// class properties
 			foreach($properties as $property)
@@ -115,9 +122,9 @@ class Php5ClientGenerator extends ClientGeneratorBase
 			}
 			$this->echoLine();
 
-			$this->echoLine("	public function toParams()");
+			/*$this->echoLine("	public function toParams()");
 			$this->echoLine("	{");
-			$this->echoLine("		\$kparams = array();");
+			$this->echoLine("		\$kparams = parent::toParams();");
 			foreach($properties as $property)
 			{
 				$propType = $property->getType();
@@ -133,7 +140,7 @@ class Php5ClientGenerator extends ClientGeneratorBase
 				}
 			}
 			$this->echoLine("		return \$kparams;");
-			$this->echoLine("	}");
+			$this->echoLine("	}");*/
 			
 			// close class
 			$this->echoLine("}");
@@ -163,7 +170,7 @@ class Php5ClientGenerator extends ClientGeneratorBase
 		$this->echoLine("	}");
 	}
 	
-	protected function writeServiceAction($serviceName, $action, $actionParams, $outputTypeReflector)
+	protected function writeServiceAction($serviceId, $action, $actionParams, $outputTypeReflector)
 	{
 			$outputType = null;
 			if ($outputTypeReflector)
@@ -258,7 +265,7 @@ class Php5ClientGenerator extends ClientGeneratorBase
 				}
 			}
 			
-			$this->echoLine("		\$resultObject = \$this->client->callService(\"$serviceName\", \"$action\", \$kparams);");
+			$this->echoLine("		\$resultObject = \$this->client->callService(\"$serviceId\", \"$action\", \$kparams);");
 			$this->echoLine("		\$this->client->throwExceptionIfError(\$resultObject);");
 			
 			if (!$outputTypeReflector)
@@ -310,9 +317,9 @@ class Php5ClientGenerator extends ClientGeneratorBase
 	private function writeMainClassConstructorDeclaration()
 	{
 		$this->echoLine("");
-		$this->echoLine("	public function __construct()");
+		$this->echoLine("	public function __construct(KalturaConfiguration \$config)");
 		$this->echoLine("	{");
-		$this->echoLine("		parent::__construct();");
+		$this->echoLine("		parent::__construct(\$config);");
 	}
 	
 	private function writeMainClassServiceInitialization(KalturaServiceReflector $serviceReflector)
@@ -332,15 +339,42 @@ class Php5ClientGenerator extends ClientGeneratorBase
 		$this->echoLine("}");
 	}
 	
-	private function echoLine($text = "")
+	protected function echoLine($text = "")
 	{
 		echo $text."\n";
 	}
 	
-	private function upperCaseFirstLetter($text)
+	protected function upperCaseFirstLetter($text)
 	{
 		if (strlen($text) > 0)
 			$text[0] = strtoupper($text[0]);
 		return $text;
+	}
+	
+	protected function sortTypesForPhp()
+	{
+	    // types are order alphabetically, but in php, base types should be defined before inherited types
+	    $newTypesList = array();
+	    foreach ($this->_types as $typeReflector)
+	    {
+	        $parentTypeReflector = null;
+	        $tempList = array();
+	        $tempList[$typeReflector->getType()] = $typeReflector;
+	        while(true)
+	        {
+	            if ($typeReflector->getParentTypeReflector())
+	            {
+	                $typeReflector = $typeReflector->getParentTypeReflector();
+	                $tempList[$typeReflector->getType()] = $typeReflector;
+	            }
+                else
+                    break;
+	        }
+	        $tempList = array_reverse($tempList);
+	        
+	        $newTypesList = array_merge($newTypesList, $tempList);
+	    }
+	    
+	    $this->_types = $newTypesList;
 	}
 }

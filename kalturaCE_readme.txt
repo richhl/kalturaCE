@@ -1,4 +1,4 @@
-Kaltura Community Edition (KalturaCE_alpha_1.0)
+Kaltura Community Edition (KalturaCE_alpha_1.01)
 ====================
 Kaltura inc.
 For proffesional support and added services contact us at:
@@ -11,7 +11,7 @@ Sales:                  +1 (949) 7133370
 Table of Contents
 --------------------
 KalturaCE (Kaltura Community Edition)
-0.1 Alpha release
+1.01 Alpha release
 Hardware and software requirements
 Pre-Installation requirements 
 Installation
@@ -32,7 +32,7 @@ Kaltura provides additional value-added services, including: consulting, expert 
 Note that you can create a great combination of both by creating your own video solution, and leveraging some or all of Kaltura's services as well.
 The Community Edition is deployed on a single server and is available under the GNU Affero General Public License v3.
 
-0.1 Alpha release
+1.01 Alpha release
 ====================
 Server Components -
 1. Content upload, bulk upload.
@@ -88,9 +88,13 @@ Installation
 ====================
 1. Download the latest release from http://kaltura.org/project/kalturaCE.
 2. Unpack the tar file to your web root directory (e.g. tar xvfzp ./kalturaCE_{version}.tgz -C /opt/lampp/htdocs/).
-3. Create a new database create a user and grant it the necessary privileges (All privileges, except "grant").
-4. Browse to http://localhost/kalturaCE/index.php
-5. Follow the instructions on the installation wizard.
+   It is NOT RECOMMENDED to unpack on Windows and then upload to the server - symbolic links inside the tarball will be lost when unpacking on Windows
+3. If KalturaCE will be installed in a relative path to the server root, or will be installed on a subdomain
+    Copy the crossdomain.xml file (located at the root of kalturaCE) to the root of the main domain (ie. www.yourdomain.com/crossdomain.xml).
+    THIS IS IMPORTANT FOR THE FLASH COMPONENTS TO BE ABLE TO COMMUNICATE WITH THE KalturaCE INSTALLATION
+4. Create a new database create a user and grant it the necessary privileges (All privileges, except "grant").
+5. Browse to http://localhost/kalturaCE/index.php
+6. Follow the instructions on the installation wizard.
 
 Installation FAQ and known problems
 ====================

@@ -5,7 +5,7 @@ include('requirements.php');
 $requirements_stats = 0;
 $perms_script = false;
 $reqs_error = true;
-$reqs = array( 'exec', 'php52', 'phpcli', 'GD', 'DOMDocument', 'libcURL' , 'memcache', 'ffmpeg', 'mail', 'upload', 'conversions', 'archive', 
+$reqs = array( 'exec', 'php52', 'phpmysql', 'phpcli', 'GD', 'DOMDocument', 'libcURL' , 'memcache', 'ffmpeg', 'mail', 'upload', 'conversions', 'archive', 
   'logs', 'cache', 'indicators', 'batchwatch', 'content', 'appsconfig', 'alphaconfig', 'api3config', 'alphabatch', 'api3cache' );
 
 $mail_server = false;

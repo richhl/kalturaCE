@@ -12,6 +12,7 @@
   $relative_path = '';
   $server_host = '';
   $logger = new kalturaInstallerLog( $root_dir );
+  $kaltura_partner_id = '';
   
   $logger->writeLog('Setting db POST values in global variable $dbdata');
   $dbdata = array(
@@ -29,6 +30,19 @@
     $logger->writeLog('can\'t find php executable path');
     die('can\'t find php executable path');
   }
+
+  $logger->writeLog('checking if registration with kaltura.com is required');
+  if(isset($_POST['will_register']) && $_POST['will_register'] == 1)
+  {
+    $logger->writeLog('registering partner in kaltura.com');
+    $remotereg = registerPartner();
+    $logger->writeLog('registration to kaltura.com status '.PHP_EOL.$remotereg );
+    //echo $remotereg;
+  }
+  else
+  {
+    $logger->writeLog('registration with kaltura.com skipped');
+  }
   
   $logger->writeLog('starting replacement function');
   $replacement = do_file_replacements();
@@ -45,18 +59,6 @@
   $localreg = registerLocalPartner();
   $logger->writeLog('local registration status '.PHP_EOL.$localreg );
   
-  $logger->writeLog('checking if registration with kaltura.com is required');
-  if(isset($_POST['will_register']) && $_POST['will_register'] == 1)
-  {
-    $logger->writeLog('registering partner in kaltura.com');
-    $remotereg = registerPartner();
-    $logger->writeLog('registration to kaltura.com status '.PHP_EOL.$remotereg );
-    //echo $remotereg;
-  }
-  else
-  {
-    $logger->writeLog('registration with kaltura.com skipped');
-  }
   run_batch();
   set_installed();
 ?>
@@ -346,7 +348,7 @@ function replace_database_ini()
   
   $logger->writeLog('all replacement strings found in database.ini, going to replace');
   $replace_from = array ('KALTURA_DB_HOST', 'KALTURA_DB_NAME', 'KALTURA_DB_USER', 'KALTURA_DB_PASS', 'KALTURA_DB_PORT');
-  $replace_to = array ($dbdata['host'], $dbdata['name'], $dbdata['user'], $dbdata['pass'], $dbdata['port']);
+  $replace_to = array ($dbdata['host'], $dbdata['name'], $dbdata['user'], addslashes($dbdata['pass']), $dbdata['port']);
 
   $logger->writeLog('replacing to values: '. print_r($dbdata,true));
   $db_ini_new = str_replace($replace_from, $replace_to, $db_ini);
@@ -397,7 +399,7 @@ function replace_db_yml()
   $logger->writeLog('all replacement strings found in databases.yml, going to replace');
   
   $replace_from = array ('KALTURA_DB_HOST', 'KALTURA_DB_NAME', 'KALTURA_DB_USER', 'KALTURA_DB_PASS', 'KALTURA_DB_PORT');
-  $replace_to = array ($dbdata['host'], $dbdata['name'], $dbdata['user'], $dbdata['pass'], $dbdata['port']);
+  $replace_to = array ($dbdata['host'], $dbdata['name'], $dbdata['user'], addslashes($dbdata['pass']), $dbdata['port']);
 
   $logger->writeLog('replacing to values: '. print_r($dbdata,true));
   $db_yml_new = str_replace($replace_from, $replace_to, $db_yml);
@@ -416,7 +418,7 @@ function replace_db_yml()
 
 function replace_kConf()
 {
-  global $logger, $alpha_dir,$relative_path,$root_dir, $template_files, $server_host;
+  global $logger, $alpha_dir,$relative_path,$root_dir, $template_files, $server_host, $kaltura_partner_id;
   $kconf_path = $template_files['kConf.php']['source'];
   $kconf_target_path = $template_files['kConf.php']['target'];
   $kconf = file_get_contents($kconf_path);
@@ -475,19 +477,21 @@ function replace_kConf()
   if (!strpos($kconf, 'KALTURA_HOST') ||
       !strpos($kconf, 'KALTURA_CDN') ||
       !strpos($kconf, 'KALTURA_SYSTEM_USERNAME') ||
-      !strpos($kconf, 'KALTURA_SYSTEM_PASSWORD'))
+      !strpos($kconf, 'KALTURA_SYSTEM_PASSWORD') ||
+      !strpos($kconf, 'KALTURACOM_PARNTER_ID'))
   {
     $logger->writeLog('replacement strings not found.');
     $logger->writeLog('kConf.php - KALTURA_HOST: '.strpos($kconf, 'KALTURA_HOST'));
     $logger->writeLog('kConf.php - KALTURA_CDN: '.strpos($kconf, 'KALTURA_CDN'));
     $logger->writeLog('kConf.php - KALTURA_SYSTEM_USERNAME: '.strpos($kconf, 'KALTURA_SYSTEM_USERNAME'));
     $logger->writeLog('kConf.php - KALTURA_SYSTEM_PASSWORD: '.strpos($kconf, 'KALTURA_SYSTEM_PASSWORD'));
+    $logger->writeLog('kConf.php - KALTURACOM_PARNTER_ID: '.strpos($kconf, 'KALTURACOM_PARNTER_ID'));
     return '<div class="install failed">kConf.php.template doesn\'t contain the correct replacement strings</div>';
   }
   
   $logger->writeLog('replacement string found, replacing...');
-  $replace_from = array ('KALTURA_HOST', 'KALTURA_CDN', 'KALTURA_SYSTEM_USERNAME', 'KALTURA_SYSTEM_PASSWORD');
-  $replace_to = array ($host, $cdnhost, $_POST['email'], sha1($_POST['password']));
+  $replace_from = array ('KALTURA_HOST', 'KALTURA_CDN', 'KALTURA_SYSTEM_USERNAME', 'KALTURA_SYSTEM_PASSWORD', 'KALTURACOM_PARNTER_ID');
+  $replace_to = array ($host, $cdnhost, $_POST['email'], sha1($_POST['password']), $kaltura_partner_id);
   $kconf_new = str_replace($replace_from, $replace_to, $kconf);
   
   $logger->writeLog('replacement done, going to write target in: '.$kconf_target_path);
@@ -504,7 +508,7 @@ function replace_kConf()
 
 function registerPartner()
 {
-  global $logger;
+  global $logger,$kaltura_partner_id;
     $session_user = KalturaSettings::getKalturaSessionUser();
     
     $partner = new KalturaPartner;
@@ -530,6 +534,7 @@ function registerPartner()
     
     if ($response['result']['partner'])
     {
+        $kaltura_partner_id = $response['result']['partner']['id'];
         $response['result']['partner']['cmsPassword'] = $response['result']['cms_password'];
 	return format_success($response['result']['partner']);
     }
@@ -557,7 +562,7 @@ function registerLocalPartner()
     $partner->describeYourself = $_POST['describe_yourself'];
     $partner->adultContent = $_POST['adult_content'];
     
-    $conf = KalturaSettings::getKalturaConf( 'http://127.0.0.1'.$relative_path );
+    $conf = KalturaSettings::getKalturaConf( $server_host );
     $client = new KalturaClient( $conf );
     $response = $client->hit('ping', $session_user, array() );
     $logger->writeLog('pinged server. response: '.print_r($response,true));

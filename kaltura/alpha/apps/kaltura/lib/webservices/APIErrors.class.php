@@ -175,5 +175,7 @@
 		const CANNOT_DOWNGRADE_PACKAGE = "CANNOT_DOWNGRADE_PACKAGE,Downgrading package is impossible";
 
 		const CANNOT_USE_ENTRY_TYPE_AUTO_IN_IMPORT = "CANNOT_USE_ENTRY_TYPE_AUTO_IN_IMPORT,entry_type -1 (Auto) can be used only when source is file (1)";
+		
+		const NO_FIELDS_SET_FOR_SEARCH_RESULT = "NO_FIELDS_SET_FOR_SEARCH_RESULT,Missing fiedls when adding SearchResult" ;		
 	}
 ?>

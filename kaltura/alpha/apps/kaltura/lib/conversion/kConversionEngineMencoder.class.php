@@ -15,11 +15,12 @@ class kConversionEngineMencoder  extends kConversionEngine
 	
 	protected function getExecutionCommandAndConversionString ( kConversionCommand $conv_cmd , $params_index )
 	{
+/*		
 		$frame_rate = 25 ; // frames / second
 		$audio_bitrate = "56";  //  kbit/s
 		$audio_sampling_rate = 22050; // in Hz
 		$audio_channels = 2; // sterio
-
+*/
 		// assume there always will be this index
 		$conv_params = @$conv_cmd->conversion_params_list[$params_index];
 
@@ -29,8 +30,10 @@ class kConversionEngineMencoder  extends kConversionEngine
 		
 		$conversion_string = "" .
 			" -of lavf " .
-			" -ofps $frame_rate " .
-			" -oac mp3lame -lameopts abr:br=$audio_bitrate -srate $audio_sampling_rate " ;
+			self::ne ( " -ofps " , $conv_params->framerate ) .
+			" -oac mp3lame " . 
+			self::ne (  " -lameopts abr:br=" , $conv_params->audio_bitrate ) . 
+			self::ne ( " -srate " , $conv_params->audio_sampling_rate  ) ;
 		
 		if ( $conv_params->audio )  // if has audio 
 		{
@@ -48,6 +51,7 @@ class kConversionEngineMencoder  extends kConversionEngine
 			$conversion_string .= " -ovc frameno ";
 		}
 
+		$conversion_string .= $conv_params->mencoder_params;
 		// from the new version of mencoder and onwards - no need to use this flag
 //		$conversion_string .= " -lavfopts i_certify_that_my_video_stream_does_not_use_b_frames " ;
 

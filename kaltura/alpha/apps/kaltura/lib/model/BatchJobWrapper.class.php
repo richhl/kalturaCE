@@ -4,7 +4,7 @@ class BatchJobWrapper extends objectWrapperBase
 
 	protected $basic_fields = array ( "id" , "jobType" , "jobSubType"  );
 	
-	protected $regular_fields_ext = array ( "data" , "status" , "abort" , "progress" , "message", "description" ,  "updatesCount" , "createdAt" , "updatedAt" );
+	protected $regular_fields_ext = array ( "data" , "status" , "abort" , "progress" , "message", "description" ,  "updatesCount" , "createdAt" , "updatedAt" , "entryId" );
 	
 	protected $detailed_fields_ext = array ();
 	

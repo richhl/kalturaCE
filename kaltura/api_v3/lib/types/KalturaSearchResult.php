@@ -51,9 +51,22 @@ class KalturaSearchResult extends KalturaSearch
 	 */
 	public $licenseType;
 	
+	/**
+	 * @var string
+	 */
+	public $flashPlaybackType;
+	
 	private static $map_between_objects = array
 	(
-		"id" , "title" , "thumbUrl" => "thumb" , "description" , "tags" , "url" , "sourceLink" => "source_link" , "credit" , "licenseType" => "license" ,
+		"id" , 
+		"title" , 
+		"thumbUrl" => "thumb" , 
+		"description" , "tags" , 
+		"url" , 
+		"sourceLink" => "source_link" , 
+		"credit" , 
+		"licenseType" => "license" ,
+	    "flashPlaybackType" => "flash_playback_type"
 	);
 	
 	public function getMapBetweenObjects ( )
