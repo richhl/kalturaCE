@@ -324,9 +324,9 @@ $edit_only=true will be used when ffmpeg is used to create the second flavor aft
 		}
 
 		// I have commented out the audio parameters so we don't decrease the quality - it stays as-is
-		$exec_cmd = kConversionEngineFfmpeg::getCmd() . " -i " . $source_file .
+		$exec_cmd = kConversionEngineFfmpeg::getCmd() . " -i " . "\"$source_file\"" .
 		$conversion_string .
-		" $target_file  $conversion_string_2  $target_file_2  2" . ">>" . "\"$text_output_file\"";
+		" \"$target_file\"  $conversion_string_2  \"$target_file_2\"  2" . ">>" . "\"$text_output_file\"";
 
 //TRACE ( "This is what will be executed:\n$exec_cmd" );
 		
@@ -465,9 +465,9 @@ $edit_only=true will be used when ffmpeg is used to create the second flavor aft
 
 		$text_output_file = kFile::fixPath( $text_output_file );
 
-		$exec_cmd = kConversionEngineFfmpeg::getCmd() . ( $override_output ? " -y " : "" ) . " -benchmark -i " . $source_file . " " .
+		$exec_cmd = kConversionEngineFfmpeg::getCmd() . ( $override_output ? " -y " : "" ) . " -benchmark -i " . "\"$source_file\"" . " " .
 		$params .
-		" " . $target_file . " 2>" . $text_output_file;
+		" " . "\"$target_file\"" . " 2>" . $text_output_file;
 
 		//echo ( $target_file . "\n" );
 		//		echo ( "\n\n" . $exec_cmd . "\n");
@@ -533,8 +533,8 @@ $edit_only=true will be used when ffmpeg is used to create the second flavor aft
 		// deinterlace - deinterlace pictures
 		$position_str = $position ? " -ss $position " : "";
 		$dimensions = ($width == -1 || $height == -1) ? "" : ("-s ". $width ."x" . $height);
-		$exec_cmd = kConversionEngineFfmpeg::getCmd() . " -i " . $source_file . " -an -y -r 1 " . $dimensions .
-		" " . $position_str . " -vframes $frame_count -f \"" . $target_type . "\" " . $target_file . " 2>&1";
+		$exec_cmd = kConversionEngineFfmpeg::getCmd() . " -i " . "\"$source_file\"" . " -an -y -r 1 " . $dimensions .
+		" " . $position_str . " -vframes $frame_count -f \"" . $target_type . "\" " . "\"$target_file\"" . " 2>&1";
 
 		$output = array ();
 		$return_value = "";
@@ -663,7 +663,7 @@ $edit_only=true will be used when ffmpeg is used to create the second flavor aft
 		{
 			$output = array();
 			$jpeg_file = myContentStorage::getFSUploadsPath(true).pathinfo($source_file, PATHINFO_FILENAME).".jpg";
-			exec( kConf::get ( "bin_path_imagemagick") . " $source_file $jpeg_file", $output);
+			exec( kConf::get ( "bin_path_imagemagick") . " \"$source_file\" \"$jpeg_file\"", $output);
 			if (file_exists($jpeg_file))
 			{
 				list($sourcewidth, $sourceheight, $type, $attr) = getimagesize($jpeg_file);

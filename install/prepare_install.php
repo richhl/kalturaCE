@@ -74,8 +74,9 @@ $status = verifyRequirements();
     <?php if ($requirements_stats == count($reqs)): ?>
         <input type="button" value="< Back " onclick="history.back();" /> &nbsp; <input type="button" value=" Continue Installation >" onclick="location.href='database_info.php'" />
     <?php else: ?>
-    <input type="button" value="Check Again" onclick="location.href='prepare_install.php'>" />
-    
+    <input type="button" value="Check Again" onclick="location.reload(true);" />
+    <!-- Codes by Quackit.com -->
+
     <?php endif; ?>
   </div>  
 

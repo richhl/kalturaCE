@@ -273,13 +273,13 @@ function write_sfrootdir_file()
   $sfrootdir_file_path = $alpha_dir.'config/sfrootdir.php';
   $bin_path = realpath($alpha_dir);
   $real_root_dir = $bin_path;
-  if(PHP_OS != 'Linux')
+  if(PHP_OS != 'Linux' && PHP_OS != 'Darwin' && substr_count(strtolower(PHP_OS), 'win'))
   {
     exec("cmd /c for /d %i in (\"$bin_path\") do @echo %~si", $output, $error);
     $real_root_dir = trim($output[0]);
   }
-  $sfrootdir_content = '<?php'.PHP_EOL.'define(\'SF_ROOT_DIR\', \''.$real_root_dir.'\');'.PHP_EOL.'?>';
-  $result = file_put_contents($sfrootdir_file_path, $sfrootdir_content);
+  $sfrootdir_content = '&lt;?php'.PHP_EOL.'define(\'SF_ROOT_DIR\', \''.$real_root_dir.'\');'.PHP_EOL.'?&gt;';
+  $result = file_put_contents($sfrootdir_file_path, html_entity_decode($sfrootdir_content));
   if (!$result)
   {
     // report error to kaltura

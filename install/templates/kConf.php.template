@@ -21,6 +21,7 @@ class kConf
 				"cdn_host" => "KALTURA_CDN",
 				
 				"kaltura_installation_type" => "CE",
+				"enable_cache" => false,
 				
 				"corp_action_redirect" => "KALTURA_HOST",
 				

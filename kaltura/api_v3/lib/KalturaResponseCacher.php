@@ -1,4 +1,5 @@
 <?php
+require_once('../../alpha/config/kConf.php');
 class KalturaResponseCacher
 {
 	protected $_params = array();
@@ -13,11 +14,27 @@ class KalturaResponseCacher
 	
 	public function __construct()
 	{
+		$this->_useCache = kConf::get('enable_cache');
 		if (!$this->_useCache)
 			return;
 			
 		$params = $_GET + $_POST;
 		
+		// check the clientTag parameter for a cache start time (cache_st:<time>) directive
+		if (isset($params['clientTag']))
+		{
+			$clientTag = $params['clientTag'];
+			$matches = null;
+			if (preg_match("/cache_st:(\d+)/", $clientTag, $matches))
+			{
+				if ($matches[1] > time())
+				{
+					$this->_useCache = false;
+					return;
+				}
+			}
+		}
+				
 		if (isset($params['nocache']))
 		{
 			$this->_useCache = false;
@@ -27,6 +44,7 @@ class KalturaResponseCacher
 		$this->_ks = isset($params['ks']) ? $params['ks'] : ''; 
 		unset($params['ks']);
 		unset($params['kalsig']);
+		unset($params['clientTag']);
 		
 		$this->_params = $params;
 		$ksData = $this->getKsData();

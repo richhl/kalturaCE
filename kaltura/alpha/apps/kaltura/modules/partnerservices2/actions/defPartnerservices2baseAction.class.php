@@ -45,7 +45,10 @@ class defPartnerservices2baseAction extends kalturaAction
 		}
 
 		// uncomment in order to cache api responses
-    	$this->cacheResponse($response);
+	if(kConf::get('enable_cache'))
+	{
+		$this->cacheResponse($response);
+	}
 
         return $this->renderText( $response );
 	}
