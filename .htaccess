@@ -1,0 +1,86 @@
+<IfModule mod_php5.c>
+  php_value upload_max_filesize 1100M
+  php_value post_max_size 1100M
+  php_value file_uploads 1
+  php_value memory_limit 32M
+  php_value magic_quotes_gpc 0
+</IfModule>
+
+Options +followSymLinks
+
+<IfModule mod_headers.c>
+# IE8 download compatiblity
+Header set X-UA-Compatible "IE=EmulateIE7"
+</IfModule>
+
+DirectoryIndex index.php
+RewriteEngine on
+
+RewriteRule ^p/[0-9]+/sp/[0-9]+/thumbnail/(.*)$ index.php/extwidget/thumbnail/$1 [L]
+RewriteRule ^p/[0-9]+/thumbnail/(.*)$ index.php/extwidget/thumbnail/$1 [L]
+
+RewriteRule ^p/[0-9]+/sp/[0-9]+/raw/(.*)$ index.php/extwidget/raw/$1 [L]
+RewriteRule ^p/[0-9]+/raw/(.*)$ index.php/extwidget/raw/$1 [L]
+
+RewriteRule ^downloadUrl(.*)$ index.php/extwidget/downloadUrl/$1 [L]
+RewriteRule ^entryPage(.*)$ index.php/extwidget/entryPage/$1 [L]
+RewriteRule ^userPage(.*)$ index.php/extwidget/userPage/$1 [L]
+
+RewriteRule ^p/[0-9]+/sp/[0-9]+/flvclipper/(.*)$ index.php/keditorservices/flvclipper/$1 [L]
+RewriteRule ^p/[0-9]+/flvclipper/(.*)$ index.php/keditorservices/flvclipper/$1 [L]
+RewriteRule ^flvclipper/(.*)$ index.php/keditorservices/flvclipper/$1 [L]
+
+RewriteRule ^s/p/[0-9]+/sp/[0-9]+/flvclipper/(.*)$ index.php/keditorservices/flvclipper/$1 [L]
+RewriteRule ^s/p/[0-9]+/flvclipper/(.*)$ index.php/keditorservices/flvclipper/$1 [L]
+RewriteRule ^s/flvclipper/(.*)$ index.php/keditorservices/flvclipper/$1 [L]
+
+RewriteRule ^p/[0-9]+/sp/[0-9]+/flv/(.*)$ index.php/flv/$1 [L]
+RewriteRule ^p/[0-9]+/flv/(.*)$ index.php/flv/$1 [L]
+
+RewriteRule ^p/[0-9]+/sp/[0-9]+/kpreloader/(.*)$ index.php/extwidget/kpreloader/$1 [L]
+RewriteRule ^p/[0-9]+/kpreloader/(.*)$ index.php/extwidget/kpreloader/$1 [L]
+RewriteRule ^kpreloader/(.*)$ index.php/extwidget/kpreloader/$1 [L]
+
+RewriteRule ^p/[0-9]+/sp/[0-9]+/swf/(.*)$ swf/$1 [L]
+RewriteRule ^p/[0-9]+/swf/(.*)$ swf/$1 [L]
+
+RewriteRule ^p/[0-9]+/sp/[0-9]+/demos/(.*)$ demos/$1 [L]
+RewriteRule ^p/[0-9]+/demos/(.*)$ demos/$1 [L]
+
+RewriteRule ^p/[0-9]+/sp/[0-9]+/flash/(.*)$ flash/$1 [L]
+RewriteRule ^p/[0-9]+/flash/(.*)$ flash/$1 [L]
+
+RewriteRule ^kwidget/(.*)$ index.php/extwidget/kwidget/$1 [L]
+RewriteRule ^kcw/(.*)$ index.php/extwidget/kcw/$1 [L]
+RewriteRule ^kse/(.*)$ index.php/extwidget/kse/$1 [L]
+RewriteRule ^kae/(.*)$ index.php/extwidget/kae/$1 [L]
+RewriteRule ^kupload/(.*)$ index.php/extwidget/kupload/$1 [L]
+
+RewriteRule ^api/(.*)$ index.php/partnerservices2/$1 [L]
+
+RewriteRule ^p/[0-9]+/content/(.*)$ content/$1 [L]
+RewriteRule ^p/[0-9]+/sp/[0-9]+/content/(.*)$ content/$1 [L]
+
+RewriteRule ^extservices/(.*)$ index.php/extservices/$1 [L]
+
+# redirect collectstats to nothing.php
+#RewriteRule ^(.*)/collectstats nothing.php [L]
+
+# rewrite rule for an errornous url from myspace - fetch a 1-pixel.gif
+RewriteRule ^(.*)entry/widget/(.*) /images/blank_one_pixel.gif [L]
+
+RewriteRule ^lib/(.*)$ kaltura/alpha/web/lib/$1 [L]
+
+# rewrite rules for old links
+RewriteRule ^swf/(.*)$ kaltura/alpha/web/OLD_PATHS/web/swf/$1 [L]
+RewriteRule ^simpleswf/(.*)$ kaltura/alpha/web/OLD_PATHS/web/simpleswf/$1 [L]
+RewriteRule ^images/(.*)$ kaltura/alpha/web/OLD_PATHS/web/images/$1 [L]
+RewriteRule ^js/(.*)$ kaltura/alpha/web/OLD_PATHS/web/js/$1 [L]
+RewriteRule ^css/(.*)$ kaltura/alpha/web/OLD_PATHS/web/css/$1 [L]
+
+RewriteRule ^api_v3/(.*)$ kaltura/api_v3/web/$1
+RewriteRule ^index.php/(.*)$ kaltura/alpha/web/index.php/$1
+RewriteRule ^kaltura/alpha/web/js/(.*)$ kaltura/alpha/web/OLD_PATHS/web/js/$1
+RewriteRule ^kaltura/alpha/web/css/(.*)$ kaltura/alpha/web/OLD_PATHS/web/css/$1
+RewriteRule ^kaltura/alpha/web/swf/(.*)$ kaltura/alpha/web/OLD_PATHS/web/swf/$1
+
