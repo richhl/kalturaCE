@@ -1,0 +1,14 @@
+[propel]
+database.phptype 			= mysql
+database.host 				= KALTURA_DB_HOST:KALTURA_DB_PORT
+database.database 			= KALTURA_DB_NAME
+database.username 			= KALTURA_DB_USER
+database.password 			= KALTURA_DB_PASS
+database.compat_assoc_lower = true
+database.datasource 		= propel
+
+[propel2 : propel]
+database.host				= KALTURA_DB_HOST:KALTURA_DB_PORT
+
+[propel3 : propel]
+database.host				= KALTURA_DB_HOST:KALTURA_DB_PORT

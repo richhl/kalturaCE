@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class adminuserService</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<script src="../../jquery-1.3.1.min.js"></script>
+						<script src="../../kaltura_custom_inner.js"></script>
+						<link rel="stylesheet" href="../../kaltura.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../../media/images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> adminuserService</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">adminuser service</p>
+		<p class="notes">
+			Located in <a class="field" href="_services---AdminUserService.php.html">/services/AdminUserService.php</a> (line <span class="field">9</span>)
+		</p>
+		
+				
+		<pre><a href="../../api/services/KalturaBaseService.html">KalturaBaseService</a>
+   |
+   --adminuserService</pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																								<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../api/objects/KalturaAdminLoginResponse.html">KalturaAdminLoginResponse</a></span>
+										<a href="#loginAction" title="details" class="method-name">loginAction</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$email</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">string</span>
+										<a href="#resetPasswordAction" title="details" class="method-name">resetPasswordAction</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$email</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result"><a href="../../api/objects/KalturaAdminUser.html">KalturaAdminUser</a></span>
+										<a href="#updatePasswordAction" title="details" class="method-name">updatePasswordAction</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$email</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$newEmail</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$newPassword</span> = <span class="var-default">&quot;&quot;</span>])
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+													<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="methodloginAction" id="loginAction"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">loginAction</span> (line <span class="line-number">85</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Login to KMC application</p>
+	<ul class="tags">
+						<li><span class="field">throws:</span> APIErrors::ADMIN_KUSER_NOT_FOUND</li>
+								<li><span class="field">throws:</span> APIErrors::UNKNOWN_PARTNER_ID</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../api/objects/KalturaAdminLoginResponse.html">KalturaAdminLoginResponse</a></span>
+		<span class="method-name">
+			loginAction
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$email</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$email</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$password</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodresetPasswordAction" id="resetPasswordAction"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">resetPasswordAction</span> (line <span class="line-number">63</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Reset AdminUser password</p>
+	<ul class="tags">
+						<li><span class="field">throws:</span> APIErrors::ADMIN_KUSER_NOT_FOUND</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			resetPasswordAction
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$email</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$email</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodupdatePasswordAction" id="updatePasswordAction"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">updatePasswordAction</span> (line <span class="line-number">33</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Update AdminUser password and email</p>
+	<ul class="tags">
+						<li><span class="field">throws:</span> APIErrors::INVALID_FIELD_VALUE</li>
+								<li><span class="field">throws:</span> APIErrors::ADMIN_KUSER_WRONG_OLD_PASSWORD</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../../api/objects/KalturaAdminUser.html">KalturaAdminUser</a></span>
+		<span class="method-name">
+			updatePasswordAction
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$email</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$password</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$newEmail</span> = <span class="var-default">&quot;&quot;</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$newPassword</span> = <span class="var-default">&quot;&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$email</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$password</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$newEmail</span><span class="var-description">: Optional, provide only when you want to update the email</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$newPassword</span>			</li>
+				</ul>
+		
+			
+	</div>
+							<h4>Inherited Methods</h4>
+				<a name='inherited_methods'><!-- --></a>	
+									<!-- =========== Summary =========== -->
+					<p>Inherited From <span class="classname"><a href="../../api/services/KalturaBaseService.html">KalturaBaseService</a></span></p>
+					<blockquote>
+													<img src="../../media/images/Constructor.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#method__construct">KalturaBaseService::__construct()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodapplyPartnerFilterForClass">KalturaBaseService::applyPartnerFilterForClass()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodgetKs">KalturaBaseService::getKs()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodgetKsUniqueString">KalturaBaseService::getKsUniqueString()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodgetPartner">KalturaBaseService::getPartner()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodgetPartnerId">KalturaBaseService::getPartnerId()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodgetPuserKuser">KalturaBaseService::getPuserKuser()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodinitService">KalturaBaseService::initService()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodkalturaNetwork">KalturaBaseService::kalturaNetwork()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodmatchIp">KalturaBaseService::matchIp()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodpartnerGroup">KalturaBaseService::partnerGroup()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodrequirePartner">KalturaBaseService::requirePartner()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodticketType">KalturaBaseService::ticketType()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#methodvalidateTicketSetPartner">KalturaBaseService::validateTicketSetPartner()</a></span><br>
+													<img src="../../media/images/Method.png" alt=" "/>
+							<span class="method-name"><a href="../../api/services/KalturaBaseService.html#method__destruct">KalturaBaseService::__destruct()</a></span><br>
+											</blockquote>
+										
+		</div>
+	</div>
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 06 Apr 2009 18:09:32 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
+	</p>
+	</div></body>
+</html>

@@ -1,0 +1,5 @@
+#!/bin/bash
+KALTURA_BIN="$(cd "${0%/*}" 2>/dev/null; echo "$PWD")"
+KALTURA_BIN_DIRS=$KALTURA_BIN/latest-dir
+KALTURA_BIN_FFMPEG=$KALTURA_BIN_DIRS/ffmpeg
+LD_LIBRARY_PATH=$KALTURA_BIN_FFMPEG $KALTURA_BIN_FFMPEG/ffmpeg "$@"

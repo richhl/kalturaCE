@@ -1,0 +1,85 @@
+* { margin:0; padding:0;}
+body { margin: 6px 15px; background: #f7f7f7 url(../images/bg.png) repeat-x; font: normal 62.5% arial,sans-serif; }
+
+h2 { margin-bottom:11px; font-size:14px; color:#4B8093;}
+h3 { padding:0 0 10px 0; width:760px; }
+h4 { font-size:16px; font-weight:bold; color:#000; }
+h5 { font-size:14px; margin:0px; padding:0px; text-decoration:underline; }
+p { font-size:11px;}
+
+a { color:#009ACC;}
+a:active { outline:none; color:#009ACC;}
+
+li { list-style-type:square; margin: 5px 16px; color:#4B8093; font: bold 11px arial,sans-serif;}
+/* li div, li p, li td { font-weight:normal;} */
+ li ul { margin-bottom:11px;}
+  li ul li { font-weight:normal; list-style-type:disc; color:#333; }
+
+table { border: solid 1px #CFD7D7;}
+ table th { padding: 5px 10px 5px 5px; border: solid 1px #CFD7D7; border-rights: solid 1px #fff; background: #F1F1F1 url(../images/bg_th.png) repeat-x; font-size:11px; color:#29464E; text-align:left; cursor:help;}
+ table td { padding:5px; font-size:11px; background:#fff;}
+  table tr.even td { background:#E2E2E2;}
+ 
+
+
+div.server_settings table tr td { vertical-align:top; }
+div.server_settings table tr td div.desc { font-size:12px; color:#000; margin-top:13px; }
+
+div#content div.login { padding-bottom:20px; }
+form.loginform label { display:block; float:left; width:90px; margin-bottom:10px; }
+form.loginform input { margin-bottom:10px; } 
+    
+.login-error { color:#FF6666; font-weight:bold; }
+
+span.value.error {background-color:#FF6666; font-weight:normal; }
+span.value.passed { background-color:#66FF66; font-weight:normal; } 
+
+ul li.title { font-weight:bold; list-style-type:none;}
+ul li.error_message { list-style-type:none;}
+div.smtp_status { margin-bottom: 25px; }
+.all_batch_control { padding-bottom:10px; }
+.all_batch_control h5 { padding-bottom:5px; }
+.all_batch_control a { padding-left:18px; height:22px; display:block; float:left; padding-right:10px;  }
+.all_batch_control a.startAll { background:url('../images/play.png') no-repeat top left;  }
+.all_batch_control a.stopAll {background:url('../images/stop_playing.png') no-repeat top left; }
+.all_batch_control a.restartAll {background:url('../images/refresh.png') no-repeat top left; }
+
+table.batchwatch_table tr td span.tip { font-weight:normal; }
+div.intro { font-size:14px; }
+
+#descriptions div { display:none; font-size:14px;}
+div.status_summary a { font-size:14px; }
+/*table.entries_table th { background: #777 url('../images/show_info.png') no-repeat top left; }*/
+
+table.investigate td span.tooltip,
+table.entries_table th span.tooltip,
+table.entries_table td span.tooltip { font-weight:normal; text-align:left; color:#000; display:none; position:absolute; background:#fffbcc; margin-left:5px; padding:10px; width:200px; }
+
+table.notifications { margin-bottom: 100px; }
+
+#kmcSubMenu { display:table; margin-bottom:27px;}
+ #kmcSubMenu li { float:left; display:inline; list-style: none inside none; padding-left:9px; height:19px;}
+  #kmcSubMenu li a, #kmcSubMenu li a:active, #kmcSubMenu li a:visited { height:19px; padding: 1px 12px 0 4px; display:block; font: bold 12px arial,sans-serif; color:#666; text-decoration:none;}
+  #kmcSubMenu li a:hover { color:#000;}
+#kmcSubMenu li.active { margin-top:1px; background:url(../images/jellybean.png) 0 0 no-repeat;}
+#kmcSubMenu li.active a { font-weights:normal; color:#fff; background:url(../images/jellybean.png) right 0 no-repeat;}
+
+
+#pager { padding: 15px 0 10px; color:#444;}
+ #pager a { text-decoration:none; color:#000;}
+  #pager a:hover { font-weight:bold; text-decoration:underline;}
+
+ td div { background:white; padding: 1px 3px;}
+  td div.import { background:yellow;}
+  td div.error { background:red;}
+  td div.preconvert { background:orange;}
+  td div.ready { background:green;}
+  td div.deleted { background:#ffadf9;}
+  td div.moderate { background:#0aff52;}
+  td div.blocked { background:#ff7271;}
+                                
+  td.duration { text-align:center;}
+  
+  #howwhen, #form1 {display:none;}
+  
+  div.clear-fix { clear:both; }

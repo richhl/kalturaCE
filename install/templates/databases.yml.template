@@ -1,0 +1,42 @@
+# KALTURA-INSTALL
+all: 
+  propel: 
+    class:                sfPropelDatabase 
+    param: 
+      phptype:            mysql
+      host:               KALTURA_DB_HOST:KALTURA_DB_PORT
+      database:           KALTURA_DB_NAME
+      username:           KALTURA_DB_USER
+      password:           KALTURA_DB_PASS
+      compat_assoc_lower: true
+      datasource:       propel
+#      persistent:         true
+#      pooling:            true      
+      
+      
+  propel2: 
+    class:                sfPropelDatabase 
+    param: 
+      phptype:            mysql
+      host:               KALTURA_DB_HOST:KALTURA_DB_PORT
+      database:           KALTURA_DB_NAME
+      username:           KALTURA_DB_USER
+      password:           KALTURA_DB_PASS
+      compat_assoc_lower: true
+      datasource:       propel2
+#      persistent:         true
+#      pooling:            true      
+      
+      
+  propel3: 
+    class:                sfPropelDatabase 
+    param: 
+      phptype:            mysql
+      host:               KALTURA_DB_HOST:KALTURA_DB_PORT
+      database:           KALTURA_DB_NAME
+      username:           KALTURA_DB_USER
+      password:           KALTURA_DB_PASS
+      compat_assoc_lower: true
+      datasource:       propel3
+#      persistent:         true
+#      pooling:            true

@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<xml>
+  <MetaData>
+    <Publish>
+      <Application>kalturaAdvancedEditor</Application>
+    </Publish>
+    <SeqDuration>27.873</SeqDuration>
+    <ShowVersion>100003</ShowVersion>
+    <ThumbUrl>http://localhost/p/1/sp/100/thumbnail/entry_id/vcnp8h76m8/version/100001</ThumbUrl>
+  <KuserId>1</KuserId><PuserId>USERID</PuserId><ScreenName>_1_USERID</ScreenName><UpdatedAt>1240847561</UpdatedAt></MetaData>
+  <VideoAssets>
+    <vidAsset k_id="vcnp8h76m8" type="VIDEO" name="Demo Movie 1" url="http://localhost/flvclipper/entry_id/vcnp8h76m8/clip_from/0/clip_to/4000/flavor/0">
+      <StreamInfo file_name="/content/entry/data/0/0/vcnp8h76m8_100000.flv" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="687124" real_seek_time="0.000" start_time="0" len_time="4.78" volume="50" pan="0" isSingleFrame="0" Clipped_Start="0" Clipped_Len="4.78" start_byte_play="496" end_byte_play="687619" real_start_byte="0" real_end_byte="687124"/>
+      <EndTransition cross="0" type="None" StartTime="4.78" length="0"/>
+      <VolumePoints>
+        <VolumePoint time="0" volume="0.5"/>
+        <VolumePoint time="4.78" volume="0.5"/>
+      </VolumePoints>
+    </vidAsset>
+    <vidAsset k_id="1i5ojrn9ts" type="VIDEO" name="Demo Movie 2" url="http://localhost/flvclipper/entry_id/1i5ojrn9ts/clip_from/0/clip_to/4000/flavor/0">
+      <StreamInfo file_name="/content/entry/data/0/0/1i5ojrn9ts_100000.flv" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="594184" real_seek_time="4.780" start_time="0" len_time="4.598" volume="50" pan="0" isSingleFrame="0" Clipped_Start="0" Clipped_Len="4.598" start_byte_play="496" end_byte_play="594679" real_start_byte="687124" real_end_byte="1281308"/>
+      <EndTransition cross="0" type="None" StartTime="4.598" length="0"/>
+      <VolumePoints>
+        <VolumePoint time="0" volume="0.5"/>
+        <VolumePoint time="4.598" volume="0.5"/>
+      </VolumePoints>
+    </vidAsset>
+    <vidAsset k_id="s8wuba1g1k" type="VIDEO" name="Demo Movie 3" url="http://localhost/flvclipper/entry_id/s8wuba1g1k/clip_from/0/clip_to/6000/flavor/0">
+      <StreamInfo file_name="/content/entry/data/0/0/s8wuba1g1k_100000.flv" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="822868" real_seek_time="9.378" start_time="0" len_time="6.322" volume="50" pan="0" isSingleFrame="0" Clipped_Start="0" Clipped_Len="6.322" start_byte_play="496" end_byte_play="823363" real_start_byte="1281308" real_end_byte="2104176"/>
+      <EndTransition cross="0" type="None" StartTime="6.322" length="0"/>
+      <VolumePoints>
+        <VolumePoint time="0" volume="0.5"/>
+        <VolumePoint time="6.322" volume="0.5"/>
+      </VolumePoints>
+    </vidAsset>
+    <vidAsset k_id="8pn4jk92bc" type="VIDEO" name="Demo Movie 5" url="http://localhost/flvclipper/entry_id/8pn4jk92bc/clip_from/0/clip_to/6000/flavor/0">
+      <StreamInfo file_name="/content/entry/data/0/0/8pn4jk92bc_100000.flv" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="917362" real_seek_time="15.700" start_time="0" len_time="6.452" volume="50" pan="0" isSingleFrame="0" Clipped_Start="0" Clipped_Len="6.452" start_byte_play="496" end_byte_play="917857" real_start_byte="2104176" real_end_byte="3021538"/>
+      <EndTransition cross="0" type="None" StartTime="6.452" length="0"/>
+      <VolumePoints>
+        <VolumePoint time="0" volume="0.5"/>
+        <VolumePoint time="6.452" volume="0.5"/>
+      </VolumePoints>
+    </vidAsset>
+    <vidAsset k_id="0hase81rrs" type="VIDEO" name="Demo Movie 4" url="http://localhost/flvclipper/entry_id/0hase81rrs/clip_from/0/clip_to/5000/flavor/0">
+      <StreamInfo file_name="/content/entry/data/0/0/0hase81rrs_100000.flv" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="677607" real_seek_time="22.152" start_time="0" len_time="5.721" volume="50" pan="0" isSingleFrame="0" Clipped_Start="0" Clipped_Len="5.721" start_byte_play="496" end_byte_play="678102" real_start_byte="3021538" real_end_byte="3699145"/>
+      <EndTransition cross="0" type="None" StartTime="5.721" length="0"/>
+      <VolumePoints>
+        <VolumePoint time="0" volume="0.5"/>
+        <VolumePoint time="5.721" volume="0.5"/>
+      </VolumePoints>
+    </vidAsset>
+  </VideoAssets>
+  <AudioAssets firstAssetPolicy="8" soundtrackVolumePolicy="16384" soundtrackVolume="100" soundtrackSilentVolume="40"/>
+  <VoiceAssets/>
+  <Plugins>
+    <Overlays/>
+    <Effects/>
+  </Plugins>
+</xml>

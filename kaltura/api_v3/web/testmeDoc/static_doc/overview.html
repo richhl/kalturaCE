@@ -1,0 +1,30 @@
+<h2>Overview</h2>
+<p>
+  The following documentation provides all of the details a web developer will need when looking to use Kaltura's Application Programming Interfaces (APIs). <br/>
+  Kaltura's APIs allow partners to interact with the Kaltura open source video platform through web-services. API's are based on the <a target="_blank" href="http://en.wikipedia.org/wiki/Representational_State_Transfer">REST</a> principles <br/>
+  <br/>
+  Each request can be an HTTP POST or GET, and the response is a gziped content (assuming that the client specified that gzip is supported)<br/>
+  <br/>
+  Each Kaltura API method is located at a unique URI:<br/>
+  http://www.kaltura.com/api_v3/?service=<strong>[SERVICENAME]</strong>&action=<strong>[ACTIONNAME]</strong><br/>
+  Where <strong>[SERVICENAME]</strong> is the name of the API service and <strong>[ACTIONNAME]</strong> is the action you would like to perform<br/><br />
+  
+  Note that before using the Kaltura APIs, you must
+  <?php
+    if (kConf::get('www_host') == 'www.kaltura.com'):
+  ?>
+  <a href="http://www.kaltura.com/index.php/cms/signup">apply for a Partner ID</a>. 
+  <?php
+    else:
+  ?>
+  have a Partner ID. 
+  <?php
+    endif;
+  ?>
+  If you are using the Kaltura Community Edition, this can be a local Partner ID on your server, or you may choose to create a Kaltura Partner ID, which will allow you to interact with Kaltura's system going forward as well.
+<br/><br/>
+  For additional support please visit our <a href=" http://kaltura.org/forums">Community Forums</a>.  
+  <br/><br/>
+
+</p> 
+   

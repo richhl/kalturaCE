@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class KalturaBaseService</title>
+			<link rel="stylesheet" href="../../media/stylesheet.css" />
+			<script src="../../jquery-1.3.1.min.js"></script>
+						<script src="../../kaltura_custom_inner.js"></script>
+						<link rel="stylesheet" href="../../kaltura.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="../../media/images/AbstractClass_logo.png"
+														alt="Abstract Class"
+														title="Abstract Class"
+														style="vertical-align: middle"> KalturaBaseService</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-descendents">Descendents</a>
+			|													<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">abstract:</span> </li>
+					</ul>
+		<p class="notes">
+			Located in <a class="field" href="_lib---KalturaBaseService.php.html">/lib/KalturaBaseService.php</a> (line <span class="field">7</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+	<a name="sec-descendents"></a>
+	<div class="info-box">
+		<div class="info-box-title">Direct descendents</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Descendents</span>
+			|															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; white-space: nowrap">
+						<img src="../../media/images/Class.png"
+								 alt=" class"
+								 title=" class"
+								 style="vertical-align: center"/>
+						<a href="../../api/services/adminuserService.html">adminuserService</a>
+					</td>
+					<td>
+											adminuser service
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; white-space: nowrap">
+						<img src="../../media/images/Class.png"
+								 alt=" class"
+								 title=" class"
+								 style="vertical-align: center"/>
+						<a href="../../api/services/partnerservice.html">partnerservice</a>
+					</td>
+					<td>
+											partner service allows you to change/manage your partner personal details and settings as well
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; white-space: nowrap">
+						<img src="../../media/images/Class.png"
+								 alt=" class"
+								 title=" class"
+								 style="vertical-align: center"/>
+						<a href="../../api/services/PlaylistService.html">PlaylistService</a>
+					</td>
+					<td>
+											Playlist service lets you create,manage and play your playlists  Playlists could be static (containing a fixed list of entries) or dynamic (baseed on a filter)
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; white-space: nowrap">
+						<img src="../../media/images/Class.png"
+								 alt=" class"
+								 title=" class"
+								 style="vertical-align: center"/>
+						<a href="../../api/services/searchService.html">searchService</a>
+					</td>
+					<td>
+											Search service allows you to search for media in various media providers  This service is being used mostly by the CW component
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; white-space: nowrap">
+						<img src="../../media/images/Class.png"
+								 alt=" class"
+								 title=" class"
+								 style="vertical-align: center"/>
+						<a href="../../api/services/SessionService.html">SessionService</a>
+					</td>
+					<td>
+											Session service
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; white-space: nowrap">
+						<img src="../../media/images/Class.png"
+								 alt=" class"
+								 title=" class"
+								 style="vertical-align: center"/>
+						<a href="../../api/services/UiConfService.html">UiConfService</a>
+					</td>
+					<td>
+											UiConf service lets you create and manage your UIConfs for the various flash components  This service is used by the KMC-ApplicationStudio
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; white-space: nowrap">
+						<img src="../../media/images/Class.png"
+								 alt=" class"
+								 title=" class"
+								 style="vertical-align: center"/>
+						<a href="../../api/services/userService.html">userService</a>
+					</td>
+					<td>
+											Manage partner users on Kaltura's side  The userId in kaltura is the unique Id in the partner's system, and the [partnerId,Id] couple are unique key in kaltura's DB
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; white-space: nowrap">
+						<img src="../../media/images/Class.png"
+								 alt=" class"
+								 title=" class"
+								 style="vertical-align: center"/>
+						<a href="../../api/services/widgetService.html">widgetService</a>
+					</td>
+					<td>
+											widget service for full widget management
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendants</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																								<div class="method-definition">
+					<img src="../../media/images/Constructor.png" alt=" "/>
+											<span class="method-result">KalturaBaseService</span>
+										<a href="#__construct" title="details" class="method-name">__construct</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Destructor.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#__destruct" title="details" class="method-name">__destruct</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#applyPartnerFilterForClass" title="details" class="method-name">applyPartnerFilterForClass</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$peer</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#getKs" title="details" class="method-name">getKs</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#getKsUniqueString" title="details" class="method-name">getKsUniqueString</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#getPartner" title="details" class="method-name">getPartner</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#getPartnerId" title="details" class="method-name">getPartnerId</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#getPuserKuser" title="details" class="method-name">getPuserKuser</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#initService" title="details" class="method-name">initService</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$partner_id</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$puser_id</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$ks_str</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$service_name</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$action</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#kalturaNetwork" title="details" class="method-name">kalturaNetwork</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#matchIp" title="details" class="method-name">matchIp</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#partnerGroup" title="details" class="method-name">partnerGroup</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#requirePartner" title="details" class="method-name">requirePartner</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#ticketType" title="details" class="method-name">ticketType</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#validateTicketSetPartner" title="details" class="method-name">validateTicketSetPartner</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$partner_id</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$puser_id</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$ks_str</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$service_name</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$action</span>)
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+							<a href="#sec-descendents">Descendents</a> |
+													<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="method__construct" id="__construct"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Constructor.png" />
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">19</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> public</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">KalturaBaseService</span>
+		<span class="method-name">
+			__construct
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="method__destruct" id="__destruct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Destructor.png" />
+		<span class="method-title">Destructor __destruct</span> (line <span class="line-number">32</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> public</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			__destruct
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodapplyPartnerFilterForClass" id="applyPartnerFilterForClass"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">applyPartnerFilterForClass</span> (line <span class="line-number">202</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> protected</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			applyPartnerFilterForClass
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$peer</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$peer</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetKs" id="getKs"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">getKs</span> (line <span class="line-number">218</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> public</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getKs
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetKsUniqueString" id="getKsUniqueString"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">getKsUniqueString</span> (line <span class="line-number">254</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> protected</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getKsUniqueString
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetPartner" id="getPartner"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">getPartner</span> (line <span class="line-number">231</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> public</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getPartner
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetPartnerId" id="getPartnerId"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">getPartnerId</span> (line <span class="line-number">223</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> public</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getPartnerId
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetPuserKuser" id="getPuserKuser"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">getPuserKuser</span> (line <span class="line-number">236</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> public</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			getPuserKuser
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodinitService" id="initService"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">initService</span> (line <span class="line-number">41</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> public</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			initService
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$partner_id</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$puser_id</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$ks_str</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$service_name</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$action</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$partner_id</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$puser_id</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ks_str</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$service_name</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$action</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodkalturaNetwork" id="kalturaNetwork"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">kalturaNetwork</span> (line <span class="line-number">214</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> protected</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			kalturaNetwork
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodmatchIp" id="matchIp"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">matchIp</span> (line <span class="line-number">215</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> protected</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			matchIp
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodpartnerGroup" id="partnerGroup"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">partnerGroup</span> (line <span class="line-number">216</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> protected</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			partnerGroup
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodrequirePartner" id="requirePartner"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">requirePartner</span> (line <span class="line-number">213</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> protected</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			requirePartner
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodticketType" id="ticketType"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">ticketType</span> (line <span class="line-number">212</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> protected</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			ticketType
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodvalidateTicketSetPartner" id="validateTicketSetPartner"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">validateTicketSetPartner</span> (line <span class="line-number">52</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+						<li><span class="field">access:</span> public</li>
+					</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			validateTicketSetPartner
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$partner_id</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$puser_id</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$ks_str</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$service_name</span>, <span class="var-type"></span>&nbsp;<span class="var-name">$action</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$partner_id</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$puser_id</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$ks_str</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$service_name</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$action</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Mon, 06 Apr 2009 18:09:36 +0300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.2</a>
+	</p>
+	</div></body>
+</html>

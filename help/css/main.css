@@ -1,0 +1,42 @@
+* { margin:0; padding:0;}
+ body { font: normal 62.5% arial,sans-serif; background:#272929 url('../images/kmc/bg.png') repeat-x;}
+ h2, h3, p, ul { margin-bottom:.75em;}
+  h1 { margin: 11px 0 10px 2px; color:#fff;}
+  h2 { color:#2F3737;}
+  p, ul, td { font-size:14px;}
+  ul { margin: 0 11px 22px; list-style: circle inside none;}
+   li { margin: 0 0 6px; list-style: circle inside none;}
+  #pageWrap { margin: 0 10px;}
+  #stepWrap { width:100%; padding: 8px 18px 25px; display:table; background: #F8F8F8 url('../images/bg.png') repeat-x;}
+  #stepsMenu { width:202px; padding:4px; border: solid 1px #CFD7D7; margin-top:21px; float:left; background:#fff;}
+   #stepsMenu div { height:300px; padding:11px; background: #fff url('../images/sidebg.png') repeat-x 0 bottom; }
+    #stepsMenu li.active { font-weight:bold; color:#222; list-style-image:url('../images/arrow.gif');}
+    #stepsMenu li.done { list-style-image:url('../images/passed_step.png');}
+  #stepDetails { margin: 21px 0 0 222px; padding: 14px 11px 0 15px;}
+   #stepDetails div.passed, #stepDetails div.failed { padding: 20px 22px 9px; border: solid 2px green;}
+   #stepDetails div.failed  { border-color:#b91a00;}
+
+   #stepDetails strong { color:#222;}
+
+   #stepDetails .verify { margin:4px; padding:4px; padding-left:26px; }
+   #stepDetails li.passed { background: url('../images/passed.png') no-repeat 2px 50%;}
+    #stepDetails .passed strong { color:green;}
+   #stepDetails li.failed { background: url('../images/failed.png') no-repeat 2px 50%; font-weight:bold; color:#b91a00;}
+   #stepDetails li.optional { background: url('../images/optional.png') no-repeat 2px 50%;}
+   
+   .status_error { color:#b91a00; font-weight:bold;}
+   .help { color:green;}
+   ul#status_list { margin-top:22px;}
+   ul#status_list li { list-style-type: none;}
+
+  #db_setup div { font-size:14px;}
+  #stepDetails .fieldName { width:144px; padding-bottom:5px;}
+  #stepDetails .theField { width:356px; padding-bottom:5px;}
+   #stepDetails .theField input { width:300px; border: solid 1px #B5CBD3; height:18px; padding-top:2px; padding-left:2px;}
+  #stepDetails .fieldDescribe { font-size:10px; padding-bottom:10px;}
+  #db_setup p { margin-top:11px;}
+  #db_setup h4 { margin: 0 0 8px 0; color:#2F3737;}
+
+  #stepDetails #db_setup div.failed { padding: 18px 20px 5px; margin-bottom:25px;}
+  #stepDetails #db_setup div.failed h2 { color:#b91a00; font-size:14px;}
+  #stepDetails #db_setup div.failed li { list-style-type:disc;}

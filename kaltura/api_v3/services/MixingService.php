@@ -1,0 +1,309 @@
+<?php
+
+/**
+ * Mixing Service
+ *
+ * @service mixing
+ * @package api
+ * @subpackage services
+ */
+class MixingService extends KalturaEntryService
+{
+	/**
+	 * Adds a new mix.
+	 * If the dataContent is null, a default timeline will be created.
+	 * 
+	 * @action add
+	 * @param KalturaMixEntry $mixEntry Mix entry metadata
+	 * @return KalturaMixEntry The new mix entry
+	 */
+	function addAction(KalturaMixEntry $mixEntry)
+	{
+		$mixEntry->validatePropertyMinLength("name", 2);
+		$mixEntry->validatePropertyNotNull("editorType");
+		
+		$dbEntry = $mixEntry->toObject(new entry());
+		
+		$this->checkAndSetValidUser($mixEntry, $dbEntry);
+		
+		$kshow = $this->createDummyKShow();
+
+		$dbEntry->setKshowId($kshow->getId());
+		$dbEntry->setPartnerId($this->getPartnerId());
+		$dbEntry->setSubpId($this->getPartnerId() * 100);
+		$dbEntry->setStatus(KalturaEntryStatus::READY);
+		$dbEntry->setMediaType(entry::ENTRY_MEDIA_TYPE_SHOW); // for backward compatibility
+
+		if (!$dbEntry->getThumbnail())
+			$dbEntry->setThumbnail("&auto_edit.jpg");
+
+		
+		// set default data if no data given
+		if ($mixEntry->dataContent === null)
+		{
+			$dbEntry->save(); // we need the id for setDataContent
+			myEntryUtils::modifyEntryMetadataWithText($dbEntry, "", 0, true);
+		}
+		else
+		{ 
+			$dbEntry->setDataContent($mixEntry->dataContent, true, true);
+			$dbEntry->save();
+		}
+		
+		$kshow->setShowEntry($dbEntry);
+		$kshow->save();
+		$mixEntry->fromObject($dbEntry);
+		
+		myNotificationMgr::createNotification(notification::NOTIFICATION_TYPE_ENTRY_ADD, $dbEntry);
+		
+		return $mixEntry;
+	}
+	
+	/**
+	 * Get mix entry by id.
+	 * 
+	 * @action get
+	 * @param string $entryId Mix entry id
+	 * @return KalturaMixEntry The requested mix entry
+	 */
+	function getAction($entryId)
+	{
+		$dbEntry = entryPeer::retrieveByPK($entryId);
+
+		if (!$dbEntry || $dbEntry->getType() != KalturaEntryType::MIX)
+			throw new KalturaAPIException(KalturaErrors::ENTRY_ID_NOT_FOUND, $entryId);
+
+		$mixingEntry = new KalturaMixEntry();
+		$mixingEntry->fromObject($dbEntry);
+
+		return $mixingEntry;
+	}
+	
+	/**
+	 * Update mix entry. Only the properties that were set will be updated.
+	 * 
+	 * @action update
+	 * @param string $entryId Mix entry id to update
+	 * @param KalturaMixEntry $mixEntry Mix entry metadata to update
+	 * @return KalturaMixEntry The updated mix entry
+	 */
+	function updateAction($entryId, KalturaMixEntry $mixEntry)
+	{
+		$mixEntry->type = null; // because it was set in the constructor, but cannot be updated
+		
+		$dbEntry = entryPeer::retrieveByPK($entryId);
+
+		if (!$dbEntry || $dbEntry->getType() != KalturaEntryType::MIX)
+			throw new KalturaAPIException(KalturaErrors::ENTRY_ID_NOT_FOUND, $entryId);
+			
+		$this->checkAndSetValidUser($mixEntry, $dbEntry);
+		
+		$dbEntry = $mixEntry->toUpdatableObject($dbEntry);
+		
+		if ($mixEntry->dataContent !== null) // dataContent need special handling
+			$dbEntry->setDataContent($mixEntry->dataContent, true, true);
+			
+		$dbEntry->save();
+		$mixEntry->fromObject($dbEntry);
+		
+		$wrapper = objectWrapperBase::getWrapperClass($dbEntry);
+		$wrapper->removeFromCache("entry", $dbEntry->getId());
+		
+		myNotificationMgr::createNotification(notification::NOTIFICATION_TYPE_ENTRY_UPDATE, $dbEntry);
+		
+		return $mixEntry;
+	}
+	
+	/**
+	 * Delete a mix entry.
+	 *
+	 * @action delete
+	 * @param string $entryId Mix entry id to delete
+	 */
+	function deleteAction($entryId)
+	{
+		$entryToDelete = entryPeer::retrieveByPK($entryId);
+
+		if (!$entryToDelete || $entryToDelete->getType() != KalturaEntryType::MIX)
+			throw new KalturaAPIException(KalturaErrors::ENTRY_ID_NOT_FOUND, $entryId);
+
+		myEntryUtils::deleteEntry($entryToDelete);
+		$entryToDelete->setStatus(entry::ENTRY_STATUS_DELETED);
+		
+		// make sure the moderation_status is set to moderation::MODERATION_STATUS_DELETE
+		$entryToDelete->setModerationStatus(moderation::MODERATION_STATUS_DELETE); 
+		$entryToDelete->setModifiedAt(time());
+		$entryToDelete->save();
+		
+		$wrapper = objectWrapperBase::getWrapperClass($entryToDelete);
+		$wrapper->removeFromCache("entry", $entryToDelete->getId());
+		
+		myNotificationMgr::createNotification(notification::NOTIFICATION_TYPE_ENTRY_DELETE, $entryToDelete);
+	}
+	
+	/**
+	 * List entries by filter with paging support.
+	 * Return parameter is an array of mix entries.
+	 * 
+	 * @action list
+	 * @param KalturaMixEntryFilter $filter Mix entry filter
+	 * @param KalturaFilterPager $pager Pager
+	 * @return KalturaMixListResponse Wrapper for array of media entries and total count
+	 */
+	function listAction(KalturaMixEntryFilter $filter = null, KalturaFilterPager $pager = null)
+	{
+		if (!$filter)
+			$filter = new KalturaMixEntryFilter();
+
+		if (!$pager)
+			$pager = new KalturaFilterPager();
+			
+		$entryFilter = new entryFilter();
+		$filter->toObject($entryFilter);
+
+		$c = new Criteria();
+		$entryFilter->attachToCriteria($c);
+		$c->add(entryPeer::TYPE, entry::ENTRY_TYPE_SHOW); // only mix entries
+		
+		$totalCount = entryPeer::doCount($c);
+		
+		$pager->attachToCriteria($c);
+		$list = entryPeer::doSelect($c);
+		
+		$newList = KalturaMixEntries::fromEntryArray($list);
+		$response = new KalturaMixListResponse();
+		$response->objects = $newList;
+		$response->totalCount = $totalCount;
+		
+		return $response;
+	}
+	
+	/**
+	 * Clones an existing mix.
+	 *
+	 * @action clone
+	 * @param string $entryId Mix entry id to clone
+	 * @return KalturaMixEntry The new mix entry
+	 */
+	function cloneAction($entryId)
+	{
+		$dbEntry = entryPeer::retrieveByPK($entryId);
+
+		if (!$dbEntry || $dbEntry->getType() != KalturaEntryType::MIX)
+			throw new KalturaAPIException(KalturaErrors::ENTRY_ID_NOT_FOUND, $entryId);
+			
+		$kshowId = $dbEntry->getKshowId();
+		$kshow = $dbEntry->getKshow();
+		
+		if (!$kshow)
+		{
+			KalturaLog::CRIT("Kshow was not found for mix id [".$entryId."]");
+			throw new KalturaAPIException(KalturaErrors::INTERNAL_SERVERL_ERROR);
+		}
+		
+		$newKshow = myKshowUtils::shalowCloneById($kshowId, $this->getPuserKuser()->getKuserId());
+	
+		if (!$newKshow)
+		{
+			KalturaLog::ERR("Failed to clone kshow for mix id [".$entryId."]");
+			throw new KalturaAPIException(KalturaErrors::INTERNAL_SERVERL_ERROR);
+		}
+		$newEntry = $newKshow->getShowEntry();
+		
+		$newMixEntry = new KalturaMixEntry();
+		$newMixEntry->fromObject($newEntry);
+		
+		myNotificationMgr::createNotification(notification::NOTIFICATION_TYPE_ENTRY_ADD, $newEntry);
+		
+		return $newMixEntry;
+	}
+	
+	/**
+	 * Appends a media entry to a the end of the mix timeline, this will save the mix timeline as a new version.
+	 * 
+	 * @action appendMediaEntry
+	 * @param string $mixEntryId Mix entry to append to its timeline
+	 * @param string $mediaEntryId Media entry to append to the timeline
+	 * @return KalturaMixEntry The mix entry
+	 */
+	function appendMediaEntryAction($mixEntryId, $mediaEntryId)
+	{
+		$dbMixEntry = entryPeer::retrieveByPK($mixEntryId);
+
+		if (!$dbMixEntry || $dbMixEntry->getType() != KalturaEntryType::MIX)
+			throw new KalturaAPIException(KalturaErrors::ENTRY_ID_NOT_FOUND, $mixEntryId);
+			
+		$dbMediaEntry = entryPeer::retrieveByPK($mediaEntryId);
+
+		if (!$dbMediaEntry || $dbMediaEntry->getType() != KalturaEntryType::MEDIA_CLIP)
+			throw new KalturaAPIException(KalturaErrors::ENTRY_ID_NOT_FOUND, $mediaEntryId);
+			
+		$kshow = $dbMixEntry->getkshow();		
+		if (!$kshow)
+		{
+			KalturaLog::CRIT("Kshow was not found for mix id [".$mixEntryId."]");
+			throw new KalturaAPIException(KalturaErrors::INTERNAL_SERVERL_ERROR);
+		}
+		
+		$metadata = $kshow->getMetadata();
+		
+		$relevantKshowVersion = 1 + $kshow->getVersion(); // the next metadata will be the first relevant version for this new entry
+		
+		$newMetadata = myMetadataUtils::addEntryToMetadata($metadata, $dbMediaEntry, $relevantKshowVersion, array());
+		
+		if ($newMetadata)
+		{
+			// TODO - add thumbnail only for entries that are worthy - check they are not moderated !
+			$thumbModified = myKshowUtils::updateThumbnail($kshow, $dbMediaEntry, false);
+			
+			if ($thumbModified)
+			{
+			    $newMetadata = myMetadataUtils::updateThumbUrlFromMetadata($newMetadata, $dbMixEntry->getThumbnailUrl());
+			}
+			
+			// it is very important to increment the version count because even if the entry is deferred
+			// it will be added on the next version
+			
+			if (!$kshow->getHasRoughcut())
+			{
+				// make sure the kshow now does have a roughcut
+				$kshow->setHasRoughcut(true);	
+				$kshow->save();
+			}
+	
+			$kshow->setMetadata($newMetadata, true);
+		}
+		
+		$mixEntry = new KalturaMixEntry();
+		$mixEntry->fromObject($dbMixEntry);
+		
+		return $mixEntry;
+	}
+	
+	/**
+	 * Request a new flattening job, flattening is used to convert a video mix to a video file. 
+	 * 
+	 * @action requestFlattening
+	 * @param string $entryId Mix entry id
+	 * @param string $fileFormat Format to convert
+	 * @param int $version Version to flatten (If not set, latest will be used)
+	 * @return int The queued job id
+	 */
+	public function requestFlatteningAction($entryId, $fileFormat, $version = -1)
+	{
+		$dbEntry = entryPeer::retrieveByPK($entryId);
+
+		if (!$dbEntry || $dbEntry->getType() != KalturaEntryType::MIX)
+			throw new KalturaAPIException(KalturaErrors::ENTRY_ID_NOT_FOUND, $entryId);
+		
+		$contentPath = myContentStorage::getFSContentRootPath();
+		$fileName = $contentPath . $dbEntry->getDataPath($version); 
+		
+		if (!file_exists($fileName))
+			throw new KalturaAPIException(KalturaErrors::INVALID_ENTRY_VERSION, "entry", $entryId, $version);
+		
+		$job = myBatchFlattenClient::addJob($this->getPuserKuser()->getPuserId(), $dbEntry, $version, $fileFormat);
+		
+		return $job->getId();
+	}
+}

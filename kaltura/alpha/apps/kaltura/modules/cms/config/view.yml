@@ -1,0 +1,14 @@
+dashboardSuccess:
+  javascripts: [ swfobject ]
+
+playerWidgetSuccess:
+  javascripts: [ swfobject ]
+
+default:
+  has_layout: off
+  layout: emptylayout
+  javascripts:    [ jqkaltura.js, utils, jquery.datePicker.js, date, cms, jquery.cookie.pack.js, jquery.history.js]
+
+
+
+ 

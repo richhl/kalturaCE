@@ -1,0 +1,10 @@
+<templates id="firstRevision">
+	<template id="31002">
+		<Label>Player</Label>
+		<ThumbnailStyle>\assets\imgs\plo.jpg</ThumbnailStyle>
+	</template>
+	<template id="31001">
+		<Label>Player and Playlist</Label>
+		<ThumbnailStyle>assets\imgs\plr.jpg</ThumbnailStyle>
+	</template>
+</templates>

@@ -1,0 +1,109 @@
+<h2>General API Input/Output</h2>
+<p>
+  <ul>
+    <li>
+      The input parameters should be sent as a url encoded key-value string, e.g:<br/>
+      id=abc&name=name%20with%20spaces<br/>
+      <br/>
+    </li>
+    <li>
+      When the input parameter is an object, e.g. entry, it must be flattened as followed<br/>
+      entry:id<br/>
+      entry:name<br/>
+      entry:source<br/>
+    <br/>
+      The object will be marked as <b>objectName:*</b>, e.g. entry:*<br/>
+    <br/>
+    </li>
+    <li>
+      Date format is <b>YYYY-MM-DD HH:MM:SS</b> (2008-09-29 10:46:36)<br/>
+      <br/>
+    </li>
+    <li>
+      General API input parameters:<br/>
+      <table>
+        <colgroup>
+        <col class="name"/>
+        </colgroup>
+        <tr>
+          <th>Field Name</th>
+          <th>Data Type</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>ks</td>
+          <td>String</td>
+          <td>Kaltura session, if required by the method</td>
+        </tr>
+      </table>
+    </li>
+    <li>
+      API Output Container<br/>
+      <p>
+      Each API response is wrapped in a special container object with the following properties:
+      <strong>"result"</strong> & <strong>"error"</strong>.
+      </p>
+      <ul>
+        <li><strong>result</strong> - the action return value (can be simple or complexed object)</li>
+        <li><strong>error</strong> - an array of errors (If no errors occurred, it will be empty), each error has 2 properties "code" and "desc"</li>
+      </ul>
+      
+      <div class="bluebox">
+        <h3>Sample Successful result:</h3>
+        <xmp>
+          <xml>
+            <result>
+              <executionTime>0.313575983047</executionTime>
+              <theResultOject>
+                <someProperty></someProperty>
+                <anotherProperty></anotherProperty>
+              </theResultObject>
+            </result>
+          </xml>
+        </xmp>
+        <h3>Sample failed result:</h3>
+        <xmp>
+          <xml>
+            <result>
+              <error>
+                <code>ERROR_CODE</code>
+                <message>Error description</desc>
+              </error>
+            </result>
+            <executionTime>0.270357131958</executionTime>
+          </xml>
+        </xmp>
+      </div>
+    </li>
+    <li>
+      <a name="errors"/>
+      General API errors<br/>
+      <table id="general_errors" cellspacing="0">
+        <tr>
+          <th>Error code</th>
+          <th>Error description</th>
+        </tr>
+        <tr>
+          <td>MISSING_KS</td>
+          <td>Missing KS. Session not established</td>
+        </tr>
+        <tr>
+          <td>INTERNAL_SERVERL_ERROR</td>
+          <td>Internal server error</td>
+        </tr>
+        <tr>
+          <td>SERVERL_ERROR</td>
+          <td>Server error %ERROR_DESCRIPTION%</td>
+        </tr>
+        <tr>
+          <td>INVALID_KS</td>
+          <td>Invalid KS [%KS%]. Error [%KS_ERROR_CODE%,%KS_ERROR_DESCRIPTION%]</td>
+        </tr>
+        <tr>
+          <td>MANDATORY_PARAMETER_MISSING</td>
+          <td>Mandatory paramter missing [%PARAMETER_NAME%]</td>
+        </tr>
+      </table>
+    </li>
+  </ul>
+</p>

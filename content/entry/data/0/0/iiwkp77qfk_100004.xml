@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<xml>
+  <MetaData>
+    <Publish>
+      <Application>kalturaAdvancedEditor</Application>
+    </Publish>
+    <SeqDuration>23.227999999999998</SeqDuration>
+    <ShowVersion>100015</ShowVersion>
+    <ThumbUrl>http://localhost/p/1/sp/100/thumbnail/entry_id/vcnp8h76m8/version/100001</ThumbUrl>
+  <KuserId>1</KuserId><PuserId>USERID</PuserId><ScreenName>_1_USERID</ScreenName><UpdatedAt>1241437976</UpdatedAt></MetaData>
+  <VideoAssets>
+    <vidAsset k_id="vcnp8h76m8" type="VIDEO" name="Demo Movie 1" url="http://10.0.0.55/flvclipper/entry_id/vcnp8h76m8/clip_from/0/clip_to/4000/flavor/0">
+      <StreamInfo file_name="/content/entry/data/0/0/vcnp8h76m8_100000.flv" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="687124" real_seek_time="0.000" start_time="0" len_time="4.78" volume="27.22222222222222" pan="0" isSingleFrame="0" Clipped_Start="0" Clipped_Len="4.78" start_byte_play="496" end_byte_play="687619" real_start_byte="0" real_end_byte="687124"/>
+      <EndTransition cross="0" type="GrowingCircle" StartTime="2.78" length="2.0000000000000004">
+        <plugin>
+          <version>1.00</version>
+          <name>GrowingCircle</name>
+          <arguments/>
+        </plugin>
+      </EndTransition>
+      <VolumePoints>
+        <VolumePoint time="0" volume="0.5"/>
+        <VolumePoint time="4.779840848806366" volume="0.0444444444444444"/>
+      </VolumePoints>
+    </vidAsset>
+    <vidAsset k_id="1i5ojrn9ts" type="VIDEO" name="Demo Movie 2" url="http://10.0.0.55/flvclipper/entry_id/1i5ojrn9ts/clip_from/0/clip_to/4000/flavor/0">
+      <StreamInfo file_name="/content/entry/data/0/0/1i5ojrn9ts_100000.flv" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="594184" real_seek_time="4.780" start_time="0" len_time="4.598" volume="32.22222222222222" pan="0" isSingleFrame="0" Clipped_Start="0" Clipped_Len="4.598" start_byte_play="496" end_byte_play="594679" real_start_byte="687124" real_end_byte="1281308"/>
+      <EndTransition cross="0" type="clock" StartTime="2.598" length="2">
+        <plugin>
+          <version>1.00</version>
+          <name>Clock</name>
+          <arguments/>
+        </plugin>
+      </EndTransition>
+      <VolumePoints>
+        <VolumePoint time="0" volume="0.022222222222222254"/>
+        <VolumePoint time="2.7718832891246685" volume="0.8888888888888888"/>
+        <VolumePoint time="3.7294429708222814" volume="0.0888888888888889"/>
+        <VolumePoint time="4.597546419098143" volume="0.28888888888888886"/>
+      </VolumePoints>
+    </vidAsset>
+    <vidAsset k_id="solid-65536" type="SOLID" name="SOLID (halogreen)" url="">
+      <StreamInfo file_name="10092390" posX="0" posY="0" start_byte="-1" end_byte="-1" total_bytes="-1" real_seek_time="-1" start_time="0" len_time="0.25" volume="50" pan="0" isSingleFrame="0" Clipped_Start="0" Clipped_Len="0.25"/>
+      <EndTransition cross="0" type="starSlide" StartTime="0.25" length="0">
+        <plugin>
+          <version>1.00</version>
+          <name>Star Slide</name>
+          <arguments/>
+        </plugin>
+      </EndTransition>
+      <VolumePoints>
+        <VolumePoint time="0" volume="0.5"/>
+        <VolumePoint time="0.25" volume="0.5"/>
+      </VolumePoints>
+    </vidAsset>
+    <vidAsset k_id="8pn4jk92bc" type="VIDEO" name="Demo Movie 5" url="http://10.0.0.55/flvclipper/entry_id/8pn4jk92bc/clip_from/0/clip_to/6000/flavor/0">
+      <StreamInfo file_name="/content/entry/data/0/0/8pn4jk92bc_100000.flv" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="917362" real_seek_time="9.378" start_time="0" len_time="6.452" volume="17.03703703703704" pan="0" isSingleFrame="0" Clipped_Start="0" Clipped_Len="6.452" start_byte_play="496" end_byte_play="917857" real_start_byte="1281308" real_end_byte="2198670"/>
+      <EndTransition cross="0" type="arrows" StartTime="4.452" length="2">
+        <plugin>
+          <version>1.00</version>
+          <name>Arrows</name>
+          <arguments/>
+        </plugin>
+      </EndTransition>
+      <VolumePoints>
+        <VolumePoint time="0" volume="0.022222222222222254"/>
+        <VolumePoint time="1.936339522546419" volume="0.488888888888889"/>
+        <VolumePoint time="6.450928381962864" volume="0"/>
+      </VolumePoints>
+    </vidAsset>
+    <vidAsset k_id="s8wuba1g1k" type="VIDEO" name="Demo Movie 3" url="http://10.0.0.55/flvclipper/entry_id/s8wuba1g1k/clip_from/0/clip_to/6000/flavor/0">
+      <StreamInfo file_name="/content/entry/data/0/0/s8wuba1g1k_100000.flv" posX="0" posY="0" start_byte="0" end_byte="0" total_bytes="822868" real_seek_time="15.830" start_time="0" len_time="6.322" volume="67.4074074074074" pan="0" isSingleFrame="0" Clipped_Start="0" Clipped_Len="6.322" start_byte_play="496" end_byte_play="823363" real_start_byte="2198670" real_end_byte="3021538"/>
+      <EndTransition cross="0" type="glowing_star" StartTime="4.322" length="2">
+        <plugin>
+          <version>1.00</version>
+          <name>Glowing Star</name>
+          <arguments/>
+        </plugin>
+      </EndTransition>
+      <VolumePoints>
+        <VolumePoint time="0" volume="0.7555555555555555"/>
+        <VolumePoint time="5.737400530503979" volume="0.9555555555555556"/>
+        <VolumePoint time="6.321883289124669" volume="0.3111111111111111"/>
+      </VolumePoints>
+    </vidAsset>
+    <vidAsset k_id="solid-65536" type="SOLID" name="SOLID (Celeste)" url="">
+      <StreamInfo file_name="13421772" posX="0" posY="0" start_byte="-1" end_byte="-1" total_bytes="-1" real_seek_time="-1" start_time="0" len_time="0.826" volume="50" pan="0" isSingleFrame="0" Clipped_Start="0" Clipped_Len="0.826"/>
+      <EndTransition cross="0" type="None" StartTime="0.826" length="0"/>
+      <VolumePoints>
+        <VolumePoint time="0" volume="0.5"/>
+        <VolumePoint time="0.826" volume="0.5"/>
+      </VolumePoints>
+    </vidAsset>
+  </VideoAssets>
+  <AudioAssets firstAssetPolicy="8" soundtrackVolumePolicy="16384" soundtrackVolume="100" soundtrackSilentVolume="40"/>
+  <VoiceAssets/>
+  <Plugins>
+    <Overlays>
+      <Plugin type="snow" StartTime="10.596" length="4">
+        <plugin>
+          <version>1.00</version>
+          <name>Snowflakes</name>
+          <arguments>
+            <argument id="numFlakes" value="268"/>
+          </arguments>
+        </plugin>
+      </Plugin>
+    </Overlays>
+    <Effects>
+      <Plugin type="blackWhite" StartTime="20.578050397877984" length="4">
+        <plugin>
+          <version>1.00</version>
+          <name>Black &amp; White</name>
+          <arguments/>
+        </plugin>
+      </Plugin>
+      <Plugin type="blackWhite" StartTime="19.659151193633953" length="4">
+        <plugin>
+          <version>1.00</version>
+          <name>Black &amp; White</name>
+          <arguments/>
+        </plugin>
+      </Plugin>
+    </Effects>
+  </Plugins>
+</xml>
