@@ -1,0 +1,717 @@
+<?xml version="1.0"?>
+<!-- Generated on date 19/05/09 12:24:40 -->
+<xml>
+<enums>
+  <enum name="KalturaEntryStatus">
+    <const name="ERROR_CONVERTING" value="-1"/>
+    <const name="IMPORT" value="0"/>
+    <const name="PRECONVERT" value="1"/>
+    <const name="READY" value="2"/>
+    <const name="DELETED" value="3"/>
+    <const name="PENDING" value="4"/>
+    <const name="MODERATE" value="5"/>
+    <const name="BLOCKED" value="6"/>
+  </enum>
+  <enum name="KalturaEntryType">
+    <const name="AUTOMATIC" value="-1"/>
+    <const name="MEDIA_CLIP" value="1"/>
+    <const name="MIX" value="2"/>
+    <const name="PLAYLIST" value="5"/>
+    <const name="DATA" value="6"/>
+    <const name="DOCUMENT" value="10"/>
+  </enum>
+  <enum name="KalturaLicenseType">
+    <const name="UNKNOWN" value="-1"/>
+    <const name="NONE" value="0"/>
+    <const name="CC25" value="1"/>
+    <const name="CC3" value="2"/>
+  </enum>
+  <enum name="KalturaMediaType">
+    <const name="VIDEO" value="1"/>
+    <const name="IMAGE" value="2"/>
+    <const name="AUDIO" value="5"/>
+  </enum>
+  <enum name="KalturaSourceType">
+    <const name="FILE" value="1"/>
+    <const name="WEBCAM" value="2"/>
+    <const name="URL" value="5"/>
+    <const name="SEARCH_PROVIDER" value="6"/>
+  </enum>
+  <enum name="KalturaSearchProviderType">
+    <const name="FLICKR" value="3"/>
+    <const name="YOUTUBE" value="4"/>
+    <const name="MYSPACE" value="7"/>
+    <const name="PHOTOBUCKET" value="8"/>
+    <const name="JAMENDO" value="9"/>
+    <const name="CCMIXTER" value="10"/>
+    <const name="NYPL" value="11"/>
+    <const name="CURRENT" value="12"/>
+    <const name="MEDIA_COMMONS" value="13"/>
+    <const name="KALTURA" value="20"/>
+    <const name="KALTURA_USER_CLIPS" value="21"/>
+    <const name="ARCHIVE_ORG" value="22"/>
+    <const name="KALTURA_PARTNER" value="23"/>
+    <const name="METACAFE" value="24"/>
+    <const name="SEARCH_PROXY" value="28"/>
+  </enum>
+  <enum name="KalturaEditorType">
+    <const name="SIMPLE" value="1"/>
+    <const name="ADVANCED" value="2"/>
+  </enum>
+  <enum name="KalturaSessionType">
+    <const name="USER" value="0"/>
+    <const name="ADMIN" value="2"/>
+  </enum>
+  <enum name="KalturaUiConfObjType">
+    <const name="PLAYER" value="1"/>
+    <const name="CONTRIBUTION_WIZARD" value="2"/>
+    <const name="SIMPLE_EDITOR" value="3"/>
+    <const name="ADVANCED_EDITOR" value="4"/>
+    <const name="PLAYLIST" value="5"/>
+    <const name="APP_STUDIO" value="6"/>
+  </enum>
+  <enum name="KalturaUiConfCreationMode">
+    <const name="WIZARD" value="2"/>
+    <const name="ADVANCED" value="3"/>
+  </enum>
+  <enum name="KalturaPlaylistType">
+    <const name="DYNAMIC" value="10"/>
+    <const name="STATIC_LIST" value="3"/>
+    <const name="EXTERNAL" value="101"/>
+  </enum>
+  <enum name="KalturaWidgetSecurityType">
+    <const name="NONE" value="1"/>
+    <const name="TIMEHASH" value="2"/>
+  </enum>
+  <enum name="KalturaNotificationType">
+    <const name="ENTRY_ADD" value="1"/>
+    <const name="ENTR_UPDATE_PERMISSIONS" value="2"/>
+    <const name="ENTRY_DELETE" value="3"/>
+    <const name="ENTRY_BLOCK" value="4"/>
+    <const name="ENTRY_UPDATE" value="5"/>
+    <const name="ENTRY_UPDATE_THUMBNAIL" value="6"/>
+    <const name="ENTRY_UPDATE_MODERATION" value="7"/>
+    <const name="USER_ADD" value="21"/>
+    <const name="USER_BANNED" value="26"/>
+  </enum>
+</enums>
+<classes>
+  <class name="KalturaBaseEntry">
+    <property name="id" type="string" readOnly="1" insertOnly="0"/>
+    <property name="name" type="string" readOnly="0" insertOnly="0"/>
+    <property name="description" type="string" readOnly="0" insertOnly="0"/>
+    <property name="partnerId" type="int" readOnly="1" insertOnly="0"/>
+    <property name="userId" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tags" type="string" readOnly="0" insertOnly="0"/>
+    <property name="adminTags" type="string" readOnly="0" insertOnly="0"/>
+    <property name="status" type="int" enumType="KalturaEntryStatus" readOnly="1" insertOnly="0"/>
+    <property name="type" type="int" enumType="KalturaEntryType" readOnly="1" insertOnly="0"/>
+    <property name="createdAt" type="int" readOnly="1" insertOnly="0"/>
+    <property name="rank" type="int" readOnly="1" insertOnly="0"/>
+    <property name="totalRank" type="int" readOnly="1" insertOnly="0"/>
+    <property name="votes" type="int" readOnly="1" insertOnly="0"/>
+    <property name="groupId" type="int" readOnly="0" insertOnly="0"/>
+    <property name="partnerData" type="string" readOnly="0" insertOnly="0"/>
+    <property name="downloadUrl" type="string" readOnly="1" insertOnly="0"/>
+    <property name="licenseType" type="int" enumType="KalturaLicenseType" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaPlayableEntry" base="KalturaBaseEntry">
+    <property name="plays" type="int" readOnly="1" insertOnly="0"/>
+    <property name="views" type="int" readOnly="1" insertOnly="0"/>
+    <property name="width" type="int" readOnly="1" insertOnly="0"/>
+    <property name="height" type="int" readOnly="1" insertOnly="0"/>
+    <property name="thumbnailUrl" type="string" readOnly="1" insertOnly="0"/>
+    <property name="duration" type="int" readOnly="1" insertOnly="0"/>
+  </class>
+  <class name="KalturaMediaEntry" base="KalturaPlayableEntry">
+    <property name="mediaType" type="int" enumType="KalturaMediaType" readOnly="0" insertOnly="1"/>
+    <property name="conversionQuality" type="string" readOnly="0" insertOnly="1"/>
+    <property name="sourceType" type="int" enumType="KalturaSourceType" readOnly="1" insertOnly="0"/>
+    <property name="searchProviderType" type="int" enumType="KalturaSearchProviderType" readOnly="1" insertOnly="0"/>
+    <property name="searchProviderId" type="string" readOnly="1" insertOnly="0"/>
+    <property name="creditUserName" type="string" readOnly="0" insertOnly="0"/>
+    <property name="creditUrl" type="string" readOnly="0" insertOnly="0"/>
+    <property name="mediaDate" type="int" readOnly="1" insertOnly="0"/>
+    <property name="dataUrl" type="string" readOnly="1" insertOnly="0"/>
+  </class>
+  <class name="KalturaSearch">
+    <property name="keyWords" type="string" readOnly="0" insertOnly="0"/>
+    <property name="searchSource" type="int" enumType="KalturaSearchProviderType" readOnly="0" insertOnly="0"/>
+    <property name="mediaType" type="int" enumType="KalturaMediaType" readOnly="0" insertOnly="0"/>
+    <property name="extraData" type="string" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaSearchResult" base="KalturaSearch">
+    <property name="id" type="string" readOnly="0" insertOnly="0"/>
+    <property name="title" type="string" readOnly="0" insertOnly="0"/>
+    <property name="thumbUrl" type="string" readOnly="0" insertOnly="0"/>
+    <property name="description" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tags" type="string" readOnly="0" insertOnly="0"/>
+    <property name="url" type="string" readOnly="0" insertOnly="0"/>
+    <property name="sourceLink" type="string" readOnly="0" insertOnly="0"/>
+    <property name="credit" type="string" readOnly="0" insertOnly="0"/>
+    <property name="licenseType" type="int" enumType="KalturaLicenseType" readOnly="0" insertOnly="0"/>
+    <property name="flashPlaybackType" type="string" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaFilter">
+    <property name="orderBy" type="string" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaBaseEntryFilter" base="KalturaFilter">
+    <property name="idEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="idIn" type="string" readOnly="0" insertOnly="0"/>
+    <property name="userIdEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="typeIn" type="string" readOnly="0" insertOnly="0"/>
+    <property name="statusEqual" type="int" enumType="KalturaEntryStatus" readOnly="0" insertOnly="0"/>
+    <property name="statusIn" type="string" readOnly="0" insertOnly="0"/>
+    <property name="nameLike" type="string" readOnly="0" insertOnly="0"/>
+    <property name="nameMultiLikeOr" type="string" readOnly="0" insertOnly="0"/>
+    <property name="nameMultiLikeAnd" type="string" readOnly="0" insertOnly="0"/>
+    <property name="nameEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tagsLike" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tagsMultiLikeOr" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tagsMultiLikeAnd" type="string" readOnly="0" insertOnly="0"/>
+    <property name="adminTagsLike" type="string" readOnly="0" insertOnly="0"/>
+    <property name="adminTagsMultiLikeOr" type="string" readOnly="0" insertOnly="0"/>
+    <property name="adminTagsMultiLikeAnd" type="string" readOnly="0" insertOnly="0"/>
+    <property name="groupIdEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="createdAtGreaterThanEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="createdAtLessThenEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="updatedAtGreaterThanEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="updatedAtLessThenEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="modifiedAtGreaterThanEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="modifiedAtLessThenEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="partnerIdEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="partnerIdIn" type="string" readOnly="0" insertOnly="0"/>
+    <property name="moderationStatusEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="moderationStatusIn" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tagsAndNameMultiLikeOr" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tagsAndAdminTagsMultiLikeOr" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tagsAndAdminTagsAndNameMultiLikeOr" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tagsAndNameMultiLikeAnd" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tagsAndAdminTagsMultiLikeAnd" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tagsAndAdminTagsAndNameMultiLikeAnd" type="string" readOnly="0" insertOnly="0"/>
+    <property name="searchTextMatchAnd" type="string" readOnly="0" insertOnly="0"/>
+    <property name="searchTextMatchOr" type="string" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaMediaEntryFilter" base="KalturaBaseEntryFilter">
+    <property name="mediaTypeEqual" type="int" enumType="KalturaMediaType" readOnly="0" insertOnly="0"/>
+    <property name="mediaTypeIn" type="string" readOnly="0" insertOnly="0"/>
+    <property name="mediaDateGreaterThanEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="mediaDateLessThanEqual" type="int" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaFilterPager">
+    <property name="pageSize" type="int" readOnly="0" insertOnly="0"/>
+    <property name="pageIndex" type="int" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaMediaListResponse">
+    <property name="objects" type="array" arrayType="KalturaMediaEntry" readOnly="1" insertOnly="0"/>
+    <property name="totalCount" type="int" readOnly="1" insertOnly="0"/>
+  </class>
+  <class name="KalturaMixEntry" base="KalturaPlayableEntry">
+    <property name="hasRealThumbnail" type="bool" readOnly="1" insertOnly="0"/>
+    <property name="editorType" type="int" enumType="KalturaEditorType" readOnly="0" insertOnly="0"/>
+    <property name="dataContent" type="string" readOnly="0" insertOnly="0"/>
+    <property name="version" type="int" readOnly="1" insertOnly="0"/>
+  </class>
+  <class name="KalturaMixEntryFilter" base="KalturaBaseEntryFilter"/>
+  <class name="KalturaMixListResponse">
+    <property name="objects" type="array" arrayType="KalturaMixEntry" readOnly="1" insertOnly="0"/>
+    <property name="totalCount" type="int" readOnly="1" insertOnly="0"/>
+  </class>
+  <class name="KalturaBaseEntryListResponse">
+    <property name="objects" type="array" arrayType="KalturaBaseEntry" readOnly="1" insertOnly="0"/>
+    <property name="totalCount" type="int" readOnly="1" insertOnly="0"/>
+  </class>
+  <class name="KalturaUiConf">
+    <property name="id" type="string" readOnly="1" insertOnly="0"/>
+    <property name="name" type="string" readOnly="0" insertOnly="0"/>
+    <property name="description" type="string" readOnly="0" insertOnly="0"/>
+    <property name="partnerId" type="int" readOnly="1" insertOnly="0"/>
+    <property name="objType" type="int" enumType="KalturaUiConfObjType" readOnly="0" insertOnly="0"/>
+    <property name="objTypeAsString" type="string" readOnly="1" insertOnly="0"/>
+    <property name="width" type="int" readOnly="0" insertOnly="0"/>
+    <property name="height" type="int" readOnly="0" insertOnly="0"/>
+    <property name="htmlParams" type="string" readOnly="0" insertOnly="0"/>
+    <property name="swfUrl" type="string" readOnly="0" insertOnly="0"/>
+    <property name="confFilePath" type="string" readOnly="1" insertOnly="0"/>
+    <property name="confFile" type="string" readOnly="0" insertOnly="0"/>
+    <property name="confFileFeatures" type="string" readOnly="0" insertOnly="0"/>
+    <property name="confVars" type="string" readOnly="0" insertOnly="0"/>
+    <property name="useCdn" type="bool" readOnly="0" insertOnly="0"/>
+    <property name="tags" type="string" readOnly="0" insertOnly="0"/>
+    <property name="swfUrlVersion" type="string" readOnly="0" insertOnly="0"/>
+    <property name="createdAt" type="int" readOnly="1" insertOnly="0"/>
+    <property name="updatedAt" type="int" readOnly="1" insertOnly="0"/>
+    <property name="creationMode" type="int" enumType="KalturaUiConfCreationMode" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaUiConfFilter" base="KalturaFilter">
+    <property name="id" type="int" readOnly="0" insertOnly="0"/>
+    <property name="idGreaterThanEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="status" type="int" readOnly="0" insertOnly="0"/>
+    <property name="nameLike" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tagsMultiLikeOr" type="string" readOnly="0" insertOnly="0"/>
+    <property name="createdAtGreaterThanEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="createdAtLessThanEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="updatedAtGreaterThanEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="updatedAtLessThanEqual" type="string" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaPlaylist" base="KalturaBaseEntry">
+    <property name="playlistContent" type="string" readOnly="0" insertOnly="0"/>
+    <property name="playlistType" type="int" enumType="KalturaPlaylistType" readOnly="0" insertOnly="0"/>
+    <property name="plays" type="int" readOnly="1" insertOnly="0"/>
+    <property name="views" type="int" readOnly="1" insertOnly="0"/>
+    <property name="duration" type="int" readOnly="1" insertOnly="0"/>
+    <property name="version" type="string" readOnly="1" insertOnly="0"/>
+  </class>
+  <class name="KalturaPlaylistFilter" base="KalturaFilter">
+    <property name="idGreaterThanEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="statusEqual" type="int" readOnly="0" insertOnly="0"/>
+    <property name="nameLike" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tagsMultiLikeOr" type="string" readOnly="0" insertOnly="0"/>
+    <property name="createdAtGreaterThanEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="createdAtLessThanEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="updatedAtGreaterThanEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="updatedAtLessThanEqual" type="string" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaUser">
+    <property name="id" type="string" readOnly="1" insertOnly="0"/>
+    <property name="screenName" type="string" readOnly="0" insertOnly="0"/>
+    <property name="fullName" type="string" readOnly="0" insertOnly="0"/>
+    <property name="email" type="string" readOnly="0" insertOnly="0"/>
+    <property name="dateOfBirth" type="string" readOnly="0" insertOnly="0"/>
+    <property name="country" type="string" readOnly="0" insertOnly="0"/>
+    <property name="state" type="string" readOnly="0" insertOnly="0"/>
+    <property name="city" type="string" readOnly="0" insertOnly="0"/>
+    <property name="zip" type="string" readOnly="0" insertOnly="0"/>
+    <property name="urlList" type="string" readOnly="0" insertOnly="0"/>
+    <property name="picture" type="string" readOnly="0" insertOnly="0"/>
+    <property name="icon" type="int" readOnly="1" insertOnly="0"/>
+    <property name="aboutMe" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tags" type="string" readOnly="0" insertOnly="0"/>
+    <property name="mobileNum" type="string" readOnly="0" insertOnly="0"/>
+    <property name="gender" type="int" readOnly="0" insertOnly="0"/>
+    <property name="views" type="int" readOnly="1" insertOnly="0"/>
+    <property name="fans" type="int" readOnly="1" insertOnly="0"/>
+    <property name="entries" type="int" readOnly="1" insertOnly="0"/>
+    <property name="producedKshows" type="int" readOnly="1" insertOnly="0"/>
+    <property name="status" type="int" readOnly="0" insertOnly="0"/>
+    <property name="createdAt" type="int" readOnly="1" insertOnly="0"/>
+    <property name="updatedAt" type="int" readOnly="1" insertOnly="0"/>
+    <property name="partnerId" type="int" readOnly="1" insertOnly="0"/>
+    <property name="displayInSearch" type="int" readOnly="0" insertOnly="0"/>
+    <property name="partnerData" type="int" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaUserFilter" base="KalturaFilter">
+    <property name="status" type="int" readOnly="0" insertOnly="0"/>
+    <property name="screenNameLike" type="string" readOnly="0" insertOnly="0"/>
+    <property name="tagsLike" type="string" readOnly="0" insertOnly="0"/>
+    <property name="emailLike" type="string" readOnly="0" insertOnly="0"/>
+    <property name="countryLike" type="string" readOnly="0" insertOnly="0"/>
+    <property name="emailLikeRegexp" type="string" readOnly="0" insertOnly="0"/>
+    <property name="createdAtGreaterThanEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="createdAtLessThanEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="updatedAtGreaterThanEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="updatedAtLessThanEqual" type="string" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaWidget">
+    <property name="id" type="string" readOnly="1" insertOnly="0"/>
+    <property name="sourceWidgetId" type="string" readOnly="0" insertOnly="0"/>
+    <property name="rootWidgetId" type="string" readOnly="1" insertOnly="0"/>
+    <property name="partnerId" type="int" readOnly="1" insertOnly="0"/>
+    <property name="kshowId" type="string" readOnly="0" insertOnly="0"/>
+    <property name="entryId" type="string" readOnly="0" insertOnly="0"/>
+    <property name="uiConfId" type="int" readOnly="0" insertOnly="0"/>
+    <property name="securityType" type="int" enumType="KalturaWidgetSecurityType" readOnly="0" insertOnly="0"/>
+    <property name="securityPolicy" type="int" readOnly="0" insertOnly="0"/>
+    <property name="createdAt" type="int" readOnly="1" insertOnly="0"/>
+    <property name="updatedAt" type="int" readOnly="1" insertOnly="0"/>
+    <property name="partnerData" type="string" readOnly="0" insertOnly="0"/>
+    <property name="widgetHTML" type="string" readOnly="1" insertOnly="0"/>
+  </class>
+  <class name="KalturaWidgetFilter" base="KalturaFilter">
+    <property name="id" type="string" readOnly="0" insertOnly="0"/>
+    <property name="sourceWidgetId" type="string" readOnly="0" insertOnly="0"/>
+    <property name="rootWidgetId" type="string" readOnly="0" insertOnly="0"/>
+    <property name="entryId" type="string" readOnly="0" insertOnly="0"/>
+    <property name="uiConfId" type="int" readOnly="0" insertOnly="0"/>
+    <property name="partnerData" type="string" readOnly="0" insertOnly="0"/>
+    <property name="createdAtGreaterThanEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="createdAtLessThanEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="updatedAtGreaterThanEqual" type="string" readOnly="0" insertOnly="0"/>
+    <property name="updatedAtLessThanEqual" type="string" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaPartner">
+    <property name="id" type="int" readOnly="1" insertOnly="0"/>
+    <property name="name" type="string" readOnly="0" insertOnly="0"/>
+    <property name="website" type="string" readOnly="0" insertOnly="0"/>
+    <property name="notificationUrl" type="string" readOnly="0" insertOnly="0"/>
+    <property name="appearInSearch" type="int" readOnly="0" insertOnly="0"/>
+    <property name="createdAt" type="string" readOnly="1" insertOnly="0"/>
+    <property name="adminName" type="string" readOnly="0" insertOnly="0"/>
+    <property name="adminEmail" type="string" readOnly="0" insertOnly="0"/>
+    <property name="description" type="string" readOnly="0" insertOnly="0"/>
+    <property name="commercialUse" type="string" readOnly="0" insertOnly="0"/>
+    <property name="landingPage" type="string" readOnly="0" insertOnly="0"/>
+    <property name="userLandingPage" type="string" readOnly="0" insertOnly="0"/>
+    <property name="contentCategories" type="string" readOnly="0" insertOnly="0"/>
+    <property name="type" type="int" readOnly="0" insertOnly="0"/>
+    <property name="phone" type="string" readOnly="0" insertOnly="0"/>
+    <property name="describeYourself" type="string" readOnly="0" insertOnly="0"/>
+    <property name="adultContent" type="bool" readOnly="0" insertOnly="0"/>
+    <property name="defConversionProfileType" type="string" readOnly="0" insertOnly="0"/>
+    <property name="notify" type="int" readOnly="0" insertOnly="0"/>
+    <property name="status" type="int" readOnly="1" insertOnly="0"/>
+    <property name="allowQuickEdit" type="int" readOnly="0" insertOnly="0"/>
+    <property name="mergeEntryLists" type="int" readOnly="0" insertOnly="0"/>
+    <property name="notificationsConfig" type="string" readOnly="0" insertOnly="0"/>
+    <property name="maxUploadSize" type="int" readOnly="0" insertOnly="0"/>
+    <property name="partnerPackage" type="int" readOnly="0" insertOnly="0"/>
+    <property name="secret" type="string" readOnly="0" insertOnly="0"/>
+    <property name="adminSecret" type="string" readOnly="0" insertOnly="0"/>
+    <property name="cmsPassword" type="string" readOnly="1" insertOnly="0"/>
+  </class>
+  <class name="KalturaPartnerUsage">
+    <property name="hostingGB" type="float" readOnly="1" insertOnly="0"/>
+    <property name="Percent" type="float" readOnly="1" insertOnly="0"/>
+    <property name="packageBW" type="int" readOnly="1" insertOnly="0"/>
+    <property name="usageGB" type="int" readOnly="1" insertOnly="0"/>
+    <property name="reachedLimitDate" type="int" readOnly="1" insertOnly="0"/>
+    <property name="usageGraph" type="string" readOnly="1" insertOnly="0"/>
+  </class>
+  <class name="KalturaAdminUser">
+    <property name="password" type="string" readOnly="1" insertOnly="0"/>
+    <property name="email" type="string" readOnly="1" insertOnly="0"/>
+    <property name="screenName" type="string" readOnly="0" insertOnly="0"/>
+  </class>
+  <class name="KalturaAdminLoginResponse">
+    <property name="partnerId" type="int" readOnly="1" insertOnly="0"/>
+    <property name="subpId" type="int" readOnly="1" insertOnly="0"/>
+    <property name="ks" type="string" readOnly="1" insertOnly="0"/>
+    <property name="uid" type="string" readOnly="1" insertOnly="0"/>
+    <property name="adminUser" type="KalturaAdminUser" readOnly="1" insertOnly="0"/>
+  </class>
+  <class name="KalturaClientNotification">
+    <property name="url" type="string" readOnly="0" insertOnly="0"/>
+    <property name="data" type="string" readOnly="0" insertOnly="0"/>
+  </class>
+</classes>
+<services>
+  <service name="media">
+    <action name="addFromUrl">
+      <param name="mediaEntry" type="KalturaMediaEntry" optional="0"/>
+      <param name="url" type="string" optional="0"/>
+      <result type="KalturaMediaEntry"/>
+    </action>
+    <action name="addFromSearchResult">
+      <param name="mediaEntry" type="KalturaMediaEntry" optional="1"/>
+      <param name="searchResult" type="KalturaSearchResult" optional="0"/>
+      <result type="KalturaMediaEntry"/>
+    </action>
+    <action name="addFromUploadedFile">
+      <param name="mediaEntry" type="KalturaMediaEntry" optional="0"/>
+      <param name="uploadTokenId" type="string" optional="0"/>
+      <result type="KalturaMediaEntry"/>
+    </action>
+    <action name="get">
+      <param name="entryId" type="string" optional="0"/>
+      <result type="KalturaMediaEntry"/>
+    </action>
+    <action name="update">
+      <param name="entryId" type="string" optional="0"/>
+      <param name="mediaEntry" type="KalturaMediaEntry" optional="0"/>
+      <result type="KalturaMediaEntry"/>
+    </action>
+    <action name="delete">
+      <param name="entryId" type="string" optional="0"/>
+      <result/>
+    </action>
+    <action name="list">
+      <param name="filter" type="KalturaMediaEntryFilter" optional="1"/>
+      <param name="pager" type="KalturaFilterPager" optional="1"/>
+      <result type="KalturaMediaListResponse"/>
+    </action>
+    <action name="updateThumbnail">
+      <param name="entryId" type="string" optional="0"/>
+      <param name="timeOffset" type="int" optional="0"/>
+      <result type="KalturaMediaEntry"/>
+    </action>
+    <action name="requestConversion">
+      <param name="entryId" type="string" optional="0"/>
+      <param name="fileFormat" type="string" optional="0"/>
+      <result type="int"/>
+    </action>
+  </service>
+  <service name="mixing">
+    <action name="add">
+      <param name="mixEntry" type="KalturaMixEntry" optional="0"/>
+      <result type="KalturaMixEntry"/>
+    </action>
+    <action name="get">
+      <param name="entryId" type="string" optional="0"/>
+      <result type="KalturaMixEntry"/>
+    </action>
+    <action name="update">
+      <param name="entryId" type="string" optional="0"/>
+      <param name="mixEntry" type="KalturaMixEntry" optional="0"/>
+      <result type="KalturaMixEntry"/>
+    </action>
+    <action name="delete">
+      <param name="entryId" type="string" optional="0"/>
+      <result/>
+    </action>
+    <action name="list">
+      <param name="filter" type="KalturaMixEntryFilter" optional="1"/>
+      <param name="pager" type="KalturaFilterPager" optional="1"/>
+      <result type="KalturaMixListResponse"/>
+    </action>
+    <action name="clone">
+      <param name="entryId" type="string" optional="0"/>
+      <result type="KalturaMixEntry"/>
+    </action>
+    <action name="appendMediaEntry">
+      <param name="mixEntryId" type="string" optional="0"/>
+      <param name="mediaEntryId" type="string" optional="0"/>
+      <result type="KalturaMixEntry"/>
+    </action>
+    <action name="requestFlattening">
+      <param name="entryId" type="string" optional="0"/>
+      <param name="fileFormat" type="string" optional="0"/>
+      <param name="version" type="int" optional="1"/>
+      <result type="int"/>
+    </action>
+  </service>
+  <service name="baseEntry">
+    <action name="addFromUploadedFile">
+      <param name="entry" type="KalturaBaseEntry" optional="0"/>
+      <param name="uploadTokenId" type="string" optional="0"/>
+      <param name="type" type="int" enumType="KalturaEntryType" optional="1"/>
+      <result type="KalturaBaseEntry"/>
+    </action>
+    <action name="get">
+      <param name="entryId" type="string" optional="0"/>
+      <result type="KalturaBaseEntry"/>
+    </action>
+    <action name="delete">
+      <param name="entryId" type="string" optional="0"/>
+      <result/>
+    </action>
+    <action name="list">
+      <param name="filter" type="KalturaBaseEntryFilter" optional="1"/>
+      <param name="pager" type="KalturaFilterPager" optional="1"/>
+      <result type="KalturaBaseEntryListResponse"/>
+    </action>
+  </service>
+  <service name="session">
+    <action name="start">
+      <param name="secret" type="string" optional="0"/>
+      <param name="userId" type="string" optional="0"/>
+      <param name="type" type="int" enumType="KalturaSessionType" optional="1"/>
+      <param name="partnerId" type="int" optional="1"/>
+      <param name="expiry" type="int" optional="1"/>
+      <param name="privileges" type="string" optional="1"/>
+      <result type="string"/>
+    </action>
+    <action name="startWidgetSession">
+      <param name="widgetId" type="string" optional="0"/>
+      <param name="expiry" type="int" optional="1"/>
+      <result type="string"/>
+    </action>
+  </service>
+  <service name="uiConf">
+    <action name="add">
+      <param name="uiConf" type="KalturaUiConf" optional="0"/>
+      <result type="KalturaUiConf"/>
+    </action>
+    <action name="update">
+      <param name="id" type="int" optional="0"/>
+      <param name="uiConf" type="KalturaUiConf" optional="0"/>
+      <result type="KalturaUiConf"/>
+    </action>
+    <action name="get">
+      <param name="id" type="int" optional="0"/>
+      <result type="KalturaUiConf"/>
+    </action>
+    <action name="delete">
+      <param name="id" type="int" optional="0"/>
+      <result/>
+    </action>
+    <action name="clone">
+      <param name="id" type="int" optional="0"/>
+      <result type="KalturaUiConf"/>
+    </action>
+    <action name="list">
+      <param name="filter" type="KalturaUiConfFilter" optional="1"/>
+      <param name="pager" type="KalturaFilterPager" optional="1"/>
+      <result type="KalturaUiConfArray" arrayType="KalturaUiConf"/>
+    </action>
+  </service>
+  <service name="playlist">
+    <action name="add">
+      <param name="playlist" type="KalturaPlaylist" optional="0"/>
+      <param name="updateStats" type="bool" optional="1"/>
+      <result type="KalturaPlaylist"/>
+    </action>
+    <action name="get">
+      <param name="id" type="string" optional="0"/>
+      <result type="KalturaPlaylist"/>
+    </action>
+    <action name="update">
+      <param name="id" type="string" optional="0"/>
+      <param name="playlist" type="KalturaPlaylist" optional="0"/>
+      <param name="updateStats" type="bool" optional="1"/>
+      <result type="KalturaUiConf"/>
+    </action>
+    <action name="delete">
+      <param name="id" type="string" optional="0"/>
+      <result type="KalturaPlaylist"/>
+    </action>
+    <action name="list">
+      <param name="filter" type="KalturaPlaylistFilter" optional="1"/>
+      <param name="pager" type="KalturaFilterPager" optional="1"/>
+      <result type="KalturaMediaEntries" arrayType="KalturaMediaEntry"/>
+    </action>
+    <action name="execute">
+      <param name="id" type="string" optional="0"/>
+      <param name="detailed" type="string" optional="1"/>
+      <result type="KalturaMediaEntries" arrayType="KalturaMediaEntry"/>
+    </action>
+    <action name="executeFromContent">
+      <param name="playlistType" type="int" enumType="KalturaPlaylistType" optional="0"/>
+      <param name="playlistContent" type="string" optional="0"/>
+      <param name="detailed" type="string" optional="1"/>
+      <result type="KalturaMediaEntries" arrayType="KalturaMediaEntry"/>
+    </action>
+    <action name="getStatsFromContent">
+      <param name="playlistType" type="int" enumType="KalturaPlaylistType" optional="0"/>
+      <param name="playlistContent" type="string" optional="0"/>
+      <result type="KalturaMediaEntries" arrayType="KalturaMediaEntry"/>
+    </action>
+  </service>
+  <service name="user">
+    <action name="add">
+      <param name="id" type="int" optional="0"/>
+      <param name="user" type="KalturaUser" optional="0"/>
+      <result type="KalturaUser"/>
+    </action>
+    <action name="update">
+      <param name="id" type="string" optional="0"/>
+      <param name="user" type="KalturaUser" optional="0"/>
+      <result type="KalturaUser"/>
+    </action>
+    <action name="updateid">
+      <param name="id" type="string" optional="0"/>
+      <param name="newId" type="string" optional="0"/>
+      <result type="KalturaUser"/>
+    </action>
+    <action name="get">
+      <param name="id" type="string" optional="0"/>
+      <result type="KalturaUser"/>
+    </action>
+    <action name="delete">
+      <param name="id" type="string" optional="0"/>
+      <result type="KalturaUser"/>
+    </action>
+    <action name="list">
+      <param name="filter" type="KalturaUserFilter" optional="1"/>
+      <param name="pager" type="KalturaFilterPager" optional="1"/>
+      <result type="KalturaUserArray" arrayType="KalturaUser"/>
+    </action>
+  </service>
+  <service name="widget">
+    <action name="add">
+      <param name="widget" type="KalturaWidget" optional="0"/>
+      <result type="KalturaWidget"/>
+    </action>
+    <action name="update">
+      <param name="id" type="string" optional="0"/>
+      <param name="widget" type="KalturaWidget" optional="0"/>
+      <result type="KalturaWidget"/>
+    </action>
+    <action name="get">
+      <param name="id" type="string" optional="0"/>
+      <result type="KalturaWidget"/>
+    </action>
+    <action name="clone">
+      <param name="widget" type="KalturaWidget" optional="0"/>
+      <result type="KalturaWidget"/>
+    </action>
+    <action name="list">
+      <param name="filter" type="KalturaWidgetFilter" optional="1"/>
+      <param name="pager" type="KalturaFilterPager" optional="1"/>
+      <result type="KalturaUiConfArray" arrayType="KalturaUiConf"/>
+    </action>
+  </service>
+  <service name="search">
+    <action name="search">
+      <param name="search" type="KalturaSearch" optional="0"/>
+      <param name="pager" type="KalturaFilterPager" optional="1"/>
+      <result type="KalturaSearchResultArray" arrayType="KalturaSearchResult"/>
+    </action>
+    <action name="getMediaInfo">
+      <param name="searchResult" type="KalturaSearchResult" optional="0"/>
+      <result type="KalturaSearchResult"/>
+    </action>
+    <action name="searchUrl">
+      <param name="mediaType" type="int" enumType="KalturaMediaType" optional="0"/>
+      <param name="url" type="string" optional="0"/>
+      <result type="KalturaSearchResult"/>
+    </action>
+  </service>
+  <service name="partner">
+    <action name="register">
+      <param name="partner" type="KalturaPartner" optional="0"/>
+      <param name="cmsPassword" type="string" optional="1"/>
+      <result type="KalturaPartner"/>
+    </action>
+    <action name="update">
+      <param name="partner" type="KalturaPartner" optional="0"/>
+      <param name="allowEmpty" type="bool" optional="1"/>
+      <result type="KalturaPartner"/>
+    </action>
+    <action name="getsecrets">
+      <param name="partnerId" type="int" optional="0"/>
+      <param name="adminEmail" type="string" optional="0"/>
+      <param name="cmsPassword" type="string" optional="0"/>
+      <result type="KalturaPartner"/>
+    </action>
+    <action name="getinfo">
+      <result type="KalturaPartner"/>
+    </action>
+    <action name="getusage">
+      <param name="year" type="int" optional="0"/>
+      <param name="month" type="int" optional="1"/>
+      <param name="resolution" type="string" optional="1"/>
+      <result type="KalturaPartnerUsage"/>
+    </action>
+  </service>
+  <service name="adminuser">
+    <action name="updatepassword">
+      <param name="email" type="string" optional="0"/>
+      <param name="password" type="string" optional="0"/>
+      <param name="newEmail" type="string" optional="1"/>
+      <param name="newPassword" type="string" optional="1"/>
+      <result type="KalturaAdminUser"/>
+    </action>
+    <action name="resetpassword">
+      <param name="email" type="string" optional="0"/>
+      <result type="string"/>
+    </action>
+    <action name="login">
+      <param name="email" type="string" optional="0"/>
+      <param name="password" type="string" optional="0"/>
+      <result type="KalturaAdminLoginResponse"/>
+    </action>
+  </service>
+  <service name="system">
+    <action name="ping">
+      <result type="bool"/>
+    </action>
+  </service>
+  <service name="notification">
+    <action name="getClientNotification">
+      <param name="entryId" type="string" optional="0"/>
+      <param name="type" type="int" enumType="KalturaNotificationType" optional="0"/>
+      <result type="KalturaClientNotification"/>
+    </action>
+  </service>
+</services>
+</xml>
