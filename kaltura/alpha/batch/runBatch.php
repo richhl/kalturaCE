@@ -1,5 +1,5 @@
 <?php
-define('SF_ROOT_DIR',    realpath(dirname(__FILE__).'/..'));
+require_once(realpath(dirname(__FILE__)).'/../config/sfrootdir.php');
 $action = $argv[1]; // start/stop 
 $batch_name = @$argv[2];
 

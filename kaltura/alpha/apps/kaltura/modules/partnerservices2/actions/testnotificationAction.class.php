@@ -40,7 +40,7 @@ class testnotificationAction extends defPartnerservices2Action
 		
 		$partner = PartnerPeer::retrieveByPK($partner_id);
 		list ( $url , $signature_key ) = myNotificationMgr::getPartnerNotificationInfo ( $partner );
-		$holder = new myBatchNotificationServer;
+		$holder = new myBatchNotificationServer ( null );
 		SET_CONTEXT(null);
 		list ( $params_sent , $res, $http_code ) = $holder->sendNotification ( $url , $signature_key , $notification );
 	}

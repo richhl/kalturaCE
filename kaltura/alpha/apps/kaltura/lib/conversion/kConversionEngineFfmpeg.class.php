@@ -47,9 +47,9 @@ class kConversionEngineFfmpeg  extends kConversionEngine
 			" -y ";
 						
 		// I have commented out the audio parameters so we don't decrease the quality - it stays as-is
-		$exec_cmd = self::getCmd() . " -i " . $conv_cmd->source_file .
-			$conversion_string .
-			$conv_cmd->getTargetFileWithSuffix( $params_index ) . "  2" . ">>"  . "\"{$conv_cmd->getLogFileWithSuffix ( $params_index ) }\"";
+		$exec_cmd = self::getCmd() . " -i \"" . $conv_cmd->source_file ."\"".
+			$conversion_string ." \"".
+			$conv_cmd->getTargetFileWithSuffix( $params_index ) . "\"  2" . ">>"  . "\"{$conv_cmd->getLogFileWithSuffix ( $params_index ) }\"";
 
 		return array ( $exec_cmd , $conversion_string )	;			
 	}

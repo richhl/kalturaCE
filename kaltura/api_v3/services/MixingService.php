@@ -237,11 +237,22 @@ class MixingService extends KalturaEntryService
 			throw new KalturaAPIException(KalturaErrors::INTERNAL_SERVERL_ERROR);
 		}
 		
+		// FIXME: temp hack  - when kshow doesn't have a roughcut, and the media entry is not ready, it cannob be queued for append upon import/conversion completion 
+		if ($dbMediaEntry->getStatus() != entry::ENTRY_STATUS_READY)
+		{
+			$kshow->setShowEntryId($mixEntryId);
+			$kshow->save();
+			$dbMediaEntry->setKshowId($kshow->getId());
+			$dbMediaEntry->save();
+		}
+		
 		$metadata = $kshow->getMetadata();
 		
 		$relevantKshowVersion = 1 + $kshow->getVersion(); // the next metadata will be the first relevant version for this new entry
 		
 		$newMetadata = myMetadataUtils::addEntryToMetadata($metadata, $dbMediaEntry, $relevantKshowVersion, array());
+		
+		$dbMediaEntry->save(); // FIXME: should be removed, needed for the prev hack
 		
 		if ($newMetadata)
 		{

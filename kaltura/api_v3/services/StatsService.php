@@ -50,9 +50,12 @@ referrer
 		
 		$referrer = isset ( $_SERVER['HTTP_REFERER'] ) ? $_SERVER['HTTP_REFERER'] : "";
 		
-		$eventLine = $event->clientVer . self::SEPARATOR 
+		$users_timestamp = $event->eventTimestamp;
+		
+		$eventLine = 
+			$event->clientVer . self::SEPARATOR 
 			. $event->eventType  . self::SEPARATOR
-			. date ( "Y-m-d H:i:s" , ($event->eventTimestamp/1000 )) . self::SEPARATOR
+			. date ( "Y-m-d H:i:s" , time() ) . self::SEPARATOR   // use server time
 			. $event->sessionId  . self::SEPARATOR
 			. $event->partnerId  . self::SEPARATOR
 			. $event->entryId  . self::SEPARATOR
@@ -67,7 +70,8 @@ referrer
 			. $event->controlId  . self::SEPARATOR
 			. $event->seek  . self::SEPARATOR
 			. $event->newPoint  . self::SEPARATOR
-			. ( $event->referrer ? $event->referrer : $referrer )		// duw to the way flash sends the referrer - allow it to override  
+			. ( $event->referrer ? $event->referrer : $referrer )	. self::SEPARATOR	// duw to the way flash sends the referrer - allow it to override
+			. $users_timestamp
 			. PHP_EOL 
 		;
 		

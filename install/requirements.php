@@ -50,7 +50,7 @@ function verify_phpcli()
     0 => '/Applications/XAMPP/xamppfiles/bin/php', // try to find common mac-xampp php-cli
     1 => '/opt/lampp/bin/php', // try to find common linux-xampp php-cli
     2 => 'C:\xampp\php\php', // try to find common windows-xampp php-cli
-    3 => 'C:\Program Files\xampp\php\php', // try to find another common windows-xampp php-cli
+    3 => 'C:\Progra~1\xampp\php\php', // try to find another common windows-xampp php-cli
     4 => 'php', // try to find php-cli in environment path
   );
   $errorFlag = true;

@@ -5,7 +5,7 @@
  * To change the template for this generated file go to
  * Window - Preferences - PHPeclipse - PHP - Code Templates
  */
-define('SF_ROOT_DIR',    realpath(dirname(__FILE__).'/..'));
+require_once(realpath(dirname(__FILE__)).'/../config/sfrootdir.php');
 define('SF_APP',         'kaltura');
 define('SF_ENVIRONMENT', 'batch');
 define('SF_DEBUG',       true);

@@ -221,6 +221,10 @@ function do_file_replacements()
 {
   global $logger;
   $output = '';
+  
+  $logger->writeLog('going to write sfrootdir.php file in alpha/config');
+  write_sfrootdir_file();
+  
   $logger->writeLog('function do_file_replacements called - starting replacements');
   $logger->writeLog('going to replace values in kConf.php');
   $replace = replace_kConf(); // reporting erros
@@ -261,6 +265,26 @@ function do_file_replacements()
   $output .= $replace;
   $logger->writeLog('finished replacemets');
   return $output;
+}
+
+function write_sfrootdir_file()
+{
+  global $root_dir, $errorReporter, $alpha_dir;
+  $sfrootdir_file_path = $alpha_dir.'config/sfrootdir.php';
+  $bin_path = realpath($alpha_dir);
+  $real_root_dir = $bin_path;
+  if(PHP_OS != 'Linux')
+  {
+    exec("cmd /c for /d %i in (\"$bin_path\") do @echo %~si", $output, $error);
+    $real_root_dir = trim($output[0]);
+  }
+  $sfrootdir_content = '<?php'.PHP_EOL.'define(\'SF_ROOT_DIR\', \''.$real_root_dir.'\');'.PHP_EOL.'?>';
+  $result = file_put_contents($sfrootdir_file_path, $sfrootdir_content);
+  if (!$result)
+  {
+    // report error to kaltura
+    $errorReporter->addError('sf_root_dir', 'could not write sfrootdir.php file', '');
+  }
 }
 
 function replace_uiconfs()
@@ -664,7 +688,7 @@ function replace_kConf()
   else
   {
     $logger->writeLog('provided host without relative path, checking if relative path needed');
-    $CE_abs_path = $root_dir;
+    $CE_abs_path = rtrim(str_replace('\\', '/', $root_dir),'/'); // get abs path to look as much as similar to expected document root on windows
     $logger->writeLog('CE absolute path: '.$CE_abs_path);
     $server_root = $_SERVER['DOCUMENT_ROOT'];
     $logger->writeLog('assumed documentRoot: '.$server_root);

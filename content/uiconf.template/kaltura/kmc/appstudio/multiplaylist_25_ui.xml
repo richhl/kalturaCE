@@ -642,7 +642,7 @@
 			<HBox width="100%" height="100%" styleName="irMainView">
 				<Image id="irImageIrScreen" source="{this.thumbnailUrl}" width="70" height="54" />
 				<VBox id="irTitleBoxIrScreen" width="100%" height="100%" styleName="fieldsBox">
-				<HBox width="100%">
+				<HBox width="100%" minHeight="4">
 						<Label id="irLinkIrScreen"
 							width="100%" styleName="irLabel"
 							text="{this.name}" />
@@ -653,7 +653,7 @@
 					text="{this.description}" toolTip="{this.description}" />
 				<Label styleName="irLabel" width="100%" id="irPlaysIrScreen"
 					text="Plays: {this.plays}" />
-				<HBox id="irRatingContainerIrScreen" width="100%">
+				<HBox id="irRatingContainerIrScreen" width="100%" minHeight="4">
 					<Label id="irRankIrScreen" styleName="irLabel"
 						text="Rank: {this.rank}" />
 					<Label styleName="irLabel" id="irVotesIrScreen"

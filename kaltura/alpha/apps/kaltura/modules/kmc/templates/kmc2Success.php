@@ -2,9 +2,9 @@
 $service_url = requestUtils::getRequestHost();
 $host = str_replace ( "http://" , "" , $service_url );
 $cdn_host = str_replace ( "http://" , "" , requestUtils::getCdnHost() );
-$kmc_content_version = 'v1.1.7';
+$kmc_content_version = 'v1.1.7'; //'v1.1.8';
 $kmc_account_version = 'v1.1.6';
-$kmc_appstudio_version = 'v1.2.1';
+$kmc_appstudio_version = 'v1.2.2';
 $kmc_rna_version = 'v1.0.2';
 
 $flash_dir = $service_url . myContentStorage::getFSFlashRootPath ();

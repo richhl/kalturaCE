@@ -1,5 +1,5 @@
 <?php
-define('SF_ROOT_DIR',    realpath(dirname(__FILE__).'/..'));
+require_once(realpath(dirname(__FILE__)).'/../config/sfrootdir.php');
 define('SF_APP',         'kaltura');
 define('SF_ENVIRONMENT', 'batch');
 define('SF_DEBUG',       true );
