@@ -649,7 +649,7 @@
 				<Label styleName="irLabel" width="100%" id="irCreatedIrScreen"
 					text="Created at: {formatDate(this.createdAt, 'DD/MM/YYY')}" />
 				<Label text="Created by: {this.userScreenName}" id="irCreatedByIrScreen"
-						width="100%"/>
+						width="100%" styleName="irLabel"/>
 				</VBox>
 			</HBox>
 		</screen>

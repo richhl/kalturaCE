@@ -29,7 +29,7 @@
 					k_start_screen_id="startScreen" 
 					k_start_screen_over_id="startScreen" />
 				<plymedia height="100%" id="plyMedia" 
-					k_path="addons/PlyMediaModule.swf" styleName="centered" 
+					k_path="addons/PlyMediaModule.swf‬" styleName="centered" 
 					width="100%"/>
 				<waterMark height="100%" id="watermark" 
 					k_path="watermarks/WaterMarkLoader.swf" 
@@ -644,7 +644,7 @@
 				<HBox width="100%">
 						<Label id="irLinkIrScreen"
 							width="100%" styleName="irLabel"
-							text="{this.entryName}" />
+							text="{this.name}" />
 						<Label id="irDurationIrScreen" styleName="irLabel" width="40"
 						text="{formatDate(this.duration, 'NN:SS')}" />
 				</HBox>

@@ -995,8 +995,8 @@ function customFunc5 (entryId){
       <Label label="Name of Entry" bold="true" />
       <CheckBox label="Item in list" enabled="false" id="irScreen"
       selected="true" k_param="selected" k_value="true" />
-      <Input id="entryName" k_param="label"
-      k_value="{this.entryName}" enabled="false"
+      <Input id="name" k_param="label"
+      k_value="{this.name}" enabled="false"
       aps_visible="false" />
       <Label label="Prefix:"  aps_visible="false" />
       <Input id="prefix" affectsOnAttribute="label"
