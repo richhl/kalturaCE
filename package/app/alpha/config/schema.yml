@@ -1,0 +1,1467 @@
+propel:
+  kuser:
+    _attributes: { phpName: kuser }
+    id:
+    screen_name: varchar(20)
+    full_name: varchar(40)
+    email: varchar(50)
+    sha1_password: varchar(40)
+    salt: varchar(32)
+    date_of_birth: bu_date
+    country: varchar(2)
+    state: varchar(16)
+    city: varchar(30)
+    zip: varchar(10)
+    url_list: varchar(256)
+    picture: varchar(48)
+    icon: tinyint
+    about_me: varchar(4096)
+    tags: longvarchar
+    tagline: varchar(256)
+    network_highschool: varchar(30)
+    network_college: varchar(30)
+    network_other: varchar(30)
+    mobile_num: varchar(16)
+    mature_content: tinyint
+    gender: tinyint
+    registration_ip: integer
+    registration_cookie: varchar(256)
+    im_list: varchar(256)
+    views :  { type: integer, default: 0 }
+    fans :  { type: integer, default: 0 }
+    entries:  { type: integer, default: 0 }
+    storage_size:  { type: integer, default: 0 }
+    produced_kshows:  { type: integer, default: 0 }
+    status:integer
+    created_at:
+    updated_at:
+    partner_id: { type: integer, default: 0 }
+    display_in_search : tinyint
+    search_text: varchar(4096)
+    partner_data: varchar(4096)
+    puser_id: varchar(64)
+    admin_tags: longvarchar
+    indexed_partner_data_int: integer
+    indexed_partner_data_string: varchar(64)
+
+    _indexes:
+      screen_name_index: [screen_name]
+      full_name_index: [full_name]
+      network_college_index : [network_college]
+      network_highschool_index : [network_highschool]
+      entries_index: [entries]
+      views_index: [views]
+      display_in_search_index: [display_in_search]
+      partner_indexed_partner_data_int: [partner_id, indexed_partner_data_int]
+      partner_indexed_partner_data_string: [partner_id, indexed_partner_data_string]
+       
+
+  kshow:
+    _attributes: { phpName: kshow }
+    id: { type: varchar(20), required: true, primaryKey: true }
+    producer_id: { type: integer, foreignTable: kuser, foreignReference: id }
+    episode_id: varchar(20)
+    name: varchar(60)
+    subdomain: varchar(30)
+    description: longvarchar
+    status: { type: integer, default: 0 }
+    type: integer
+    media_type: integer
+    format_type : integer
+    language: integer
+    start_date: date
+    end_date: date
+    skin: longvarchar
+    thumbnail: varchar(48)
+    show_entry_id : varchar(20)
+    intro_id : integer
+    views: { type: integer, default: 0 }
+    votes: { type: integer, default: 0 }
+    comments: { type: integer, default: 0 }
+    favorites: { type: integer, default: 0 }
+    rank: { type: integer, default: 0 }
+    entries: { type: integer, default: 0 }
+    contributors: { type: integer, default: 0 }
+    subscribers: { type: integer, default: 0 }
+    number_of_updates: { type: integer, default: 0 }
+ #   number_of_roughcuts: { type: integer, default: 0 }
+    tags: longvarchar
+    custom_data : longvarchar
+    indexed_custom_data_1 : integer
+    indexed_custom_data_2 : integer
+    indexed_custom_data_3 : varchar(256)
+    reoccurence : integer
+    license_type : integer
+    length_in_msecs: { type: integer, default: 0 }
+    view_permissions : integer
+    view_password: varchar(40)
+    contrib_permissions: integer
+    contrib_password: varchar(40)
+    edit_permissions: integer
+    edit_password: varchar(40)
+    salt: varchar(32)
+    created_at:
+    updated_at:
+    partner_id: { type: integer, default: 0 }
+    display_in_search : tinyint
+    subp_id: { type: integer, default: 0 }
+    search_text: varchar(4096)
+    permissions: varchar(1024)
+    group_id: varchar(64)
+    plays:  { type: integer, default: 0 }
+    partner_data: varchar(4096)
+    int_id: { type: integer, required: true, autoincrement: true }
+
+    _indexes:
+      views_index: [views]
+      votes_index: [votes]
+      created_at_index: [created_at]
+      type_index: [type]
+      indexed_custom_data_1_index: [indexed_custom_data_1]
+      indexed_custom_data_2_index: [indexed_custom_data_2]
+      indexed_custom_data_3_index: [indexed_custom_data_3]
+      producer_id_index: [producer_id]
+      display_in_search_index: [display_in_search]
+      partner_group_index: [partner_id, group_id]
+
+
+  entry:
+    _attributes: { phpName: entry }
+    id: { type: varchar(20), required: true, primaryKey: true }
+    kshow_id: { type: varchar(20), foreignTable: kshow, foreignReference: id }
+    kuser_id: { type: integer, foreignTable: kuser, foreignReference: id }
+    name: varchar(60)
+    type: smallint
+    media_type: smallint
+    data: varchar(48)
+    thumbnail: varchar(48)
+    views:  { type: integer, default: 0 }
+    votes:  { type: integer, default: 0 }
+    comments:  { type: integer, default: 0 }
+    favorites:  { type: integer, default: 0 }
+    total_rank:  { type: integer, default: 0 }
+    rank:  { type: integer, default: 0 }
+    tags: longvarchar
+    anonymous : tinyint
+    status: integer
+    source: smallint
+    source_id : varchar(48)
+    source_link: varchar(1024)
+    license_type: smallint
+    credit: varchar(1024)
+    length_in_msecs:  { type: integer, default: 0 }
+    created_at:
+    updated_at:
+    partner_id: { type: integer, default: 0 }
+    display_in_search : tinyint
+    subp_id: { type: integer, default: 0 }
+    custom_data : longvarchar
+    search_text: varchar(4096)
+    screen_name: varchar(20)
+    site_url: varchar(256)
+    permissions: { type: integer, default: 1 }
+    group_id: varchar(64)
+    plays:  { type: integer, default: 0 }
+    partner_data: varchar(4096)
+    int_id: { type: integer, required: true, autoincrement: true }
+    indexed_custom_data_1 : integer
+    plays:  { type: integer, default: 0 }
+    description: longvarchar
+    media_date: timestamp
+    admin_tags: longvarchar
+    moderation_status: integer
+    moderation_count: integer
+    modified_at: timestamp
+    puser_id: varchar(64)
+    access_control_id: { type: integer, foreignTable: access_control, foreignReference: id }
+    conversion_profile_id: { type: integer, foreignTable: conversion_profile_2, foreignReference: id }
+    categories: varchar(4096)
+    categories_ids: varchar(1024)
+    start_date: { type: timestamp }
+    end_date: { type: timestamp }
+    search_text_discrete: varchar(4096)
+    flavor_params_ids: varchar(512)
+    available_from: { type: timestamp }
+       
+    _indexes:
+      kshow_rank_index: [kshow_id, rank]
+      kshow_views_index: [kshow_id, views]
+      kshow_votes_index: [kshow_id, votes]
+      kshow_created_index: [kshow_id, created_at]
+      views_index: [views]
+      votes_index: [votes]
+      display_in_search_index: [display_in_search]
+      partner_group_index: [partner_id, group_id]
+      partner_kuser_indexed_custom_data_index: [partner_id, kuser_id,indexed_custom_data_1] 
+      partner_status_index:   [partner_id, status]   
+      partner_moderation_status:   [partner_id, moderation_status]   
+      partner_modified_at_index:   [partner_id, modified_at]
+
+
+  kvote:
+    _attributes: { phpName: kvote }
+    id:
+    kshow_id: { type: varchar(20), foreignTable: kshow, foreignReference: id }
+    entry_id: { type: varchar(20), foreignTable: entry, foreignReference: id }
+    kuser_id: { type: integer, foreignTable: kshow, foreignReference: id }
+    rank:integer
+    created_at:
+
+    _indexes:
+      kshow_index: [kshow_id]
+      entry_user_index: [entry_id]
+
+
+  comment:
+    _attributes: { phpName: comment }
+    id:
+    kuser_id: { type: integer, foreignTable: kuser, foreignReference: id }
+    comment_type:integer
+    subject_id:integer
+    base_date:date
+    reply_to:integer
+    comment: varchar(256)
+    created_at:
+
+    _indexes:
+      subject_created_index: [comment_type, subject_id, base_date, reply_to, created_at]
+
+
+  flag:
+    _attributes: { phpName: flag }
+    id:
+    kuser_id: { type: integer, foreignTable: kuser, foreignReference: id }
+    subject_type:integer
+    subject_id:integer
+    flag_type:integer
+    other : varchar(60)
+    comment: varchar(2048)
+    created_at:
+
+    _indexes:
+      subject_created_index: [subject_type, subject_id, created_at]
+
+  alert:
+    _attributes: { phpName: alert }
+    id:
+    kuser_id: { type: integer, foreignTable: kuser, foreignReference: id }
+    alert_type: integer
+    subject_id: integer
+    rule_type: integer
+
+    _indexes:
+      kuser_index: [kuser_id]
+      subject_index: [alert_type, subject_id]
+
+  favorite:
+    _attributes: { phpName: favorite }
+    kuser_id : { type: integer, foreignTable: kuser, foreignReference: id }
+    subject_type: integer
+    subject_id: integer
+    privacy: integer
+
+    _indexes:
+      kuser_index: [kuser_id]
+      subject_index: [subject_type, subject_id]
+
+  kshow_kuser:
+    _attribute: { phpName : kshowKuserAlert }
+    kshow_id : { type: varchar(20), foreignTable: kshow, foreignReference: id }
+    kuser_id : { type: integer, foreignTable: kuser, foreignReference: id }
+    subscription_type: integer
+    alert_type : integer
+
+    _indexes:
+      kshow_index: [kshow_id]
+      kuser_index: [kuser_id]
+      subscription_index: [kshow_id, subscription_type]
+
+
+  keyword:
+    _attribute: { phpName : keyword }
+    word : { primaryKey: true, type: varchar(30)}
+    entity_id : integer
+    entity_type : integer
+    entity_columns : varchar(30)
+
+    _indexes:
+      word_index: [word]
+
+  tagword_count:
+    _attribute: { phpName : tagwordCount }
+    tag : { primaryKey: true, type: varchar(30) }
+    tag_count : integer
+
+    _indexes:
+      count_index: [tag_count]
+
+  mail_job:
+    _attribute: { phpName : mailJob }
+    id :
+    mail_type : smallint
+    mail_priority : smallint
+    recipient_name : varchar(64)
+    recipient_email : varchar(64)
+    recipient_id :  { type: integer, foreignTable: kuser, foreignReference: id }
+    from_name : varchar(64)
+    from_email : varchar(64)
+    body_params : varchar(2048)
+    subject_params : varchar(512)
+    template_path : varchar(512)
+    culture : tinyint
+    status : tinyint
+    created_at:
+    campaign_id: integer
+    min_send_date: timestamp
+    scheduler_id: { type: integer, default: null }
+    worker_id: { type: integer, default: null }
+    batch_index: { type: integer, default: null }
+    processor_expiration: { type: timestamp } 
+    execution_attempts: tinyint
+    lock_version: integer
+    partner_id: { type: integer, default: 0 }
+    updated_at:
+    dc: varchar(2)
+    
+    _indexes:
+      mail_job_index: [mail_priority, created_at]
+      recipient_id_index: [recipient_id]
+      campaign_id_index: [campaign_id]
+      partner_id_index: [partner_id]      
+
+  scheduler:
+    _attribute: { phpName : scheduler }
+    id :
+    created_at :
+    created_by : varchar(20)
+    updated_at :
+    updated_by : varchar(20)
+    configured_id : integer
+    name : { type: varchar(20), default: '' }
+    description : { type: varchar(20), default: '' }
+    statuses : { type: varchar(255), default: '' }    
+    last_status : timestamp    
+    host: { type: varchar(63), default: '' }
+
+  scheduler_worker:
+    _attribute: { phpName : schedulerWorker }
+    id :
+    created_at :
+    created_by : varchar(20)
+    updated_at :
+    updated_by : varchar(20)
+    scheduler_id : integer
+    scheduler_configured_id : integer
+    configured_id : integer
+    type : smallint
+    name : { type: varchar(20), default: '' }
+    description : { type: varchar(20), default: '' }
+    statuses : { type: varchar(255), default: '' }      
+    last_status : timestamp    
+  
+  scheduler_status:
+    _attribute: { phpName : schedulerStatus }
+    id :
+    created_at :
+    created_by : varchar(20)
+    updated_at :
+    updated_by : varchar(20)
+    scheduler_id : integer
+    scheduler_configured_id : integer
+    worker_id : { type: integer, default: null }
+    worker_configured_id : { type: integer, default: null }
+    worker_type : { type: smallint, default: null }
+    type: smallint
+    value : integer
+    
+    _indexes:
+      status_type_index: [type]
+      status_created_at_index: [created_at]
+      scheduler_id_index: [scheduler_id]
+      worker_id_index_type: [worker_id, worker_type]
+  
+  scheduler_config:
+    _attribute: { phpName : schedulerConfig }
+    id :
+    created_at :
+    created_by : varchar(20)
+    updated_at :
+    updated_by : varchar(20)
+    command_id : { type: integer, default: null }
+    command_status : tinyint
+    scheduler_id : integer
+    scheduler_configured_id : integer
+    scheduler_name : varchar(20)
+    worker_id: { type: integer, default: null }
+    worker_configured_id : { type: integer, default: null }
+    worker_name: { type: varchar(50), default: null }
+    variable : varchar(100)
+    variable_part : varchar(100)
+    value : varchar(255)
+    
+    _indexes:
+      status_variable_index: [variable, variable_part]
+      status_created_at_index: [created_at]
+      scheduler_id_index: [scheduler_id]
+      worker_id_index_type: [worker_id]
+    
+  control_panel_command:
+    _attribute: { phpName : controlPanelCommand }
+    id :
+    created_at :
+    created_by : varchar(20)
+    updated_at :
+    updated_by : varchar(20)
+    created_by_id : integer
+    scheduler_id : { type: integer, default: null }
+    scheduler_configured_id : integer
+    worker_id: { type: integer, default: null }
+    worker_configured_id : { type: integer, default: null }
+    worker_name: { type: varchar(50), default: null }
+    batch_index: { type: integer, default: null }
+    type : smallint
+    target_type : smallint
+    status : smallint
+    cause : varchar(255)
+    description : varchar(255)
+    error_description : varchar(255)
+  
+  batch_job:
+    _attribute: { phpName : batchJob }
+    id :
+    job_type : smallint
+    job_sub_type : smallint
+    data : varchar(4096)
+    file_size: { type: integer, default: null }
+    duplication_key : varchar(2047)
+    status : integer
+    abort : tinyint
+    check_again_timeout : integer
+    progress : tinyint
+    message : varchar(1024)
+    description : varchar(1024)
+    updates_count : smallint
+    created_at :
+    created_by : varchar(20)
+    updated_at :
+    updated_by : varchar(20)
+    deleted_at : { type: timestamp }
+    priority : tinyint
+    work_group_id : integer
+    queue_time: timestamp
+    finish_time: timestamp 
+    entry_id: { type: varchar(20), default: '' }
+    partner_id: { type: integer, default: 0 }
+    subp_id: { type: integer, default: 0 }
+    scheduler_id: integer
+    worker_id: integer
+    batch_index: integer
+    last_scheduler_id: integer
+    last_worker_id: integer
+    last_worker_remote: boolean
+    processor_expiration: { type: timestamp } 
+    execution_attempts: tinyint
+    lock_version: integer
+    twin_job_id : { type: integer, default: null }
+    bulk_job_id : { type: integer, default: null }
+    root_job_id : { type: integer, default: null }
+    parent_job_id : { type: integer, default: null }
+    dc: integer
+    err_type: integer
+    err_number: integer
+    on_stress_divert_to: integer
+
+    _indexes:
+      status_job_type_index: [status, job_type]
+      entry_id_index_id: [entry_id, id]
+      partner_id_index: [partner_id]
+      work_group_id_index_priority: [work_group_id, priority]
+      twin_job_id_index: [twin_job_id]
+      bulk_job_id_index: [bulk_job_id]
+      root_job_id_index: [root_job_id]
+      parent_job_id_index: [parent_job_id]
+      execution_attempts_index: [job_type, execution_attempts]
+      processor_expiration_index: [job_type, processor_expiration]
+      lock_index: [batch_index, scheduler_id, worker_id]
+
+  priority_group:
+    _attribute: { phpName : priorityGroup }
+    id :
+    created_at :
+    created_by : varchar(20)
+    updated_at :
+    updated_by : varchar(20)
+    name : varchar(20)
+    description : varchar(100)
+    priority : tinyint 
+    bulk_priority : tinyint 
+
+  work_group:
+    _attribute: { phpName : workGroup }
+    id :
+    created_at :
+    created_by : varchar(20)
+    updated_at :
+    updated_by : varchar(20)
+    name : varchar(20)
+    description : varchar(100) 
+
+  bulk_upload_result:
+    _attribute: { phpName : bulkUploadResult }
+    id :
+    created_at :
+    updated_at :
+    bulk_upload_job_id: integer
+    line_index: integer
+    partner_id: integer
+    entry_id: varchar(20)
+    entry_status: integer
+    row_data: varchar(1023)
+    title: varchar(127)
+    description: varchar(255)
+    tags: varchar(255)
+    url: varchar(255)
+    content_type: varchar(31)
+    conversion_profile_id: integer
+    access_control_profile_id: integer
+    category: varchar(128)
+    schedule_start_date: timestamp
+    schedule_end_date: timestamp
+    thumbnail_url: varchar(255)
+    thumbnail_saved: boolean
+    partner_data: varchar(4096)
+    error_description: varchar(255)
+  
+    _indexes:
+      entry_id_index_id: [entry_id, id]
+  
+  blocked_email:
+    _attributes: { phpName: blockedEmail }
+    email: { primaryKey: true, type: varchar(40) }
+
+  conversion:
+    _attributes: { phpName: conversion }
+    id:
+    entry_id: { type: varchar(20), foreignTable: entry, foreignReference: id }
+    in_file_name: varchar(128)
+    in_file_ext: varchar(16)
+    in_file_size: { type: integer }
+    source: { type: integer }
+    status: { type: integer }
+    conversion_params : varchar(512)
+    out_file_name: varchar(128)
+    out_file_size: { type: integer }
+    out_file_name_2: varchar(128)
+    out_file_size_2: { type: integer }
+    conversion_time: { type: integer }
+    total_process_time: { type: integer }
+    created_at:
+    updated_at:
+
+    _indexes:
+      entry_id_index: [entry_id]
+
+  flickr_token:
+    _attributes: { phpName: flickrToken }
+    kalt_token : { primaryKey: true, type: varchar(256) }
+    frob: { type: varchar(64) }
+    token: { type: varchar(64) }
+    nsid: { type: varchar(64) }
+    response: {type: varchar(512) }
+    is_valid: { type: boolean, default: false }
+    created_at:
+    updated_at:
+
+    _indexes:
+      is_valid_index: [is_valid, kalt_token]
+
+
+  puser_kuser:
+    _attribute: { phpName : puserKuser }
+    id:
+    partner_id: integer
+    puser_id: varchar(64)
+    kuser_id: { type: integer, foreignTable: kuser, foreignReference: id }
+    puser_name: varchar(64)
+    custom_data: varchar(1024)
+    created_at:
+    updated_at:
+    context:  varchar(1024)
+    subp_id: { type: integer, default: 0 }
+
+    _indexes:
+      partner_puser_index: [partner_id , puser_id]
+      kuser_id_index: [kuser_id]
+
+  puser_role:
+    _attribute: { phpName : puserRole }
+    id:
+    kshow_id: { type: varchar(20), foreignTable: kshow, foreignReference: id }
+    partner_id: { type: integer, foreignTable: puser_kuser, foreignReference: partner_id }
+    puser_id: { type: varchar(64), foreignTable: puser_kuser, foreignReference: puser_id }
+    role: integer
+    created_at:
+    updated_at:
+    subp_id: { type: integer, default: 0 }
+
+    _indexes:
+      partner_puser_index: [partner_id , puser_id]
+      kshow_id_index: [kshow_id]
+
+
+  facebook_invite:
+    _attribute: { phpName : facebookInvite }
+    id:
+    puser_id: varchar(64)
+    invited_puser_id: varchar(64)
+    status: smallint
+    created_at:
+    updated_at:
+
+    _indexes:
+      puser_id_index: [puser_id]
+      invited_puser_id_index: [invited_puser_id]
+
+
+  partner:
+    _attribute: { phpName : partner }
+    id:
+    partner_name: varchar(256)
+    partner_alias: varchar(64)
+    url1: varchar(1024)
+    url2: varchar(1024)
+    secret: varchar(50)
+    admin_secret: varchar(50)
+    max_number_of_hits_per_day: { type: integer, default: -1 }
+    appear_in_search: { type: integer, default: 2 }
+    debug_level: { type: integer, default: 0}
+    invalid_login_count: { type: integer, default: 0}
+    created_at:
+    updated_at:
+    anonymous_kuser_id: { type: integer, foreignTable: kuser, foreignReference: id }
+    ks_max_expiry_in_seconds: { type: integer, default: 86400 }
+    create_user_on_demand: { type: tinyint, default: 1 }
+    prefix: varchar(32)
+    admin_name: varchar(50)
+    admin_email: varchar(50)
+    description: varchar(1024)
+    commercial_use: { type: tinyint, default: 0 }
+    moderate_content: { type: tinyint, default: 0 }
+    notify: { type: tinyint, default: 0 }
+    custom_data : longvarchar
+    service_config_id: varchar(64)
+    status: { type: tinyint, default: 1 }
+    content_categories: varchar(1024)
+    type: { type: tinyint, default: 1 }
+    phone: varchar(64)
+    describe_yourself: varchar(64)
+    adult_content: { type: tinyint, default: 0 }
+    partner_package: { type: tinyint, default: 1 }
+    usage_percent: { type: integer, default: 0 }
+    storage_usage: { type: integer, default: 0 }
+    eighty_percent_warning: integer
+    usage_limit_warning: integer
+    monitor_usage: { type: integer, default: 1 }
+    priority_group_id : integer
+    work_group_id : integer
+    partner_group_type: { type: smallint, default: 1 }
+    partner_parent_id: { type: integer, default: null }
+    kmc_version: { type: varchar(15), default: "1" }
+        
+    _indexes:
+      partner_alias_index: [partner_alias]
+      partner_parent_index: [partner_parent_id]      
+
+
+  pr_news:
+    _attribute: { phpName : prNews }
+    id:
+    pr_order: integer
+    image_path: varchar(256)
+    href: varchar(1024)
+    text: varchar(1024)
+    alt: varchar(256)
+    created_at:
+    updated_at:
+    press_date: varchar(128)
+
+
+  email_campaign:
+    _attribute: { phpName : emailCampaign }
+    id:
+    criteria_id: smallint
+    criteria_str: varchar(1024)
+    criteria_params: varchar(1024)
+    template_path: varchar(256)
+    campaign_mgr_kuser_id: { type: integer, foreignTable: kuser, foreignReference: id }
+    send_count: integer
+    open_count: integer
+    click_count: integer
+    status: integer
+    created_at:
+    updated_at:
+
+    _indexes:
+      campaign_mgr_kuser_id_index: [campaign_mgr_kuser_id]
+
+
+  widget_log:
+    _attribute: { phpName : widgetLog }
+    id:
+    kshow_id: varchar(20)
+    entry_id: { type: varchar(20), foreignTable: entry, foreignReference: id }
+    kmedia_type: integer
+    widget_type: varchar(32)
+    referer: varchar(1024)
+    views: { type: integer, default: 0 }
+    ip1: integer
+    ip1_count: { type: integer, default: 0 }
+    ip2: integer
+    ip2_count: { type: integer, default: 0 }
+    created_at:
+    updated_at:
+    plays: { type: integer, default: 0 }
+    partner_id: { type: integer, default: 0 }
+    subp_id: { type: integer, default: 0 }
+
+    _indexes:
+      referer_index: [referer]
+      entry_id_kshow_id_index: [entry_id, kshow_id]
+      partner_id_subp_id_index: [partner_id, subp_id]
+
+  partnership:
+    _attribute: { phpName : partnership }
+    id:
+    partnership_order: integer
+    image_path: varchar(256)
+    href: varchar(1024)
+    text: varchar(1024)
+    alt: varchar(256)
+    created_at:
+    updated_at:
+    partnership_date: varchar(128)
+
+    _indexes:
+      partnership_order_index: [partnership_order]
+
+
+  admin_kuser:
+    _attributes: { phpName: adminKuser }
+    id:
+    screen_name: varchar(20)
+    full_name: varchar(40)
+    email: varchar(50)
+    sha1_password: varchar(40)
+    salt: varchar(32)
+    picture: varchar(48)
+    icon: tinyint
+    created_at:
+    updated_at:
+    partner_id: { type: integer, foreignTable: partner, foreignReference: id }
+
+    _indexes:
+      screen_name_index: [screen_name]
+
+  admin_permission:
+    _attributes: { phpName: adminPermission }
+    id:
+    groups: varchar(512)
+    admin_kuser_id: { type: integer, foreignTable: admin_kuser, foreignReference: id }
+
+
+  notification:
+    _attributes: { phpName: notification }
+    id:
+    partner_id: integer
+    puser_id: varchar(64)
+    type: smallint
+    object_id: varchar(20)
+    status: integer
+    notification_data: varchar(4096)
+    number_of_attempts: { type: smallint, default: 0 }
+    created_at:
+    updated_at:
+    notification_result: varchar(256)
+    object_type: type: smallint  
+    scheduler_id: { type: integer, default: null }
+    worker_id: { type: integer, default: null }
+    batch_index: { type: integer, default: null }
+    processor_expiration: { type: timestamp }  
+    execution_attempts: tinyint
+    lock_version: integer
+    dc: varchar(2)
+    
+    _indexes:
+      status_partner_id_index: [status, partner_id]
+
+  moderation:
+    _attributes: { phpName: moderation }
+    id:
+    partner_id: integer
+    subp_id: integer
+    object_id: varchar(20)
+    object_type: smallint
+    kuser_id: { type: integer, foreignTable: kuser, foreignReference: id }
+    puser_id: varchar(64)
+    status: integer
+    created_at:
+    updated_at:
+    comments: varchar(1024)
+    group_id: varchar(64)
+    puser_id: varchar(64)
+    report_code: integer
+
+    _indexes:
+      partner_id_status_index: [partner_id, status]
+      partner_id_group_id_status_index: [partner_id, group_id, status]
+      object_index: [partner_id, status, object_id, object_type]
+
+  moderation_flag:
+    _attributes: { phpName: moderationFlag }
+    id:
+    partner_id: integer
+    kuser_id: { type: integer, foreignTable: kuser, foreignReference: id }
+    object_type: smallint
+    flagged_entry_id: { type: varchar(20), foreignTable: entry, foreignReference: id }
+    flagged_kuser_id: { type: integer, foreignTable: kuser, foreignReference: id }
+    status: integer
+    created_at:
+    updated_at:
+    comments: varchar(1024)
+    flag_type: integer
+
+    _indexes:
+      partner_id_status_index: [partner_id, status]
+      entry_object_index: [partner_id, status, object_type, flagged_entry_id]
+      entry_object_index: [partner_id, status, object_type, flagged_kuser_id]
+
+  roughcut_entry:
+    _attributes: { phpName: roughcutEntry }
+    id:
+    roughcut_id: { type: varchar(20), foreignTable: entry, foreignReference: id }
+    roughcut_version: integer
+    roughcut_kshow_id: { type: varchar(20), foreignTable: kshow, foreignReference: id }
+    entry_id: { type: varchar(20), foreignTable: entry, foreignReference: id }
+    partner_id: integer
+    op_type: smallint
+    created_at:
+    updated_at:
+
+    _indexes:
+      partner_id_index: [partner_id ]
+      entry_id_index: [entry_id ]
+      roughcut_id_index: [roughcut_id]
+      roughcut_kshow_id_index: [roughcut_kshow_id ]
+
+
+  widget:
+    _attributes: { phpName: widget }
+    id: { type: varchar(32), required: true, primaryKey: true }
+    int_id: { type: integer, required: true, autoincrement: true }
+    source_widget_id: varchar(32)
+    root_widget_id: varchar(32)
+    partner_id: integer
+    subp_id: integer
+    kshow_id: { type: varchar(20), foreignTable: kshow, foreignReference: id }
+    entry_id: { type: varchar(20), foreignTable: entry, foreignReference: id }
+    ui_conf_id: { type: integer, foreignTable: ui_conf, foreignReference: id }
+    custom_data: varchar(1024)
+    security_type: smallint
+    security_policy: smallint
+    created_at:
+    updated_at:
+    partner_data: varchar(4096)
+
+    _indexes:
+      int_id_index: [int_id ]
+
+
+  kwidget_log:
+    _attribute: { phpName : widgetLog }
+    id:
+    widget_id:  { type: varchar(32), foreignTable: widget, foreignReference: id }
+    source_widget_id: varchar(32)
+    root_widget_id: varchar(32)
+    kshow_id: { type: varchar(20), foreignTable: kshow, foreignReference: id }
+    entry_id: { type: varchar(20), foreignTable: entry, foreignReference: id }
+    ui_conf_id: { type: integer, foreignTable: ui_conf, foreignReference: id }
+    referer: varchar(1024)
+    views: { type: integer, default: 0 }
+    ip1: integer
+    ip1_count: { type: integer, default: 0 }
+    ip2: integer
+    ip2_count: { type: integer, default: 0 }
+    created_at:
+    updated_at:
+    plays: { type: integer, default: 0 }
+    partner_id: { type: integer, default: 0 }
+    subp_id: { type: integer, default: 0 }
+
+    _indexes:
+      referer_index: [referer]
+      entry_id_kshow_id_index: [entry_id, kshow_id]
+      partner_id_subp_id_index: [partner_id, subp_id]
+
+
+  ui_conf:
+    _attributes: { phpName: uiConf }
+    id:
+    obj_type: smallint
+    partner_id: integer
+    subp_id: integer
+    conf_file_path: varchar(128)
+    name: varchar(128)
+    width: varchar(10)
+    height: varchar(10)
+    html_params: varchar(256)
+    swf_url: varchar(256)
+    created_at:
+    updated_at:
+    conf_vars:  varchar(4096)
+    use_cdn: tinyint
+    tags: longvarchar
+    custom_data : longvarchar  
+    status:integer   
+    description : varchar(4096)
+    display_in_search : tinyint
+    creation_mode: tinyint
+    version: varchar(10)
+    
+    _indexes:
+      partner_id_index: [partner_id]
+      partner_id_creation_mode_index: [partner_id,creation_mode]
+    
+  partner_stats:
+    _attribute: { phpName : partnerStats }
+    partner_id: { type: integer, required: true, primaryKey: true }
+#    partner_id: { type: integer, foreignTable: partner, foreignReference: id }
+    views: integer
+    plays: integer
+    videos: integer
+    audios: integer
+    images: integer
+    entries: integer    
+    users_1: integer                    
+    users_2: integer                        
+    rc_1: integer                    
+    rc_2: integer                        
+    kshows_1: integer
+    kshows_2: integer    
+    created_at:
+    updated_at:
+    custom_data : longvarchar
+    widgets: integer
+
+    _indexes:
+      partner_id_index: [partner_id]
+  
+  partner_activity:
+    _attribute: { phpName : partnerActivity }
+    id:
+    partner_id: { type: integer }
+    activity_date : bu_date
+    activity : integer
+    sub_activity : integer
+    amount : bigint 
+    amount1 : bigint 
+    amount2 : bigint 
+    amount3 : integer 
+    amount4 : integer 
+    amount5 : integer 
+    amount6 : integer 
+    amount7 : integer 
+    amount9 : integer 
+
+    _indexes:
+      partner_id_index: [partner_id]
+      
+  conversion_profile:
+    _attribute: { phpName : conversionProfile }
+    id:     
+    partner_id: { type: integer , default: 0 }
+    enabled: tinyint
+    name: varchar(128)
+    profile_type: varchar(128)
+    commercial_transcoder: tinyint
+    width: integer
+    height: integer
+    aspect_ratio: varchar(6)
+    bypass_flv: tinyint
+    use_with_bulk: tinyint
+    created_at:
+    updated_at:
+    profile_type_suffix: varchar(32)
+    conversion_profile_2_id: integer
+
+    _indexes:
+      partner_id_index: [partner_id]
+    
+  conversion_params:
+    _attribute: { phpName : conversionParams }
+    id:     
+    partner_id: { type: integer }
+    enabled: tinyint
+    name: varchar(128)
+    profile_type: varchar(128)
+    profile_type_index: integer   
+    width: integer
+    height: integer
+    aspect_ratio: varchar(6)
+    gop_size: integer
+    bitrate: integer
+    qscale: integer
+    file_suffix: varchar(64)
+    custom_data: varchar(4096)    
+    created_at:
+    updated_at:
+
+    _indexes:
+      partner_id_index: [partner_id]
+        
+  partner_transactions:
+    _attribute:  { phpName : partnerTransactions }
+    id:
+    partner_id: { type: integer }
+    created_at:
+    amount: float 
+    currency: varchar(6)
+    transaction_id: varchar(17)
+    timestamp: timestamp
+    correlation_id: varchar(12)
+    ack: varchar(20)
+    transaction_data: longvarchar
+    
+    _indexes:
+       partner_id_index: [partner_id]
+
+  kce_installation_error:
+    _attribute:  { phpName : kalturaCEInstallationError }
+    id:
+    partner_id: integer
+    browser: varchar(100)
+    server_ip: varchar(20)
+    server_os: varchar(100)
+    php_version: varchar(20)
+    ce_admin_email: varchar(50)
+    type: varchar(50)
+    description: varchar(100)
+    data: longvarchar
+    
+    _indexes:
+      partner_id_index: [partner_id]
+      server_os_index: [server_os]
+      php_version_index: [php_version]
+      type_index: [type]
+      
+  file_sync:
+    _attribute: { phpName : fileSync }
+    id:     
+    partner_id: { type: integer }
+    object_type: tinyint
+    object_id: varchar(20)
+    version: varchar(20)
+    object_sub_type: tinyint
+    dc: integer
+    original: tinyint
+    created_at:
+    updated_at:
+    ready_at: timestamp
+    sync_time: integer
+    status: tinyint
+    file_type: tinyint
+    linked_id: integer
+    link_count: integer
+    file_root: varchar(64)
+    file_path: varchar(128)
+    file_size: bigint
+    
+    _indexes:
+      object_id_object_type_version_subtype_index : [object_id, object_type, version, object_sub_type]
+      partner_id_object_id_object_type_index : [partner_id, object_id, object_type]
+      dc_status_index : [dc , status]
+      linked_index : [linked_id]
+
+  access_control:
+    _attributes: { phpName: accessControl }
+    id:
+    partner_id: { type: integer, required: true }
+    name: { type: varchar(128), required: true, default: '' }
+    description: { type: varchar(1024), required: true, default: '' }
+    created_at:
+    updated_at:
+    deleted_at: { type: timestamp }
+    site_restrict_type: tinyint
+    site_restrict_list: varchar(1024)
+    country_restrict_type: tinyint
+    country_restrict_list: varchar(1024)
+    ks_restrict_privilege: varchar(20)
+    prv_restrict_privilege: varchar(20)
+    prv_restrict_length: integer
+    kdir_restrict_type: tinyint
+
+  media_info:
+    _attributes: { phpName: mediaInfo }
+    id: 
+    created_at:
+    updated_at:
+    flavor_asset_id: { type: varchar(20), foreignTable: flavor_asset, foreignReference: id, required: false, default: null }
+    file_size: { type: integer, required: true }
+
+    container_format: varchar(127)
+    container_id: varchar(127)
+    container_profile: varchar(127)
+    container_duration: integer
+    container_bit_rate: integer
+    
+    video_format: varchar(127)
+    video_codec_id: varchar(127)
+    video_duration: integer
+    video_bit_rate: integer
+    video_bit_rate_mode: tinyint
+    video_width: { type: integer, required: true }
+    video_height: { type: integer, required: true }
+    video_frame_rate: float
+    video_dar: float
+    video_rotation: integer
+    
+    audio_format: varchar(127)
+    audio_codec_id: varchar(127)
+    audio_duration: integer
+    audio_bit_rate: integer
+    audio_bit_rate_mode: tinyint
+    audio_channels: tinyint
+    audio_sampling_rate: integer
+    audio_resolution: integer
+    
+    writing_lib: varchar(127)
+    custom_data : longvarchar
+    raw_data: longvarchar
+    multi_stream_info: varchar(1023)
+    
+    flavor_asset_version: varchar(20)
+    scan_type: integer
+    multi_stream: varchar(255)
+    
+    
+    _indexes:
+      flavor_asset_id_index : [flavor_asset_id]
+
+  flavor_params:
+    _attributes: { phpName: flavorParams }
+    id: 
+    version: { type: integer, required: true }
+    partner_id: { type: integer, required: true }
+    name: { type: varchar(128), required: true, default: '' }
+    tags: longvarchar
+    description: { type: varchar(1024), required: true, default: '' }
+    ready_behavior: { type: tinyint, required: true }
+    created_at:
+    updated_at:
+    deleted_at: { type: timestamp }
+    is_default: { type: tinyint, required: true, default: 0 }
+    format: { type: varchar(20), required: true }
+    video_codec: { type: varchar(20), required: true }
+    video_bitrate: { type: integer, required: true, default: 0 }
+    audio_codec: { type: varchar(20), required: true }
+    audio_bitrate: { type: integer, required: true, default: 0 }
+    audio_channels: { type: tinyint, required: true, default: 0 }
+    audio_sample_rate: { type: integer, require: true, default: 0 }
+    audio_resolution: { type: integer, require: true, default: 0 }
+    width: { type: integer, required: true, default: 0 }
+    height: { type: integer, required: true, default: 0 }
+    frame_rate: { type: float, required: true, default: 0 }
+    gop_size: { type: integer, required: true, default: 0 }
+    two_pass: { type: boolean, required: true, default: 0 }
+    conversion_engines: varchar(1024) 
+    conversion_engines_extra_params: varchar(1024)
+    custom_data: longvarchar
+    view_order: integer
+    creation_mode: {type: smallint, default: 1 }
+    
+    deinterlice: integer
+    rotate: integer
+
+  flavor_params_output:
+    _attributes: { phpName: flavorParamsOutput }
+    id: 
+    flavor_params_id: { type: integer, foreignTable: flavor_params, foreignReference: id, required: true }
+    flavor_params_version: { type: integer, required: true }
+    partner_id: { type: integer, required: true }
+    entry_id: { type: varchar(20), foreignTable: entry, foreignReference: id, required: true }
+    flavor_asset_id: { type: varchar(20), foreignTable: flavor_asset, foreignReference: id, required: true }
+    flavor_asset_version: varchar(20)
+    name: { type: varchar(128), required: true, default: '' }
+    tags: longvarchar
+    description: { type: varchar(1024), required: true, default: '' }
+    ready_behavior: { type: tinyint, required: true }
+    created_at:
+    updated_at:
+    deleted_at: { type: timestamp }
+    is_default: { type: tinyint, required: true, default: 0 }
+    format: { type: varchar(20), required: true }
+    video_codec: { type: varchar(20), required: true }
+    video_bitrate: { type: integer, required: true, default: 0 }
+    audio_codec: { type: varchar(20), required: false, default: null }
+    audio_bitrate: { type: integer, required: false, default: null }
+    audio_channels: { type: tinyint, required: false, default: null }
+    audio_sample_rate: { type: integer, require: false, default: null }
+    audio_resolution: { type: integer, require: false, default: null }
+    width: { type: integer, required: true, default: 0 }
+    height: { type: integer, required: true, default: 0 }
+    frame_rate: { type: float, required: false, default: null }
+    gop_size: { type: integer, required: true, default: 0 }
+    two_pass: { type: boolean, required: true, default: 0 }
+    conversion_engines: varchar(1024) 
+    conversion_engines_extra_params: varchar(1024)
+    custom_data: longvarchar
+    command_lines: varchar(2047)
+    file_ext: varchar(4)
+    
+    deinterlice: integer
+    rotate: integer
+
+  flavor_asset:
+    _attributes: { phpName: flavorAsset }
+    id: { type: varchar(20), required: true }
+    int_id: { type: integer, required: true, autoincrement: true, primaryKey: true }
+    partner_id: { type: integer, required: true }
+    tags: longvarchar
+    created_at:
+    updated_at:
+    deleted_at: { type: timestamp }
+    entry_id: { type: varchar(20), foreignTable: entry, foreignReference: id, required: true }
+    flavor_params_id: { type: integer, foreignTable: flavor_params, foreignReference: id, required: true }
+    status: tinyint
+    version: varchar(20)
+    description: varchar(255)
+    width: { type: integer, required: true, default: 0 }
+    height: { type: integer, required: true, default: 0 }
+    bitrate: { type: integer, required: true, default: 0 }
+    frame_rate: { type: float, required: true, default: 0 }
+    size: { type: integer, required: true, default: 0 }
+    is_original: { type: boolean, default: false }
+    file_ext: varchar(4)
+    container_format: varchar(127)
+    video_codec_id: varchar(127)
+
+   _indexes:
+      entry_id_index: [entry_id]
+      status_index: [status]
+      
+  conversion_profile_2:
+    _attributes: { phpName: conversionProfile2 }
+    id:
+    partner_id: { type: integer, required: true }
+    name: { type: varchar(128), required: true, default: '' }
+    created_at:
+    updated_at:
+    deleted_at: { type: timestamp }
+    description: { type: varchar(1024), required: true, default: '' }
+    crop_left: { type: integer, required: true, default: -1 }
+    crop_top: { type: integer, required: true, default: -1 }
+    crop_width: { type: integer, required: true, default: -1 }
+    crop_height: { type: integer, required: true, default: -1 }
+    clip_start: { type: integer, required: true, default: -1 }
+    clip_duration: { type: integer, required: true, default: -1 }
+    input_tags_map: { type: varchar(1023), required: false, default: null }
+    creation_mode: {type: smallint, default: 1 }
+
+  flavor_params_conversion_profile:
+    _attributes: { phpName: flavorParamsConversionProfile }
+    id:
+    conversion_profile_id: { type: integer, foreignTable: conversion_profile_2, foreignReference: id, required: true }
+    flavor_params_id: { type: integer, foreignTable: flavor_params, foreignReference: id, required: true }
+    ready_behavior: { type: tinyint, required: true }
+    force_none_complied: boolean
+    created_at:
+    updated_at:
+    
+   _indexes:
+      updated_at_index: [updated_at]
+     
+        
+  category:
+    _attributes: { phpName: category }
+    id:
+    parent_id: { type: integer, required: true }
+    depth: { type: tinyint, required: true }
+    partner_id: { type: integer, required: true }
+    name: { type: varchar(128), required: true, default: '' }
+    full_name: { type: varchar(512), required: true, default: '' }
+    entries_count: { type: integer, required: true, default: 0 }
+    created_at:
+    updated_at:
+    deleted_at: { type: timestamp }
+    _indexes:
+      partner_id_full_name_index: [partner_id, full_name]
+
+  syndication_feed:
+    _attributes: { phpName: syndicationFeed }
+    id: { type: varchar(20), required: true, primaryKey: true }
+    int_id: { type: integer, required: true, autoincrement: true }
+    partner_id: { type: integer, required: true }
+    playlist_id: { type: varchar(20) }
+    name: { type: varchar(128), required: true, default: '' }
+    status: tinyint
+    type: tinyint
+    landing_page: { type: varchar(512), required: true, default: '' }
+    flavor_param_id: { type: integer }
+    player_uiconf_id: { type: integer }
+    allow_embed: { type: boolean, default: true }
+    adult_content: { type: varchar(10) }
+    transcode_existing_content: { type: boolean, default: false }
+    add_to_default_conversion_profile: { type: boolean, default: false }
+    categories: { type: varchar(1024) }
+    feed_description: { type: varchar(1024) }
+    language: { type: varchar(5) }
+    feed_landing_page: { type: varchar(512) }
+    owner_name: { type: varchar(50) }
+    owner_email: { type: varchar(128) }
+    feed_image_url: { type: varchar(512) }
+    feed_author: { type: varchar(50) }
+    created_at:
+
+    _indexes:
+      int_id_index: [int_id]
+    
+      
+  track_entry:
+    _attribute: { phpName : trackEntry }
+    id:
+    track_event_type_id: smallint
+    ps_version: varchar(10)
+    context: varchar(511)
+    partner_id: integer
+    entry_id: varchar(20)
+    host_name: varchar(20)
+    uid: varchar(63)
+    track_event_status_id: smallint
+    changed_properties: varchar(1023)    
+    param_1_str: varchar(255)
+    param_2_str: varchar(511)
+    param_3_str: varchar(511)
+    ks: varchar(511)
+    description: varchar(127)
+    created_at:
+    updated_at:
+    user_ip: varchar(20)
+    _indexes:
+      partner_event_type_indx : [partner_id, track_event_type_id]
+      entry_id_indx: [entry_id]
+      track_event_type_id_indx: [track_event_type_id]
+      param_1_indx: [param_1_str]
+      
+  system_user:
+    id:
+    email: { type: varchar(50), required: true, index: unique }
+    first_name: { type: varchar(40), required: true }
+    last_name: { type: varchar(40), required: true }
+    sha1_password: { type: varchar(40), required: true }
+    salt: { type: varchar(32), required: true }
+    created_by: type: integer
+    status: { type: tinyint, required: true }
+    is_primary: { type: boolean, default: false }
+    status_updated_at: { type: timestamp }
+    created_at:
+    updated_at:
+    deleted_at: { type: timestamp }
+    role: { type: varchar(40) }
+    
+  audit_trail:
+    id:
+    object_name: { type: varchar(20), required: true }
+    object_type_id: { type: varchar(20), required: true }
+    object_id: { type: varchar(20), required: true }
+    partner_id: integer
+    uid: varchar(63)
+    ks_partner_id: integer
+    ks_uid: varchar(63)
+    before: { type: varchar(2047) }
+    after: { type: varchar(2047) }
+    context: varchar(127)
+    host_name: varchar(20)
+    action_id: tinyint
+    created_at:
+   
+
+  storage_profile:
+    id:      
+    created_at:
+    updated_at:
+    partner_id: integer
+    name: { type: varchar(31) }
+    desciption: { type: varchar(127) }
+    status: tinyint
+    protocol: tinyint
+    storage_url: { type: varchar(127) }
+    storage_base_dir: { type: varchar(127) }
+    storage_username: { type: varchar(31) }
+    storage_password: { type: varchar(31) }
+    storage_ftp_passive_mode: tinyint
+    delivery_http_base_url: { type: varchar(127) }
+    delivery_rmp_base_url: { type: varchar(127) }
+    delivery_iis_base_url: { type: varchar(127) }
+    min_file_size: integer
+    max_file_size: integer
+    flavor_params_ids: { type: varchar(127), required: false }
+    max_concurrent_connections: integer
+    custom_data: longvarchar
+    path_manager_class: { type: varchar(127), required: false }
+    url_manager_class: { type: varchar(127), required: false }
+
+  email_ingestion_profile:
+    id:
+    name: { type: varchar(60), required: true, default: '' }
+    description: longvarchar
+    email_address: { type: varchar(50), required: true, index: unique }
+    mailbox_id: { type: varchar(50), required: true }
+    partner_id: { type: integer, required: true }
+    conversion_profile_2_id: integer
+    moderation_status: { type: tinyint }
+    custom_data: longvarchar
+    status: tinyint
+    created_at:
+    updated_at:
+
+  upload_token:
+    id: { type: varchar(35), required: true, primaryKey: true }
+    int_id: { type: integer, required: true, autoincrement: true }
+    partner_id: { type: integer, default: 0 }
+    kuser_id: { type: integer, foreignTable: kuser, foreignReference: id }
+    status: integer
+    file_name: varchar(256)
+    file_size: bigint
+    uploaded_file_size: bigint
+    upload_temp_path: varchar(256)
+    user_ip: { type: varchar(39), required: true }
+    created_at:
+    updated_at:
+    _indexes:
+      int_id: [int_id]
+      partner_id_status: [partner_id, status]
+      partner_id_created_at: [partner_id, created_at]
+      status_created_at: [status, created_at]
+      created_at: [created_at]
+      
+  metadata_profile:
+    id:      
+    created_at:
+    updated_at:
+    version: integer
+    partner_id: integer
+    name: { type: varchar(31) }
+    status: tinyint
+    object_type: integer
+
+  metadata:
+    id:
+    created_at:
+    updated_at:
+    version: integer
+    metadata_profile_id: integer
+    metadata_profile_version: integer
+    partner_id: integer
+    object_id: varchar(20)
+    object_type: integer
+    status: tinyint
+    

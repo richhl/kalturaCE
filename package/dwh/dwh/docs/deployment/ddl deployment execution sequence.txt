@@ -1,0 +1,72 @@
+try.sql
+#create index on kaltura db.sql
+#db_create.sql
+#etl_log.sql
+#last_job_run_view.sql
+#bi sources\bisources_control.sql
+#bi sources\bisources_EDITOR_TYPE.sql
+#bi sources\bisources_ENTRY_MEDIA_SOURCE.sql
+#bi sources\bisources_ENTRY_MEDIA_TYPE.sql
+#bi sources\bisources_ENTRY_STATUS.sql
+#bi sources\bisources_ENTRY_TYPE.sql
+#bi sources\bisources_event_type.sql
+#bi sources\bisources_gender.sql
+#bi sources\bisources_MODERATION_STATUS.sql
+#bi sources\bisources_PARTNER_ACTIVITY.sql
+#bi sources\bisources_partner_status.sql
+#bi sources\bisources_PARTNER_SUB_ACTIVITY.sql
+#bi sources\bisources_partner_type.sql
+#bi sources\bisources_UI_CONF_STATUS.sql
+#bi sources\bisources_UI_CONF_TYPE.sql
+#bi sources\bisources_user_status.sql
+#bi sources\bisources_WIDGET_SECURITY_POLICY.sql
+#bi sources\bisources_WIDGET_SECURITY_TYPE.sql
+#bi sources\set bisources to uppercase.sql
+#dw\bi_sources.sql
+#dw\dw_control.sql
+#dw\dw_EDITOR_TYPE.sql
+#dw\dw_ENTRY_MEDIA_SOURCE.sql
+#dw\dw_ENTRY_MEDIA_TYPE.sql
+#dw\dw_ENTRY_STATUS.sql
+#dw\dw_ENTRY_TYPE.sql
+#dw\dw_event_type.sql
+#dw\dw_gender.sql
+#dw\dw_MODERATION_STATUS.sql
+#dw\dw_PARTNER_ACTIVITY.sql
+#dw\dw_partner_status.sql
+#dw\dw_PARTNER_SUB_ACTIVITY.sql
+#dw\dw_partner_type.sql
+#dw\dw_UI_CONF_STATUS.sql
+#dw\dw_UI_CONF_TYPE.sql
+#dw\dw_user_status.sql
+#dw\dw_WIDGET_SECURITY_POLICY.sql
+#dw\dw_widget_security_type.sql
+#dw\entries.sql
+#dw\events.sql
+#dw\ip_ranges.sql
+#dw\kuser.sql
+#dw\ui_conf.sql
+#dw\widget.sql
+#dw\locations.sql
+#dw\locations_init.sql
+#dw\countries_view.sql
+#dw\partner.sql
+#dw\Partner_Activities.sql
+#dw\ri_defaults.sql
+#dw\ri_defaults_grouped_view.sql
+#dw\ri_mapping.sql
+#dw\ri_mapping_and_defaults_view.sql
+#dw\add_events_partition_porcedure.sql
+#dw\drop_events_partition_procedure.sql
+#dw\dwh_fact_events_partitions_view.sql
+#ds\events.sql
+#ds\files.sql
+#ds\add_file_partition_procedure.sql
+#ds\drop_file_partition_pocedure.sql
+#ds\ds_events_partitions_view.sql
+#ds\empty_file_partition_procedure.sql
+#ds\get_ip_country_function.sql
+#ds\restore_file_status_procedure.sql
+#ds\set_file_status_procedure.sql
+#ds\set_file_status_full_procedure.sql
+#ds\transfer_file_partition_procedure.sql

@@ -1,0 +1,6 @@
+autoload:
+  infra:
+    name:           infra
+    path:           %SF_MODEL_LIB_DIR%/../../../infra
+#    prefix:         1
+    recursive:      on   

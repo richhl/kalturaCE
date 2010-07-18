@@ -1,0 +1,2 @@
+load_ip2location.kjb
+#perform_referential_integrity.kjb
