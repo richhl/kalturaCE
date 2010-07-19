@@ -1,0 +1,1 @@
+sh /usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/perform_referential_integrity.kjb
