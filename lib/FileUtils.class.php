@@ -81,7 +81,7 @@ class FileUtils
 		$result = true;
 		$path = InstallUtils::fixPath($path, '/');
 		if (self::shouldIgnore($path)) {
-			return true;
+//			return true;
 		}
 		$onlyContents = (substr($path, strlen($path) - 2) == '/*');
 		if ($onlyContents) {
