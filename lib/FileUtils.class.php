@@ -5,11 +5,23 @@ DEFINE('TOKEN_CHAR', '@');
 class FileUtils
 {
 	
+	private static $ignore_list = array ( '.svn' );
+	
+	
+	private static function shouldIgnore($path)
+	{
+		$base = basename($path);
+		return in_array($base, self::$ignore_list);
+	}
+	
 	public static function fullCopy($source, $target, $overwrite = false)
 	{
 		$source = InstallUtils::fixPath($source);
 		$target = InstallUtils::fixPath($target);
 		$result = true;
+		if (self::shouldIgnore($source)) {
+			return true;
+		}
 		if (is_file($source)) {
 			if (!is_dir(dirname($target))) {
 				self::mkDir(dirname($target));
@@ -49,6 +61,9 @@ class FileUtils
 	public static function mkDir($path)
 	{
 		$path = InstallUtils::fixPath($path);
+		if (self::shouldIgnore($path)) {
+			return true;
+		}
 		if (!is_dir($path)) {
 			if (!@mkdir($path, '0777', true)) {
 				$last_error = InstallUtils::getLastError();
@@ -65,6 +80,9 @@ class FileUtils
 	{
 		$result = true;
 		$path = InstallUtils::fixPath($path, '/');
+		if (self::shouldIgnore($path)) {
+			return true;
+		}
 		$onlyContents = (substr($path, strlen($path) - 2) == '/*');
 		if ($onlyContents) {
 			$path = substr($path, 0, strlen($path)-2);
@@ -103,8 +121,10 @@ class FileUtils
     
     public static function replaceTokens($tokens, $path)
     {
- 
     	$path = InstallUtils::fixPath($path);
+        if (self::shouldIgnore($path)) {
+			return true;
+		}
     	if (is_file($path)) {
     		return self::replaceTokensInFile($tokens, $path);
     	}
