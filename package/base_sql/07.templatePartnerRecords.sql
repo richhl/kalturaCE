@@ -79,7 +79,9 @@ UPDATE conversion_profile_2 SET input_tags_map = 'web' WHERE input_tags_map IS N
 insert into flavor_params_conversion_profile( conversion_profile_id, flavor_params_id, ready_behavior, force_none_complied, created_at, updated_at)
 values(1, 0, 0, null, now(), now());
 insert into flavor_params_conversion_profile( conversion_profile_id, flavor_params_id, ready_behavior, force_none_complied, created_at, updated_at)
-values(1, 8, 2, null, now(), now());
+values(1, 5, 2, null, now(), now());
+insert into flavor_params_conversion_profile( conversion_profile_id, flavor_params_id, ready_behavior, force_none_complied, created_at, updated_at)
+values(1, 7, 2, null, now(), now());
 insert into flavor_params_conversion_profile( conversion_profile_id, flavor_params_id, ready_behavior, force_none_complied, created_at, updated_at)
 values(1, 9, 2, null, now(), now());
 insert into flavor_params_conversion_profile( conversion_profile_id, flavor_params_id, ready_behavior, force_none_complied, created_at, updated_at)
