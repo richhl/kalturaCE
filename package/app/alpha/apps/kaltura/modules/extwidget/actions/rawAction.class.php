@@ -22,6 +22,8 @@ class rawAction extends sfAction
 			die();
 		}
 
+		myPartnerUtils::blockInactivePartner($entry->getPartnerId());
+
 		// allow access only via cdn unless these are documents (due to the current implementation of convert ppt2swf)
 		if ($entry->getType() != entry::ENTRY_TYPE_DOCUMENT && $entry->getMediaType() != entry::ENTRY_MEDIA_TYPE_IMAGE)
 		{
@@ -31,10 +33,10 @@ class rawAction extends sfAction
 			$dc = kDataCenterMgr::getCurrentDc();
 			$external_url = $dc["external_url"];
 		
-			if ($host != $cdnHost && $host != $external_url)
+			if ($host != $cdnHost)// && $host != $external_url)
 			{
-				header('Location:'.$cdnHost.$_SERVER["REQUEST_URI"]."/forceproxy/true/");
-				//header('Location:'.$cdnHost.$_SERVER["REQUEST_URI"]);
+				//header('Location:'.$cdnHost.$_SERVER["REQUEST_URI"]."/forceproxy/true/");
+				header('Location:'.$cdnHost.$_SERVER["REQUEST_URI"]);
 				die;
 			}
 		}

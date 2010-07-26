@@ -14,6 +14,8 @@ class KExternalErrors
 	const PROCESSING_CAPTURE_THUMBNAIL = 11;
 	const INVALID_ENTRY_TYPE = 12;
 	const ENTRY_MODERATION_ERROR = 13;
+	const PARTNER_NOT_FOUND = 14;
+	const PARTNER_NOT_ACTIVE = 15;
 	
 	private static $errorDescriptionMap = array(
 		self::ENTRY_NOT_FOUND => "requested entry not found",
@@ -29,7 +31,9 @@ class KExternalErrors
 		self::PROCESSING_CAPTURE_THUMBNAIL => "processing capture thumbnail",
 		self::INVALID_ENTRY_TYPE => "requested entry type is invalid for the requested format",
 		self::ENTRY_MODERATION_ERROR => "entry is restricted due to invalid moderation status",
-	);
+		self::PARTNER_NOT_FOUND => "requested partner not found",
+		self::PARTNER_NOT_ACTIVE => "requested partner not active",
+		);
 	
 	public static function dieError($errorCode)
 	{

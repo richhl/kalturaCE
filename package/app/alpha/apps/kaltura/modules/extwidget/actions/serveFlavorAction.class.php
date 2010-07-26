@@ -14,6 +14,8 @@ class serveFlavorAction extends kalturaAction
 		$flavorAsset = flavorAssetPeer::retrieveById($flavorId);
 		if (is_null($flavorAsset))
 			KExternalErrors::dieError(KExternalErrors::FLAVOR_NOT_FOUND);
+
+		myPartnerUtils::blockInactivePartner($flavorAsset->getPartnerId());
 			
 		$syncKey = $flavorAsset->getSyncKey(flavorAsset::FILE_SYNC_FLAVOR_ASSET_SUB_TYPE_ASSET);
 		if (!kFileSyncUtils::file_exists($syncKey, false))

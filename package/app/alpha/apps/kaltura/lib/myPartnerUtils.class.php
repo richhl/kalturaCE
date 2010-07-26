@@ -1259,5 +1259,16 @@ class myPartnerUtils
 			}
 		}		
  	}
+
+ 	public static function blockInactivePartner($partnerId)
+ 	{
+		$partner = PartnerPeer::retrieveByPK($partnerId);
+		if (is_null($partner))
+			KExternalErrors::dieError(KExternalErrors::PARTNER_NOT_FOUND);
+		if ($partner->getStatus() == Partner::PARTNER_STATUS_CONTENT_BLOCK ||
+			$partner->getStatus() == Partner::PARTNER_STATUS_FULL_BLOCK)
+			KExternalErrors::dieError(KExternalErrors::PARTNER_NOT_ACTIVE);
+ 	}
+
 }
 ?>

@@ -20,6 +20,8 @@ class downloadAction extends sfAction
 		if (is_null($entry))
 			KExternalErrors::dieError(KExternalErrors::ENTRY_NOT_FOUND);
 
+		myPartnerUtils::blockInactivePartner($entry->getPartnerId());
+
 		$securyEntryHelper = new KSecureEntryHelper($entry, $ksStr, $referrer);
 		$securyEntryHelper->validateForDownload($entry, $ksStr);
 		
