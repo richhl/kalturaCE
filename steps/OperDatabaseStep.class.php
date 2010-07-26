@@ -20,10 +20,9 @@ class OperDatabaseStep extends InstallStep
 		}
 		
 		// deploy all sqls
-		$sql_files = @scandir($tmp_base_sql_dir);
-		if (!$sql_files) {
-			return $this->newError('CANT_READ_DIR',
-				ErrorCodes::CANT_READ_DIR, TMP_DIR, InstallUtils::getLastError());
+		$sql_files = FileUtils::readDir($tmp_base_sql_dir);
+		if (ErrorObjecT::isErrorObject($sql_files)) {
+			return $sql_files;
 		}
 		
     	foreach ($sql_files as $file) {
