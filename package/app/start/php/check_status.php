@@ -56,7 +56,7 @@ function getNormal($days)
 				</h2>
 				<p>
 					For assistance or an upgrade to a commercial license, please
-					<a href="http://site.kaltura.com/Contact-Sales.html"
+					<a href="http://corp.kaltura.com/about/contact"
 					   target="_blank">
 					   contact us</a>
 				</p>
@@ -74,7 +74,7 @@ function getExpired()
 				<form name="input" action="index.php" method="post">
 					<p>
 					To upgrade to a commercial license or extend your evaluation period, please contact
-					<a href="http://site.kaltura.com/Contact-Sales.html"
+					<a href="http://corp.kaltura.com/about/contact"
 					   target="_blank">
 					   Kaltura Sales
 					</a>
@@ -104,7 +104,7 @@ function getNoKey()
 				
 				<p>
 					For further assistance, contact the
-					<a href="http://site.kaltura.com/Contact-Sales.html"
+					<a href="http://corp.kaltura.com/about/contact"
 					   target="_blank">
 					   Kaltura presales engineering team
 					</a>
