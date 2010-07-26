@@ -141,7 +141,7 @@ class ActKeyUtils
 		$cur_key = kConf::get('kaltura_activation_key');
 		if ($cur_key == false) {
 			$not_activated_msg = "Thank you for using the Kaltura On-Prem Video Platform.\n
-To start your evaluation please activate your evaluation package from within the http://".kCong::get('apphome_url_no_protocol')."/start page.\n
+To start your evaluation please activate your evaluation package from within the \"http://".kConf::get('apphome_url_no_protocol')."/start page\".<br/>
 For support, please contact the Kaltura technical presales team.";
 			die($not_activated_msg);
 		}
@@ -149,7 +149,7 @@ For support, please contact the Kaltura technical presales team.";
 		$result = ActKeyUtils::daysToExpire($cur_key);
 		
 		if ($result == false) {
-			$expired_msg = "Thank you for using the Kaltura On-Prem Video Platform.\n
+			$expired_msg = "Thank you for using the Kaltura On-Prem Video Platform.<br/>
 Your evaluation period has ended. Please contact Kaltura sales for transition to a permanent license";
 			die($expired_msg);
 		}
@@ -164,7 +164,7 @@ Your evaluation period has ended. Please contact Kaltura sales for transition to
 		$url = ACTIVATION_REPORT_URL;
 		
 		$params = array ( 
-			'email' => kConf::get('REPORT_ADMIN_EMAIL'),
+			'email' => kConf::get('report_admin_email'),
 			'activation_key' => $key,
 			'package_version' => kConf::get('kaltura_version'),
 		);
