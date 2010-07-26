@@ -200,7 +200,6 @@ class KalturaInstaller
 		if (!UserInputUtils::getTrueFalse($this->global_texts['proceed_with_install'], 'y')) {
 			die('Bye!'.PHP_EOL);
 		}		
-		echo PHP_EOL;
 		
 		$this->loadDoneSteps();
 	

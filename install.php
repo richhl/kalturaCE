@@ -1,7 +1,5 @@
 <?php 
 
-error_reporting(E_ALL); //TODO: remove
-
 include_once(dirname(__FILE__).DIRECTORY_SEPARATOR.'KalturaInstaller.class.php');
 
 // installation might take a few minutes
@@ -14,21 +12,24 @@ ini_set('memory_limit', -1);
 ini_set('max_input_time ', 0);
 
 
-// installation steps - will be followed one after the other
+// clear terminal screen
 @system('clear');
 
+
+// installation steps - will be followed one after the other
 $install_steps = Array(
 
-	1 => 'Prerequisites',
-	2 => 'ConfigCollect',
+	1 => 'Prerequisites', /* THIS STEP IS REQUIRED FOR ALL OTHER STEPS TO FUNCTION CORRECTLY */
+	2 => 'ConfigCollect', /* THIS STEP IS REQUIRED FOR ALL OTHER STEPS TO FUNCTION CORRECTLY */
 	3 => 'ServerInstall',
 	4 => 'OperDatabase',
 	5 => 'StatsDb',
 	6 => 'DataWarehouse',
 	7 => 'CronJobs',
-	
+
 );
 
+// execute installation
 $installer = new KalturaInstaller($install_steps);
 $installer->run();
 

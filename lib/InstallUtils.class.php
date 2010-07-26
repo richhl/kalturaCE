@@ -7,6 +7,9 @@ class InstallUtils
 	const WINDOWS_OS = 'Windows';
 	const LINUX_OS   = 'linux';
 	
+	/**
+	 * @return string current operating system name
+	 */
 	public static function getOsName()
 	{
 		
@@ -23,7 +26,9 @@ class InstallUtils
 		}
 	}
 	
-	
+	/**
+	 * @return string 32bit/64bit according to current system architecture - if not found, default is 32bit
+	 */
 	public static function getSystemArchitecture()
 	{
 		$arch = php_uname('m');
@@ -41,6 +46,9 @@ class InstallUtils
 
 	}
 	
+	/**
+	 * @return string current computer name
+	 */
 	public static function getComputerName()
 	{
 		if(isset($_ENV['COMPUTERNAME'])) {
@@ -58,13 +66,31 @@ class InstallUtils
 	}
 	
 	
+	/**
+	 * @return string secret string, like the one generated in kaltura
+	 */
 	public static function generateSecret()
 	{
 		$secret = md5(self::str_makerand(5,10,true, false, true));
 		return $secret;
 	}
 	
-		
+	/**
+	 * @return string random password
+	 */
+	public static function generatePassword()
+	{
+		$password = self::str_makerand(5,10,true, false, true);
+		return $password;
+	}
+	
+	/**
+	 * Generates sha1 and salt from a password
+	 * @param string $password chosen password
+	 * @param string $salt salt will be generated
+	 * @param string $sha1 sha1 will be generated
+	 * @return $sha1 & $salt by reference
+	 */
 	public static function generateSha1Salt($password, &$salt, &$sha1)
 	{
 		$salt = md5(rand(100000, 999999).$password); 
@@ -72,6 +98,9 @@ class InstallUtils
 	}
 	
 	
+	/**
+	 * @return string last error happened (or null if error_get_last function wasn't found)
+	 */
 	public static function getLastError()
 	{
 		if (function_exists('error_get_last')) {
@@ -80,6 +109,9 @@ class InstallUtils
 		return null;
 	}
 	
+	/**
+	 * tavin levad!
+	 */
 	public static function simMafteach()
 	{
 		if (strstr(myConf::get('KALTURA_VERSION'), ' CE ') !== false) {
@@ -108,6 +140,11 @@ class InstallUtils
 		return $key;
 	}
 	
+	/**
+	 * Fixes a path string
+	 * @param string $path
+	 * @param string $toChar
+	 */
 	public static function fixPath($path, $toChar = '/')
 	{
 		$path = str_replace('/', $toChar, $path);

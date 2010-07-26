@@ -4,16 +4,30 @@ DEFINE('TOKEN_CHAR', '@');
 
 class FileUtils
 {
-	
+	/**
+	 * File/folder names list to ignore in various functions - check below
+	 * @var string[]
+	 */
 	private static $ignore_list = array ( '.svn' );
 	
-	
+	/**
+	 * @param string $path dir/file path
+	 * @return boolean true if the path should be ignored according to $ignore_list, or false otherwise.
+	 */
 	private static function shouldIgnore($path)
 	{
 		$base = basename($path);
 		return in_array($base, self::$ignore_list);
 	}
 	
+	/**
+	 * Copy source to target.
+	 * - $path will be ignored if in $ignore_list -
+	 * @param string $source source path
+	 * @param string $target target path
+	 * @param boolean $overwrite true/false - overwrite or not
+	 * @return true on success, ErrorObject on error
+	 */
 	public static function fullCopy($source, $target, $overwrite = false)
 	{
 		$source = InstallUtils::fixPath($source);
@@ -57,7 +71,12 @@ class FileUtils
 	
 	
 	
-	
+	/**
+	 * Create a new directory
+	 * - $path will be ignored if in $ignore_list -
+	 * @param string $path directory path to create
+	 * @return true on success, ErrorObject on error
+	 */
 	public static function mkDir($path)
 	{
 		$path = InstallUtils::fixPath($path);
@@ -74,15 +93,45 @@ class FileUtils
 	}
 	
 	
+	/**
+	 * Read directory contents
+	 * @param string $path directory path
+	 * @return string[] array of directory contents (base name only), or ErrorObject on error
+	 */
+	public static function readDir($path)
+	{
+		$path = InstallUtils::fixPath($path);
+		if (self::shouldIgnore($path)) {
+			return true;
+		}
+		if (!is_dir($path)) {
+			return new ErrorObject ('readDir', 'PATH_NOT_FOUND', sprintf(ErrorCodes::PATH_NOT_FOUND, $path));
+		}
 		
+		$temp_contents = @scandir($path);
+		if (!$temp_contents) {
+			return new ErrorObject ('readDir', 'CANT_READ_DIR', sprintf(ErrorCodes::CANT_READ_DIR, $path, InstallUtils::getLastError()));
+		}
+		$contents = array();
+		foreach ($temp_contents as $item) {
+			if ($item != '.' && $item != '..' && !self::shouldIgnore($item)) {
+				$contents[] = $item;
+			}
+		}
+		return $contents;
+	}
 	
+	
+		
+	/**
+	 * Completely delete the given path
+	 * @param string $path path to delete
+	 * @return true on success, ErrorObject on error
+	 */
 	public static function recursiveDelete($path)
 	{
 		$result = true;
 		$path = InstallUtils::fixPath($path, '/');
-		if (self::shouldIgnore($path)) {
-//			return true;
-		}
 		$onlyContents = (substr($path, strlen($path) - 2) == '/*');
 		if ($onlyContents) {
 			$path = substr($path, 0, strlen($path)-2);
@@ -118,7 +167,12 @@ class FileUtils
     }
     
     
-    
+    /**
+     * Replace tokens in all files in given directory path, recursively
+     * @param string[] $tokens array of key=>value replacements
+     * @param string $path directory path
+     * @return true on success, ErrorObject on error
+     */
     public static function replaceTokens($tokens, $path)
     {
     	$path = InstallUtils::fixPath($path);
@@ -152,6 +206,11 @@ class FileUtils
     }
     
     
+    /**
+     * Write $data to $filename
+     * @param string $filename file name to write to
+     * @param string $data data to write
+     */
     public static function writeFile($filename, $data)
     {
     	$dir_name = dirname($filename);
@@ -176,6 +235,12 @@ class FileUtils
     }
     
     
+    /**
+     * Replace tokens in given file
+     * @param string[] $tokens array of key=>value replacements
+     * @param string $file file path
+     * @return true on success, ErrorObject on error
+     */
 	private static function replaceTokensInFile(&$tokens, $file)
 	{
 		$file = InstallUtils::fixPath($file);
@@ -197,6 +262,13 @@ class FileUtils
 		return true;
 	}
 	
+	
+	/**
+	 * Chmod given $path to $chmod
+	 * @param string $path directory/file path
+	 * @param string $chmod
+	 * @return true on success, ErrorObject on error
+	 */
 	public static function chmod ($path, $chmod)
 	{
 		$result = @exec("chmod $chmod $path");
@@ -206,6 +278,12 @@ class FileUtils
 		return true;
 	}
 	
+	/**
+	 * Change owner of given $path to $user
+	 * @param string $path
+	 * @param string $user user name
+	 * @return true on success, ErrorObject on error
+	 */
 	public static function chown ($path, $user)
 	{
 		$result = @exec("chown -R $user $path");
@@ -215,13 +293,22 @@ class FileUtils
 		return true;
 	}
 	
+	/**
+	 * Execute the given command, returning the output
+	 * @param string $cmd command to execute
+	 */
 	public static function exec($cmd)
 	{
+		// 2>&1 is needed so the output will not display on the screen
 		@exec($cmd . ' 2>&1', $output);
 		return $output;
 	}
 	
-	
+	/**
+	 * Execute the given command as the given user.
+	 * @param string $cmd command to execute
+	 * @param string $user username
+	 */
 	public static function execAsUser($cmd, $user)
 	{
 		$cmd = "sudo -u $user ".$cmd;

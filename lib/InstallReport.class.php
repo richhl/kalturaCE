@@ -3,12 +3,38 @@
 
 class InstallReport
 {
+	
+	/** 
+	 * Installation event data
+	 * @var string[]
+	 */
 	private $install_event;
+	
+	/**
+	 * Additional installation event data that is sent via POST
+	 * @var string[]
+	 */
 	private $install_event_post;
+	
+	/**
+	 * Should the report be sent to kaltura
+	 * @var boolean true/false
+	 */
 	private $should_report;
+	
+	/**
+	 * Log file to write to
+	 * @var string file path
+	 */
 	private $log_file;
 	
 
+	/**
+	 * Construct a new InstallReport object
+	 * @param boolean $should_report
+	 * @param string $log_file log file name
+	 * @param string $admin_email admin email
+	 */
 	public function __construct($should_report, $log_file, $admin_email)
 	{	
 		$this->should_report = $should_report;
@@ -26,21 +52,28 @@ class InstallReport
 	}
 	
 	
+	/**
+	 * Report a new event (writing to log + send to kaltura if needed)
+	 * @param ErrorObject $error
+	 * @return true/false according to success
+	 */
 	public function reportEvent($error)
 	{		
+		$event_post = array();
 		
 		// add specific error data
 		$this->install_event['step'] = $error->getStep();
 		$this->install_event['code'] = $error->getCode();
-		$this->install_event_post['description'] = $error->getDescription();
-		$this->install_event_post['data'] = 'Stack trace:'.PHP_EOL.$error->getStackTrace().PHP_EOL.PHP_EOL.'Additonal data:'.PHP_EOL.$error->getData();
+		$event_post['description'] = $error->getDescription();
+		$event_post['data'] = 'Stack trace:'.PHP_EOL.$error->getStackTrace().PHP_EOL.PHP_EOL.'Additonal data:'.PHP_EOL.$error->getData();
 		
+		// write to log
 		$this->logEvent($error);
 		
-		// send error report
+		// send error report to kaltura
 		if ($this->should_report) {
 			try {
-				$this->sendReport();
+				$this->sendReport($this->install_event, $event_post);
 			}
 			catch (Exception $e) {
 				// report wasn't properly sent
@@ -51,14 +84,16 @@ class InstallReport
 		return true;
 	}
 	
-	
-	private function sendReport()
+	/**
+	 * Send current event to kaltura
+	 */
+	private function sendReport($event, $event_post)
 	{
 		// create a new cURL resource
 		$ch = curl_init();
 		
 		$url = INSTALL_REPORT_URL;
-		$url .= '?' . http_build_query($this->install_event);
+		$url .= '?' . http_build_query($event);
 		
 		// set URL and other appropriate options
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -67,7 +102,7 @@ class InstallReport
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 10); 
         curl_setopt($ch, CURLOPT_POST, true);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $this->install_event_post);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $event_post);
         
 		// grab URL and pass it to the browser
 		$result = curl_exec($ch);
@@ -81,7 +116,10 @@ class InstallReport
 	}
 	
 	
-	private function logSystemData($event)
+	/**
+	 * Write system data to log file
+	 */
+	private function logSystemData()
 	{
 		$log = PHP_EOL.PHP_EOL;
 		$log .= 'Admin Email: '.$this->install_event['email'].PHP_EOL;
@@ -96,6 +134,10 @@ class InstallReport
 		file_put_contents($this->log_file, $log, FILE_APPEND);
 	}
 	
+	/**
+	 * Write event data to log file
+	 * @param ErrorObject $event
+	 */
 	private function logEvent($event)
 	{
 		$log = '[TIME: '.time().'] '.$event->getStep().' - '.$event->getCode().PHP_EOL;
@@ -107,36 +149,53 @@ class InstallReport
 	}
 	
 	
+	/**
+	 * Report installation start + write system data to log file
+	 */
 	public function reportStart()
 	{
-		$this->logSystemData($this->install_event);
+		$this->logSystemData();
 		$this->reportEvent(new ErrorObject('Install START', 'INSTALL_START', ErrorCodes::INSTALL_START, null));
 	}
 	
-	
+	/**
+	 * Report installation finished successfully.
+	 */
 	public function reportSuccess()
 	{
 		$this->reportEvent(new ErrorObject('Install SUCCESS', 'INSTALL_SUCCESS', ErrorCodes::INSTALL_SUCCESS, null));
 	}
 	
+	/**
+	 * Report installation failed
+	 */
 	public function reportFailure()
 	{
 		$this->reportEvent(new ErrorObject('Install FAILED', 'INSTALL_FAILED', ErrorCodes::INSTALL_FAILED, null));
 	}
 	
-	
+	/**
+	 * Report when user stopped the installation (chose not to proceed when an error occured)
+	 * @param string $step last installation step name
+	 */
 	public function reportUserStopped($step)
 	{
 		$this->reportEvent(new ErrorObject($step, 'USER_STOPPED', ErrorCodes::USER_STOPPED, null));
 	}
 	
-	
+	/**
+	 * Report installation failed because a step cannot be retried.
+	 * @param string $step installation step name
+	 */
 	public function reportCantRetry($step)
 	{
 		$this->reportEvent(new ErrorObject($step, 'CANT_RETRY', ErrorCodes::CANT_RETRY, null));
 	}
 	
-	
+	/**
+	 * Report an error
+	 * @param ErrorObject $error
+	 */
 	public function reportError(ErrorObject $error)
 	{
 		$this->reportEvent($error);
