@@ -102,3 +102,5 @@ ADD  `rotate` INT NOT NULL;
 
 ALTER TABLE  `storage_profile` ADD  `url_manager_class` VARCHAR( 127 ) NOT NULL;
 
+ALTER TABLE `system_user` ADD COLUMN `role` VARCHAR(40) default 'admin' AFTER `deleted_at`;
+UPDATE `system_user` SET role = 'admin';

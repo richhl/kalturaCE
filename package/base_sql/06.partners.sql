@@ -17,8 +17,5 @@ INSERT INTO `admin_kuser` (`id`,  `screen_name`, `full_name`, `email`, `sha1_pas
 
 
 
-insert into `system_user` (`email`, `first_name`, `last_name`, `sha1_password`, `salt`, `created_by`, `status`, `is_primary`, `status_updated_at`, `created_at`, `updated_at`, `deleted_at`) 
-values('@SYSTEM_USER_ADMIN_EMAIL@','admin','admin','@SYSTEM_USER_ADMIN_SHA1@','@SYSTEM_USER_ADMIN_SALT@','0','1','1',NULL,NOW(),NOW(),NULL);
-
-ALTER TABLE `system_user` ADD COLUMN `role` VARCHAR(40) default 'ps' AFTER `deleted_at`;
-UPDATE `system_user` SET role = 'admin';
+insert into `system_user` (`email`, `first_name`, `last_name`, `sha1_password`, `salt`, `created_by`, `status`, `is_primary`, `status_updated_at`, `created_at`, `updated_at`, `deleted_at`, `role`) 
+values('@SYSTEM_USER_ADMIN_EMAIL@','admin','admin','@SYSTEM_USER_ADMIN_SHA1@','@SYSTEM_USER_ADMIN_SALT@','0','1','1',NULL,NOW(),NOW(),NULL,'admin');
