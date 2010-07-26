@@ -120,13 +120,14 @@ class kConf
 				"kaltura_installation_type" => "@INSTALLATION_TYPE@",
 				"kaltura_activation_key" => false,
 				"kaltura_version" => "@KALTURA_VERSION@",
+				"report_admin_email" => "@REPORT_ADMIN_EMAIL@",
 				"memcache_host" => "@MEMCACHE_HOST@",
 				"memcache_port" => "11211",
 				"image_proxy_url" => "",
 				"image_proxy_port" => "",	
 				"image_proxy_secret" => "",
 				'track_kdpwrapper' =>@TRACK_KDPWRAPPER@,
-				'kdpwrapper_track_url' => "http://corp.kaltura.co.cc/index.php/events/player_event",//TODO: CHANGE!
+				'kdpwrapper_track_url' => "http://kalstats.kaltura.com/index.php/events/player_event",
 				
 				"url_managers" => array(), /* should be filled up if installations supports adding CDNs */
 				
