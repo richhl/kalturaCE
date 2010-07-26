@@ -106,7 +106,7 @@ class PartnerService extends KalturaBaseService
 		
 		$partnerUpdate = $partner->toPartner();
 		
-		if ( $partnerUpdate->getAdminEmail() != $dbPartner->getAdminEmail() )
+		if ( isset($partner->adminEmail) && $partner->adminEmail && $partnerUpdate->getAdminEmail() != $dbPartner->getAdminEmail() )
 		{
 			myPartnerUtils::emailChangedEmail($this->getPartnerId(), $dbPartner->getAdminEmail(), $partnerUpdate->getAdminEmail(), $dbPartner->getName() , partnerservice::KALTURAS_PARTNER_EMAIL_CHANGE );
 		}
