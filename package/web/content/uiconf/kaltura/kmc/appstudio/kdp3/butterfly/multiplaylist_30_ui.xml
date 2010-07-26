@@ -760,7 +760,7 @@ upIcon ="Button_upIcon_volumeBtn"
 
 <renderers>
 <renderer id="playlistItemRenderer">
-<HBox id="irCont" height="100%" width="100%" x="10" y="10" verticalAlign="top">
+<HBox id="irCont" height="100%" width="100%" x="10" y="10" verticalAlign="top" paddingRight="20">
 <Image id="irImageIrScreen" height="48" width="72" url="{this.thumbnailUrl}" />
 <VBox height="100%" width="100%" id="labelsHolder" verticalGap="0">
 <HBox id="nameAndDuration" width="100%" height="18">
@@ -774,7 +774,7 @@ upIcon ="Button_upIcon_volumeBtn"
 <Label id="irRankIrScreen" width="100%" height="18" text="Rank: {this.rank}" styleName="itemRendererLabel" />
 <Label id="irVotesIrScreen" width="100%" height="18" text="{this.votes} votes" styleName="itemRendererLabel" />
 <Label id="irTagsIrScreen" width="100%" height="18" text="Tags: {this.tags}" styleName="itemRendererLabel" />
-<Label id="irAdminTagsIrScreen" 100%="240" height="18" text="Categories: {this.categories}" styleName="itemRendererLabel" />
+<Label id="irAdminTagsIrScreen" width="100%" height="18" text="Categories: {this.categories}" styleName="itemRendererLabel" />
 <Label id="irCreatedAtIrScreen" width="100%" height="18" text="Created at: {formatDate(this.createdAt, 'dd/mm/yyy')}" styleName="itemRendererLabel" />
 <Label id="irCreatedByIrScreen" width="100%" height="18" text="Created by: {this.userScreenName}" styleName="itemRendererLabel" />
 </VBox>
