@@ -15,7 +15,6 @@ class CronJobsStep extends InstallStep
 			$cron_utils->addJob(myConf::get('APP_DIR').'/scripts/storage_update.sh', '30 7 * * *');	
 			$cron_utils->addJob(myConf::get('APP_DIR').'/scripts/www_logs_insert.sh', '30 8 * * *');
 			$result = $cron_utils->activate();
-			unset($cron_utils);
 			
 			if ($result === true) {
 				$cron_utils = new CrontabUtils();

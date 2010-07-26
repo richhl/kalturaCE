@@ -1,12 +1,27 @@
 <?php
 
 
+/**
+ * Checking prerequisites as defined in 'config/prerequisites.php'
+ */
 class PrerequisitesStep extends InstallStep
 {
-	
+	/**
+	 * Problems found (missing prerequisites)
+	 * @var string[]
+	 */
 	private $problems = array();
+	
+	/**
+	 * mysqli php extensions exists or not (needed to check database related prerequisites) 
+	 * @var boolean
+	 */
 	private $mysqli_ext_exists = false;
 
+	
+	/**
+	 * Main
+	 */
 	public function install()
 	{
 		$this->problems = array();
@@ -16,10 +31,12 @@ class PrerequisitesStep extends InstallStep
 			return new ErrorObject('PrerequisitesStep', 'OS_NOT_SUPPORTED', sprintf(ErrorCodes::OS_NOT_SUPPORTED, $os));
 		}
 		
+		// collect configurations needed for prerequisites check (will also be used later during installation)
 		$this->configCollect();
 		
-		echo PHP_EOL;
-		echo $this->getTextFor('check_start').PHP_EOL;
+		echo PHP_EOL.$this->getTextFor('check_start').PHP_EOL;
+		
+		// check prerequisites
 		$result = $this->checkRootUser();
 		if ($result === true) { $result = $this->checkVersions(); }
 		if ($result === true) { $result = $this->checkBins(); }
@@ -48,16 +65,15 @@ class PrerequisitesStep extends InstallStep
 		if (empty($this->problems)) {
 			return true;
 		}
-		else{		
+		else{	
+			// return an ErrorObject with all prerequisites as its description	
 			$error_description = PHP_EOL;
 			foreach ($this->problems as $title => $items) {
 				$error_description .= $title.PHP_EOL;	
 				foreach ($items as $item) {
 					$error_description .= "  - $item".PHP_EOL;
 				}
-				
 			}
-		
 			return new ErrorObject('PrerequisitesStep', 'MISSING_PREREQUISITES',
 				sprintf(ErrorCodes::MISSING_PREREQUISITES, $error_description));			
 			
@@ -67,10 +83,16 @@ class PrerequisitesStep extends InstallStep
 		
 	public function prepareForRetry()
 	{
+		// nothing special to do
 		return true;
 	}
 	
 	
+	/**
+	 * Checks that :
+	 * 1. User etl exists
+	 * 2. /home/dir directory exists
+	 */
 	private function checkEtlUser()
 	{
 		if (!is_dir(myConf::get('ETL_HOME_DIR'))) {
@@ -84,6 +106,9 @@ class PrerequisitesStep extends InstallStep
 	}
 	
 	
+	/**
+	 * Checks that current user is root
+	 */
 	private function checkRootUser()
 	{
 		@exec('id -u', $output, $result);
@@ -94,6 +119,9 @@ class PrerequisitesStep extends InstallStep
 	}
 	
 	
+	/**
+	 * Checks that needed php extensions exist
+	 */
 	private function checkPhpExtensions()
 	{
 		foreach (KalturaPrerequisites::$php_extensions as $ext) {
@@ -107,6 +135,10 @@ class PrerequisitesStep extends InstallStep
 		return true;
 	}
 	
+	
+	/**
+	 * Checks that needed binary files exist (by using 'which')
+	 */
 	private function checkBins()
 	{
 		foreach (KalturaPrerequisites::$bins as $bin) {
@@ -119,6 +151,9 @@ class PrerequisitesStep extends InstallStep
 	}
 	
 	
+	/**
+	 * Check that needed file paths exist
+	 */
 	private function checkFiles()
 	{
 		foreach (KalturaPrerequisites::$files as $file) {
@@ -130,6 +165,9 @@ class PrerequisitesStep extends InstallStep
 	}
 	
 	
+	/**
+	 * Checks that needed directories exist
+	 */
 	private function checkDirs()
 	{
 		foreach (KalturaPrerequisites::$dirs as $dir) {
@@ -141,6 +179,9 @@ class PrerequisitesStep extends InstallStep
 	}
 	
 	
+	/**
+	 * Checks that needed databases DO NOT exist
+	 */
 	private function checkDatabases()
 	{
 		foreach (KalturaPrerequisites::$databases as $db) {
@@ -156,6 +197,9 @@ class PrerequisitesStep extends InstallStep
 	}
 	
 	
+	/**
+	 * Checks that needed apache modules exist
+	 */
 	private function checkApacheModules()
 	{
 		$apache_cmd = myConf::get('HTTPD_BIN').' -t -D DUMP_MODULES';
@@ -177,7 +221,9 @@ class PrerequisitesStep extends InstallStep
 
 
 	
-	
+	/**
+	 * Check that mySQL settings are set as required
+	 */
 	private function checkMySqlSettings()
 	{
 		$result = DatabaseUtils::connect($link, myConf::get('DB1_HOST'), myConf::get('DB1_USER'), myConf::get('DB1_PASS'), null, myConf::get('DB1_PORT'));
@@ -205,7 +251,9 @@ class PrerequisitesStep extends InstallStep
 
 
 	
-	
+	/**
+	 * Check different product versions
+	 */
 	private function checkVersions()
 	{
 		foreach (KalturaPrerequisites::$versions as $module => $version) {
@@ -227,6 +275,10 @@ class PrerequisitesStep extends InstallStep
 		return true;
 	}
 	
+	/**
+	 * Check PHP version
+	 * @param array[] $check
+	 */
 	private function checkVersions_php($check)
 	{
 		if (!version_compare(phpversion(), $check[1], $check[0])) {
@@ -235,12 +287,19 @@ class PrerequisitesStep extends InstallStep
 		return true;
 	}
 	
+	/**
+	 * Check APACHE version
+	 * @param array[] $check
+	 */
 	private function checkVersions_apache($check)
 	{
 		//$this->problems['versions'][] = sprintf($this->getTextFor('bad_version'), 'apache', $check[0], $check[1]);
 		return true;
 	}
 	
+	/**
+	 * Check MYSQL version
+	 */
 	private function checkVersions_mySql()
 	{
 		if (!isset(KalturaPrerequisites::$versions['mysql'])) {
@@ -303,11 +362,14 @@ class PrerequisitesStep extends InstallStep
 	
 	  	
   	
-  	
+  	/**
+  	 * Collect configurations needed for checking prerequisites
+  	 */
   	private function configCollect()
   	{
   		echo $this->getTextFor('config_collect').PHP_EOL.PHP_EOL;
 		
+  		// httpd and php binaries
   		$http_bin = UserInputUtils::getPathInput($this->getTextFor('httpd_bin'), true, false, array('apachectl', 'apache2ctl'));
 		echo PHP_EOL;
   		myConf::set('HTTPD_BIN', $http_bin);
@@ -316,6 +378,7 @@ class PrerequisitesStep extends InstallStep
 		echo PHP_EOL;
 		myConf::set('PHP_BIN', $php_bin);
   		
+		// database configurations
   		$db1_host = UserInputUtils::getInput($this->getTextFor('db_host'));
   		echo PHP_EOL;
 		if ($db1_host == '') { $db1_host = 'localhost'; }
@@ -329,6 +392,8 @@ class PrerequisitesStep extends InstallStep
 		myConf::set('DB1_NAME', 'kaltura');
 		myConf::set('DB1_USER', UserInputUtils::getInput($this->getTextFor('db_user')));
 		myConf::set('DB1_PASS', UserInputUtils::getInput($this->getTextFor('db_pass')));
+		
+		// etl home directory
 		myConf::set('ETL_HOME_DIR', '/home/etl/');
   	}
   	
