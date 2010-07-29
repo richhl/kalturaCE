@@ -214,6 +214,7 @@ class myPartnerRegistration
 		
 		$newPartner->setKmcVersion('3');
 		$newPartner->setEnableSilverLight('1');
+		$newPartner->setLiveStreamEnabled('1');
 		$newPartner->save();
 		
 		return $newPartner;

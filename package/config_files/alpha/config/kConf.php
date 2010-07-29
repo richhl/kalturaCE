@@ -119,6 +119,7 @@ class kConf
 			
 				"kaltura_installation_type" => "@INSTALLATION_TYPE@",
 				"kaltura_activation_key" => false,
+				"replace_passwords" => false,
 				"kaltura_version" => "@KALTURA_VERSION@",
 				"report_admin_email" => "@REPORT_ADMIN_EMAIL@",
 				"memcache_host" => "@MEMCACHE_HOST@",

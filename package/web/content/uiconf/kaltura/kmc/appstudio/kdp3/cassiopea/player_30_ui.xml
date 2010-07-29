@@ -34,10 +34,6 @@
 						 styleName="clickThrough" startScreenId="startScreen" startScreenOverId="startScreen"
 						 pauseScreenOverId="pauseScreen" pauseScreenId="pauseScreen" playScreenOverId="playScreen"
 						 endScreenId="endScreen" endScreenOverId="endScreen"/>
-				<!-- new skip button -->
-				<Button id="skipBtn" visible="{sequenceProxy.isAdSkip}" includeInLayout="{sequenceProxy.isAdSkip}"
-						type="labelButton" color1="0xFFFF00" color2="0xFF00FF" styleName="controllerScreen" height="190%" width="180%"
-						allowDisable="false" label="Skip Ad >" kClick="sendNotification('sequenceSkipNext')"/>
 
 
 				<Watermark id="watermark" width="100%" height="100%"
@@ -51,6 +47,11 @@
 				<!-- new bumper plugin -->
 				<Plugin id="bumper" bumperEntryID="0_c2gx2xjm" clickurl="http://www.kaltura.com" lockUI="true"
 						playOnce="false" preSequence="1" postSequence="1" width="100%" height="100%"/>
+				
+				<!-- new skip button -->
+				<Button id="skipBtn" visible="{sequenceProxy.isAdSkip}" includeInLayout="{sequenceProxy.isAdSkip}"
+						type="labelButton" color1="0xFFFF00" color2="0xFF00FF" styleName="controllerScreen" height="190%" width="180%"
+						allowDisable="false" label="Skip Ad >" kClick="sendNotification('sequenceSkipNext')"/>
 
 				<Plugin id="plymedia" width="100%" height="100%" useHost="false" loadingPolicy="noWait"/>
 
@@ -117,7 +118,7 @@
 
 						<Button id="fullScreenBtnControllerScreen" command="fullScreen" buttonType="iconButton"
 								height="22" label="" styleName="controllerScreen" icon="openFullScreenIcon"
-								selectedUpIcon="closeFullScreenIcon" selectedOverIcon="closeFullScreenIcon"
+								selectedUpIcon="closeFullScreenIcong" selectedOverIcon="closeFullScreenIcon"
 								selectedDownIcon="closeFullScreenIcon" selectedDisabledIcon="closeFullScreenIcon"
 								focusRectPadding="0" allowDisable="false"/>
 						<Button id="custom1BtnControllerScreen" height="22" focusRectPadding="0" buttonType="iconButton"

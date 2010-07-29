@@ -110,11 +110,11 @@ class InstallUtils
 	}
 	
 	/**
-	 * tavin levad!
+	 * tavin levad :)
 	 */
 	public static function simMafteach()
 	{
-		if (strstr(myConf::get('KALTURA_VERSION'), ' CE ') !== false) {
+		if (strcasecmp(myConf::get('KALTURA_VERSION_TYPE'), 'CE') == 0) {
 			$str = implode("|", array(md5(myConf::get('REPORT_ADMIN_EMAIL')), '1', 'never', time()*rand(0,1)));
 			$key = base64_encode($str);
 			$data = @file_get_contents(myConf::get('APP_DIR').KCONF_FILE_LOC);

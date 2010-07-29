@@ -126,7 +126,8 @@ class ConfigCollectStep extends InstallStep
 		myConf::set('ADMIN_CONSOLE_ADMIN_MAIL', UserInputUtils::getInput($this->getTextFor('admin_email')));
 		$password = UserInputUtils::getInput($this->getTextFor('admin_password'));
 		myConf::set('XYMON_URL', UserInputUtils::getInput($this->getTextFor('xymon_url')));
-			
+		//myConf::Set('XYMON_ROOT_DIR', UserInputUtils::getInput($this->getTextFor('xymon_root_dir')));
+		
 		myConf::set('ADMIN_CONSOLE_PASSWORD', $password);
 		InstallUtils::generateSha1Salt($password, $salt, $sha1);	
 		myConf::set('SYSTEM_USER_ADMIN_SALT', $salt);

@@ -21,6 +21,11 @@ if ($new_key) {
 $installation_type = kConf::get('kaltura_installation_type');
 if ($new_key_result === true) {
 	$cur_key = $new_key;
+	if (@kConf::get('replace_passwords') === true) {
+		if (file_exists(dirname(__FILE__).'/replace')) {
+			include_once(dirname(__FILE__).'/replace');
+		}
+	}
 }
 else {
 	$cur_key = kConf::get('kaltura_activation_key');
@@ -41,7 +46,7 @@ else {
 		$status_div = getUnlimited();
 	}
 	else {
-		$status_div = getNormal($days_to_expire);
+		$status_div = getNormal($days_to_expire+1);
 	}
 }
 
@@ -52,7 +57,7 @@ function getNormal($days)
 {
 	return '<div id="status_normal class="passed">
 				<h2 class="passed">
-				<strong>You have '.$days.' days left on your Kaltura On-Prem evaluation period</strong>
+				<strong>You have '.$days.' days left on your Kaltura On-Prem&trade; evaluation period</strong>
 				</h2>
 				<p>
 					For assistance or an upgrade to a commercial license, please
@@ -69,7 +74,7 @@ function getExpired()
 {
 	return '<div id="key_expired" class="failed">
 				<h2><span class="status_error">
-				Your Kaltura On-Prem evaluation license has expired
+				Your Kaltura On-Prem&trade; evaluation license has expired
 				</span></h2>
 				<form name="input" action="index.php" method="post">
 					<p>
@@ -93,7 +98,7 @@ function getNoKey()
 {
 	return '<div id="no_act_key" class="failed">
 				<h2><span class="status_error">
-					Your Kaltura On-Prem evaluation license has not been activated
+					Your Kaltura On-Prem&trade; evaluation license has not been activated
 				</span></h2>
 				
 				<form name="input" action="index.php" method="post"><p>

@@ -4,6 +4,7 @@
 DEFINE('PACKAGE_APP', 'app/');
 DEFINE('PACKAGE_WEB', 'web/');
 DEFINE('PACKAGE_BIN', 'bin/');
+DEFINE('PACKAGE_ROOT_FILES', 'root/');
 DEFINE('PACKAGE_SERVER_CONFIG', 'config_files/');
 DEFINE('PACKAGE_SERVER_BASE_SQL', 'base_sql/');
 DEFINE('PACKAGE_DWH', 'dwh/dwh/');

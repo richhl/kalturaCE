@@ -57,13 +57,6 @@
           <serverUrl>rtmp://{HOST_NAME}/oflaDemo</serverUrl>
         </customData>
       </provider>
-      <provider id="photobucket" name="photobucket" code="4">
-        <moduleUrl>SearchView.swf</moduleUrl>
-        <authMethodList>
-          <authMethod type="1"/>
-          <authMethod type="2" searchable="false"/>
-        </authMethodList>
-      </provider>
       <provider id="metacafe" name="metacafe" code="24">
         <moduleUrl>SearchView.swf</moduleUrl>
         <authMethodList>

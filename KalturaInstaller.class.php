@@ -88,7 +88,7 @@ class KalturaInstaller
 	{
 		InstallUtils::simMafteach();
 		$this->error_report->reportSuccess();
-		$this->copyUninstaller();
+		$this->postInstallFilesCopy();
 		echo sprintf($this->global_texts['install_success'], myConf::get('ADMIN_CONSOLE_ADMIN_MAIL'),
 															 myConf::get('ADMIN_CONSOLE_PASSWORD')).PHP_EOL;
 	 	echo PHP_EOL.PHP_EOL;
@@ -114,14 +114,15 @@ class KalturaInstaller
 	private function finishFail()
 	{
 		$this->error_report->reportFailure();
-		$this->copyUninstaller();
+		$this->postInstallFilesCopy();
 		echo $this->global_texts['install_fail'].PHP_EOL;
 		die();
 	}
 	
 	
-	private function copyUninstaller()
+	private function postInstallFilesCopy()
 	{
+		// Copy the uninstaller
 		$base_dir = myConf::get('BASE_DIR');
 		FileUtils::fullCopy(UNINSTALLER_DIR, $base_dir.'/uninstaller');
 		FileUtils::fullCopy(LIB_DIR.'FileUtils.class.php', $base_dir.'/uninstaller/FileUtils.class.php');
@@ -130,6 +131,9 @@ class KalturaInstaller
 		FileUtils::fullCopy(LIB_DIR.'ErrorObject.class.php', $base_dir.'/uninstaller/ErrorObject.class.php');
 		FileUtils::fullCopy(CONFIG_DIR.'error_codes.php', $base_dir.'/uninstaller/error_codes.php');
 		myConf::writeToFile($base_dir.'/uninstaller/my_config.ini');
+		
+		// Copy the root files
+		FileUtils::fullCopy(PACKAGE_DIR.PACKAGE_ROOT_FILES, $base_dir);
 	}
 	
 	
@@ -148,7 +152,10 @@ class KalturaInstaller
 	
 	private function askToReport()
 	{
-		if ($result = UserInputUtils::getTrueFalse($this->global_texts['ask_to_report'], 'y')) {
+		// For On-Prem it is mandatory to provide an e-mail, for CE it is optional 
+		if ($result = 
+				((strcasecmp(myConf::get('KALTURA_VERSION_TYPE'), 'On-Prem') == 0) || 
+				 (UserInputUtils::getTrueFalse($this->global_texts['ask_to_report'], 'y')))) {
 			$email = UserInputUtils::getInput($this->global_texts['report_email']);
 			myConf::set('REPORT_ADMIN_EMAIL', $email);
 		}
@@ -190,7 +197,8 @@ class KalturaInstaller
 	{
 		try {
 			$version = parse_ini_file(PACKAGE_DIR.'version.ini');
-			myConf::set('KALTURA_VERSION', $version['version']);
+			myConf::set('KALTURA_VERSION', 'Kaltura '.$version['type'].' '.$version['number']);
+			myConf::set('KALTURA_VERSION_TYPE', $version['type']);
 		}
 		catch (Exception $e) {}
 		

@@ -173,7 +173,8 @@ Examples:\n/opt/myKalturaStorage",
 		'admin_console_welcome' => "A primary system administrator user will be created\nwith full access to the Kaltura Administration Console.\nPlease provide the following information:",
 		'admin_email' => "Your primary system administrator email address.\nA real email address is required, so you can recieve system auto-generated emails.",
 		'admin_password' => 'The password you want to set for your primary administrator:',
-		'xymon_url' => "The URL to your xymon - system monitoring - installation root.\nXymon is an optional installation. Leave empty to set manually later\nExamples:\nhttp://www.xymondomain.com/xymon/\nhttp://www.xymondomain.com/hobbit/",
+		'xymon_url' => "The URL to your xymon/hobbit monitoring location.\nXymon is an optional installation. Leave empty to set manually later\nExamples:\nhttp://www.xymondomain.com/xymon/\nhttp://www.xymondomain.com/hobbit/",
+		'xymon_root_dir' =>"The full directory pathname of your xymon installation.\nExamples:\n/usr/lib/xymon",
 		'xymon_control_script' => "The URL to your xymon hobbit-enadis.sh control script\nxymon is an optional installation. Leave empty to set xymon manually later",
 	
 		// site settings

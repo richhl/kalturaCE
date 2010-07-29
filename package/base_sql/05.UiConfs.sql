@@ -1,51 +1,50 @@
 
 INSERT IGNORE INTO `ui_conf` (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at,conf_vars,use_cdn,tags,custom_data,status,description,display_in_search,creation_mode) VALUES
-(380,2,0,0,'@WEB_DIR@/content/uiconf/kaltura/corp_new/kcw_2.6.4/kcw.xml','corp cw','680','480',NULL,'/flash/kcw/v1.6.5CE/ContributionWizard.swf','2008-06-10 15:30:00','2008-06-10 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(600,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/drupal/kdp_drupal.xml','drupal kdp','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
-(601,2,0,0,'@WEB_DIR@/content/uiconf/kaltura/drupal/cw_drupal.xml','drupal cw','680','480',NULL,'/flash/kcw/v1.5.4CE/ContributionWizard.swf','2008-06-10 15:30:00','2008-06-10 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(602,2,0,0,'@WEB_DIR@/content/uiconf/kaltura/drupal/cw_drupal_in_se.xml','drupal cw','680','480',NULL,'/flash/kcw/v1.5.4CE/ContributionWizard.swf','2008-06-10 15:30:00','2008-06-10 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(603,3,0,0,'@WEB_DIR@/content/uiconf/kaltura/drupal/se_drupal.xml','drupal simple editor','890','546','','/flash/kse/v2.1.8/simpleeditor.swf','2008-05-19 15:30:00','2008-05-19 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(604,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/drupal/kdp_1.1.11/kdp_drupal_v2.1_dark_remix.xml','drupal dark kdp (remix)','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
-(605,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/drupal/kdp_1.1.11/kdp_drupal_v2.1_dark_view.xml','drupal dark kdp (view)','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
-(606,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/drupal/kdp_1.1.11/kdp_drupal_v2.1_gray_remix.xml','drupal gray kdp (remix)','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
-(607,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/drupal/kdp_1.1.11/kdp_drupal_v2.1_gray_view.xml','drupal gray kdp (view)','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
-(608,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/drupal/kdp_1.1.11/kdp_drupal_v2.1_whiteblue_remix.xml','drupal white-blue kdp (remix)','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
-(609,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/drupal/kdp_1.1.11/kdp_drupal_v2.1_whiteblue_view.xml','drupal white-blue kdp (view)','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
-(520,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/wordpress/kdp_1.1.11/kdp_wordpress_v2.1_whiteblue.xml','wordpress v2.1','410','364',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-11-30 15:30:00','2008-11-30 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(521,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/wordpress/kdp_1.1.11/kdp_wordpress_v2.1_dark.xml','wordpress v2.1','410','364',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-11-30 15:30:00','2008-11-30 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(522,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/wordpress/kdp_1.1.11/kdp_wordpress_v2.1_gray.xml','wordpress v2.1','410','364',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-11-30 15:30:00','2008-11-30 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(523,1,0,0,'@WEB_DIR@/content//uiconf/kaltura/wordpress/kdp_1.1.11/kdp_wordpress_thumb_v2.1_gray.xml','wordpress v2.2 thumbnails','410','364',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-11-30 15:30:00','2008-11-30 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(501,2,0,0,'@WEB_DIR@/content/uiconf/kaltura/wordpress/cw_wordpress.xml','wordpress cw','680','480',NULL,'/flash/kcw/v1.5.4CE/ContributionWizard.swf','2008-05-19 15:30:00','2008-05-19 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(502,3,0,0,'@WEB_DIR@/content/uiconf/kaltura/wordpress/se_wordpress.xml','wordpress simple editor','890','546','','/flash/kse/v2.1.3CE/simpleeditor.swf','2008-05-19 15:30:00','2008-05-19 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(503,2,0,0,'@WEB_DIR@/content/uiconf/kaltura/wordpress/cw_wordpress_comments.xml','wordpress cw','680','480',NULL,'/flash/kcw/v1.5.4CE/ContributionWizard.swf','2008-05-19 15:30:00','2008-05-19 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(504,2,0,0,'@WEB_DIR@/content/uiconf/kaltura/wordpress/cw_wordpress_in_se.xml','wordpress cw','680','480',NULL,'/flash/kcw/v1.5.4CE/ContributionWizard.swf','2008-05-19 15:30:00','2008-05-19 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(36200,2,0,0,'@WEB_DIR@/content/uiconf/kaltura/samplekit/kcw_2.6.4/kcw_samplekit.xml','samplekit cw','680','480',NULL,'/flash/kcw/v1.6.5CE/ContributionWizard.swf','2009-03-25 12:09:22','2009-03-25 12:09:22',NULL,1,NULL,NULL,2,NULL,2,1),
-(200,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/default_player/kdp_2.5.2/kdp_default_dark.xml','kdp 2.5 kaltura default dark','400','335',NULL,'/flash/kdp/v2.7.0/kdp.swf',NULL,NULL,NULL,1,NULL,NULL,2,NULL,2,1),
-(31006,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/multiplaylist_25_ui.xml','TEMPLATE FOR APPSTUDIO KDP 2.5 -MULTI- PLAYLIST','740','365',NULL,'/flash/kdp/v2.7.0/kdp.swf','2009-07-16 10:16:47','2009-07-16 10:17:32','',1,'',NULL,2,NULL,2,3),
-(31005,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/playlist_25_ui.xml','TEMPLATE FOR APPSTUDIO KDP 2.5 - PLAYLIST','400','365',NULL,'/flash/kdp/v2.7.0/kdp.swf','2009-07-16 10:14:31','2009-07-16 10:16:42','',1,'',NULL,2,NULL,2,3),
-(31004,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/player_25_ui.xml','TEMPLATE FOR APPSTUDIO KDP 2.5 - PLAYER','400','365',NULL,'/flash/kdp/v2.7.0/kdp.swf','2009-07-16 10:13:27','2009-07-16 10:14:08','',1,'',NULL,2,NULL,2,3),
-(48210,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/default_player/kdp_2.0.0/pl_horizontal_defaultIr_light.xml','playlist playlist no tabs bright','655','300','','/flash/kdp/v2.0.12/kdp.swf','2009-03-29 09:48:42','2009-03-29 09:48:42','',1,NULL,NULL,2,NULL,2,1),
-(48211,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/default_player/kdp_2.0.0/pl_horizontal_defaultIr.xml','playlist playlist no tabs ','655','300','','/flash/kdp/v2.0.12/kdp.swf','2009-03-29 09:48:42','2009-03-29 09:48:42','',1,NULL,NULL,2,NULL,2,1),
-(199,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/default_player/kdp_2.0.0/kdp_default_dark.xml','kdp kaltura default dark','400','332','','/flash/kdp/v2.0.12/kdp.swf','2009-03-30 06:32:42','2009-03-30 06:32:42',NULL,1,NULL,NULL,2,NULL,2,1),
-(47400,4,0,0,'@WEB_DIR@/content/uiconf/kaltura/generic/kae_1.0.10/kae_generic_generic.xml','ae','750','640','','/flash/kae/v1.0.10.23657/KalturaAdvancedVideoEditor.swf','2009-03-30 06:48:07','2009-03-30 06:48:07',NULL,1,NULL,NULL,2,NULL,2,1),
-(47401,4,0,0,'@WEB_DIR@/content/uiconf/kaltura/generic/kae_1.0.10/kae_generic_generic_no_thumbnail.xml','ae','750','640','','/flash/kae/v1.0.10CE/KalturaAdvancedVideoEditor.swf','2009-03-30 06:48:07','2009-03-30 06:48:07',NULL,1,NULL,NULL,2,NULL,2,1),
-(36300,3,0,0,'@WEB_DIR@/content/uiconf/kaltura/samplekit/kse_2.1.1/kse_samplekit.xml','samplekit simple editor','890','546','','/flash/kse/v2.1.3CE/simpleeditor.swf','2009-04-06 09:25:39','2009-04-06 09:25:39',NULL,1,NULL,NULL,2,NULL,2,1),
-(31001,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/playlist_ui.xml','playlist ui','0','0','','','2009-04-07 12:13:49','2009-04-07 12:13:49','',1,NULL,'a:1:{s:12:\"creationMode\";i:2;}',2,NULL,2,1),
-(31002,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/player_ui.xml','player ui','0','0','','','2009-04-07 12:13:50','2009-04-07 12:13:50','',1,NULL,'a:1:{s:12:\"creationMode\";i:2;}',2,NULL,2,1),
-(36202,2,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/kcw/kcw_kmc.xml','cw for KMC','680','480',NULL,'/flash/kcw/v1.6.5CE/ContributionWizard.swf','2009-05-05 04:46:40','2009-05-05 04:46:40',NULL,1,NULL,NULL,2,NULL,2,1),
-(610,2,0,0,'@WEB_DIR@/content/uiconf/kaltura/drupal/cw_drupal_comments.xml','drupal cw','680','480',NULL,'/flash/kcw/v1.5.4CE/ContributionWizard.swf',NULL,NULL,NULL,1,NULL,NULL,2,NULL,2,1),
-(31003,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/multiplaylist_ui.xml','multiplaylist ui','0','0',NULL,NULL,NULL,NULL,NULL,1,NULL,'a:1:{s:12:\"creationMode\";i:2;}',2,NULL,2,1),
-(530,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/wordpress/kdp_2.0.12/kdp_wordpress_v2_blue.xml','wordpress v2.3','410','364',NULL,'/flash/kdp/v2.0.12/kdp.swf','2009-05-17 15:30:00','2009-05-17 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(531,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/wordpress/kdp_2.0.12/kdp_wordpress_v2_dark.xml','wordpress v2.3','410','364',NULL,'/flash/kdp/v2.0.12/kdp.swf','2009-05-17 15:30:00','2009-05-17 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(532,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/wordpress/kdp_2.0.12/kdp_wordpress_v2_light.xml','wordpress v2.3','410','364',NULL,'/flash/kdp/v2.0.12/kdp.swf','2009-05-17 15:30:00','2009-05-17 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(533,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/wordpress/kdp_2.0.12/kdp_wordpress_v2_thumbnail.xml','wordpress v2.3','410','364',NULL,'/flash/kdp/v2.0.12/kdp.swf','2009-05-17 15:30:00','2009-05-17 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
-(48304,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/embedplayers/playlist_vertical_white_400_600.xml','Vertical Light','400','600','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:43:43','2009-07-15 18:43:43',NULL,1,'playlist',NULL,2,NULL,2,1),
-(48305,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/embedplayers/playlist_vertical_dark_400_600.xml','Vertical Dark','400','600','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:44:09','2009-07-15 18:44:09',NULL,1,'playlist',NULL,2,NULL,2,1),
-(48306,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/embedplayers/playlist_horizontal_white_740_335.xml','Horizontal Light','740','335','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:44:37','2009-07-15 18:44:37',NULL,1,'playlist',NULL,2,NULL,2,1),
-(48307,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/embedplayers/playlist_horizontal_dark_740_335.xml','Horizontal Dark','740','335','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:44:46','2009-07-15 18:44:46',NULL,1,'playlist',NULL,2,NULL,2,1),
-(48410,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/embedplayers/player_dark_400_335.xml','Dark player','400','335','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:45:02','2009-07-15 18:45:02',NULL,1,'player',NULL,2,NULL,2,1),
-(48411,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/embedplayers/player_light_400_335.xml','Light player','400','335','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:45:12','2009-07-15 18:45:12',NULL,1,'player',NULL,2,NULL,2,1),
-(48308,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/kdp_kmc_preview_combo.xml','kmc players','400','335','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:45:47','2009-07-15 18:45:47',NULL,1,'',NULL,2,NULL,2,1);
+(380,2,0,0,'content/uiconf/kaltura/corp_new/kcw_2.6.4/kcw.xml','corp cw','680','480',NULL,'/flash/kcw/v1.6.5CE/ContributionWizard.swf','2008-06-10 15:30:00','2008-06-10 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(600,1,0,0,'content/uiconf/kaltura/drupal/kdp_drupal.xml','drupal kdp','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
+(601,2,0,0,'content/uiconf/kaltura/drupal/cw_drupal.xml','drupal cw','680','480',NULL,'/flash/kcw/v1.5.4CE/ContributionWizard.swf','2008-06-10 15:30:00','2008-06-10 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(602,2,0,0,'content/uiconf/kaltura/drupal/cw_drupal_in_se.xml','drupal cw','680','480',NULL,'/flash/kcw/v1.5.4CE/ContributionWizard.swf','2008-06-10 15:30:00','2008-06-10 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(603,3,0,0,'content/uiconf/kaltura/drupal/se_drupal.xml','drupal simple editor','890','546','','/flash/kse/v2.1.8/simpleeditor.swf','2008-05-19 15:30:00','2008-05-19 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(604,1,0,0,'content/uiconf/kaltura/drupal/kdp_1.1.11/kdp_drupal_v2.1_dark_remix.xml','drupal dark kdp (remix)','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
+(605,1,0,0,'content/uiconf/kaltura/drupal/kdp_1.1.11/kdp_drupal_v2.1_dark_view.xml','drupal dark kdp (view)','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
+(606,1,0,0,'content/uiconf/kaltura/drupal/kdp_1.1.11/kdp_drupal_v2.1_gray_remix.xml','drupal gray kdp (remix)','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
+(607,1,0,0,'content/uiconf/kaltura/drupal/kdp_1.1.11/kdp_drupal_v2.1_gray_view.xml','drupal gray kdp (view)','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
+(608,1,0,0,'content/uiconf/kaltura/drupal/kdp_1.1.11/kdp_drupal_v2.1_whiteblue_remix.xml','drupal white-blue kdp (remix)','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
+(609,1,0,0,'content/uiconf/kaltura/drupal/kdp_1.1.11/kdp_drupal_v2.1_whiteblue_view.xml','drupal white-blue kdp (view)','','',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-06-10 15:30:00','2008-06-10 15:30:00','',1,NULL,NULL,2,NULL,2,1),
+(520,1,0,0,'content/uiconf/kaltura/wordpress/kdp_1.1.11/kdp_wordpress_v2.1_whiteblue.xml','wordpress v2.1','410','364',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-11-30 15:30:00','2008-11-30 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(521,1,0,0,'content/uiconf/kaltura/wordpress/kdp_1.1.11/kdp_wordpress_v2.1_dark.xml','wordpress v2.1','410','364',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-11-30 15:30:00','2008-11-30 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(522,1,0,0,'content/uiconf/kaltura/wordpress/kdp_1.1.11/kdp_wordpress_v2.1_gray.xml','wordpress v2.1','410','364',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-11-30 15:30:00','2008-11-30 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(523,1,0,0,'content//uiconf/kaltura/wordpress/kdp_1.1.11/kdp_wordpress_thumb_v2.1_gray.xml','wordpress v2.2 thumbnails','410','364',NULL,'/flash/kdp/v1.2.3CE/kdp.swf','2008-11-30 15:30:00','2008-11-30 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(501,2,0,0,'content/uiconf/kaltura/wordpress/cw_wordpress.xml','wordpress cw','680','480',NULL,'/flash/kcw/v1.5.4CE/ContributionWizard.swf','2008-05-19 15:30:00','2008-05-19 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(502,3,0,0,'content/uiconf/kaltura/wordpress/se_wordpress.xml','wordpress simple editor','890','546','','/flash/kse/v2.1.3CE/simpleeditor.swf','2008-05-19 15:30:00','2008-05-19 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(503,2,0,0,'content/uiconf/kaltura/wordpress/cw_wordpress_comments.xml','wordpress cw','680','480',NULL,'/flash/kcw/v1.5.4CE/ContributionWizard.swf','2008-05-19 15:30:00','2008-05-19 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(504,2,0,0,'content/uiconf/kaltura/wordpress/cw_wordpress_in_se.xml','wordpress cw','680','480',NULL,'/flash/kcw/v1.5.4CE/ContributionWizard.swf','2008-05-19 15:30:00','2008-05-19 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(36200,2,0,0,'content/uiconf/kaltura/samplekit/kcw_2.6.4/kcw_samplekit.xml','samplekit cw','680','480',NULL,'/flash/kcw/v1.6.5CE/ContributionWizard.swf','2009-03-25 12:09:22','2009-03-25 12:09:22',NULL,1,NULL,NULL,2,NULL,2,1),
+(200,1,0,0,'content/uiconf/kaltura/default_player/kdp_2.5.2/kdp_default_dark.xml','kdp 2.5 kaltura default dark','400','335',NULL,'/flash/kdp/v2.7.0/kdp.swf',NULL,NULL,NULL,1,NULL,NULL,2,NULL,2,1),
+(31006,1,0,0,'content/uiconf/kaltura/kmc/appstudio/multiplaylist_25_ui.xml','TEMPLATE FOR APPSTUDIO KDP 2.5 -MULTI- PLAYLIST','740','365',NULL,'/flash/kdp/v2.7.0/kdp.swf','2009-07-16 10:16:47','2009-07-16 10:17:32','',1,'',NULL,2,NULL,2,3),
+(31005,1,0,0,'content/uiconf/kaltura/kmc/appstudio/playlist_25_ui.xml','TEMPLATE FOR APPSTUDIO KDP 2.5 - PLAYLIST','400','365',NULL,'/flash/kdp/v2.7.0/kdp.swf','2009-07-16 10:14:31','2009-07-16 10:16:42','',1,'',NULL,2,NULL,2,3),
+(31004,1,0,0,'content/uiconf/kaltura/kmc/appstudio/player_25_ui.xml','TEMPLATE FOR APPSTUDIO KDP 2.5 - PLAYER','400','365',NULL,'/flash/kdp/v2.7.0/kdp.swf','2009-07-16 10:13:27','2009-07-16 10:14:08','',1,'',NULL,2,NULL,2,3),
+(48210,1,0,0,'content/uiconf/kaltura/default_player/kdp_2.0.0/pl_horizontal_defaultIr_light.xml','playlist playlist no tabs bright','655','300','','/flash/kdp/v2.0.12/kdp.swf','2009-03-29 09:48:42','2009-03-29 09:48:42','',1,NULL,NULL,2,NULL,2,1),
+(48211,1,0,0,'content/uiconf/kaltura/default_player/kdp_2.0.0/pl_horizontal_defaultIr.xml','playlist playlist no tabs ','655','300','','/flash/kdp/v2.0.12/kdp.swf','2009-03-29 09:48:42','2009-03-29 09:48:42','',1,NULL,NULL,2,NULL,2,1),
+(199,1,0,0,'content/uiconf/kaltura/default_player/kdp_2.0.0/kdp_default_dark.xml','kdp kaltura default dark','400','332','','/flash/kdp/v2.0.12/kdp.swf','2009-03-30 06:32:42','2009-03-30 06:32:42',NULL,1,NULL,NULL,2,NULL,2,1),
+(47400,4,0,0,'content/uiconf/kaltura/generic/kae_1.0.10/kae_generic_generic.xml','ae','750','640','','/flash/kae/v1.0.10.23657/KalturaAdvancedVideoEditor.swf','2009-03-30 06:48:07','2009-03-30 06:48:07',NULL,1,NULL,NULL,2,NULL,2,1),
+(47401,4,0,0,'content/uiconf/kaltura/generic/kae_1.0.10/kae_generic_generic_no_thumbnail.xml','ae','750','640','','/flash/kae/v1.0.10CE/KalturaAdvancedVideoEditor.swf','2009-03-30 06:48:07','2009-03-30 06:48:07',NULL,1,NULL,NULL,2,NULL,2,1),
+(36300,3,0,0,'content/uiconf/kaltura/samplekit/kse_2.1.1/kse_samplekit.xml','samplekit simple editor','890','546','','/flash/kse/v2.1.3CE/simpleeditor.swf','2009-04-06 09:25:39','2009-04-06 09:25:39',NULL,1,NULL,NULL,2,NULL,2,1),
+(31001,1,0,0,'content/uiconf/kaltura/kmc/appstudio/playlist_ui.xml','playlist ui','0','0','','','2009-04-07 12:13:49','2009-04-07 12:13:49','',1,NULL,'a:1:{s:12:\"creationMode\";i:2;}',2,NULL,2,1),
+(31002,1,0,0,'content/uiconf/kaltura/kmc/appstudio/player_ui.xml','player ui','0','0','','','2009-04-07 12:13:50','2009-04-07 12:13:50','',1,NULL,'a:1:{s:12:\"creationMode\";i:2;}',2,NULL,2,1),
+(36202,2,0,0,'content/uiconf/kaltura/kmc/kcw/kcw_kmc.xml','cw for KMC','680','480',NULL,'/flash/kcw/v1.6.5CE/ContributionWizard.swf','2009-05-05 04:46:40','2009-05-05 04:46:40',NULL,1,NULL,NULL,2,NULL,2,1),
+(610,2,0,0,'content/uiconf/kaltura/drupal/cw_drupal_comments.xml','drupal cw','680','480',NULL,'/flash/kcw/v1.5.4CE/ContributionWizard.swf',NULL,NULL,NULL,1,NULL,NULL,2,NULL,2,1),
+(31003,1,0,0,'content/uiconf/kaltura/kmc/appstudio/multiplaylist_ui.xml','multiplaylist ui','0','0',NULL,NULL,NULL,NULL,NULL,1,NULL,'a:1:{s:12:\"creationMode\";i:2;}',2,NULL,2,1),
+(530,1,0,0,'content/uiconf/kaltura/wordpress/kdp_2.0.12/kdp_wordpress_v2_blue.xml','wordpress v2.3','410','364',NULL,'/flash/kdp/v2.0.12/kdp.swf','2009-05-17 15:30:00','2009-05-17 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(531,1,0,0,'content/uiconf/kaltura/wordpress/kdp_2.0.12/kdp_wordpress_v2_dark.xml','wordpress v2.3','410','364',NULL,'/flash/kdp/v2.0.12/kdp.swf','2009-05-17 15:30:00','2009-05-17 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(532,1,0,0,'content/uiconf/kaltura/wordpress/kdp_2.0.12/kdp_wordpress_v2_light.xml','wordpress v2.3','410','364',NULL,'/flash/kdp/v2.0.12/kdp.swf','2009-05-17 15:30:00','2009-05-17 15:30:00',NULL,1,NULL,NULL,2,NULL,2,1),
+(48304,1,0,0,'content/uiconf/kaltura/kmc/embedplayers/playlist_vertical_white_400_600.xml','Vertical Light','400','600','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:43:43','2009-07-15 18:43:43',NULL,1,'playlist',NULL,2,NULL,2,1),
+(48305,1,0,0,'content/uiconf/kaltura/kmc/embedplayers/playlist_vertical_dark_400_600.xml','Vertical Dark','400','600','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:44:09','2009-07-15 18:44:09',NULL,1,'playlist',NULL,2,NULL,2,1),
+(48306,1,0,0,'content/uiconf/kaltura/kmc/embedplayers/playlist_horizontal_white_740_335.xml','Horizontal Light','740','335','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:44:37','2009-07-15 18:44:37',NULL,1,'playlist',NULL,2,NULL,2,1),
+(48307,1,0,0,'content/uiconf/kaltura/kmc/embedplayers/playlist_horizontal_dark_740_335.xml','Horizontal Dark','740','335','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:44:46','2009-07-15 18:44:46',NULL,1,'playlist',NULL,2,NULL,2,1),
+(48410,1,0,0,'content/uiconf/kaltura/kmc/embedplayers/player_dark_400_335.xml','Dark player','400','335','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:45:02','2009-07-15 18:45:02',NULL,1,'player',NULL,2,NULL,2,1),
+(48411,1,0,0,'content/uiconf/kaltura/kmc/embedplayers/player_light_400_335.xml','Light player','400','335','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:45:12','2009-07-15 18:45:12',NULL,1,'player',NULL,2,NULL,2,1),
+(48308,1,0,0,'content/uiconf/kaltura/kmc/kdp_kmc_preview_combo.xml','kmc players','400','335','','/flash/kdp/v2.7.0/kdp.swf','2009-07-15 18:45:47','2009-07-15 18:45:47',NULL,1,'',NULL,2,NULL,2,1);
 
 
 
@@ -90,7 +89,6 @@ VALUES
 (0,2,'530',NULL,1,'0',1,now(),now(),now(),NULL,2,1,NULL,NULL,'@WEB_DIR@/','content/uiconf/kaltura/wordpress/kdp_2.0.12/kdp_wordpress_v2_blue.xml',34037),
 (0,2,'531',NULL,1,'0',1,now(),now(),now(),NULL,2,1,NULL,NULL,'@WEB_DIR@/','content/uiconf/kaltura/wordpress/kdp_2.0.12/kdp_wordpress_v2_dark.xml',34003),
 (0,2,'532',NULL,1,'0',1,now(),now(),now(),NULL,2,1,NULL,NULL,'@WEB_DIR@/','content/uiconf/kaltura/wordpress/kdp_2.0.12/kdp_wordpress_v2_light.xml',34045),
-(0,2,'533',NULL,1,'0',1,now(),now(),now(),NULL,2,1,NULL,NULL,'@WEB_DIR@/','content/uiconf/kaltura/wordpress/kdp_2.0.12/kdp_wordpress_v2_thumbnail.xml',5787),
 (0,2,'600',NULL,1,'0',1,now(),now(),now(),NULL,2,1,NULL,NULL,'@WEB_DIR@/','content/uiconf/kaltura/drupal/kdp_drupal.xml',3101),
 (0,2,'601',NULL,1,'0',1,now(),now(),now(),NULL,2,1,NULL,NULL,'@WEB_DIR@/','content/uiconf/kaltura/drupal/cw_drupal.xml',4123),
 (0,2,'602',NULL,1,'0',1,now(),now(),now(),NULL,2,1,NULL,NULL,'@WEB_DIR@/','content/uiconf/kaltura/drupal/cw_drupal_in_se.xml',4131),
@@ -107,43 +105,43 @@ VALUES
 
 
 INSERT IGNORE INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
-VALUES(48601,3,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/kse/kse_kmc_v216.xml','Andromeda KSE For KMC', 0,0,'','/flash/kse/v2.1.8/simpleeditor.swf',NOW(),NOW(), NULL, 1, "andromeda_kse_for_kmc", 2);
+VALUES(48601,3,0,0,'content/uiconf/kaltura/kmc/kse/kse_kmc_v216.xml','Andromeda KSE For KMC', 0,0,'','/flash/kse/v2.1.8/simpleeditor.swf',NOW(),NOW(), NULL, 1, "andromeda_kse_for_kmc", 2);
 INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
-VALUES(48602,4,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/kae/kae_kmc_v1015.xml','Andromeda KAE For KMC', 0,0,'','/flash/kae/v1.1.1/KalturaAdvancedVideoEditor.swf',NOW(),NOW(), NULL, 1, "andromeda_kae_for_kmc", 2);
+VALUES(48602,4,0,0,'content/uiconf/kaltura/kmc/kae/kae_kmc_v1015.xml','Andromeda KAE For KMC', 0,0,'','/flash/kae/v1.1.1/KalturaAdvancedVideoEditor.swf',NOW(),NOW(), NULL, 1, "andromeda_kae_for_kmc", 2);
 INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
-VALUES(48611,2,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/kcw/kcw_kmc-kse_light.xml','Andromeda KCW For KSE In KMC', 0,0,'','/flash/kcw/v2.0.7/ContributionWizard.swf',NOW(),NOW(), NULL, 1, "", 2);
+VALUES(48611,2,0,0,'content/uiconf/kaltura/kmc/kcw/kcw_kmc-kse_light.xml','Andromeda KCW For KSE In KMC', 0,0,'','/flash/kcw/v2.0.7/ContributionWizard.swf',NOW(),NOW(), NULL, 1, "", 2);
 
 INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
-VALUES(48613,2,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/kcw/andromeda_kmc_kcw.xml','Andromeda KCW For KMC', 0,0,'','/flash/kcw/v2.0.7/ContributionWizard.swf',NOW(),NOW(), NULL, 1, "", 2);
+VALUES(48613,2,0,0,'content/uiconf/kaltura/kmc/kcw/andromeda_kmc_kcw.xml','Andromeda KCW For KMC', 0,0,'','/flash/kcw/v2.0.7/ContributionWizard.swf',NOW(),NOW(), NULL, 1, "", 2);
 
 INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
-VALUES(48612,2,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/kcw/kcw_kmc-kae_dark.xml','Andromeda KCW For KAE In KMC', 0,0,'','/flash/kcw/v2.0.7/ContributionWizard.swf',NOW(),NOW(), NULL, 1, "", 2);
-
-
-INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
-VALUES(48503,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/content/kdp_kmc_content.xml','KDP For KMC Drill Down', 0,0,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, null, 2);
-INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
-VALUES(48501,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/content/kdp_kmc_content_light.xml','KDP3 light player', 400,335,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, 'player', 2);
-INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
-VALUES(48502,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/content/kdp_kmc_content_dark.xml','KDP3 dark player', 400,335,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, 'player', 2);
+VALUES(48612,2,0,0,'content/uiconf/kaltura/kmc/kcw/kcw_kmc-kae_dark.xml','Andromeda KCW For KAE In KMC', 0,0,'','/flash/kcw/v2.0.7/ContributionWizard.swf',NOW(),NOW(), NULL, 1, "", 2);
 
 
 INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
-VALUES(48504,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/content/kdp_kmc_content_playlist_light.xml','KDP3 Light Playlist', 600,330,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, 'playlist', 2);
+VALUES(48503,1,0,0,'content/uiconf/kaltura/kmc/content/kdp_kmc_content.xml','KDP For KMC Drill Down', 0,0,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, null, 2);
 INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
-VALUES(48505,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/content/kdp_kmc_content_playlist_dark.xml','KDP3 Dark Playlist', 600,330,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, 'playlist', 2);
+VALUES(48501,1,0,0,'content/uiconf/kaltura/kmc/content/kdp_kmc_content_light.xml','KDP3 light player', 400,335,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, 'player', 2);
+INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
+VALUES(48502,1,0,0,'content/uiconf/kaltura/kmc/content/kdp_kmc_content_dark.xml','KDP3 dark player', 400,335,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, 'player', 2);
 
 
 INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
-VALUES(48506,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/content/kdp_kmc_content_moderation.xml','KDP For KMC Moderation', 0,0,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, null, 2);
+VALUES(48504,1,0,0,'content/uiconf/kaltura/kmc/content/kdp_kmc_content_playlist_light.xml','KDP3 Light Playlist', 600,330,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, 'playlist', 2);
 INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
-VALUES(48507,1,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/content/kdp_kmc_content_flavors.xml','KDP For KMC Flavors Preview', 0,0,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, null, 2);
+VALUES(48505,1,0,0,'content/uiconf/kaltura/kmc/content/kdp_kmc_content_playlist_dark.xml','KDP3 Dark Playlist', 600,330,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, 'playlist', 2);
+
+
+INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
+VALUES(48506,1,0,0,'content/uiconf/kaltura/kmc/content/kdp_kmc_content_moderation.xml','KDP For KMC Moderation', 0,0,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, null, 2);
+INSERT INTO ui_conf (id,obj_type,partner_id,subp_id,conf_file_path,name,width,height,html_params,swf_url,created_at,updated_at, conf_vars, use_cdn,tags,display_in_search) 
+VALUES(48507,1,0,0,'content/uiconf/kaltura/kmc/content/kdp_kmc_content_flavors.xml','KDP For KMC Flavors Preview', 0,0,'','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(), NULL, 1, null, 2);
 
 INSERT INTO `ui_conf` VALUES
-(31008,8,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/kdp3/player_30_ui.xml','Player template kdp3 appstudio 2','400','360',NULL,'/flash/kdp3/v3.3.9.2/kdp3.swf',now(),now(),NULL,1,NULL,NULL,2,NULL,2,1,NULL),
-(31009,8,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/kdp3/playlist_30_ui.xml','Playlist template appstudio 2','720','360',NULL,'/flash/kdp3/v3.3.9.2/kdp3.swf',now(),now(),NULL,1,NULL,NULL,2,NULL,2,1,NULL),
-(31010,8,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/kdp3/multiplaylist_30_ui.xml','Multi playlist template kdp3 appstudio 2','720','360',NULL,'/flash/kdp3/v3.3.9.2/kdp3.swf',now(),now(),NULL,1,NULL,NULL,2,NULL,2,1,NULL),
-(31020,8,0,0,'@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/kdp3/playlist_30_vertical_ui.xml','vertical playlist template kdp3 appstudio 2','400','620','','/flash/kdp3/v3.3.9.2/kdp3.swf',now(),now(),NULL,1,NULL,NULL,2,NULL,2,1,'1');
+(31008,8,0,0,'content/uiconf/kaltura/kmc/appstudio/kdp3/player_30_ui.xml','Player template kdp3 appstudio 2','400','360',NULL,'/flash/kdp3/v3.3.9.2/kdp3.swf',now(),now(),NULL,1,NULL,NULL,2,NULL,2,1,NULL),
+(31009,8,0,0,'content/uiconf/kaltura/kmc/appstudio/kdp3/playlist_30_ui.xml','Playlist template appstudio 2','720','360',NULL,'/flash/kdp3/v3.3.9.2/kdp3.swf',now(),now(),NULL,1,NULL,NULL,2,NULL,2,1,NULL),
+(31010,8,0,0,'content/uiconf/kaltura/kmc/appstudio/kdp3/multiplaylist_30_ui.xml','Multi playlist template kdp3 appstudio 2','720','360',NULL,'/flash/kdp3/v3.3.9.2/kdp3.swf',now(),now(),NULL,1,NULL,NULL,2,NULL,2,1,NULL),
+(31020,8,0,0,'content/uiconf/kaltura/kmc/appstudio/kdp3/playlist_30_vertical_ui.xml','vertical playlist template kdp3 appstudio 2','400','620','','/flash/kdp3/v3.3.9.2/kdp3.swf',now(),now(),NULL,1,NULL,NULL,2,NULL,2,1,'1');
 
 
 
@@ -214,10 +212,10 @@ VALUES
 
 insert into `ui_conf` (`id`, `obj_type`, `partner_id`, `subp_id`, `conf_file_path`, `name`, `width`, `height`, `html_params`, `swf_url`, `created_at`, `updated_at`, `conf_vars`, `use_cdn`, `tags`, `custom_data`, `status`, `description`, `display_in_search`, `creation_mode`, `version`)
 VALUES
-('31031','8','0','0','@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/kdp3/butterfly/player_30_ui.xml','Player template kdp3 appstudio 3 for butterfly','400','360','','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(),'','0','',NULL,'2',NULL,'2','1',NULL),
-('31032','8','0','0','@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/kdp3/butterfly/playlist_30_ui.xml','Playlist template appstudio 3 butterfly','720','360','','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(),'','1','',NULL,'2',NULL,'2','1',NULL),
-('31033','8','0','0','@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/kdp3/butterfly/multiplaylist_30_ui.xml','Multi playlist template kdp3 appstudio 3 butterfly','720','360','','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(),'','1','',NULL,'2',NULL,'2','1',NULL),
-('31034','8','0','0','@WEB_DIR@/content/uiconf/kaltura/kmc/appstudio/kdp3/butterfly/playlist_30_vertical_ui.xml','playlist vertical  template kdp3 appstudio 3 butterfly','400','620','','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(),'','1','',NULL,'2',NULL,'2','1',NULL);
+('31031','8','0','0','content/uiconf/kaltura/kmc/appstudio/kdp3/butterfly/player_30_ui.xml','Player template kdp3 appstudio 3 for butterfly','400','360','','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(),'','0','',NULL,'2',NULL,'2','1',NULL),
+('31032','8','0','0','content/uiconf/kaltura/kmc/appstudio/kdp3/butterfly/playlist_30_ui.xml','Playlist template appstudio 3 butterfly','720','360','','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(),'','1','',NULL,'2',NULL,'2','1',NULL),
+('31033','8','0','0','content/uiconf/kaltura/kmc/appstudio/kdp3/butterfly/multiplaylist_30_ui.xml','Multi playlist template kdp3 appstudio 3 butterfly','720','360','','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(),'','1','',NULL,'2',NULL,'2','1',NULL),
+('31034','8','0','0','content/uiconf/kaltura/kmc/appstudio/kdp3/butterfly/playlist_30_vertical_ui.xml','playlist vertical  template kdp3 appstudio 3 butterfly','400','620','','/flash/kdp3/v3.3.9.2/kdp3.swf',NOW(),NOW(),'','1','',NULL,'2',NULL,'2','1',NULL);
 
 INSERT INTO `file_sync`(partner_id, object_type, object_id, version, object_sub_type, dc, original, created_at, updated_at, ready_at, sync_time, status, file_type, linked_id, link_count, file_root, file_path, file_size)
 VALUES
@@ -232,9 +230,9 @@ VALUES
 
 INSERT INTO `ui_conf`(id, obj_type, partner_id, subp_id, conf_file_path, name, width, height, html_params, swf_url, created_at, updated_at, conf_vars, use_cdn, tags, custom_data, status, description, display_in_search, creation_mode, version)
 VALUES
-('48508', '8', '0', '0', '@WEB_DIR@/content/uiconf/kaltura/kmc/content/butterfly/kdp_kmc_content.xml', 'KDP For KMC Drill Down', '0', '0', '', '/flash/kdp3/v3.3.9.2/kdp3.swf', NOW(), NOW(), '', '1', '', NULL, '2', NULL, '2', '1', NULL),
-('48509', '8', '0', '0', '@WEB_DIR@/content/uiconf/kaltura/kmc/content/butterfly/kdp_kmc_content_flavors.xml', 'KDP For KMC flavors preview', '0', '0', '', '/flash/kdp3/v3.3.9.2/kdp3.swf', NOW(), NOW(), '', '0', '', NULL, '2', NULL, '2', '1', NULL),
-('48510', '8', '0', '0', '@WEB_DIR@/content/uiconf/kaltura/kmc/content/butterfly/kdp_kmc_content_moderation.xml', 'KDP For KMC moderation','0','0','','/flash/kdp3/v3.3.9.2/kdp3.swf','2010-05-04 08:56:36','2010-06-28 07:48:54','',1,'',NULL,2,NULL,2,1,NULL);
+('48508', '8', '0', '0', 'content/uiconf/kaltura/kmc/content/butterfly/kdp_kmc_content.xml', 'KDP For KMC Drill Down', '0', '0', '', '/flash/kdp3/v3.3.9.2/kdp3.swf', NOW(), NOW(), '', '1', '', NULL, '2', NULL, '2', '1', NULL),
+('48509', '8', '0', '0', 'content/uiconf/kaltura/kmc/content/butterfly/kdp_kmc_content_flavors.xml', 'KDP For KMC flavors preview', '0', '0', '', '/flash/kdp3/v3.3.9.2/kdp3.swf', NOW(), NOW(), '', '0', '', NULL, '2', NULL, '2', '1', NULL),
+('48510', '8', '0', '0', 'content/uiconf/kaltura/kmc/content/butterfly/kdp_kmc_content_moderation.xml', 'KDP For KMC moderation','0','0','','/flash/kdp3/v3.3.9.2/kdp3.swf','2010-05-04 08:56:36','2010-06-28 07:48:54','',1,'',NULL,2,NULL,2,1,NULL);
 
 
 INSERT INTO `file_sync`(partner_id, object_type, object_id, version, object_sub_type, dc, original, created_at, updated_at, ready_at, sync_time, status, file_type, linked_id, link_count, file_root, file_path, file_size)

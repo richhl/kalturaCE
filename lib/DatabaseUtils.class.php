@@ -27,7 +27,6 @@ class DatabaseUtils
 		$link = @mysqli_init();
 		$result = @mysqli_real_connect($link, $host, $user, $pass, $db, $port);
 		if (!$result) {
-			$link = null;
 		    return new ErrorObject('connect', 'CANT_CONNECT_DB', sprintf(ErrorCodes::CANT_CONNECT_DB, $host, $user, $link->error));
 		}
 		return true;
