@@ -71,8 +71,8 @@ class ActKeyUtils
 		}
 		
 		$days_left = $expiry_time - time();
-		$days_left = floor($days_left / (60*60*24));
-		if ($days_left < 0) {
+		$days_left = ceil($days_left / (60*60*24));
+		if ($days_left <= 0) {
 			return false; //already expired
 		}
 		return $days_left; //days left

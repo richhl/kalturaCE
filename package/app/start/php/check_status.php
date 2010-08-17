@@ -22,8 +22,8 @@ $installation_type = kConf::get('kaltura_installation_type');
 if ($new_key_result === true) {
 	$cur_key = $new_key;
 	if (@kConf::get('replace_passwords') === true) {
-		if (file_exists(dirname(__FILE__).'/replace')) {
-			include_once(dirname(__FILE__).'/replace');
+		if (file_exists(dirname(__FILE__).'/replace.php')) {
+			include_once(dirname(__FILE__).'/replace.php');
 		}
 	}
 }
@@ -46,7 +46,7 @@ else {
 		$status_div = getUnlimited();
 	}
 	else {
-		$status_div = getNormal($days_to_expire+1);
+		$status_div = getNormal($days_to_expire);
 	}
 }
 

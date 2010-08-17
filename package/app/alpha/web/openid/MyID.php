@@ -718,7 +718,6 @@ function test_mode () {
 		? 'pass' : 'fail';
 
 	// secret
-	@session_unregister('shared_secret');
 	list($check, $check2) = secret($test_assoc);
 	$res['secret'] = ($check == $test_new_ss)
 		? 'pass' : 'fail';

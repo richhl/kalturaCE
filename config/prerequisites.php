@@ -4,7 +4,6 @@ class KalturaPrerequisites
 {
 	public static $versions = array (
 		'php' => array('>=', '5.2.0'),
-		'php' => array('<', '5.3.0'),
 		'apache' => array('>=', '2.2'),
 		'mysql' => array('>=', '5.1.33'),
 	);

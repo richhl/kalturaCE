@@ -104,7 +104,7 @@ Flash playlists are created through the <a href="/kmc#appstudio" target="_blank"
 		<a name="manage"></a>
 		<h3>How do I manage my rich-media content?</h3>
 			<p>Kaltura Community Edition includes a full <a href="/kmc" target="_blank">Kaltura Management Console (KMC)</a>. The KMC supports content ingestion, video and playlist management, player design, rich-media syndication, advertising and much more - all within an intuitive user interface. Learn more about the KMC in the <a
-			href="/lib/pdf/KMC_Quick_Start_Guide.pdf"
+			href="/content/docs/pdf/KMC_Quick_Start_Guide__Butterfly.pdf"
 			target="_blank">quick start guide.</a></p>
 		
 		

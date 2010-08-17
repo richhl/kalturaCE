@@ -84,7 +84,7 @@ class FileUtils
 			return true;
 		}
 		if (!is_dir($path)) {
-			if (!@mkdir($path, '0777', true)) {
+			if (!@mkdir($path, 0777, true)) {
 				$last_error = InstallUtils::getLastError();
 				return new ErrorObject('mkDir', 'CANT_CREATE_DIR', sprintf(ErrorCodes::CANT_CREATE_DIR, $path, $last_error['message']));
 			}
