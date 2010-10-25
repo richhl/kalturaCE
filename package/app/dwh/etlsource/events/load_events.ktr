@@ -1,0 +1,2276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>Load events</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_status>0</trans_status>
+    <directory>&#47;</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <read/>
+      <write/>
+      <input>CSV file input</input>
+      <output>write events</output>
+      <update/>
+      <rejected>write events</rejected>
+      <connection/>
+      <table/>
+      <step_performance_table/>
+      <use_batchid>Y</use_batchid>
+      <use_logfield>N</use_logfield>
+      <size_limit_lines/>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+         <slaveserver><name>local</name><hostname>localhost</hostname><port>8080</port><username>cluster</username><password>Encrypted 2be98afc86aa7f2e4cb1aa265cd86aac8</password><proxy_hostname/><proxy_port/><non_proxy_hosts/><master>Y</master></slaveserver>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+  <modified_user>admin</modified_user>
+  <modified_date>2009&#47;06&#47;17 09:50:51.000</modified_date>
+  </info>
+  <notepads>
+    <notepad>
+      <note>Need to add some data manipulation &#47; validation
+along the road BEFORE inserting into the DB
+</note>
+      <xloc>1075</xloc>
+      <yloc>479</yloc>
+      <width>271</width>
+      <heigth>49</heigth>
+    </notepad>
+    <notepad>
+      <note>lookup on entry
+fetch the entry_media_type_id
+and entry_partner_id
+</note>
+      <xloc>643</xloc>
+      <yloc>6</yloc>
+      <width>169</width>
+      <heigth>62</heigth>
+    </notepad>
+  </notepads>
+  <connection>
+    <name>Kaltura</name>
+    <server>${OpDbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kaltura</database>
+    <port>${OpDbPort}</port>
+    <username>${OpDbUser}</username>
+    <password>${OpDbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.zeroDateTimeBehavior</code><attribute>convertToNull</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${OpDbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>kaltura_op_mon</name>
+    <server>${DbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kaltura_op_mon</database>
+    <port>${DbPort}</port>
+    <username>${DbUser}</username>
+    <password>${DbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>Kaltura_Writable</name>
+    <server>${OpDbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kaltura</database>
+    <port>${OpDbPort}</port>
+    <username>${OpWritableDbUser}</username>
+    <password>${OpWritableDbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.zeroDateTimeBehavior</code><attribute>convertToNull</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${OpDbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION sql_log_bin=0</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>KalturaDW</name>
+    <server>${DbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kalturadw</database>
+    <port>${DbPort}</port>
+    <username>${DbUser}</username>
+    <password>${DbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.zeroDateTimeBehavior</code><attribute>convertToNull</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>kalturadw_bisources</name>
+    <server>${DbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kalturadw_bisources</database>
+    <port>${DbPort}</port>
+    <username>${DbUser}</username>
+    <password>${DbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>kalturadw_ds</name>
+    <server>${DbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kalturadw_ds</database>
+    <port>${DbPort}</port>
+    <username>${DbUser}</username>
+    <password>${DbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>KalturaLogs</name>
+    <server>${DbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kalturaLog</database>
+    <port>${DbPort}</port>
+    <username>${DbUser}</username>
+    <password>${DbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>wait for last row</from><to>set file status processed</to><enabled>Y</enabled> </hop>  <hop> <from>write events</from><to>wait for last row</to><enabled>Y</enabled> </hop>  <hop> <from>Create new fields</from><to>CSV file input</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Create new fields</to><enabled>Y</enabled> </hop>  <hop> <from>set file status run</from><to>Get Variables</to><enabled>Y</enabled> </hop>  <hop> <from>get file name,id</from><to>set file status run</to><enabled>Y</enabled> </hop>  <hop> <from>convert IP</from><to>lookup country 2</to><enabled>Y</enabled> </hop>  <hop> <from>Write to log on insert error</from><to>clone file_id</to><enabled>N</enabled> </hop>  <hop> <from>clone file_id</from><to>set file status fail and empty partition</to><enabled>Y</enabled> </hop>  <hop> <from>set file status fail and empty partition</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>referrer -&gt; domain</from><to>Write to log on error</to><enabled>Y</enabled> </hop>  <hop> <from>Set defaults</from><to>Write to log on error</to><enabled>Y</enabled> </hop>  <hop> <from>get file id</from><to>File data</to><enabled>Y</enabled> </hop>  <hop> <from>File data</from><to>Join Rows</to><enabled>Y</enabled> </hop>  <hop> <from>referrer -&gt; domain</from><to>domain lookup</to><enabled>Y</enabled> </hop>  <hop> <from>domain lookup</from><to>Join Rows</to><enabled>Y</enabled> </hop>  <hop> <from>lookup country 2</from><to>Split Fields</to><enabled>Y</enabled> </hop>  <hop> <from>Split Fields</from><to>Set defaults</to><enabled>Y</enabled> </hop>  <hop> <from>convert IP</from><to>Write to log on error 2</to><enabled>Y</enabled> </hop>  <hop> <from>lookup country 2</from><to>Write to log on error 2</to><enabled>Y</enabled> </hop>  <hop> <from>Join Rows</from><to>fix invlaid values</to><enabled>Y</enabled> </hop>  <hop> <from>lookup entry</from><to>convert IP</to><enabled>Y</enabled> </hop>  <hop> <from>get file id 2</from><to>Join Rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Join Rows 2</from><to>write invalid line</to><enabled>Y</enabled> </hop>  <hop> <from>format errornouse line</from><to>Get now</to><enabled>Y</enabled> </hop>  <hop> <from>Get now</from><to>Join Rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>CSV file input</from><to>validate raw input</to><enabled>Y</enabled> </hop>  <hop> <from>error while inserting to the db</from><to>format errornouse line</to><enabled>Y</enabled> </hop>  <hop> <from>write events</from><to>Write to log on insert error</to><enabled>Y</enabled> </hop>  <hop> <from>Set defaults</from><to>referrer -&gt; domain</to><enabled>Y</enabled> </hop>  <hop> <from>validate raw input</from><to>check valid line </to><enabled>Y</enabled> </hop>  <hop> <from>check valid line </from><to>Calc day and hour ids</to><enabled>Y</enabled> </hop>  <hop> <from>Calc day and hour ids</from><to>lookup entry</to><enabled>Y</enabled> </hop>  <hop> <from>check valid line </from><to>Calc day and hour ids for error</to><enabled>Y</enabled> </hop>  <hop> <from>Calc day and hour ids for error</from><to>format errornouse line</to><enabled>Y</enabled> </hop>  <hop> <from>fix invlaid values</from><to>write events</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Abort</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>0</row_threshold>
+      <message/>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>461</xloc>
+      <yloc>699</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>CSV file input</name>
+    <type>CsvInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <filename>C:\EyalDocs\Kaltura\dev\event log example.txt</filename>
+    <filename_field>newpath</filename_field>
+    <rownum_field>line_number</rownum_field>
+    <include_filename>N</include_filename>
+    <separator>,</separator>
+    <enclosure/>
+    <header>N</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>N</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <encoding/>
+    <fields>
+      <field>
+        <name>client_version</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>20</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>event_type_id</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>3</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>event_time_str</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>14</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>session_id</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>50</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>partner_id</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>5</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>entry_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>12</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>unique_viewer</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>40</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>widget_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>12</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>ui_conf_id</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>7</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>uid</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>10</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>current_point</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>13</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>duration</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>12</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>user_ip</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>15</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>process_duration</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>6</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>control_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>5</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>seek</name>
+        <type>String</type>
+        <format/>
+        <currency>$</currency>
+        <decimal>.</decimal>
+        <group>,</group>
+        <length>5</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>new_point</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>13</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>referrer</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>255</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>dummy1</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>20</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>dummy2</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>20</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>dummy3</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>20</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>dummy4</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>20</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>234</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Calc day and hour ids</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>3</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>hour</field_name>
+<formula_string>hour([event_time])</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>day_id</field_name>
+<formula_string>10000*year([event_time])+100*month([event_time])+day([event_time])</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>601</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Calc day and hour ids for error</name>
+    <type>Formula</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>3</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>hour</field_name>
+<formula_string>hour([event_time])</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+       <formula><field_name>day_id</field_name>
+<formula_string>10000*year([event_time])+100*month([event_time])+day([event_time])</formula_string>
+<value_type>Number</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>459</xloc>
+      <yloc>292</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Create new fields</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>newpath</field_name>
+<calc_type>ADD</calc_type>
+<field_a>inprocessPath</field_a>
+<field_b>file_name</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>119</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>File data</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>N</displayHeader>
+    <fields>
+      <field>
+        <name>file_id</name>
+        </field>
+      <field>
+        <name>file_name</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>918</xloc>
+      <yloc>383</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get Variables</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>inprocessPath</name>
+        <variable>${EventsInProcessPath}</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>57</xloc>
+      <yloc>143</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get now</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>now</name>
+        <type>system date (variable)</type>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>352</xloc>
+      <yloc>515</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Join Rows</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>out</prefix>
+      <cache_size>500</cache_size>
+      <main>Calc day and hour ids</main>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue/>
+ <function>=</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1018</xloc>
+      <yloc>383</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Join Rows 2</name>
+    <type>JoinRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>out</prefix>
+      <cache_size>500</cache_size>
+      <main>Calc day and hour ids</main>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue/>
+ <function>=</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>245</xloc>
+      <yloc>515</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set defaults</name>
+    <type>IfNull</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <replaceAllByValue/>
+      <replaceAllMask/>
+      <selectFields>Y</selectFields>
+      <selectValuesType>N</selectValuesType>
+    <valuetypes>
+      </valuetypes>
+    <fields>
+      <field>
+        <name>event_time</name>
+        <value>01&#47;01&#47;2099</value>
+        <mask>dd&#47;MM&#47;yyyy</mask>
+        </field>
+      <field>
+        <name>client_version</name>
+        <value>-1</value>
+        <mask/>
+        </field>
+      <field>
+        <name>event_type_id</name>
+        <value>-1</value>
+        <mask/>
+        </field>
+      <field>
+        <name>session_id</name>
+        <value>-1</value>
+        <mask/>
+        </field>
+      <field>
+        <name>partner_id</name>
+        <value>-1</value>
+        <mask/>
+        </field>
+      <field>
+        <name>entry_id</name>
+        <value>-1</value>
+        <mask/>
+        </field>
+      <field>
+        <name>widget_id</name>
+        <value>-1</value>
+        <mask/>
+        </field>
+      <field>
+        <name>ui_conf_id</name>
+        <value>-1</value>
+        <mask/>
+        </field>
+      <field>
+        <name>control_id</name>
+        <value>-1</value>
+        <mask/>
+        </field>
+      <field>
+        <name>seek</name>
+        <value>-1</value>
+        <mask/>
+        </field>
+      <field>
+        <name>new_point</name>
+        <value>-1</value>
+        <mask/>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1120</xloc>
+      <yloc>161</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Split Fields</name>
+    <type>FieldSplitter</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <splitfield>country_id_location_id</splitfield>
+   <delimiter>,</delimiter>
+    <fields>      <field>        <name>country_id</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>Integer</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>      <field>        <name>location_id</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>Integer</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1120</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log on error</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+    <fields>
+      <field>
+        <name>client_version</name>
+        </field>
+      <field>
+        <name>event_type_id</name>
+        </field>
+      <field>
+        <name>event_time</name>
+        </field>
+      <field>
+        <name>session_id</name>
+        </field>
+      <field>
+        <name>partner_id</name>
+        </field>
+      <field>
+        <name>entry_id</name>
+        </field>
+      <field>
+        <name>unique_viewer</name>
+        </field>
+      <field>
+        <name>widget_id</name>
+        </field>
+      <field>
+        <name>ui_conf_id</name>
+        </field>
+      <field>
+        <name>uid</name>
+        </field>
+      <field>
+        <name>current_point</name>
+        </field>
+      <field>
+        <name>duration</name>
+        </field>
+      <field>
+        <name>user_ip</name>
+        </field>
+      <field>
+        <name>process_duration</name>
+        </field>
+      <field>
+        <name>control_id</name>
+        </field>
+      <field>
+        <name>seek</name>
+        </field>
+      <field>
+        <name>new_point</name>
+        </field>
+      <field>
+        <name>referrer</name>
+        </field>
+      <field>
+        <name>iplong</name>
+        </field>
+      <field>
+        <name>country_id</name>
+        </field>
+      <field>
+        <name>location_id</name>
+        </field>
+      <field>
+        <name>hour</name>
+        </field>
+      <field>
+        <name>day_id</name>
+        </field>
+      <field>
+        <name>err_desc</name>
+        </field>
+      <field>
+        <name>entry_media_type_id</name>
+        </field>
+      <field>
+        <name>entry_partner_id</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>973</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log on error 2</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+    <fields>
+      <field>
+        <name>client_version</name>
+        </field>
+      <field>
+        <name>event_type_id</name>
+        </field>
+      <field>
+        <name>event_time</name>
+        </field>
+      <field>
+        <name>session_id</name>
+        </field>
+      <field>
+        <name>partner_id</name>
+        </field>
+      <field>
+        <name>entry_id</name>
+        </field>
+      <field>
+        <name>unique_viewer</name>
+        </field>
+      <field>
+        <name>widget_id</name>
+        </field>
+      <field>
+        <name>ui_conf_id</name>
+        </field>
+      <field>
+        <name>uid</name>
+        </field>
+      <field>
+        <name>current_point</name>
+        </field>
+      <field>
+        <name>duration</name>
+        </field>
+      <field>
+        <name>user_ip</name>
+        </field>
+      <field>
+        <name>process_duration</name>
+        </field>
+      <field>
+        <name>control_id</name>
+        </field>
+      <field>
+        <name>seek</name>
+        </field>
+      <field>
+        <name>new_point</name>
+        </field>
+      <field>
+        <name>referrer</name>
+        </field>
+      <field>
+        <name>entry_media_type_id</name>
+        </field>
+      <field>
+        <name>entry_partner_id</name>
+        </field>
+      <field>
+        <name>err_desc</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>973</xloc>
+      <yloc>161</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log on insert error</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+    <fields>
+      <field>
+        <name>file_id</name>
+        </field>
+      <field>
+        <name>file_name</name>
+        </field>
+      <field>
+        <name>client_version</name>
+        </field>
+      <field>
+        <name>event_type_id</name>
+        </field>
+      <field>
+        <name>event_time</name>
+        </field>
+      <field>
+        <name>session_id</name>
+        </field>
+      <field>
+        <name>partner_id</name>
+        </field>
+      <field>
+        <name>entry_id</name>
+        </field>
+      <field>
+        <name>unique_viewer</name>
+        </field>
+      <field>
+        <name>widget_id</name>
+        </field>
+      <field>
+        <name>ui_conf_id</name>
+        </field>
+      <field>
+        <name>uid</name>
+        </field>
+      <field>
+        <name>current_point</name>
+        </field>
+      <field>
+        <name>duration</name>
+        </field>
+      <field>
+        <name>user_ip</name>
+        </field>
+      <field>
+        <name>process_duration</name>
+        </field>
+      <field>
+        <name>control_id</name>
+        </field>
+      <field>
+        <name>seek</name>
+        </field>
+      <field>
+        <name>new_point</name>
+        </field>
+      <field>
+        <name>referrer</name>
+        </field>
+      <field>
+        <name>iplong</name>
+        </field>
+      <field>
+        <name>country_id</name>
+        </field>
+      <field>
+        <name>location_id</name>
+        </field>
+      <field>
+        <name>hour</name>
+        </field>
+      <field>
+        <name>day_id</name>
+        </field>
+      <field>
+        <name>res</name>
+        </field>
+      <field>
+        <name>domain_id</name>
+        </field>
+      <field>
+        <name>description</name>
+        </field>
+      <field>
+        <name>fields</name>
+        </field>
+      <field>
+        <name>codes</name>
+        </field>
+      <field>
+        <name>entry_media_type_id</name>
+        </field>
+      <field>
+        <name>entry_partner_id</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>827</xloc>
+      <yloc>699</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>check valid line </name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Calc day and hour ids</send_true_to>
+<send_false_to>Calc day and hour ids for error</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>error_reason_code</leftvalue>
+ <function>=</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>0</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>459</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>clone file_id</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>file_id_1</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>file_id</field_a>
+<field_b/>
+<field_c/>
+<value_type>Integer</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>705</xloc>
+      <yloc>699</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>convert IP</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var ips = null;
+var iplong = 0;
+
+if ( user_ip != null )
+{
+        try
+        {
+                ips = user_ip.split(&apos;.&apos;);
+
+                with (Math) {
+                        iplong = ips[0]*pow(256,3)+ips[1]*pow(256,2)+ips[2]*256+ips[3]*1;
+            }
+        }
+        catch ( ex )
+        {
+                iplong = 0;
+        }
+}
+else
+{
+        iplong = 0;
+}
+
+
+
+  </jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>iplong</name>
+        <rename>iplong</rename>
+        <type>Integer</type>
+        <length>10</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>931</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>domain lookup</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <schema/>
+      <table>dwh_dim_domain</table>
+      <connection>KalturaDW</connection>
+      <commit>100</commit>
+      <cache_size>9999</cache_size>
+      <replace>Y</replace>
+      <crc>N</crc>
+      <crcfield>hashcode</crcfield>
+      <fields>
+        <key>
+          <name>domain</name>
+          <lookup>domain_name</lookup>
+        </key>
+        <return>
+          <name>domain_id</name>
+          <creation_method>autoinc</creation_method>
+          <use_autoinc>Y</use_autoinc>
+        </return>
+      </fields>
+      <sequence/>
+      <last_update_field/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1118</xloc>
+      <yloc>383</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>error while inserting to the db</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>error_reason_code</field_name>
+<calc_type>CONSTANT</calc_type>
+<field_a>6</field_a>
+<field_b/>
+<field_c/>
+<value_type>Integer</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+       <calculation><field_name>error_reason</field_name>
+<calc_type>CONSTANT</calc_type>
+<field_a>error while inserting to the db</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>40</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>591</xloc>
+      <yloc>515</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>fix invlaid values</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#47;&#47;Script here
+var client_version_fixed=client_version;&#47;&#47;1;
+var seek_fixed = &quot;0&quot;;
+var unique_viewer_fixed;
+var session_id_fixed;
+var current_point_fixed = current_point;
+var duration_fixed = duration;
+
+if ( client_version != null )
+        client_version_fixed = substr(client_version,0,31);
+
+if ( referrer != null )
+        var referrer_fixed=substr(referrer,0,255);
+else
+        var referrer_fixed = null
+
+if ( unique_viewer != null )
+        var unique_viewer_fixed=substr(unique_viewer,0,40);
+else
+        var unique_viewer_fixed = null
+
+
+if ( seek == &quot;true&quot; || seek == &quot;1&quot; )
+        seek_fixed = &quot;1&quot;;
+else
+        seek_fixed = &quot;0&quot;;
+
+if ( session_id != null )
+        session_id_fixed=substr(session_id,0,50);
+else
+        session_id=null;
+
+&#47;&#47; defend agains strings
+if ( !isNum(current_point) ) 
+{
+	current_point=0;
+	current_point_fixed =0;
+}
+
+if ( current_point &lt; 0 )
+{
+&#47;&#47; _current_point_fixed - is in seconds NOT millis
+        if ( event_type_id == 4)                                &#47;&#47; 25%
+                _current_point_fixed = duration&#47;4;
+        else if ( event_type_id == 5)                   &#47;&#47; 50%
+                _current_point_fixed = duration&#47;2;
+        else if ( event_type_id == 6)                   &#47;&#47;75%
+                _current_point_fixed = 3*duration&#47;4;
+        else if ( event_type_id == 7)                   &#47;&#47;100%
+                _current_point_fixed = duration;
+        else
+                _current_point_fixed = 0;                       &#47;&#47; don&apos;t know - but it shouldn&apos;t be negative
+        current_point_fixed=floor(1000*_current_point_fixed);
+}
+
+&#47;&#47; make sure duration is a number:
+try
+{
+ duration_fixed = str2num(duration_fixed) ;
+}
+catch ( e)
+{
+	&#47;&#47; if not, put in NULL
+	duration_fixed = null;
+}</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>client_version_fixed</name>
+        <rename>client_version_fixed</rename>
+        <type>String</type>
+        <length>31</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>referrer_fixed</name>
+        <rename>referrer_fixed</rename>
+        <type>String</type>
+        <length>255</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>seek_fixed</name>
+        <rename>seek_fixed</rename>
+        <type>String</type>
+        <length>1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>unique_viewer_fixed</name>
+        <rename>unique_viewer_fixed</rename>
+        <type>String</type>
+        <length>40</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>session_id_fixed</name>
+        <rename>session_id_fixed</rename>
+        <type>String</type>
+        <length>50</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>current_point_fixed</name>
+        <rename>current_point_fixed</rename>
+        <type>Integer</type>
+        <length>10</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>duration_fixed</name>
+        <rename>duration_fixed</rename>
+        <type>Integer</type>
+        <length>20</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1018</xloc>
+      <yloc>472</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>format errornouse line</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#47;&#47;Script here
+
+var errornous_line = client_version + &quot;,&quot; +
+        event_type_id + &quot;,&quot; +
+        event_time_str + &quot;,&quot; +
+        session_id + &quot;,&quot; +
+        partner_id + &quot;,&quot; +
+        entry_id + &quot;,&quot; +
+        unique_viewer + &quot;,&quot; +
+        widget_id + &quot;,&quot; +
+        ui_conf_id + &quot;,&quot; +
+        uid + &quot;,&quot; +
+        current_point + &quot;,&quot; +
+        duration + &quot;,&quot; +
+        user_ip + &quot;,&quot; +
+        process_duration + &quot;,&quot; +
+        control_id + &quot;,&quot; +
+        seek + &quot;,&quot; +
+        new_point + &quot;,&quot; +
+        referrer;
+
+&#47;&#47; make sure line isn&apos;t TOO long
+errornous_line = substr ( errornous_line , 0 ,1023 );</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>errornous_line</name>
+        <rename>errornous_line</rename>
+        <type>String</type>
+        <length>1023</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>459</xloc>
+      <yloc>515</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>get file id</name>
+    <type>RowsFromResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>file_id</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>file_name</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>818</xloc>
+      <yloc>383</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>get file id 2</name>
+    <type>RowsFromResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>file_id</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>file_name</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>138</xloc>
+      <yloc>515</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>get file name,id</name>
+    <type>RowsFromResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>file_name</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>file_id</name>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        </field>      </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>57</xloc>
+      <yloc>316</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>lookup country 2</name>
+    <type>DBProc</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>kalturadw_ds</connection>
+    <procedure>kalturadw_ds.get_ip_country_location</procedure>
+    <lookup>
+      <arg>
+        <name>iplong</name>
+        <direction>IN</direction>
+        <type>Integer</type>
+      </arg>
+    </lookup>
+    <result>
+      <name>country_id_location_id</name>
+      <type>String</type>
+    </result>
+    <auto_commit>Y</auto_commit>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1024</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>lookup entry</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>KalturaDW</connection>
+    <cache>Y</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>dwh_dim_entries</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>entry_id</name>
+        <field>entry_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>entry_media_type_id</name>
+        <rename>entry_media_type_id</rename>
+        <default>-1</default>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>partner_id</name>
+        <rename>entry_partner_id</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>843</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>referrer -&gt; domain</name>
+    <type>RegexEval</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <script><![CDATA[(?:https?://)?([^/]+).*]]></script>    <matcher>referrer</matcher>
+    <resultfieldname>res</resultfieldname>
+    <usevar>N</usevar>
+    <allowcapturegroups>Y</allowcapturegroups>
+    <canoneq>N</canoneq>
+    <caseinsensitive>N</caseinsensitive>
+    <comment>N</comment>
+    <dotall>N</dotall>
+    <multiline>N</multiline>
+    <unicode>N</unicode>
+    <unix>N</unix>
+    <fields>
+      <field>
+        <name>domain</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>255</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1120</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>set file status fail and empty partition</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>kalturadw_ds</connection>
+    <execute_each_row>Y</execute_each_row>
+    <replace_variables>N</replace_variables>
+    <sql>call kalturadw_ds.set_file_status(?,&apos;FAILED&apos;);
+call kalturadw_ds.empty_file_partition(?);</sql>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+       <argument><name>file_id</name></argument>
+       <argument><name>file_id_1</name></argument>
+    </arguments>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>583</xloc>
+      <yloc>699</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>set file status processed</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>kalturadw_ds</connection>
+    <execute_each_row>Y</execute_each_row>
+    <replace_variables>N</replace_variables>
+    <sql>call kalturadw_ds.set_file_status(?,&apos;PROCESSED&apos;);</sql>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+       <argument><name>file_id</name></argument>
+    </arguments>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1018</xloc>
+      <yloc>739</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>set file status run</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>kalturadw_ds</connection>
+    <execute_each_row>Y</execute_each_row>
+    <replace_variables>N</replace_variables>
+    <sql>call kalturadw_ds.set_file_status(?,&apos;RUNNING&apos;);</sql>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+       <argument><name>file_id</name></argument>
+    </arguments>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>57</xloc>
+      <yloc>227</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>validate raw input</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#47;&#47;Script here
+var event_time = new Date();
+var error_reason_code=0;
+var error_reason=null;
+
+&#47;&#47;try
+{
+        event_time = str2date ( event_time_str , &quot;yyyy-MM-dd HH:mm:ss&quot; );
+
+        &#47;&#47; validate entry_type_id is not null
+        if ( event_type_id == null )
+        {
+                error_reason_code=1;
+                error_reason=&quot;missing event type&quot;;
+        }
+        else if ( year(event_time)&gt;2020 ) &#47;&#47; validate event time is less than 2020
+        {
+                error_reason_code=2;
+                error_reason=&quot;date after 2020&#47;12&#47;31 00:00:00&quot;;
+        }
+        else if ( year(event_time)&lt;2009 )  &#47;&#47; validate event time is more than 2009
+        {
+                error_reason_code=3;
+                error_reason=&quot;date before 2009&#47;01&#47;01  00:00:00&quot;;
+        }
+        else if ( substr(entry_id,0,5)==&quot;http:&quot; || substr(entry_id,0,6)==&quot;https:&quot; )  &#47;&#47; validate the entry id does not start with http
+        {
+                error_reason_code=4;
+                error_reason=&quot;entry id starts with http&quot;;
+        }
+        else if ( substr(entry_id,0,5)==&quot;rtmp:&quot;  )  &#47;&#47; validate the entry id does not start with rtmp
+        {
+                error_reason_code=6;
+                error_reason=&quot;entry id starts with rtmp&quot;;
+        }
+}
+&#47;*
+catch ( ex )
+{
+        error_reason_code=5;
+        error_reason=&quot;event time format [&quot; + ex.toString() + &quot;]&quot;;
+}
+*&#47;
+
+
+</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>event_time</name>
+        <rename>event_time</rename>
+        <type>Date</type>
+        <length>14</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>error_reason_code</name>
+        <rename>error_reason_code</rename>
+        <type>Integer</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>error_reason</name>
+        <rename>error_reason</rename>
+        <type>String</type>
+        <length>255</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>349</xloc>
+      <yloc>49</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>wait for last row</name>
+    <type>BlockingStep</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <pass_all_rows>N</pass_all_rows>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>block</prefix>
+      <cache_size>5000</cache_size>
+      <compress>Y</compress>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1018</xloc>
+      <yloc>650</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>write events</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>kalturadw_ds</connection>
+    <schema/>
+    <table>ds_events</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>Y</ignore_errors>
+    <use_batch>N</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field>event_id</return_field>
+    <fields>
+        <field>
+          <column_name>client_version</column_name>
+          <stream_name>client_version_fixed</stream_name>
+        </field>
+        <field>
+          <column_name>event_type_id</column_name>
+          <stream_name>event_type_id</stream_name>
+        </field>
+        <field>
+          <column_name>event_time</column_name>
+          <stream_name>event_time</stream_name>
+        </field>
+        <field>
+          <column_name>session_id</column_name>
+          <stream_name>session_id_fixed</stream_name>
+        </field>
+        <field>
+          <column_name>partner_id</column_name>
+          <stream_name>partner_id</stream_name>
+        </field>
+        <field>
+          <column_name>entry_id</column_name>
+          <stream_name>entry_id</stream_name>
+        </field>
+        <field>
+          <column_name>unique_viewer</column_name>
+          <stream_name>unique_viewer_fixed</stream_name>
+        </field>
+        <field>
+          <column_name>widget_id</column_name>
+          <stream_name>widget_id</stream_name>
+        </field>
+        <field>
+          <column_name>ui_conf_id</column_name>
+          <stream_name>ui_conf_id</stream_name>
+        </field>
+        <field>
+          <column_name>uid</column_name>
+          <stream_name>uid</stream_name>
+        </field>
+        <field>
+          <column_name>current_point</column_name>
+          <stream_name>current_point_fixed</stream_name>
+        </field>
+        <field>
+          <column_name>duration</column_name>
+          <stream_name>duration_fixed</stream_name>
+        </field>
+        <field>
+          <column_name>user_ip</column_name>
+          <stream_name>user_ip</stream_name>
+        </field>
+        <field>
+          <column_name>process_duration</column_name>
+          <stream_name>process_duration</stream_name>
+        </field>
+        <field>
+          <column_name>control_id</column_name>
+          <stream_name>control_id</stream_name>
+        </field>
+        <field>
+          <column_name>seek</column_name>
+          <stream_name>seek_fixed</stream_name>
+        </field>
+        <field>
+          <column_name>new_point</column_name>
+          <stream_name>new_point</stream_name>
+        </field>
+        <field>
+          <column_name>event_hour_id</column_name>
+          <stream_name>hour</stream_name>
+        </field>
+        <field>
+          <column_name>event_date_id</column_name>
+          <stream_name>day_id</stream_name>
+        </field>
+        <field>
+          <column_name>file_id</column_name>
+          <stream_name>file_id</stream_name>
+        </field>
+        <field>
+          <column_name>user_ip_number</column_name>
+          <stream_name>iplong</stream_name>
+        </field>
+        <field>
+          <column_name>country_id</column_name>
+          <stream_name>country_id</stream_name>
+        </field>
+        <field>
+          <column_name>referrer</column_name>
+          <stream_name>referrer_fixed</stream_name>
+        </field>
+        <field>
+          <column_name>domain_id</column_name>
+          <stream_name>domain_id</stream_name>
+        </field>
+        <field>
+          <column_name>location_id</column_name>
+          <stream_name>location_id</stream_name>
+        </field>
+        <field>
+          <column_name>entry_media_type_id</column_name>
+          <stream_name>entry_media_type_id</stream_name>
+        </field>
+        <field>
+          <column_name>entry_partner_id</column_name>
+          <stream_name>entry_partner_id</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1018</xloc>
+      <yloc>561</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>write invalid line</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>kalturadw_ds</connection>
+    <schema/>
+    <table>invalid_event_lines</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>file_id</column_name>
+          <stream_name>file_id</stream_name>
+        </field>
+        <field>
+          <column_name>event_line</column_name>
+          <stream_name>errornous_line</stream_name>
+        </field>
+        <field>
+          <column_name>error_reason_code</column_name>
+          <stream_name>error_reason_code</stream_name>
+        </field>
+        <field>
+          <column_name>error_reason</column_name>
+          <stream_name>error_reason</stream_name>
+        </field>
+        <field>
+          <column_name>insert_time</column_name>
+          <stream_name>now</stream_name>
+        </field>
+        <field>
+          <column_name>line_number</column_name>
+          <stream_name>line_number</stream_name>
+        </field>
+        <field>
+          <column_name>partner_id</column_name>
+          <stream_name>partner_id</stream_name>
+        </field>
+        <field>
+          <column_name>date_id</column_name>
+          <stream_name>day_id</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>245</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+      <error>
+        <source_step>Set defaults</source_step>
+        <target_step>Write to log on error</target_step>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename>err_desc</descriptions_valuename>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors>-1</max_errors>
+        <max_pct_errors>-1</max_pct_errors>
+        <min_pct_rows>-1</min_pct_rows>
+      </error>
+      <error>
+        <source_step>convert IP</source_step>
+        <target_step>Write to log on error 2</target_step>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename>err_desc</descriptions_valuename>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors>-1</max_errors>
+        <max_pct_errors>-1</max_pct_errors>
+        <min_pct_rows>-1</min_pct_rows>
+      </error>
+      <error>
+        <source_step>lookup country 2</source_step>
+        <target_step>Write to log on error 2</target_step>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename>err_desc</descriptions_valuename>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors>-1</max_errors>
+        <max_pct_errors>-1</max_pct_errors>
+        <min_pct_rows>-1</min_pct_rows>
+      </error>
+      <error>
+        <source_step>referrer -&gt; domain</source_step>
+        <target_step>Write to log on error</target_step>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename>err_desc</descriptions_valuename>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors>-1</max_errors>
+        <max_pct_errors>-1</max_pct_errors>
+        <min_pct_rows>-1</min_pct_rows>
+      </error>
+      <error>
+        <source_step>validate raw input</source_step>
+        <target_step/>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename/>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors>-1</max_errors>
+        <max_pct_errors>-1</max_pct_errors>
+        <min_pct_rows>-1</min_pct_rows>
+      </error>
+      <error>
+        <source_step>write events</source_step>
+        <target_step>Write to log on insert error</target_step>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename>description</descriptions_valuename>
+        <fields_valuename>fields</fields_valuename>
+        <codes_valuename>codes</codes_valuename>
+        <max_errors>100</max_errors>
+        <max_pct_errors>-1</max_pct_errors>
+        <min_pct_rows>-1</min_pct_rows>
+      </error>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+</transformation>
