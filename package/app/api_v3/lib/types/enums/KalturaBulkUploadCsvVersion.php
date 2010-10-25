@@ -1,6 +1,0 @@
-<?php
-class KalturaBulkUploadCsvVersion extends KalturaStringEnum
-{
-	const V1 = 1; // 5 values in a row
-	const V2 = 2; // 12 values in a row
-}

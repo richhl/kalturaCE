@@ -1,4 +1,0 @@
-#RedirectMatch permanent pid/(.+?)$ /openid/index.php?pid=$1
-RewriteEngine on
-RewriteRule pid/(.*)$ /openid/index.php?pid=$1&%{QUERY_STRING} [L]
-
