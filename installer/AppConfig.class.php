@@ -145,7 +145,7 @@ class AppConfig {
 		$this->app_config['MEMCACHE_HOST'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
 		$this->app_config['WWW_HOST'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
 		$this->app_config['SERVICE_URL'] = 'http://'.$this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
-		$this->app_config['ENVIRONEMTN_NAME'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
+		$this->app_config['ENVIRONMENT_NAME'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
 				
 		// other configurations
 		$this->app_config['APACHE_RESTART_COMMAND'] = $this->app_config['HTTPD_BIN'].' -k restart';
@@ -168,6 +168,12 @@ class AppConfig {
 		$this->app_config['DELIVERY_RTMP_BASE_URL'] = $this->app_config['RTMP_URL'];
 		$this->app_config['DELIVERY_ISS_BASE_URL'] = $this->app_config['SERVICE_URL'];	
 		$this->app_config['ENVIRONMENT_NAME'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
+		
+		// set the usage tracking for Kaltura TM
+		if (strcasecmp($this->app_config['KALTURA_VERSION_TYPE'], K_TM_TYPE) === 0) {
+			$this->app_config['PARTNERS_USAGE_REPORT_SEND_FROM'] = $this->app_config['ADMIN_CONSOLE_ADMIN_MAIL'];	
+			$this->app_config['PARTNERS_USAGE_REPORT_SEND_TO'] = "on-prem-monthly@kaltura.com";
+		}
 	}
 
 	// copies DB parametes from one DB configuration to another

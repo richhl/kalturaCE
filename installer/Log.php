@@ -40,4 +40,3 @@ function logMessage($level, $message, $new_line = true) {
 			echo PHP_EOL;		
 	}
 }
-
