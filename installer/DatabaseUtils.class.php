@@ -56,25 +56,11 @@ class DatabaseUtils
 			logMessage(L_ERROR, "Cannot execute query: error with query: $query, error: ".$link->error);
 			return false;		
 		}
-		
-		do {
-		   /* store first result set */
-		   if ($result = mysqli_store_result($link)) {
-			   while ($row = mysqli_fetch_row($result)) {
-				   printf("%s\n", $row[0]);
-			   }
-			   mysqli_free_result($result);
-		   }
-		   /* print divider */
-		   if (mysqli_more_results($link)) {
-			   printf("-----------------\n");
-		   }
-		} while (mysqli_next_result($link));
-   
+		  
 		// flush
-		//while (mysqli_more_results($link) && mysqli_next_result($link)) {
-//			$discard = mysqli_store_result($link);			
-		//}
+		while (mysqli_more_results($link) && mysqli_next_result($link)) {
+			$discard = mysqli_store_result($link);			
+		}
 		$link->commit();
 		
 		return true;

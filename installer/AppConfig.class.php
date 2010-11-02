@@ -86,6 +86,17 @@ class AppConfig {
 		$this->app_config['DWH_DIR'] = $this->app_config['BASE_DIR'].'/dwh';
 		$this->app_config['ETL_HOME_DIR'] = $this->app_config['BASE_DIR'].'/dwh'; // For backward compatibility
 		
+		// site settings
+		$this->app_config['KALTURA_VIRTUAL_HOST_NAME'] = $this->removeHttp($this->app_config['KALTURA_FULL_VIRTUAL_HOST_NAME']);
+		$this->app_config['CORP_REDIRECT'] = '';	
+		$this->app_config['CDN_HOST'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
+		$this->app_config['IIS_HOST'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
+		$this->app_config['RTMP_URL'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
+		$this->app_config['MEMCACHE_HOST'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
+		$this->app_config['WWW_HOST'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
+		$this->app_config['SERVICE_URL'] = 'http://'.$this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
+		$this->app_config['ENVIRONMENT_NAME'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
+		
 		// databases (copy information collected during prerequisites
 		if ($this->app_config['DB1_HOST'] == 'localhost') {
 			$this->app_config['DB1_HOST'] = '127.0.0.1';
@@ -98,7 +109,7 @@ class AppConfig {
 		$this->app_config['ADMIN_CONSOLE_PARTNER_ADMIN_SECRET'] =  $this->generateSecret();
 		$this->app_config['SYSTEM_USER_ADMIN_EMAIL'] = $this->app_config['ADMIN_CONSOLE_ADMIN_MAIL'];
 		$this->app_config['ADMIN_CONSOLE_PARTNER_ALIAS'] = md5('-2kaltura partner');
-		$this->app_config['ADMIN_CONSOLE_KUSER_MAIL'] = 'admin_console@kaltura.com';	
+		$this->app_config['ADMIN_CONSOLE_KUSER_MAIL'] = 'admin_console@'.$this->app_config['KALTURA_VIRTUAL_HOST_NAME'];	
 		$this->generateSha1Salt($this->app_config['ADMIN_CONSOLE_PASSWORD'], $salt, $sha1);	
 		$this->app_config['SYSTEM_USER_ADMIN_SALT'] = $salt;
 		$this->app_config['ADMIN_CONSOLE_KUSER_SHA1'] = $salt;
@@ -120,7 +131,7 @@ class AppConfig {
 		$this->app_config['DWH_SEND_REPORT_MAIL'] = $this->app_config['ADMIN_CONSOLE_ADMIN_MAIL'];
 				
 		// default partners and kusers
-		$this->app_config['TEMPLATE_PARTNER_MAIL'] = 'template@kaltura.com';
+		$this->app_config['TEMPLATE_PARTNER_MAIL'] = 'template@'.$this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
 		$this->app_config['TEMPLATE_KUSER_MAIL'] = $this->app_config['TEMPLATE_PARTNER_MAIL'];
 		$this->app_config['TEMPLATE_ADMIN_KUSER_SALT'] = $this->app_config['SYSTEM_USER_ADMIN_SALT'];
 		$this->app_config['TEMPLATE_ADMIN_KUSER_SHA1'] = $this->app_config['SYSTEM_USER_ADMIN_SHA1'];		
@@ -130,22 +141,11 @@ class AppConfig {
 		
 		// batch
 		$this->app_config['BATCH_ADMIN_MAIL'] = $this->app_config['ADMIN_CONSOLE_ADMIN_MAIL'];
-		$this->app_config['BATCH_KUSER_MAIL'] = 'batch@kaltura.com';
+		$this->app_config['BATCH_KUSER_MAIL'] = 'batch@'.$this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
 		$this->app_config['BATCH_HOST_NAME'] = OsUtils::getComputerName();
 		$this->app_config['BATCH_PARTNER_SECRET'] = $this->generateSecret();
 		$this->app_config['BATCH_PARTNER_ADMIN_SECRET'] = $this->generateSecret();
-		$this->app_config['BATCH_PARTNER_PARTNER_ALIAS'] = md5('-1kaltura partner');
-		
-		// site settings
-		$this->app_config['KALTURA_VIRTUAL_HOST_NAME'] = $this->removeHttp($this->app_config['KALTURA_FULL_VIRTUAL_HOST_NAME']);
-		$this->app_config['CORP_REDIRECT'] = '';	
-		$this->app_config['CDN_HOST'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
-		$this->app_config['IIS_HOST'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
-		$this->app_config['RTMP_URL'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
-		$this->app_config['MEMCACHE_HOST'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
-		$this->app_config['WWW_HOST'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
-		$this->app_config['SERVICE_URL'] = 'http://'.$this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
-		$this->app_config['ENVIRONMENT_NAME'] = $this->app_config['KALTURA_VIRTUAL_HOST_NAME'];
+		$this->app_config['BATCH_PARTNER_PARTNER_ALIAS'] = md5('-1kaltura partner');		
 				
 		// other configurations
 		$this->app_config['APACHE_RESTART_COMMAND'] = $this->app_config['HTTPD_BIN'].' -k restart';
