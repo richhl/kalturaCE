@@ -55,21 +55,18 @@ $(function(){
 		doNothing : function() {
 			return false;
 		},
-		closeEditor : function(saved) { // KSE
-//			alert("saved="+saved);
-			if(saved==0) {
+		closeEditor : function(is_modified) { // KSE
+			if(is_modified) {
 				var myConfirm = confirm("Exit without saving?\n\n - Click [OK] to close editor\n\n - Click [Cancel] to remain in editor\n\n");
-				if(myConfirm) {
-					$("#flash_wrap").css("visibility","visible")
-					kalturaCloseModalBox();
-				}
-				else {
-					return false;
+				if(!myConfirm) {
+					return;
 				}
 			}
+			document.getElementById("flash_wrap").style.visibility = "visible";
+			kalturaCloseModalBox();
 		},
 		saveEditor : function() { // KSE
-			kmc.utils.closeModal();
+			return;
 		},
 		openKcw : function(ks, conversion_profile) {
 			conversion_profile = conversion_profile || "";
@@ -1057,6 +1054,7 @@ $(function(){
 			// KAE can read both formats and cases of flashvars:
 			// "partnerId", "subpId", "kshowId", "entryId", "uid", "ks"
 			"terms_of_use"	: kmc.vars.terms_of_use,
+			"disableurlhashing" : kmc.vars.disableurlhashing,
 			"jsDelegate"	: "kmc.editors.kae_functions"
 		},
 		params: {
