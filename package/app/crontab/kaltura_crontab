@@ -1,8 +1,8 @@
 */30 * * * * root @APP_DIR@/scripts/watch.batchMgr.sh
+*/30 * * * * root @APP_DIR@/scripts/watch.sphinx.sh
 */15 * * * * root @APP_DIR@/alpha/crond/kaltura/clear_cache.sh
 30 7 * * * root @APP_DIR@/scripts/storage_update.sh
 30 8 * * * root @APP_DIR@/scripts/www_logs_insert.sh
-30 6 * * * root @APP_DIR@/scripts/findEntriesSizes.php `date +\%F`
 0 7 * * * root @DWH_DIR@/etlsource/execute/etl_logs.sh -p @DWH_DIR@ -l @LOG_DIR@ -a @APP_DIR@ -m @DWH_SEND_REPORT_MAIL@
 30 7 * * * root @DWH_DIR@/etlsource/execute/daily.sh -p @DWH_DIR@
 0 8 * * 0 root @PHP_BIN@ @APP_DIR@/plugins/onprem/scripts/reportUsageTrackingIfOptIn.php
