@@ -1,7 +1,7 @@
 <layout id="full" name="player" skinPath="/content/uiconf/kaltura/kmc/appstudio/kdp3/skin_light.swf?12">
   <HBox id="topLevel" width="100%" height="100%">
     <VBox id="player" width="100%" height="100%" styleName="black">
-      <Plugin id="kalturaMix" width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
+      <Plugin id="kalturaMix" disableUrlHashing="true"  width="0%" height="0%" includeInLayout="false" loadingPolicy="onDemand"/>
       <Plugin id="statistics" width="0%" height="0%" includeInLayout="false"/>
       <HBox id="TopTitleScreen" width="100%" height="30" styleName="darkBg">
         <Label height="22" id="movieName" styleName="movieName" width="100%" text="{mediaProxy.entry.name}" dynamicColor="true" color1="0" font="Arial"/>

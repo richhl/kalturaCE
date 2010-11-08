@@ -80,13 +80,13 @@
 				<thumbnailSettings><width>640</width><height>480</height><quality>90</quality></thumbnailSettings></postPublishWindow></publishSettings></overrides><uIConfigList>
 		<uIConfig>
 			<cvf>
-				<pluginsDirectory>/swf/plugins/cvesdk</pluginsDirectory>
+				<pluginsDirectory>/flash/kae/v1.2/swf/plugins/cvesdk</pluginsDirectory>
 				<mediaServerUrl>rtmp://{DOMAIN_NAME}/oflaDemo</mediaServerUrl>
-				<pluginsProvider>/swf/plugins/cvesdk/plugins.xml</pluginsProvider></cvf>
+				<pluginsProvider>/flash/kae/v1.2/swf/plugins/cvesdk/plugins.xml</pluginsProvider></cvf>
 			<target>KalturaAdvancedVideoEditor.swf</target>
-			<cssUrl>kae_generic_generic_styles.swf‬</cssUrl>
-			<localeUrl>en_US_KalturaAdvancedVideoEditor.swf</localeUrl>
-			<baseLocaleUrl>kae_generic_en_US.swf</baseLocaleUrl></uIConfig>
+			<cssUrl>/content/uiconf/kaltura/generic/kae_1.2/kae_generic_generic_styles.swf</cssUrl>
+			<localeUrl>/content/uiconf/kaltura/generic/kae_1.2/en_US_KalturaAdvancedVideoEditor.swf</localeUrl>
+			<baseLocaleUrl>/content/uiconf/kaltura/generic/kae_1.2/kae_generic_en_US.swf</baseLocaleUrl></uIConfig>
 	</uIConfigList><extraData>
 		<contributionWizard>
 			<uIConfigId>1913702</uIConfigId>

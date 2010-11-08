@@ -33,13 +33,17 @@
 						 styleName="clickThrough" startScreenId="startScreen" startScreenOverId="startScreen"
 						 pauseScreenOverId="pauseScreen" pauseScreenId="pauseScreen" playScreenOverId="playScreen"
 						 endScreenId="endScreen" endScreenOverId="endScreen"/>
-				<!-- new skip button -->
+				
 				
 				<Watermark id="watermark" width="100%" height="100%"
 						   watermarkPath="http://www.kaltura.com/content/uiconf/kaltura/kmc/appstudio/kdp3/exampleWatermark.png"
 						   watermarkClickPath="http://www.kaltura.com/" watermarkPosition="topRight"/>
 
 				<VBox id="controllersVbox" width="100%" height="100%" verticalAlign="Bottom" paddingRight="5" paddingLeft="5">
+					<!-- stars plugin -->
+					<Plugin id="stars" width="100%" height="40" visible="{not(sequenceProxy.isInSequence)}" 
+						includeInLayout="{not(sequenceProxy.isInSequence)}" rating="-1" editable="true" />
+					
 					<Spacer id="controllerPusher" width="100%" height="100%" />
 						<HBox id="ControllerScreenHolder" width="100%" height="30" verticalAlign="middle" styleName="hoverBg">
 							<HBox id="ControllerScreen" width="100%" height="30" horizontalGap="9" paddingLeft="9"
@@ -72,9 +76,9 @@
 								<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="shareBtnControllerScreen" label="" buttonType="iconButton"
 										kClick="sendNotification('doGigya')" height="22" styleName="controllerScreen"
 										focusRectPadding="0" icon="shareIcon" tooltip="Share with friends"/>
-								<Button id="flagBtnControllerScreen" label="" buttonType="iconButton"
+								<!--Button id="flagBtnControllerScreen" label="" buttonType="iconButton"
 										kClick="sendNotification('flagForReview')" height="22" styleName="controllerScreen"
-										focusRectPadding="0" icon="flagIcon" tooltip="Flag for review"/>
+										focusRectPadding="0" icon="flagIcon" tooltip="Flag for review"/-->
 								<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="editBtnControllerScreen" label="" buttonType="iconButton" focusRectPadding="0"
 										kClick="jsCall('gotoEditorWindow', mediaProxy.entry.id )" height="22"
 										styleName="controllerScreen" icon="remixIcon" tooltip="Open editor"/>
@@ -134,6 +138,7 @@
 				<Plugin id="bumper" bumperEntryID="0_c2gx2xjm" clickurl="http://www.kaltura.com" lockUI="true"
 						playOnce="false" preSequence="1" postSequence="1" width="100%" height="100%"/>
 
+				<!-- new skip button -->
 				<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" 
 					id="skipBtn" visible="{sequenceProxy.isAdSkip}" includeInLayout="{sequenceProxy.isAdSkip}"
 					type="labelButton" styleName="controllerScreen" height="22"
@@ -153,6 +158,8 @@
 				<Plugin id="moderation" width="100%" height="100%" 
 					header="Report this content as Inapproriate" 
 					text="Please describe your concern about the video, so that we can review it and determine whether it isn't appropriate for all viewers."/>
+				
+				
 			</Canvas>
 
 		</VBox>
@@ -171,8 +178,8 @@
 
 					<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="shareBtnStartScreen" kClick="sendNotification('doGigya')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="Share" styleName="onScreenBtn" upIcon="shareIcon"/>
-					<Button id="flagBtnStartScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
-							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/>
+					<!--Button id="flagBtnStartScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
+							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/-->
 					<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="editBtnStartScreen" kClick="jsCall('gotoEditorWindow', mediaProxy.entry.id )"
 							label="Remix" buttonType="onScreenButton" minWidth="60" labelPlacement="top"
 							styleName="onScreenBtn" upIcon="remixIcon"/>
@@ -185,11 +192,6 @@
 					<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="captureThumbBtnStartScreen" kClick="sendNotification('captureThumbnail')"
 							buttonType="onScreenButton" minWidth="60" labelPlacement="top" label="Thumb"
 							upIcon="thumbIcon" styleName="onScreenBtn"/>
-					<!--Button id="flagBtnStartScreen"
-						 label="Flag"
-						 buttonType="onScreenButton" minWidth="60"  labelPlacement="top"
-						 upIcon ="flagIcon"
-						 styleName="onScreenBtn" /-->
 					<!--Button id="creditsBtnStartScreen"
 						 buttonType="onScreenButton" minWidth="60"  labelPlacement="top"
 						 label="Credits"
@@ -236,8 +238,8 @@
 							selectedOverIcon="playIcon" selectedDownIcon="playIcon" selectedDisabledIcon="playIcon"/>
 					<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="shareBtnPauseScreen" kClick="sendNotification('doGigya')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="Share" styleName="onScreenBtn" upIcon="shareIcon"/>
-					<Button id="flagBtnPauseScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
-							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/>
+					<!--Button id="flagBtnPauseScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
+							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/-->
 					<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="editBtnPauseScreen" kClick="jsCall('gotoEditorWindow', mediaProxy.entry.id )"
 							label="Remix" buttonType="onScreenButton" minWidth="60" labelPlacement="top"
 							styleName="onScreenBtn" upIcon="remixIcon"/>
@@ -250,11 +252,6 @@
 					<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="captureThumbBtnPauseScreen" kClick="sendNotification('captureThumbnail')"
 							buttonType="onScreenButton" minWidth="60" labelPlacement="top" upIcon="thumbIcon"
 							label="Thumb" styleName="onScreenBtn"/>
-					<!--Button id="flagBtnPauseScreen"
-						 label="Flag"
-						 buttonType="onScreenButton" minWidth="60"  labelPlacement="top"
-						 upIcon ="flagIcon"
-						 styleName="onScreenBtn" /-->
 					<!--Button id="creditsBtnPauseScreen"
 						 buttonType="onScreenButton" minWidth="60"  labelPlacement="top"
 						 label="Credits"
@@ -298,8 +295,8 @@
 				<Tile id="playTile" width="100%" verticalGap="10" verticalAlign="middle" horizontalAlign="center">
 					<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="shareBtnPlayScreen" kClick="sendNotification('doGigya')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="Share" styleName="onScreenBtn" upIcon="shareIcon"/>
-					<Button id="flagBtnPlayScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
-							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/>
+					<!--Button id="flagBtnPlayScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
+							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/-->
 					<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="editBtnPlayScreen" kClick="jsCall('gotoEditorWindow', mediaProxy.entry.id )"
 							label="Remix" buttonType="onScreenButton" minWidth="60" labelPlacement="top"
 							styleName="onScreenBtn" upIcon="remixIcon"/>
@@ -314,13 +311,6 @@
 					<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="captureThumbBtnPlayScreen" kClick="sendNotification('captureThumbnail')"
 							buttonType="onScreenButton" minWidth="60" labelPlacement="top" upIcon="thumbIcon"
 							label="Thumb" styleName="onScreenBtn"/>
-
-					<!--Button id="flagBtnPlayScreen"
-						 label="Flag"
-						 buttonType="onScreenButton" minWidth="60"  labelPlacement="top"
-						 upIcon ="flagIcon"
-						 styleName="onScreenBtn"
-						 /-->
 					<!--Button id="creditsBtnPlayScreen"
 						 buttonType="onScreenButton" minWidth="60"  labelPlacement="top"
 						 label="Credits"
@@ -369,8 +359,8 @@
 							upIcon="replayIcon"/>
 					<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="shareBtnEndScreen" kClick="sendNotification('doGigya')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="Share" styleName="onScreenBtn" upIcon="shareIcon"/>
-					<Button id="flagBtnEndScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
-							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/>
+					<!--Button id="flagBtnEndScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
+							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/-->
 					<Button color1="14540253" color2="16777215" color3="3355443" color4="10066329" color5="16777215" id="editBtnEndScreen" kClick="jsCall('gotoEditorWindow', mediaProxy.entry.id )"
 							label="Remix" buttonType="onScreenButton" minWidth="60" labelPlacement="top"
 							styleName="onScreenBtn" upIcon="remixIcon"/>
