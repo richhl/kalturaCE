@@ -7,7 +7,7 @@ Kaltura CE V3 is based on the Cassiopea release of the Kaltura online video plat
 Supported/Tested OS
 ====================
 Kaltura CE has been tested on the following operating systems:
-- Ubunto 10.04 - 32-bit/64-bit (incomplete testing for beta release)
+- Ubunto 10.04 - 32-bit/64-bit 
 - CentOS 5.5 – 32-bit/64-bit
 Please note that it is possible to install Kaltura CE on other Linux distributions as well, however it was not yet fully tested by Kaltura
 
@@ -20,7 +20,6 @@ The following list includes the main new features that are available as part of 
 - Custom Metadata Fields
 - KMC passowrd security enhancments 
 - Mobile support (trascoding flavors)
-- Email Upload
 - Net Storage - enabling auto-export to and delivery from a remote storage.
 - Sphinx - full text search engine (bundled within the Kaltura CE package)- All entries and playlists searches moved to sphinx search engine
 - Server-side Plug-in infrastructure (documentation will be provided)
@@ -54,6 +53,7 @@ Known Issues
 - Kaltura CE should run as a Virtual Host under Apache2
 - Kaltura does not provide a complete migration path from CE 1.5 and older. Migration instruction from Kaltura CE 2.0.x to Kaltura CE 3.0 will be provided.
 - The links within the KMC 'Quick Start Guide' PDF are pointing to the KMC hosted by Kaltura at www.kaltura.com and not to the local Kaltura CE
+- Incomplete testing of Kaltura CMS/LMS extensions (WP,Drupal ,Joomla, Moodle ) with Kaltura CE v3.0 Beta version - to be finalized on official release 
 
 -----------------------------------------------------------------------------------------------------------------
 Get Assistance

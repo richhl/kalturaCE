@@ -1,7 +1,7 @@
 
 Pre-Installation Considerations
 ********************************
-Please note the following considerations before setting up your Kaltura CE v2.0
+Please note the following considerations before setting up your Kaltura CE v3.0
 
 Virtual Host Setup
 ==================
@@ -32,7 +32,7 @@ For more information about architecture and scaling considerations, please refer
 
 prerequisites
 **************
-The following prerequisites are required for installing and for running the Kaltura CE V2.0 on a Linux server
+The following prerequisites are required for installing and for running the Kaltura CE V3.0 on a Linux server
 
 Hardware specifications
 ========================
