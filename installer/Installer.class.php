@@ -143,7 +143,7 @@ class Installer {
 		logMessage(L_USER, "Deploying uiconfs in order to configure the application");
 		foreach ($this->install_config['uiconfs'] as $uiconfapp) {
 			$to_deploy = $app->replaceTokensInString($uiconfapp);
-			if (OsUtils::execute(sprintf("%s %s/deployment/uiconf/deploy.php --ini=%s", $app->get('PHP_BIN'), $app->get('APP_DIR'), $to_deploy))) {
+			if (OsUtils::execute(sprintf("%s %s/deployment/uiconf/deploy.php --disableUrlHashing=true --ini=%s", $app->get('PHP_BIN'), $app->get('APP_DIR'), $to_deploy))) {
 				logMessage(L_INFO, "Deployed uiconf $to_deploy");
 			} else {
 				return "Failed to deploy uiconf $to_deploy";
