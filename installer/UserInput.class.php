@@ -149,7 +149,6 @@ class UserInput
 						'Must be a valid hostname or ip, please enter again', 
 						InputValidator::createHostValidator(), 
 						null);
-		// TODO: remove? not printing: A primary system administrator user will be created with full access to the Kaltura Administration Console.\nAdministrator e-mail
 		$this->getInput('ADMIN_CONSOLE_ADMIN_MAIL', 
 						"Your primary system administrator email address", 
 						"Email must be in a valid email format, please enter again", 
