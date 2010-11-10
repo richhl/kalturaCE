@@ -1,4 +1,5 @@
 */30 * * * * root @APP_DIR@/scripts/watch.batchMgr.sh
+*/30 * * * * root @APP_DIR@/scripts/watch.sphinx.sh
 */15 * * * * root @APP_DIR@/alpha/crond/kaltura/clear_cache.sh
 30 7 * * * root @APP_DIR@/scripts/storage_update.sh
 30 8 * * * root @APP_DIR@/scripts/www_logs_insert.sh

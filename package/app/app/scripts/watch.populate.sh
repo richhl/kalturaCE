@@ -1,6 +1,6 @@
 #!/bin/bash
 SERVER=$1
-MAILTO="alex.bandel@kaltura.com"
+MAILTO="@ADMIN_CONSOLE_ADMIN_MAIL@"
 KP=$(pgrep -f populateFromLog.php)
 MAINT=/opt/kaltura/maintenance
 if [[ "X$KP" = "X" && ! -f $MAINT ]]

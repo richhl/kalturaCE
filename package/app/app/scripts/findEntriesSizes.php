@@ -18,9 +18,10 @@
 
 require_once ( dirname(__FILE__)."/define.php" );
 
-$databaseManager = new sfDatabaseManager();
-$databaseManager->initialize();
 ini_set( "memory_limit","512M" );
+
+DbManager::setConfig(kConf::getDB());
+DbManager::initialize();
 
 $stderr = fopen("php://stderr", "w");
 

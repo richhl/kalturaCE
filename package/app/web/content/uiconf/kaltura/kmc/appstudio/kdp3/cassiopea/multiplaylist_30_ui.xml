@@ -73,6 +73,11 @@
 				<Plugin id="moderation" width="100%" height="100%" 
 					header="Report this content as Inapproriate" 
 					text="Please describe your concern about the video, so that we can review it and determine whether it isn't appropriate for all viewers."/>
+				
+				<!-- stars plugin -->
+				<Plugin id="stars" width="100%" height="40" visible="{not(sequenceProxy.isInSequence)}" 
+					includeInLayout="{not(sequenceProxy.isInSequence)}" rating="-1" editable="true" />
+				
 				<VBox id="generalPluginContainer" width="100%" height="100%">
 					<Spacer id="contentPusher" height="100%"/>
 				</VBox>
@@ -115,9 +120,9 @@
 						<Button id="shareBtnControllerScreen" label="" buttonType="iconButton"
 								kClick="sendNotification('doGigya')" height="22" styleName="controllerScreen"
 								focusRectPadding="0" icon="shareIcon" tooltip="Share with friends"/>
-						<Button id="flagBtnControllerScreen" label="" buttonType="iconButton"
+						<!--Button id="flagBtnControllerScreen" label="" buttonType="iconButton"
 								kClick="sendNotification('flagForReview')" height="22" styleName="controllerScreen"
-								focusRectPadding="0" icon="flagIcon" tooltip="Flag for review"/>
+								focusRectPadding="0" icon="flagIcon" tooltip="Flag for review"/-->
 						<Button id="editBtnControllerScreen" label="" buttonType="iconButton" focusRectPadding="0"
 								kClick="jsCall('gotoEditorWindow', mediaProxy.entry.id )" height="22"
 								styleName="controllerScreen" icon="remixIcon" tooltip="Open editor"/>
@@ -199,8 +204,8 @@
 
 					<Button id="shareBtnStartScreen" kClick="sendNotification('doGigya')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="Share" styleName="onScreenBtn" upIcon="shareIcon"/>
-					<Button id="flagBtnStartScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
-							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/>
+					<!--Button id="flagBtnStartScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
+							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/-->
 					<Button id="editBtnStartScreen" kClick="jsCall('gotoEditorWindow', mediaProxy.entry.id )"
 							label="Remix" buttonType="onScreenButton" minWidth="60" labelPlacement="top"
 							styleName="onScreenBtn" upIcon="remixIcon"/>
@@ -213,11 +218,6 @@
 					<Button id="captureThumbBtnStartScreen" kClick="sendNotification('captureThumbnail')"
 							buttonType="onScreenButton" minWidth="60" labelPlacement="top" label="Thumb"
 							upIcon="thumbIcon" styleName="onScreenBtn"/>
-					<!--Button id="flagBtnStartScreen"
-						 label="Flag"
-						 buttonType="onScreenButton" minWidth="60" labelPlacement="top"
-						 upIcon="flagIcon"
-						 styleName="onScreenBtn" /-->
 					<!--Button id="creditsBtnStartScreen"
 						 buttonType="onScreenButton" minWidth="60" labelPlacement="top"
 						 label="Credits"
@@ -264,8 +264,8 @@
 							selectedOverIcon="playIcon" selectedDownIcon="playIcon" selectedDisabledIcon="playIcon"/>
 					<Button id="shareBtnPauseScreen" kClick="sendNotification('doGigya')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="Share" styleName="onScreenBtn" upIcon="shareIcon"/>
-					<Button id="flagBtnPauseScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
-							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/>
+					<!--Button id="flagBtnPauseScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
+							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/-->
 					<Button id="editBtnPauseScreen" kClick="jsCall('gotoEditorWindow', mediaProxy.entry.id )"
 							label="Remix" buttonType="onScreenButton" minWidth="60" labelPlacement="top"
 							styleName="onScreenBtn" upIcon="remixIcon"/>
@@ -278,11 +278,6 @@
 					<Button id="captureThumbBtnPauseScreen" kClick="sendNotification('captureThumbnail')"
 							buttonType="onScreenButton" minWidth="60" labelPlacement="top" upIcon="thumbIcon"
 							label="Thumb" styleName="onScreenBtn"/>
-					<!--Button id="flagBtnPauseScreen"
-						 label="Flag"
-						 buttonType="onScreenButton" minWidth="60" labelPlacement="top"
-						 upIcon ="flagIcon"
-						 styleName="onScreenBtn" /-->
 					<!--Button id="creditsBtnPauseScreen"
 						 buttonType="onScreenButton" minWidth="60" labelPlacement="top"
 						 label="Credits"
@@ -325,8 +320,8 @@
 				<Tile id="playTile" width="100%" verticalGap="10" verticalAlign="middle" horizontalAlign="center">
 					<Button id="shareBtnPlayScreen" kClick="sendNotification('doGigya')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="Share" styleName="onScreenBtn" upIcon="shareIcon"/>
-					<Button id="flagBtnPlayScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
-							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/>
+					<!--Button id="flagBtnPlayScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
+							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/-->
 					<Button id="editBtnPlayScreen" kClick="jsCall('gotoEditorWindow', mediaProxy.entry.id )"
 							label="Remix" buttonType="onScreenButton" minWidth="60" labelPlacement="top"
 							styleName="onScreenBtn" upIcon="remixIcon"/>
@@ -341,12 +336,6 @@
 					<Button id="captureThumbBtnPlayScreen" kClick="sendNotification('captureThumbnail')"
 							buttonType="onScreenButton" minWidth="60" labelPlacement="top" upIcon="thumbIcon"
 							label="Thumb" styleName="onScreenBtn"/>
-					<!--Button id="flagBtnPlayScreen"
-						 label="Flag"
-						 buttonType="onScreenButton" minWidth="60" labelPlacement="top"
-						 upIcon ="flagIcon"
-						 styleName="onScreenBtn"
-						 /-->
 					<!--Button id="creditsBtnPlayScreen"
 						 buttonType="onScreenButton" minWidth="60" labelPlacement="top"
 						 label="Credits"
@@ -394,8 +383,8 @@
 							upIcon="replayIcon"/>
 					<Button id="shareBtnEndScreen" kClick="sendNotification('doGigya')" buttonType="onScreenButton"
 							minWidth="60" labelPlacement="top" label="Share" styleName="onScreenBtn" upIcon="shareIcon"/>
-					<Button id="flagBtnEndScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
-							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/>
+					<!--Button id="flagBtnEndScreen" kClick="sendNotification('flagForReview')" buttonType="onScreenButton"
+							minWidth="60" labelPlacement="top" label="Flag" styleName="onScreenBtn" upIcon="flagIcon"/-->
 					<Button id="editBtnEndScreen" kClick="jsCall('gotoEditorWindow', mediaProxy.entry.id )"
 							label="Remix" buttonType="onScreenButton" minWidth="60" labelPlacement="top"
 							styleName="onScreenBtn" upIcon="remixIcon"/>

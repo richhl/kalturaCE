@@ -656,7 +656,7 @@ If you wish to select a different player for syndication, paste the relevant Pla
 				k_value="Use current frame as the video thumbnail"/>
 		</feature>
 		
-		<feature showCheckbox="true" featureLabel="Flag Button" id="flagBtn" selected="false" k_param="selected"
+		<!--feature showCheckbox="true" featureLabel="Flag Button" id="flagBtn" selected="false" k_param="selected"
 				 k_value="false" pluginId="moderation">
 			<Spacer/>
 			<Label label="Flag Button" bold="true"/>
@@ -690,6 +690,25 @@ If you wish to select a different player for syndication, paste the relevant Pla
 			<Spacer/>
 			<Label label="Tooltip:"/>
 			<Input id="Tooltip" k_param="tooltip" k_value="Report this content as inappropriate"/>
+		</feature-->
+		
+		<feature showCheckbox="true" specialFeature="true" featureLabel="Stars Rating"
+			id="stars" selected="false" k_param="selected" k_value="false">
+			<Spacer/>
+			<Label label="Rating Component" bold="true"/>
+			<Spacer/>
+			<Label label="Allows your viewers to rate the media they watch."/>
+			<Label label="View Only"/>
+			<ComboBox id="editable" k_param="editable" k_value="true">
+				<item>
+					<data>true</data>
+					<label>false</label>
+				</item>
+				<item>
+					<data>false</data>
+					<label>true</label>
+				</item>
+			</ComboBox>
 		</feature>
 		
 		<!-- feature showCheckbox="true" featureLabel="Credits Button"

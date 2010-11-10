@@ -52,6 +52,10 @@ class Installer {
 			if ($report_only) {
 				$leftovers .= "   Target directory ".$app->get('BASE_DIR')." already exists".PHP_EOL;
 			} else {
+				logMessage(L_USER, "Stopping sphinx if running");
+				@exec($app->get('BASE_DIR').'/app/scripts/searchd.sh stop 2>&1', $output, $return_var);
+				logMessage(L_USER, "Stopping the batch manager if running");
+				@exec($app->get('BASE_DIR').'/app/scripts/serviceBatchMgr.sh stop 2>&1', $output, $return_var);
 				logMessage(L_USER, "Deleting ".$app->get('BASE_DIR'));
 				OsUtils::recursiveDelete($app->get('BASE_DIR'));			
 			}
@@ -139,7 +143,7 @@ class Installer {
 		logMessage(L_USER, "Deploying uiconfs in order to configure the application");
 		foreach ($this->install_config['uiconfs'] as $uiconfapp) {
 			$to_deploy = $app->replaceTokensInString($uiconfapp);
-			if (OsUtils::execute(sprintf("%s %s/deployment/uiconf/deploy.php --ini=%s", $app->get('PHP_BIN'), $app->get('APP_DIR'), $to_deploy))) {
+			if (OsUtils::execute(sprintf("%s %s/deployment/uiconf/deploy.php --disableUrlHashing=true --ini=%s", $app->get('PHP_BIN'), $app->get('APP_DIR'), $to_deploy))) {
 				logMessage(L_INFO, "Deployed uiconf $to_deploy");
 			} else {
 				return "Failed to deploy uiconf $to_deploy";

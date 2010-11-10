@@ -1,7 +1,7 @@
 <?php
 $jw_swf_name = ($jw_license) ? "licensed" : "non-commercial";
 
-$disableurlhashing = false;
+$disableurlhashing = kConf::get('disable_url_hashing');
 if ( !$allow_reports )
 {
   $first_login = true;
@@ -10,7 +10,6 @@ if ( kConf::get('kmc_display_server_tab') )
 {
 	$support_url = '#support';
 	$_SESSION['api_v3_login'] = true;
-	$disableurlhashing = true;
 }
 else
 {
@@ -143,16 +142,6 @@ else
 	<div id="kmcHeader"	<?php if($templatePartnerId) echo 'class="whiteLabel"'; ?>>
 	 <div id="logo"></div>
      <ul>
-	<?php
-	  if($partner_id == 9008 || $partner_id == 355452 || $partner_id == 355462)
-	  {
-	    ?>
-	 <li><a id="FDM-Dashboard" href="#"><span>FDM-Dashboard</span></a></li>
-	 <li><a id="Upload" href="#"><span>Upload</span></a></li>
-	 <li><a id="Ad-Marker" href="#"><span>Ad-Marker</span></a></li>
-	 <?php
-	  }
-	  ?>      
       <li><a id="Dashboard" href="<?php echo $service_url; ?>/index.php/kmc/kmc2#dashboard|''"><span>Dashboard</span></a></li>
       <li><a id="Content" href="<?php echo $service_url; ?>/index.php/kmc/kmc2#content|Manage"><span>Content</span></a></li>
      <?php if ( kConf::get ( "kmc_display_customize_tab" ) ) { ?>

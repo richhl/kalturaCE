@@ -56,25 +56,11 @@ class DatabaseUtils
 			logMessage(L_ERROR, "Cannot execute query: error with query: $query, error: ".$link->error);
 			return false;		
 		}
-		
-		do {
-		   /* store first result set */
-		   if ($result = mysqli_store_result($link)) {
-			   while ($row = mysqli_fetch_row($result)) {
-				   printf("%s\n", $row[0]);
-			   }
-			   mysqli_free_result($result);
-		   }
-		   /* print divider */
-		   if (mysqli_more_results($link)) {
-			   printf("-----------------\n");
-		   }
-		} while (mysqli_next_result($link));
-   
+		  
 		// flush
-		//while (mysqli_more_results($link) && mysqli_next_result($link)) {
-//			$discard = mysqli_store_result($link);			
-		//}
+		while (mysqli_more_results($link) && mysqli_next_result($link)) {
+			$discard = mysqli_store_result($link);			
+		}
 		$link->commit();
 		
 		return true;
@@ -134,7 +120,11 @@ class DatabaseUtils
 			return false;
 		}
 		
-		$cmd = sprintf("mysql -h%s -u%s -p%s -P%s %s < %s", $db_params['db_host'], $db_params['db_user'], $db_params['db_pass'], $db_params['db_port'], $db_name, $file);
+		if (empty($db_params['db_pass'])) {		
+			$cmd = sprintf("mysql -h%s -u%s -P%s %s < %s", $db_params['db_host'], $db_params['db_user'], $db_params['db_port'], $db_name, $file);
+		} else {
+			$cmd = sprintf("mysql -h%s -u%s -p%s -P%s %s < %s", $db_params['db_host'], $db_params['db_user'], $db_params['db_pass'], $db_params['db_port'], $db_name, $file);
+		}
 		logMessage(L_INFO, "Executing $cmd");
 		@exec($cmd . ' 2>&1', $output, $return_var);
 		if ($return_var === 0) {
