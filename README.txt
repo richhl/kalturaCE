@@ -1,14 +1,14 @@
-Kaltura CE V3 Beta - Release Notes
-***************************
+Kaltura CE V3 - Release Notes
+******************************
 General
 =======
-Kaltura CE V3 is based on the Cassiopea release of the Kaltura online video platform.  It provides  new features, infrastructure enhancements, and new API services.
+Kaltura CE V3 is based on the cassiopeia release of the Kaltura online video platform.  It provides new features, infrastructure enhancements, and new API services.
 
 Supported/Tested OS
 ====================
 Kaltura CE has been tested on the following operating systems:
 - Ubunto 10.04 - 32-bit/64-bit 
-- CentOS 5.5 – 32-bit/64-bit
+- CentOS 5.5 – 32-bit/64-bit (tested with XAMPP configuration)
 Please note that it is possible to install Kaltura CE on other Linux distributions as well, however it was not yet fully tested by Kaltura
 
 
@@ -41,8 +41,8 @@ Features that require additional setup/3rd party licensing/CDN capabilities
 - Transcoding to the VP6 codec requires On2 transcoder – configuration instructions to be provided.
 - Enabling Encoding.com cloud transcoding requires an account at Encoding.com and batch configuration adjustments - configuration instructions to be provided
 
-Features that require add-on server components which are not provided for CE integration
-========================================================================================
+Features that require add-on server components which are not provided for CE integrations
+==========================================================================================
 - Remix download - flattening server
 - Doc conversion/PPT-Video widget 
 - Silvelight player/smooth streaming
@@ -53,7 +53,8 @@ Known Issues
 - Kaltura CE should run as a Virtual Host under Apache2
 - Kaltura does not provide a complete migration path from CE 1.5 and older. Migration instruction from Kaltura CE 2.0.x to Kaltura CE 3.0 will be provided.
 - The links within the KMC 'Quick Start Guide' PDF are pointing to the KMC hosted by Kaltura at www.kaltura.com and not to the local Kaltura CE
-- Incomplete testing of Kaltura CMS/LMS extensions (WP,Drupal ,Joomla, Moodle ) with Kaltura CE v3.0 Beta version - to be finalized on official release 
+- Full testing of the remote storage plug-in was not completed.
+
 
 -----------------------------------------------------------------------------------------------------------------
 Get Assistance
