@@ -1,0 +1,12 @@
+*/30 * * * * root @APP_DIR@/scripts/watch.batchMgr.sh
+30 4 * * * root /usr/sbin/logrotate -f -vv @BASE_DIR@/logrotate/kaltura_log_rotate >> @LOG_DIR@/kaltura_log_rotate.log 2>&1
+*/15 * * * * root @APP_DIR@/alpha/crond/kaltura/clear_cache.sh
+30 7 * * * root @APP_DIR@/alpha/crond/storage_update.sh
+30 8 * * * root @APP_DIR@/alpha/crond/www_logs_insert.sh
+0 2 * * * root @APP_DIR@/alpha/crond/kaltura/delete_old_content.sh
+30 5 * * * root @DWH_DIR@/etlsource/execute/etl_daily.sh -p @DWH_DIR@
+0 8 * * 0 root @PHP_BIN@ @APP_DIR@/plugins/onprem/scripts/reportUsageTrackingIfOptIn.php
+* * * * * root @APP_DIR@/plugins/sphinx_search/scripts/watch.populate.sh @APP_DIR@/plugins/sphinx_search/scripts/configs/server-sphinx.php
+ 
+ 
+

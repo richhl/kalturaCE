@@ -1,0 +1,15 @@
+#!/bin/bash
+
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110101.*"
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110102.*"
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110103.*"
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110104.*"
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110105.*"
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110106.*"
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110107.*"
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110108.*"
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110109.*"
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110110.*"
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110111.*"
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110112.*"
+/usr/local/pentaho/pdi/kitchen.sh /file /home/etl/etlsource/bandwidth_usage/bandwidth_usage_AKAMAI_wildcard_param.kjb -param:BandwidthUsageAkamaiWildCard="akamai\_.*\.esw3c\_S\.20110113.*"

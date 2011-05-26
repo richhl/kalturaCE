@@ -1,0 +1,4 @@
+use kaltura;
+create index updated_at_index on kaltura.batch_job(updated_at);
+create index updated_at_index on kaltura.scheduler(updated_at);
+create index updated_at_index on kaltura.scheduler_worker(updated_at);

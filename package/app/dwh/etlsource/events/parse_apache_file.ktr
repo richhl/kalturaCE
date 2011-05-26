@@ -1,0 +1,1799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>parse_apache_file</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <directory>&#47;</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <read/>
+      <write/>
+      <input/>
+      <output/>
+      <update/>
+      <rejected/>
+      <connection/>
+      <table/>
+      <step_performance_table/>
+      <use_batchid>Y</use_batchid>
+      <use_logfield>N</use_logfield>
+      <size_limit_lines/>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+  <modified_user>-</modified_user>
+  <modified_date>2011&#47;03&#47;01 15:03:12.337</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>Kaltura</name>
+    <server>${OpDbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kaltura</database>
+    <port>${OpDbPort}</port>
+    <username>${OpDbUser}</username>
+    <password>${OpDbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.zeroDateTimeBehavior</code><attribute>convertToNull</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${OpDbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>Kaltura_Writable</name>
+    <server>${OpWritableDbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kaltura</database>
+    <port>${OpDbPort}</port>
+    <username>${OpWritableDbUser}</username>
+    <password>${OpWritableDbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.zeroDateTimeBehavior</code><attribute>convertToNull</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${OpDbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION sql_log_bin=0</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>KalturaDW</name>
+    <server>${DbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kalturadw</database>
+    <port>${DbPort}</port>
+    <username>${DbUser}</username>
+    <password>${DbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.zeroDateTimeBehavior</code><attribute>convertToNull</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>kalturadw_bisources</name>
+    <server>${DbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kalturadw_bisources</database>
+    <port>${DbPort}</port>
+    <username>${DbUser}</username>
+    <password>${DbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>kalturadw_ds</name>
+    <server>${DbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kalturadw_ds</database>
+    <port>${DbPort}</port>
+    <username>${DbUser}</username>
+    <password>${DbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>KalturaLogs</name>
+    <server>${DbHostName}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>kalturaLog</database>
+    <port>${DbPort}</port>
+    <username>${DbUser}</username>
+    <password>${DbPassword}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${DbPort}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>Write to log</from><to>Abort</to><enabled>Y</enabled> </hop>  <hop> <from>parse line</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>filter bad lines</from><to>Text file output</to><enabled>Y</enabled> </hop>  <hop> <from>Get API_V_3 lines</from><to>Get PS2 lines</to><enabled>Y</enabled> </hop>  <hop> <from>Get PS2 lines</from><to>Irrelevant line</to><enabled>Y</enabled> </hop>  <hop> <from>Get API_V_3 lines</from><to>Set line type = 3</to><enabled>Y</enabled> </hop>  <hop> <from>Set line type = 3</from><to>parse line</to><enabled>Y</enabled> </hop>  <hop> <from>Get PS2 lines</from><to>Set line type = 2</to><enabled>Y</enabled> </hop>  <hop> <from>Set line type = 2</from><to>parse line</to><enabled>Y</enabled> </hop>  <hop> <from>decode http string</from><to>Get API_V_3 lines</to><enabled>Y</enabled> </hop>  <hop> <from>filter bad lines</from><to>empty ps2 line</to><enabled>Y</enabled> </hop>  <hop> <from>Create gunzip command and new file path</from><to>Unzipping:</to><enabled>Y</enabled> </hop>  <hop> <from>Unzipping:</from><to>unzip apache file</to><enabled>Y</enabled> </hop>  <hop> <from>Mapping input specification</from><to>Create gunzip command and new file path</to><enabled>Y</enabled> </hop>  <hop> <from>unzip apache file</from><to>Get target dir</to><enabled>Y</enabled> </hop>  <hop> <from>Get target dir</from><to>Define target and create file command</to><enabled>Y</enabled> </hop>  <hop> <from>Define target and create file command</from><to>create target file</to><enabled>Y</enabled> </hop>  <hop> <from>create target file</from><to>iterate file</to><enabled>Y</enabled> </hop>  <hop> <from>iterate file</from><to>decode http string</to><enabled>Y</enabled> </hop>  <hop> <from>Get target dir 2</from><to>Target file</to><enabled>Y</enabled> </hop>  <hop> <from>parse line</from><to>Get target dir 2</to><enabled>Y</enabled> </hop>  <hop> <from>Target file</from><to>filter bad lines</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Abort</name>
+    <type>Abort</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <row_threshold>0</row_threshold>
+      <message/>
+      <always_log_rows>Y</always_log_rows>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1060</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Create gunzip command and new file path</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#47;&#47;Script here
+var gunzipFilePath = filename;
+
+filePrefix = &quot;file:&#47;&#47;&quot;;
+filePrefixIndex = indexOf(filename, filePrefix);
+if (filePrefixIndex &gt; - 1) {
+	gunzipFilePath = substr(filename, filePrefix.length);
+}
+
+gunzipCommand = &apos;gunzip -f &apos; + gunzipFilePath;
+gzIndex = indexOf(filename, &quot;.gz&quot;);
+if (gzIndex &gt; - 1) {
+	filename = substr(filename, 0, gzIndex);
+}
+</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>gunzipCommand</name>
+        <rename>gunzipCommand</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>filename</name>
+        <rename>filename</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>140</xloc>
+      <yloc>99</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Define target and create file command</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#47;&#47;Script here
+short_filename = getShortFilename(filename);
+target_filename = target_dir + short_filename;
+
+touchCommand = &apos;touch &apos; + target_filename;
+
+
+
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>getVariable_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Retrieves the value of a given Kettle&#47;Pentaho Variable
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; getVariable(var, var);
+&#47;&#47; 1: String - The name of the variable to retrieve.
+&#47;&#47; 2: String - The default if the variable doesn&apos;t exist.
+&#47;&#47;
+&#47;&#47; 2007-07-27
+&#47;&#47;
+var strVarName=&quot;getVariableTest&quot;;
+var strVarValue=&quot;123456&quot;;
+Alert(getVariable(strVarName, &quot;&quot;));
+setVariable(strVarName,strVarValue, &quot;r&quot;);
+Alert(getVariable(strVarName, &quot;&quot;));
+strVarValue=&quot;654321&quot;;
+setVariable(strVarName,strVarValue, &quot;r&quot;);
+Alert(getVariable(strVarName, &quot;&quot;));</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>substr_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Perform the substring function
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; substr(var, from);
+&#47;&#47; substr(var, from, to);
+&#47;&#47;
+&#47;&#47; 2007-01-25
+&#47;&#47;
+var str1= &quot;Hello Pentaho!&quot;;
+var str2= substr(str1, 6);
+var str3= substr(str1, 6, 7);
+Alert(&quot;Input : &quot; + str1);
+Alert(&quot;From position 6: &quot; + str2);
+Alert(&quot;From position 6 for 7 long : &quot; + str3);
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>indexOf_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Perform the indexOf function
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; indexOf(string, substring);
+&#47;&#47; indexOf(string, substring, fromIndex);
+&#47;&#47;
+&#47;&#47; 2007-09-25
+&#47;&#47;
+var str1= &quot;Hello Pentaho!&quot;;
+var str2= indexOf(str1, &quot;Pentaho&quot;);
+var str3= indexOf(str1, &quot;o&quot;, 7);
+Alert(&quot;Input : &quot; + str1);
+Alert(&quot;Index of &apos;Pentaho&apos; : &quot; + str2);
+Alert(&quot;index of &apos;o&apos;, search from position 7 : &quot; + str3);
+</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>target_filename</name>
+        <rename>target_filename</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>touchCommand</name>
+        <rename>touchCommand</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>280</xloc>
+      <yloc>180</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get API_V_3 lines</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Set line type = 3</send_true_to>
+<send_false_to>Get PS2 lines</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <operator>OR</operator>
+   <conditions>
+    <condition>
+     <negated>N</negated>
+     <leftvalue>http_string</leftvalue>
+     <function>CONTAINS</function>
+     <rightvalue/>
+     <value><name>constant</name><type>String</type><text>action=collect</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>     </condition>
+    <condition>
+     <negated>N</negated>
+     <operator>AND</operator>
+     <leftvalue>http_string</leftvalue>
+     <function>CONTAINS</function>
+     <rightvalue/>
+     <value><name>constant</name><type>String</type><text>service=stats</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>     </condition>
+    </conditions>
+   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>820</xloc>
+      <yloc>180</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get PS2 lines</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Set line type = 2</send_true_to>
+<send_false_to>Irrelevant line</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>http_string</leftvalue>
+   <function>CONTAINS</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>collectstats</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>820</xloc>
+      <yloc>300</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get target dir</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>target_dir</name>
+        <variable>${EventsSourcesPath}&#47;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>134</xloc>
+      <yloc>179</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Irrelevant line</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>820</xloc>
+      <yloc>440</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Mapping input specification</name>
+    <type>MappingInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>filename</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+        <select_unspecified>N</select_unspecified>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>140</xloc>
+      <yloc>20</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set line type = 2</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>lineType</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>2</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>920</xloc>
+      <yloc>260</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Set line type = 3</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>lineType</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>3</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>920</xloc>
+      <yloc>200</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Text file output</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>,</separator>
+    <enclosure/>
+    <enclosure_forced>N</enclosure_forced>
+    <header>N</header>
+    <footer>N</footer>
+    <format>Unix</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>Y</fileNameInField>
+    <fileNameField>target_filename</fileNameField>
+    <file>
+      <name>${EventsSourcesPath}&#47;</name>
+      <is_command>N</is_command>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention/>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>clientVersion</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>eventType</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>eventTime</name>
+        <type>Date</type>
+        <format>yyyy-MM-dd HH:mm:ss</format>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>sessionID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>partnerID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>entryID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>uv</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>widgetID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>uiConfID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>uid</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>currentPoint</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>duration</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>user_ip</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>processDuration</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>controlID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>seekIndicator</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>newPoint</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>referrer</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>eventTimestamp</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1483</xloc>
+      <yloc>201</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Unzipping:</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+    <fields>
+      <field>
+        <name>gunzipCommand</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>300</xloc>
+      <yloc>100</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_basic</loglevel>
+      <displayHeader>Y</displayHeader>
+    <fields>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1060</xloc>
+      <yloc>300</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>create target file</name>
+    <type>ExecProcess</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <processfield>touchCommand</processfield>
+    <resultfieldname>result</resultfieldname>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>440</xloc>
+      <yloc>180</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>decode http string</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>2</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var http_string = unescape(http_string);
+
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>getVariable_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Retrieves the value of a given Kettle&#47;Pentaho Variable
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; getVariable(var, var);
+&#47;&#47; 1: String - The name of the variable to retrieve.
+&#47;&#47; 2: String - The default if the variable doesn&apos;t exist.
+&#47;&#47;
+&#47;&#47; 2007-07-27
+&#47;&#47;
+var strVarName=&quot;getVariableTest&quot;;
+var strVarValue=&quot;123456&quot;;
+Alert(getVariable(strVarName, &quot;&quot;));
+setVariable(strVarName,strVarValue, &quot;r&quot;);
+Alert(getVariable(strVarName, &quot;&quot;));
+strVarValue=&quot;654321&quot;;
+setVariable(strVarName,strVarValue, &quot;r&quot;);
+Alert(getVariable(strVarName, &quot;&quot;));</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>substr_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Perform the substring function
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; substr(var, from);
+&#47;&#47; substr(var, from, to);
+&#47;&#47;
+&#47;&#47; 2007-01-25
+&#47;&#47;
+var str1= &quot;Hello Pentaho!&quot;;
+var str2= substr(str1, 6);
+var str3= substr(str1, 6, 7);
+Alert(&quot;Input : &quot; + str1);
+Alert(&quot;From position 6: &quot; + str2);
+Alert(&quot;From position 6 for 7 long : &quot; + str3);
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>indexOf_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Perform the indexOf function
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; indexOf(string, substring);
+&#47;&#47; indexOf(string, substring, fromIndex);
+&#47;&#47;
+&#47;&#47; 2007-09-25
+&#47;&#47;
+var str1= &quot;Hello Pentaho!&quot;;
+var str2= indexOf(str1, &quot;Pentaho&quot;);
+var str3= indexOf(str1, &quot;o&quot;, 7);
+Alert(&quot;Input : &quot; + str1);
+Alert(&quot;Index of &apos;Pentaho&apos; : &quot; + str2);
+Alert(&quot;index of &apos;o&apos;, search from position 7 : &quot; + str3);
+</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>http_string</name>
+        <rename>http_string</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>680</xloc>
+      <yloc>180</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>empty ps2 line</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1323</xloc>
+      <yloc>381</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>filter bad lines</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Text file output</send_true_to>
+<send_false_to>empty ps2 line</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>ignoreLine</leftvalue>
+ <function>=</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Boolean</type><text>N</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1323</xloc>
+      <yloc>201</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>iterate file</name>
+    <type>TextFileInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <accept_filenames>Y</accept_filenames>
+    <passing_through_fields>N</passing_through_fields>
+    <accept_field>filename</accept_field>
+    <accept_stepname>create target file</accept_stepname>
+    <separator> </separator>
+    <enclosure>&quot;</enclosure>
+    <enclosure_breaks>N</enclosure_breaks>
+    <escapechar/>
+    <header>N</header>
+    <nr_headerlines>1</nr_headerlines>
+    <footer>N</footer>
+    <nr_footerlines>1</nr_footerlines>
+    <line_wrapped>N</line_wrapped>
+    <nr_wraps>1</nr_wraps>
+    <layout_paged>N</layout_paged>
+    <nr_lines_per_page>80</nr_lines_per_page>
+    <nr_lines_doc_header>0</nr_lines_doc_header>
+    <noempty>Y</noempty>
+    <include>Y</include>
+    <include_field>filename</include_field>
+    <rownum>N</rownum>
+    <rownumByFile>N</rownumByFile>
+    <rownum_field>line_num</rownum_field>
+    <format>Unix</format>
+    <encoding>UTF-8</encoding>
+    <add_to_result_filenames>N</add_to_result_filenames>
+    <file>
+      <name>&#47;tmp&#47;dwh_inbound&#47;events&#47;pa-apache12-access_log-2010-08-01</name>
+      <filemask/>
+      <file_required/>
+      <type>CSV</type>
+      <compression>None</compression>
+    </file>
+    <filters>
+    </filters>
+    <fields>
+      <field>
+        <name>user_ip</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>20</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>Placeholder1</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>Placeholder2</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>raw_datetime</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>25</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>timezone_offset</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>6</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>http_string</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>1024</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>http_response_code</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>5</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>response_size</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>10</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>response_duration</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>10</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>referrer</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>255</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>user_agent</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>255</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>uv</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>64</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <error_ignored>Y</error_ignored>
+    <error_line_skipped>Y</error_line_skipped>
+    <error_count_field/>
+    <error_fields_field/>
+    <error_text_field/>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <date_format_lenient>N</date_format_lenient>
+    <date_format_locale>en</date_format_locale>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>580</xloc>
+      <yloc>180</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>parse line</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>2</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var fieldSeperator = &quot;,&quot;;
+var keyPrefix = &quot;&quot;;
+var ignoreLine = false;
+
+var clientVersion = &quot;0.5:0.1&quot;;
+var eventType = &quot;&quot;;
+var sessionID = &quot;&quot;;
+var partnerID = &quot;&quot;;
+var entryID = &quot;&quot;;
+var uniqueViewer = &quot;&quot;;
+var widgetID = &quot;&quot;;
+var uiConfID = &quot;&quot;;
+var uid = &quot;&quot;;
+var currentPoint = &quot;&quot;;
+var duration = &quot;&quot;;
+var processDuration = &quot;&quot;;
+var controlID = &quot;&quot;;
+var seekIndicator = &quot;0&quot;;
+var newPoint = &quot;&quot;;
+var referrer = &quot;&quot;;
+var eventTimestamp = &quot;&quot;;
+
+&#47;&#47; TODO: parse it to the proper string format
+&#47;&#47; Trim &quot;[&quot; and set it to a date
+eventTime = str2date(substr(raw_datetime,1),&apos;dd&#47;MMM&#47;yyyy:HH:mm:ss&apos;);
+
+&#47;&#47; Yield Query String
+urlArr = http_string.split(&apos; &apos;);
+fullUrl = urlArr[1];
+queryString = substr(fullUrl, indexOf(fullUrl, &apos;?&apos;) + 1);
+queryStringDictionary = parseQueryString(queryString);
+
+&#47;&#47; Verify validity in case of lineType = 1 and yield widgetID
+if (lineType == 2){
+	if ((queryStringDictionary[&quot;obj_type&quot;] != &quot;entry&quot;) || (!queryStringDictionary[&quot;obj_id&quot;]) || (!queryStringDictionary[&quot;command&quot;])){
+		ignoreLine = true;
+	} else {
+		var extraInfoVars = parseQueryString(getValue(queryStringDictionary, &quot;extra_info&quot;));
+		if (extraInfoVars){
+			widgetID = getValue(extraInfoVars, &quot;widgetId&quot;);
+		}
+		if (uv.length &gt; 34 &amp;&amp; substr(uv,0,3) == &quot;uv_&quot;) {
+			uv = substr(uv,3);
+		}
+		partnerID = getValue(queryStringDictionary, &quot;partner_id&quot;);
+		entryID = getValue(queryStringDictionary, &quot;obj_id&quot;);
+		uid = getValue(queryStringDictionary, &quot;uid&quot;);
+		eventType = decode(queryStringDictionary[&quot;command&quot;], &apos;view&apos;, 2, &apos;play&apos;,3, 0);
+	}
+} else	{
+	&#47;&#47; API V3
+	keyPrefix = &quot;event:&quot;;
+	clientVersion = getValue(queryStringDictionary,&quot;clientVer&quot;);
+	sessionID = getValue(queryStringDictionary, &quot;sessionId&quot;);
+	widgetID = getValue(queryStringDictionary, &quot;widgetId&quot;);
+	uv = getValue(queryStringDictionary, &quot;uniqueViewer&quot;);
+	uiConfID = getValue(queryStringDictionary, &quot;uiconfId&quot;);
+	currentPoint = getValue(queryStringDictionary, &quot;currentPoint&quot;);
+	duration = getValue(queryStringDictionary, &quot;duration&quot;);
+	processDuration = getValue(queryStringDictionary, &quot;processDuration&quot;);
+	controlID = getValue(queryStringDictionary, &quot;controlId&quot;);
+	var seekStringIndcator = getValue(queryStringDictionary, &quot;seek&quot;);
+	seekIndicator = decode(seekStringIndcator, &quot;true&quot;, 1, &quot;1&quot;, 1, 0);
+	newPoint = getValue(queryStringDictionary, &quot;newPoint&quot;);
+	referrer = getValue(queryStringDictionary, &quot;referrer&quot;);
+	eventTimestamp = getValue(queryStringDictionary, &quot;eventTimestamp&quot;);
+
+	partnerID = getValue(queryStringDictionary, &quot;partnerId&quot;);
+	entryID = getValue(queryStringDictionary, &quot;entryId&quot;);
+	uid = getValue(queryStringDictionary,&quot;userId&quot;);
+	eventType = getValue(queryStringDictionary, &quot;eventType&quot;);
+}
+
+&#47;&#47; Parse a queryString into a dictionary
+function parseQueryString(s){
+	&#47;&#47;sVars = s.split(&apos;&amp;&apos;);
+	&#47;&#47;var sDictionaryDefinition = &quot;&quot;;
+	&#47;&#47;firstRow = true;
+	&#47;&#47;for (i=0;i&lt;sVars.length;i++) {
+	&#47;&#47;	keyValuePair = sVars[i];
+	&#47;&#47;	seperatorLoaction = indexOf(keyValuePair, &quot;=&quot;);
+	&#47;&#47;	if (seperatorLoaction &gt; - 1) {
+	&#47;&#47;		key = substr(keyValuePair, 0, seperatorLoaction);
+	&#47;&#47;		value = substr(keyValuePair, seperatorLoaction + 1);
+	&#47;&#47;		if (!firstRow) {
+	&#47;&#47;			sDictionaryDefinition += &quot;,&quot;;
+	&#47;&#47;		} else {
+	&#47;&#47;			firstRow = false;
+	&#47;&#47;		}
+	&#47;&#47;		&#47;&#47; Handle single quotes
+	&#47;&#47;		value = replace(value, &apos;\&apos;&apos;,&apos;\\\\\\\&apos;&apos;);
+	&#47;&#47;		sDictionaryDefinition += &quot;&apos;&quot; + key + &quot;&apos;&quot; + &quot;:&quot; +  &quot;&apos;&quot; +  value +  &quot;&apos;&quot;;
+	&#47;&#47;	}
+	&#47;&#47;}
+	&#47;&#47;eval(&quot;sDictionary = {&quot; + sDictionaryDefinition + &quot;};&quot;);
+	var sDictionary = {};
+	s.replace(&#47;([^=&amp;]+)=([^&amp;]*)&#47;g, function(m, key, value){ 
+        sDictionary[key] = value; 
+    }); 
+	return sDictionary;
+}
+
+function getValue(dictionary, key){
+	var val = dictionary[keyPrefix + key];
+	return val ? replace(val, &apos;,&apos;, &apos;~&apos;) : &quot;&quot;;
+	&#47;&#47;return val ? val : &quot;&quot;;
+}
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>date2str_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Converts the given Date to a string Value.
+&#47;&#47;
+&#47;&#47; Usage:
+&#47;&#47; date2str(var);
+&#47;&#47; 1: Date - The Variable with the Date to convert.
+&#47;&#47; This call uses your localized format.
+&#47;&#47;
+&#47;&#47; date2str(var, var);
+&#47;&#47; 1: Date - The Variable with the Date to convert.
+&#47;&#47; 2: String - The Format:
+&#47;&#47;        yy &#47; yyyy - 06 &#47; 2006
+&#47;&#47;        MM &#47; MMM &#47; MMMMM - 11 &#47; Nov &#47; November
+&#47;&#47;        d &#47; dd  - 1 &#47; 01
+&#47;&#47;        E &#47; EEEE - Tue &#47; Tuesday
+&#47;&#47;        hh &#47; HH - 11 &#47; 23
+&#47;&#47;        m &#47; mm - 5 &#47; 05
+&#47;&#47;        s &#47; ss - 8 &#47; 08
+&#47;&#47;
+&#47;&#47; date2str(var, var, var);
+&#47;&#47; 1: Date - The Variable with the Date to convert.
+&#47;&#47; 2: String - The Format:
+&#47;&#47; 3: String - The Locale Parameter
+&#47;&#47;    A valid ISO Language Code. (DE = German, EN = English, FR = France, ...)
+&#47;&#47;
+&#47;&#47; date2str(var, var, var, var);
+&#47;&#47; 1: Date - The Variable with the Date to convert.
+&#47;&#47; 2: String - The Format:
+&#47;&#47; 3: String - The Locale Parameter
+&#47;&#47;    A valid ISO Language Code. (DE = German, EN = English, FR = France, ...)
+&#47;&#47; 4: String - The Timezone Parameter.
+&#47;&#47;    A valid timezone: EST, GMT, ... (if invalid GMT will be selected as default)
+&#47;&#47; 
+&#47;&#47; 2006-11-15
+&#47;&#47;
+var dValue = new Date();
+Alert(date2str(dValue));
+Alert(date2str(dValue,&quot;dd.MM.yyyy&quot;));
+Alert(date2str(dValue,&quot;dd.MM.yyyy HH:mm:ss&quot;));
+Alert(date2str(dValue,&quot;E.MMM.yyyy&quot;,&quot;DE&quot;));
+Alert(date2str(dValue,&quot;dd.MM.yyyy HH:mm:ss&quot;,&quot;EN&quot;));
+Alert(date2str(dValue,&quot;dd.MM.yyyy HH:mm:ss&quot;,&quot;EN&quot;, &quot;EST&quot;));
+     </jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>decode_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Decode has the functonality like the IF-THEN-ELSE statement.
+&#47;&#47; Decode searches for the first matching criteria and returns
+&#47;&#47; the given value back. If no criteria could be found, decode
+&#47;&#47; returns the default Value or the given String.
+&#47;&#47;
+&#47;&#47; Usage:
+&#47;&#47; decode(var, var, var);
+&#47;&#47; 1: String - The Variable with the content for matching.
+&#47;&#47; 2: String - The Value to search for.
+&#47;&#47; 3: String - The Return Value.
+&#47;&#47; If no entriy found, decode returns the Search for Parameter
+&#47;&#47;
+&#47;&#47; decode(var, var, var, var,var,...)
+&#47;&#47; 1: String - The Variable with the content to matching.
+&#47;&#47; 2: String - The First Value to search for.
+&#47;&#47; 3: String - The First Return Value with.
+&#47;&#47; 4: String - The Second Value to search for.
+&#47;&#47; 5: String - The Second Return Value with.
+&#47;&#47; ...
+&#47;&#47;
+&#47;&#47; 2006-11-15
+&#47;&#47;
+var str1 = &quot;Hallo&quot;;
+Alert(decode(str1, &quot;Hallo&quot;, &quot;Hello&quot;));
+Alert(decode(str1, &quot;1&quot;, &quot;Mr&quot;, &quot;2&quot;, &quot;Mrs&quot;, &quot;N&#47;A&quot;));
+Alert(decode(str1, &quot;1&quot;, &quot;Mr&quot;, &quot;2&quot;, &quot;Mrs&quot;));
+str1 = &quot;Mrs&quot;;
+Alert(decode(str1, &quot;1&quot;, &quot;Mr&quot;, &quot;2&quot;, &quot;Mrs&quot;));
+      </jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>setEnvironmentVar_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Set a Value as Kettle&#47;Pentaho System Variable
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; setEnvironmentVar(var,var);
+&#47;&#47; 1: String - The name of the Variable to set.
+&#47;&#47; 2: Variable - The Value which should be assigned
+&#47;&#47;
+&#47;&#47; 2006-11-15
+&#47;&#47;
+var strVarName=&quot;setEnvTest&quot;;
+var strVarValue=&quot;123456&quot;;
+Alert(getEnvironmentVar(strVarName));
+setEnvironmentVar(strVarName,strVarValue);
+Alert(getEnvironmentVar(strVarName));
+strVarValue=&quot;654321&quot;;
+setEnvironmentVar(strVarName,strVarValue);
+Alert(getEnvironmentVar(strVarName));</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>eventTime</name>
+        <rename>eventTime</rename>
+        <type>Date</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>clientVersion</name>
+        <rename>clientVersion</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>eventType</name>
+        <rename>eventType</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>sessionID</name>
+        <rename>sessionID</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>partnerID</name>
+        <rename>partnerID</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>entryID</name>
+        <rename>entryID</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>uv</name>
+        <rename>uv</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>      <field>        <name>widgetID</name>
+        <rename>widgetID</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>uiConfID</name>
+        <rename>uiConfID</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>uid</name>
+        <rename>uid</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>currentPoint</name>
+        <rename>currentPoint</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>duration</name>
+        <rename>duration</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>processDuration</name>
+        <rename>processDuration</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>controlID</name>
+        <rename>controlID</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>seekIndicator</name>
+        <rename>seekIndicator</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>newPoint</name>
+        <rename>newPoint</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>referrer</name>
+        <rename>referrer</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>Y</replace>
+      </field>      <field>        <name>eventTimestamp</name>
+        <rename>eventTimestamp</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>ignoreLine</name>
+        <rename>ignoreLine</rename>
+        <type>Boolean</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1060</xloc>
+      <yloc>200</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>unzip apache file</name>
+    <type>ExecProcess</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <processfield>gunzipCommand</processfield>
+    <resultfieldname>result</resultfieldname>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>440</xloc>
+      <yloc>100</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Target file</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>&#47;&#47;Script here
+target_filename = target_dir + getShortFilename(filename);
+
+
+
+
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>getVariable_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Retrieves the value of a given Kettle&#47;Pentaho Variable
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; getVariable(var, var);
+&#47;&#47; 1: String - The name of the variable to retrieve.
+&#47;&#47; 2: String - The default if the variable doesn&apos;t exist.
+&#47;&#47;
+&#47;&#47; 2007-07-27
+&#47;&#47;
+var strVarName=&quot;getVariableTest&quot;;
+var strVarValue=&quot;123456&quot;;
+Alert(getVariable(strVarName, &quot;&quot;));
+setVariable(strVarName,strVarValue, &quot;r&quot;);
+Alert(getVariable(strVarName, &quot;&quot;));
+strVarValue=&quot;654321&quot;;
+setVariable(strVarName,strVarValue, &quot;r&quot;);
+Alert(getVariable(strVarName, &quot;&quot;));</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>substr_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Perform the substring function
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; substr(var, from);
+&#47;&#47; substr(var, from, to);
+&#47;&#47;
+&#47;&#47; 2007-01-25
+&#47;&#47;
+var str1= &quot;Hello Pentaho!&quot;;
+var str2= substr(str1, 6);
+var str3= substr(str1, 6, 7);
+Alert(&quot;Input : &quot; + str1);
+Alert(&quot;From position 6: &quot; + str2);
+Alert(&quot;From position 6 for 7 long : &quot; + str3);
+</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>-1</jsScript_type>
+        <jsScript_name>indexOf_Sample</jsScript_name>
+        <jsScript_script>&#47;&#47; Perform the indexOf function
+&#47;&#47; 
+&#47;&#47; Usage:
+&#47;&#47; indexOf(string, substring);
+&#47;&#47; indexOf(string, substring, fromIndex);
+&#47;&#47;
+&#47;&#47; 2007-09-25
+&#47;&#47;
+var str1= &quot;Hello Pentaho!&quot;;
+var str2= indexOf(str1, &quot;Pentaho&quot;);
+var str3= indexOf(str1, &quot;o&quot;, 7);
+Alert(&quot;Input : &quot; + str1);
+Alert(&quot;Index of &apos;Pentaho&apos; : &quot; + str2);
+Alert(&quot;index of &apos;o&apos;, search from position 7 : &quot; + str3);
+</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>target_filename</name>
+        <rename>target_filename</rename>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1235</xloc>
+      <yloc>202</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get target dir 2</name>
+    <type>GetVariable</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>target_dir</name>
+        <variable>${EventsSourcesPath}&#47;</variable>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1139</xloc>
+      <yloc>201</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+      <error>
+        <source_step>parse line</source_step>
+        <target_step>Write to log</target_step>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename>error_desc</descriptions_valuename>
+        <fields_valuename>error_fields</fields_valuename>
+        <codes_valuename>error_codes</codes_valuename>
+        <max_errors>-1</max_errors>
+        <max_pct_errors>-1</max_pct_errors>
+        <min_pct_rows>-1</min_pct_rows>
+      </error>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+</transformation>

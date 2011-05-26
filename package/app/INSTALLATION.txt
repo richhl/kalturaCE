@@ -1,0 +1,281 @@
+
+Pre-Installation Considerations
+********************************
+Please note the following considerations before setting up your Kaltura CE v3.0
+
+Virtual Host Setup
+==================
+During the installation process, Kaltura sets up the CE to run as a Virtual Host under Apache2. This makes it easier to cleanly support multiple Flash applications and streaming, and lets the various applications run from the virtual root directory regardless of their actual installation paths.
+The Kaltura CE uses name-based virtual hosting under Apache2. During installation, the install script will prompt you for the domain name of your machine (or a virtual host, if you have one configured), for example: kaltura.myhost.com. After all installation steps are complete, you will launch the CE with http://kaltura.myhost.com/start.
+
+PHP version compliance
+=======================
+The current version of the Kaltura CE supports both PHP 5.3 and PHP 5.2
+
+Migration from Kaltura CE 1.5 or older
+=======================================
+Please note that Kaltura does not provide a complete migration path from Kaltura CE 1.5 to the current one. If you already run a live web site based on older versions of Kaltura CE, you will need to manually transfer your content and players to work with the new version of Kaltura CE. It’s possible to create a script based on the Kaltura REST API to automate this transfer process using the API’s bulkUpload method. A basic script will be provided on the Kaltura.org site.
+
+Migration from Kaltura CE 2.0.x
+=======================================
+Migration instruction from Kaltura CE 2.0.x to the beta version of Kaltura CE 3.0 are not avaialble. such instructions will be provided together with the official release of Kaltura CE 3.0
+
+Pre-distributed setup considerations
+=====================================
+The current Kaltura CE installation script is meant for a single server installation. However, when you’re ready to install the Kaltura CE for use in a production environment, you can take the following steps to ease platform distribution when your service scales up.
+- Set up your Kaltura databases on a dedicated server within your environment.
+- Use NFS to set up your storage location on a dedicated file system that can be accessed from your Kaltura server (and later all of the servers you deploy as part of your Kaltura platform setup).
+- Set up your xymon monitoring server installation (optional), on a dedicated server within your environment
+For more information about architecture and scaling considerations, please refer to Kaltura CE documentation at http://www.kaltura.org/kaltura-community-edition-kalturace
+
+-----------------------------------------------------------------------------------------------------------
+
+prerequisites
+**************
+The following prerequisites are required for installing and for running the Kaltura CE V3.0 on a Linux server
+
+Hardware specifications
+========================
+Hardware resources should be set according to usage estimations. 
+Minimal requirements:
+•	1GB RAM
+•	2 CPUs
+•	Storage  hard-drive – according to storage needs
+
+
+Apache
+=======
+Apache 2.2 or higher with following modules enabled: 
+rewrite, headers, expires, filter, deflate, file_cache, env, proxy.
+
+PHP
+====
+-PHP 5.2.x/PHP 5.3.x are supported. 
+-Both php and php-cli must be present.
+-The following php extensions should be included and enabled:
+Gd, Curl, Memcache, Mysql, Mysqli, Exif, ftp, iconv, json, Session, apc, spl, DOM, SimpleXML, xml, xsl, imap, ctype
+-Verify that the following settings within the php.ini file on each server:
+For PHP 5.3:  Verify that request_order parameter includes C, G and P (recommended: "CGP")
+For PHP 5.2:  Verify that variables_order parameter in php.ini includes C, G and P
+
+
+MySQL
+======
+MySQL 5.1.37 or higher
+The following lines should be added to the MySQL my.cnf file:
+lower_case_table_names = 1
+thread_stack = 262144
+MySQL should be restarted after this adjustment is made
+
+curl
+=====
+Should be installed
+
+memcached 
+==========
+Should be installed 
+
+32-bit packages required on 64-bit servers
+===========================================
+Some of the binaries that are in use by the Kaltura Platform are available in a 32-bit compiled version only. to enable these binaries
+the following packages (or equivalents per Linus Distribution) may be required on a 64-bit server:  
+Ubuntu:
+a32-libs, lib32asound2, lib32gcc1, lib32ncurses5, lib32stdc++6, lib32z1,  libc6-i386
+CentOS:
+glibc.i686 , ncurses-libs,  zlib-1.2.x ,  freetype , bzip2-libs
+ 
+
+JRE 1.6.x
+==============
+Required for the video analytics module
+
+Pentaho 3.2
+============
+This is an open source data integration package, required for the video analytics module The data-integration package should be downloaded and installed within the /usr/local/pentaho/pdi directory
+i.e.
+- Create the /usr/local/pentaho/ directory
+- Download and extract the pentaho data-integration package into the /usr/local/pentaho/ - package is available at: http://sourceforge.net/projects/pentaho/files/Data%20Integration/3.2.0-s...
+- Rename the data-integration root directory of the downloaded package into the pdi directory
+
+
+Mail server
+===========
+A mail server is needed for managing outgoing emails as part of the kaltura platform workflow.  Suggested packages:  Sendmail,  postfix
+
+Xymon/Hobbit 4.2.3 (optional)
+=============================
+This is an open source system monitoring package required for the Kaltura admin console's out-of-the-box monitoring dashboard and alert system. Go to http://www.xymon.com for installation instructions (specific instructions for installing xymon on Ubuntu 10.04/CentOS 5.5 are available at the Kaltura CE documentation page at http://www.kaltura.org/kaltura-community-edition-kalturace)
+
+Disabled SELinux (When applicable on server)
+=============================================
+Kaltura CE cannot run when the Security-Enhanced Linux (SELinux) feature is deployed and enabled. If the SELinux feature is deployed on your server you must disable it for being able to use Kaltura CE.
+Within the /etc/sysconfig/selinux file (if exists on your server) set:
+SELINUX=disabled
+
+Set Kaltura CE domain name/virtual hostname in HOSTS file. (Can be done before/after installation)
+=============================================================================================
+The domain name (or virtual hostname) you use for the Kaltura CE installation should be set within the /etc/hosts file as follows:
+127.0.0.1  yourdomainname.com
+
+You are directed to make this change at the end of the installation script.
+This entry is needed so that Kaltura internal API client applications (e.g. the admin console application and the kaltura batch application) can be directed to the relevant Kaltura web services according to their internal 'server url' configuration.
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+Required info during installation
+***********************************
+When running the Kaltura CE installation script, you will be prompted to provide some information that is required for setting up and configuring your Kaltura CE.
+Please prepare for having this information available, before you run the Kaltura CE installation script.
+
+The full pathname to your Apache apachectl script
+==================================================
+This information is required, so the Kaltura CE installation script can verify your apache settings prerequisites. Please note the name and location of this file is different if you are using the XAMPP configuration and also has different names in different Linux distributions
+For a standard XAMPP configuration the apachectl is usually located at:
+/opt/lampp/bin/apachectl
+For a standard LAMP configuration the apachectl may be available at one of the following paths:
+/usr/bin/apachectl
+/usr/bin/apache2ctl
+
+The full pathname to your PHP binary file
+==========================================
+This information is required, so the Kaltura CE installation script can verify your php settings prerequisites. Please note the name and location of this file is different if you are using the XAMPP configuration or not
+For a standard XAMPP configuration the php binary is usually located at:
+/opt/lampp/bin/php
+For a standard LAMP configuration the php binary is usually available at the following path:
+/usr/bin/php
+
+The full target directory path for the Kaltura application
+===========================================================
+This is the directory you want the Kaltura CE installation script to set your Kaltura application at. (Should not be the same as the directory to which you extracted the Kaltura CE package). When this directory does not exist it will be created by the installation script. This is where you can later find all the Kaltura CE application source code, scripts, configurations, logs etc. the Kaltura storgae directory will be created as well under this directory within a web subdirectory 
+Example:
+/opt/kaltura
+
+Database information
+====================
+Database hostname, port, root user, root password
+This is the access information to the MySQL database environment you want use for the Kaltura CE. If you are planning to set a distributed setup you can set this database on a dedicated server that can be accessed by the Kaltura CE installation.
+Example:
+Hostname: localhost/your db server hostname
+Port: 3306
+User: root
+Password: root
+
+Your primary system administrator email address
+================================================
+This is the email address of the person who will serve as your primary system administration for the Kaltura CE. This email address will be set as the login username for the Kaltura CE administration console. The person who will be assigned with this role will have full control on the video platform administration. The email address you use must be a real one, as the system will use this email address for sending system related messages.
+
+A password to set for admin console administrator
+==================================================
+This is the password to your system administrator for logging into the Kaltura admin console.
+
+The URL to your xymon - system monitoring – service (optional)
+===============================================================
+If you installed the xymon monitoring service prior to running the Kaltura installation script, you can provide the xymon service URL, so it will be auto-configured to become part of your Kaltura CE admin console.
+You can set the xymon service and it's URL also after installation has been completed. Please note that the format of this URL may be different on different Linux distributions:
+Example:
+http://www.xymondomain.com/xymon
+http://www.xymondomain.com/hobbit
+
+The name of the domain name/virtual hostname you will use for your kaltura CE server
+=====================================================================================
+See description and explanations within the prerequisites settings section.
+Examples:
+kaltura.myhost.com
+myhost.com
+
+Your permission to send system data for improving Kaltura CE
+============================================================= 
+In order to improve Kaltura CE, we are asking for your permission to send system data from your Kaltura CE server to Kaltura. This information will not be used for any purpose other than improving service quality. you will also be prompted with an option to provide your email address so we can approach you with specific assistance based on error events that might be sent from your server. 
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Running the Kaltura CE installation script
+*******************************************
+
+When all prerequisites are properly set on your server, follow the following steps for installing the Kaltura CE:
+- Extract the Kaltura CE package to anywhere on your server
+- Change to a root user
+- From the base directory of your extracted kaltura CE package run the "php install.php" command.
+- Follow installation instructions and provide the required information. 
+- When installation completes, follow the post-installation instructions below
+
+At the end of a successful installation you should be prompted with your login credentials to the Kaltura Administration Console (as provided by you during installation). You will need these login credentials to start working with the Kaltura CE. Assuming your mail server is up and running during installation you will receive these credentials to your mail box as well.
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Post – Installation Configuration
+**********************************
+Upon successfully completing installation, do the following:
+ - Open your apache configuration file for editing add the following line
+Include {YOUR_KALTURA_BASE_ DIR}/app/configurations/apache/my_kaltura.conf
+- set your Kaltura CE domain name/virtual hostname at your /etc/hosts file
+- Restart your apache server
+
+
+
+
+ - Verify that Kaltura’s services are activated on system startup:
+/{YOUR_KALTURA_BASE_ DIR}/app/scripts/searchd.sh start
+/{YOUR_KALTURA_BASE_ DIR}/app/scripts/serviceBatchMgr.sh start
+
+
+ - verify that system logrotate script (set in daily crontab in /etc/crontab), is set to run before Kaltura's daily dwh script.
+Kaltura's dwh scheduled daily scripts  are:
+/{YOUR_KALTURA_BASE_ DIR}/dwh/etlsource/execute/etl_logs.sh
+/{YOUR_KALTURA_BASE_ DIR}/dwh/etlsource/execute/daily.sh
+
+their execution schedule is set in:
+/{YOUR_KALTURA_BASE_ DIR}/crontab/kaltura_crontab
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+Getting Started
+****************
+Congratulations on setting up your Kaltura CE !
+
+To get easily started with your Kaltura CE you should first become familiar with the following applications:
+- Kaltura Administration Console - This is your platform administration tool, usually to be used by the system administrator/s of your Kaltura video Platform
+- Kaltura Management Console (KMC) - This is the Kaltura console for content management and publishing. every publisher that is registered into your online video platform will have his/her own KMC account
+
+To start working with the Kaltura CE, do the following:
+1. Go to your local Kaltura CE start page
+=======================================
+To get started working with the Kaltura CE after a successful installation, browse to your local Kaltura CE start page at: http://yourdomainname/start. 
+From the start page you can obtain some useful information on the Kaltura CE and the use you can make of it, as well as links to your Kaltura Admin Console application your Kaltura Management Console and to other pages in your Kaltura CE installation. Logging into your Kaltura Administration Console for creating a KMC account should be your first step for getting started with the Kaltura CE.
+
+Log into the Kaltura Administration Console to create your first KMC account
+=============================================================================
+From the Kaltura Admin Console, you can create your own "Publisher KMC account" for managing your content (go to the Publisher Management >> Add New publisher page).
+Complete the form with the required information and specifically set the email address of this KMC account's administrator. This email address will be used as the username for logging into the new KMC account.
+Assuming your mail server is running, your KMC administrator will receive a registration confirmation notification to his mailbox with his full KMC account credentials
+You can check that the new KMC account is available within the Publisher Management page, you, as the platform administrator are able to seamlessly manage all the KMC accounts that are registered within your platform from the Publisher Management page within the administration console. (select the Manage action to enter each publisher's KMC account)
+
+Log into your new KMC account
+=============================
+When your KMC account administrator gets his/her new KMC account credentials, he/she can log into this account and start upload content, manage content, design and set new player widgets, set the publishing settings etc.
+
+
+
+The direct URL to your Kaltura Management Console is http://yourdomainname/kmc
+For more information on the functionalities available in the Kaltura Management Console (KMC), please refer to the KMC quick start guide (A PDF version is available at the top-right corner of the KMC menu)
+
+The direct URL to your Kaltura Admin Console Application is http://yourdomainname/admin_console
+For more information on using Kaltura Admin Console, please refer to the Kaltura CE documentation at: http://www.kaltura.org/kaltura-community-edition-kalturace
+
+----------------------------------------------------------------------------------------------------------------------------------
+Get Assistance
+**************
+The KalturaCE is a community-supported open source project. The best place to get help is in our Community Forums at http://kaltura.org/forums/kaltura-server-community-edition-forums 
+
+-----------------------------------------------------------------------------------------------------------------------------------
+Get More Information
+*********************
+More information on installing and working with the Kaltura CE is available at the Kaltura CE documentation pages at: http://www.kaltura.org/kaltura-community-edition-kalturace
+
+
+
+
+

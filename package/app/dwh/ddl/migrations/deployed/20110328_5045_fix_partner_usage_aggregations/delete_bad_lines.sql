@@ -1,0 +1,1 @@
+DELETE FROM kalturadw.dwh_hourly_partner WHERE date_id IN (1982, 1983);

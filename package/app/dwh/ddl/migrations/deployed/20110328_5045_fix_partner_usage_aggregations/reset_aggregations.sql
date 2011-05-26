@@ -1,0 +1,1 @@
+update kalturadw.aggr_managment set is_calculated = 0 where aggr_name = 'partner_usage' and aggr_day_int in (20110325, 20110326);
